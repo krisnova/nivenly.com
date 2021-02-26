@@ -1,34 +1,48 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "nivenly.com"
-theme = "hugo-theme-hello-friend"
-copyright = ""
+theme = "nivenly-theme"
 paginate = 5
 
 [params]
-  subtitle = "Kris Nóva"
+  # dir name of your blog content (default is `content/posts`)
+  contentTypeName = "post"
   # "light" or "dark"
   defaultTheme = "dark"
-
-[params.logo]
-  logoText = "[nova@nivenly]:                     ~>$  "
-#   or
-#
-#   path = "/img/your-example-logo.svg"
-#   alt = "Your example logo alt text"
-
-[menu]
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/about"
-  [[menu.main]]
-    identifier = "showcase"
-    name = "Showcase"
-    url = "/showcase"
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 2
+  # Enable to show reading time in minutes for posts
+  showReadingTime = false
 
 [languages]
   [languages.en]
+    title = "nivenly.com"
+    subtitle = "kris nóva"
+    keywords = "kris, kris nova, nova, nóva, programming, linux, engineer, blog, archive, official, sexy"
+    copyright = "2021 Kris Nóva <kris@nivenly.com>"
+    menuMore = "Show more"
     writtenBy = "Written by"
     readMore = "Read more"
     readOtherPosts = "Read other posts"
+    newerPosts = "Newer posts"
+    olderPosts = "Older posts"
+    minuteReadingTime = "min read"
+    dateFormatSingle = "2006-01-02"
+    dateFormatList = "2006-01-02"
+
+    [languages.en.params.logo]
+      logoText = "[nova@nivenly]: ~$>"
+      logoHomeLink = "/"
+    # or
+    #
+    # path = "/img/your-example-logo.svg"
+    # alt = "Your example logo alt text"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about"
+      [[languages.en.menu.main]]
+        identifier = "showcase"
+        name = "Showcase"
+        url = "/showcase"
