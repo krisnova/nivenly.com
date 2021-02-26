@@ -15,6 +15,8 @@ Pull requests are accepted, and sometimes ignored. She ultimately uses this spac
 
 This is for lack of a better term, the offical archive of Kris Nóva.
 
+### Development Notes
+
 ### Success
 
 As she builds out the site, there are a few things she wants to make sure she includes.
