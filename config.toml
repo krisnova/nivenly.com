@@ -1,17 +1,17 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "Hello Friend"
+title = "nivenly.com"
 theme = "hugo-theme-hello-friend"
 copyright = ""
 paginate = 5
 
 [params]
-  subtitle = "A simple theme for Hugo"
+  subtitle = "Kris Nóva"
   # "light" or "dark"
   defaultTheme = "dark"
 
 [params.logo]
-  logoText = "hello friend"
+  logoText = "[nova@nivenly]:                     ~>$  "
 #   or
 #
 #   path = "/img/your-example-logo.svg"
