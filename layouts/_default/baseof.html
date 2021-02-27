@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="{{ $.Site.Language }}">
-  <head>
+    <head>
     {{ block "title" . }}
-      <title>
+        <title>
         {{ if .IsHome }}{{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} —
         {{ . }}{{ end }}{{ else }}{{ .Title }} ::
         {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}{{ end }}
-      </title>
+        </title>
     {{ end }}
     {{ partial "head.html" . }}
-  </head>
-  <body class="{{ if ne $.Site.Params.defaultTheme "light" -}} dark-theme {{- end -}}">
+    </head>
+    <body class="{{ if ne $.Site.Params.defaultTheme "light" -}} dark-theme {{- end -}}">
+    {{ partial "header.html" . }}
     <div class="container">
-      {{ partial "header.html" . }}
-
-      <div class="content">
-        {{ block "main" . }} {{ end }}
-      </div>
-
-      {{ block "footer" . }}
+        <div class="flex-row">
+        {{ partial "sidebar.html" . }}
+            <div class="content">
+            {{ block "main" . }} {{ end }}
+            </div>
+        </div>
+        {{ block "footer" . }}
         {{ partial "footer.html" . }}
-      {{ end }}
+        {{ end }}
     </div>
-
     {{ if $.Site.GoogleAnalytics }}
-      {{ template "_internal/google_analytics.html" . }}
+    {{ template "_internal/google_analytics.html" . }}
     {{ end }}
-  </body>
+    </body>
 </html>

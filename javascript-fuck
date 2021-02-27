@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd themes/nivenly-theme
+rm -rf static/*
+yarn build
+echo "Moving files..."
+pwd
+ls static
+mv static/assets/*.js ../../static/assets
+echo "Fin!"

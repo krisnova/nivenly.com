@@ -3,26 +3,10 @@
 {{ $contentTypeName := cond $isntDefault (string $.Site.Params.contentTypeName) "posts" }}
 
 {{ $PageContext := . }}
-    {{ if .IsHome }}
-        {{ $PageContext = .Site }}
-    {{ end }}
-
-
-<div class="home">
-    <div class="home-title">
-        {{ $.Site.Params.Home.title }}
-    </div>
-    <div class="home-smile img">
-        <img src="img/logo.png" width="200" height="190">
-    </div>
-    <div class="home-content">
-        {{ $.Site.Params.Home.content }}
-    </div>
-
-    {{ partial "nova.html" . }}
-
-</div>
-
-
+{{ if .IsHome }}
+{{ $PageContext = .Site }}
 {{ end }}
 
+{{ partial "main.html" . }}
+
+{{ end }}
