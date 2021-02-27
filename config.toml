@@ -29,21 +29,38 @@ paginate = 5
     dateFormatSingle = "2006-01-02"
     dateFormatList = "2006-01-02"
 
+
+# ----------------------------------------------------------
+# Homepage Content
+#
+
+    [languages.en.params.home]
+      title = "kris nóva"
+      content  = "the main body of the website"
+
+
+
+# ----------------------------------------------------------
     [languages.en.params.logo]
-      logoHost = "nivenly"
+      # [logoUser@logoHost]: /path >$
       logoUser = "nova"
-    #  logoHomeLink = "/"
-    # or
-    #
-    # path = "/img/logo.png"
-    # alt = "Your example logo alt text"
+      logoHost = "nivenly"
+
+
 
     [languages.en.menu]
       [[languages.en.menu.main]]
-        identifier = "about"
-        name = "about"
-        url = "/about"
+        identifier = "readme"
+        name = "readme"
+        url = "/readme"
       [[languages.en.menu.main]]
-        identifier = "live"
-        name = "live"
-        url = "/live"
+        identifier = "src"
+        name = "src"
+        url = "/src"
+
+
+
+
+
+
+

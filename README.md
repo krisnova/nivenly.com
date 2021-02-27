@@ -17,6 +17,16 @@ This is for lack of a better term, the offical archive of Kris Nóva.
 
 ### Development Notes
 
+To create the `/meeps` endpoint:
+
+```bash
+mkdir ./content/meeps
+touch ./layouts/_default/kubernetes.alice.nova
+
+# To create a "set" of items
+touch ./content/meeps/ex1.md # This would use "list.html"
+```
+
 ### Success
 
 As she builds out the site, there are a few things she wants to make sure she includes.

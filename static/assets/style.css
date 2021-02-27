@@ -5,20 +5,16 @@
 }
 
 @font-face {
-    font-weight: 400;
-    font-family: Nova;
-    src: url('fonts/TerminusModern.ttf') format('truetype');
-}
-
-@font-face {
     font-weight: 600;
     font-family: Nova;
+    font-size: 1.5rem;
     src: url('fonts/TerminusModern.ttf') format('truetype');
 }
 
 @font-face {
     font-weight: 800;
     font-family: Nova;
+    font-size: 1.5rem;
     src: url('fonts/TerminusModern.ttf') format('truetype');
 }
 
@@ -32,6 +28,10 @@
     --border-color: #dcdcdc;
     --phoneWidth: (max-width:684px);
     --tabletWidth: (max-width:900px)
+}
+
+.glow {
+    text-shadow: #ffffff 0px 0px 8px;
 }
 
 body.dark-theme {
@@ -208,6 +208,7 @@ a.read-more:hover {
 }
 
 .logo {
+    font-size:1.5rem;
     font-family: Nova;
     font-style: normal;
     font-weight: 600;
@@ -215,7 +216,6 @@ a.read-more:hover {
     align-items: center;
     flex: 0 0 auto;
     letter-spacing: 1px;
-    text-shadow: #ffffff 0px 0px 12px;
     text-decoration: none;
 }
 
@@ -224,17 +224,17 @@ a.read-more:hover {
     color: #6f88a2;
 }
 
-.logo__user {
+.logo-user {
     font-weight: 600;
     color: #619d87;
 }
 
-.logo__punc {
+.logo-punc {
     font-weight: 600;
     color: #65a1d4;
 }
 
-.logo__cursor {
+.logo-cursor {
     display: inline-block;
     width: 10px;
     height: 1rem;
@@ -270,6 +270,7 @@ a.read-more:hover {
 }
 
 .menu {
+    font-size:1.5rem;
     font-family: Nova;
     --color: rgba(0, 0, 0, 0.12);
     --shadow: 0 8px 20px var(--color);
@@ -718,6 +719,89 @@ blockquote.twitter-tweet {
     font-size: inherit;
     line-height: inherit;
     border-radius: 8px
+}
+
+.nova {
+    justify-content: center;
+    text-align: center;
+    font-family: Nova, Nova-Alt1;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    margin: 20px auto
+}
+
+/* Cell is a set of key/values with a title*/
+.nova-cell {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    font-size: 1.5rem;
+    margin: auto;
+}
+
+.nova-cell-title {
+    text-align: center;
+    color: #6f88a2
+}
+
+.nova-cell-right {
+    width: 50%;
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.nova-cell-left {
+    width: 50%;
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+
+.nova-row-left {
+
+}
+
+.nova-row-right {
+
+}
+
+
+
+
+.nova-value {
+    font-size: 1.3rem;
+    color: #65a1d4
+}
+
+.nova-key {
+    font-size: 1.2rem;
+    color: #619d87
+}
+
+
+.home {
+    font-family: Nova, Nova-Alt1;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto
+}
+
+.home-title {
+    font-size: 2.625rem;
+    margin: 0 0 20px
+
+}
+
+.home-content {
+    font-size: 1.5rem;
+    margin-top: 30px
+}
+
+.home-smile img {
+    margin: 0 auto;
 }
 
 .post {

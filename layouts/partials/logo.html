@@ -1,18 +1,18 @@
 <a
   href="{{ if $.Site.Params.Logo.LogoHomeLink }}{{ $.Site.Params.Logo.LogoHomeLink }}{{ else }}{{ $.Site.BaseURL }}{{ end }}"
-  class="logo"
+  class="logo glow"
 >
-    <span class="logo__punc">[</span>
-    <span class="logo__user">{{ $.Site.Params.Logo.logoUser }}</span>
-    <span class="logo__punc">@</span>
-    <span class="logo__host">{{ $.Site.Params.Logo.logoHost }}</span>
-    <span class="logo__punc">]: </span>
+    <span class="logo-punc">[</span>
+    <span class="logo-user">{{ $.Site.Params.Logo.logoUser }}</span>
+    <span class="logo-punc">@</span>
+    <span class="logo-host">{{ $.Site.Params.Logo.logoHost }}</span>
+    <span class="logo-punc">]: </span>
 
     {{ if .File.BaseFileName }}
-    <span class="logo__host">  ~/{{ .File.BaseFileName }}</span>
+    <span class="logo-host">  ~/{{ .File.BaseFileName }}</span>
     {{ else }}
-    <span class="logo__host">  ~</span>
+    <span class="logo-host">  ~</span>
     {{ end }}
-    <span class="logo__punc">></span><span class="logo__user">$</span>
-  <span class="logo__cursor"></span>
+    <span class="logo-punc">></span><span class="logo-user">$</span>
+  <span class="logo-cursor"></span>
 </a>
