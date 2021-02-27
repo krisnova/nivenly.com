@@ -30,11 +30,12 @@ paginate = 5
     dateFormatList = "2006-01-02"
 
     [languages.en.params.logo]
-      logoText = "[nova@nivenly]: ~$>"
-      logoHomeLink = "/"
+      logoHost = "nivenly"
+      logoUser = "nova"
+    #  logoHomeLink = "/"
     # or
     #
-    # path = "/img/your-example-logo.svg"
+    # path = "/img/logo.png"
     # alt = "Your example logo alt text"
 
     [languages.en.menu]

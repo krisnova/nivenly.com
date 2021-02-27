@@ -1,61 +1,25 @@
+
 @font-face {
-    font-family: Inter;
-    font-style: normal;
+    font-family: Nova-Alt1;
+    src: url('fonts/3270.ttf') format('truetype');
+}
+
+@font-face {
     font-weight: 400;
-    font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
-    src: url(fonts/Inter-Regular.woff2) format("woff2"), url(fonts/Inter-Regular.woff) format("woff");
-    font-display: swap
+    font-family: Nova;
+    src: url('fonts/TerminusModern.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: Inter;
-    font-style: italic;
-    font-weight: 400;
-    font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
-    src: url(fonts/Inter-Italic.woff2) format("woff2"), url(fonts/Inter-Italic.woff) format("woff");
-    font-display: swap
-}
-
-@font-face {
-    font-family: Inter;
-    font-style: normal;
     font-weight: 600;
-    font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
-    src: url(fonts/Inter-Medium.woff2) format("woff2"), url(fonts/Inter-Medium.woff) format("woff");
-    font-display: swap
-}
-
-@font-face {
-    font-family: Inter;
-    font-style: italic;
-    font-weight: 600;
-    font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
-    src: url(fonts/Inter-MediumItalic.woff2) format("woff2"), url(fonts/Inter-MediumItalic.woff) format("woff");
-    font-display: swap
-}
-
-@font-face {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 800;
-    font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
-    src: url(fonts/Inter-Bold.woff2) format("woff2"), url(fonts/Inter-Bold.woff) format("woff");
-    font-display: swap
-}
-
-@font-face {
-    font-family: Inter;
-    font-style: italic;
-    font-weight: 800;
-    font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
-    src: url(fonts/Inter-BoldItalic.woff2) format("woff2"), url(fonts/Inter-BoldItalic.woff) format("woff");
-    font-display: swap
+    font-family: Nova;
+    src: url('fonts/TerminusModern.ttf') format('truetype');
 }
 
 :root {
     --background: #fff;
     --background-secondary: #eaeaea;
-    --header: #fafafa;
+    --header: #000000;
     --color: #222;
     --color-secondary: #999;
     --border-color: #dcdcdc;
@@ -66,8 +30,8 @@
 body.dark-theme {
     --background: #292a2d;
     --background-secondary: #3b3d42;
-    --header: #252627;
-    --color: #a9a9b3;
+    --header: #000000;
+    --color: #65a1d4;
     --color-secondary: #73747b;
     --border-color: #4a4b50
 }
@@ -237,32 +201,25 @@ a.read-more:hover {
     display: flex;
     align-items: center;
     flex: 0 0 auto;
+    letter-spacing: 1px;
+    text-shadow: #ffffff 0px 0px 18px;
     text-decoration: none;
-    font-weight: 700
+    font-weight: 400
 }
 
-.logo img {
-    height: 44px
+.logo__host {
+    font-weight: 600;
+    color: #6f88a2;
 }
 
-.logo__mark {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 5px
+.logo__user {
+    font-weight: 600;
+    color: #619d87;
 }
 
-.logo__mark .greater-icon {
-    width: .95rem;
-    height: 100%
-}
-
-.logo__mark .greater-icon path {
-    stroke: currentColor;
-    stroke-width: 8px
-}
-
-.logo__text {
-    font-size: 1rem
+.logo__punc {
+    font-weight: 600;
+    color: #65a1d4;
 }
 
 .logo__cursor {
@@ -468,9 +425,11 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: Inter, -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica, Arial, sans-serif;
+    font-family: Nova-Alt1, -apple-system, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica, Arial, sans-serif;
     font-size: 1rem;
-    font-weight: 500;
+    font-style: normal;
+    font-weight: 0;
+    letter-spacing: 1px;
     font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
     line-height: 1.54;
     background-color: #fff;
@@ -584,7 +543,7 @@ figure figcaption.right {
 
 code,
 kbd {
-    font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+    font-family: Nova, Nova-Alt1, Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
     background: #eaeaea;
     background: var(--background-secondary);
     padding: 1px 6px;
@@ -641,7 +600,7 @@ blockquote {
 
 blockquote:before {
     content: "”";
-    font-family: Georgia, serif;
+    font-family: Nova, Nova-Alt1, Georgia, serif;
     font-size: 3.875rem;
     position: absolute;
     left: -40px;
@@ -1100,7 +1059,7 @@ blockquote.twitter-tweet {
 code[class*=language-],
 pre[class*=language-] {
     background: none;
-    font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+    font-family: Nova, Nova-Alt1, Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
