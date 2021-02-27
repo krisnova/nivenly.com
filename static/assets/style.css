@@ -16,12 +16,19 @@
     src: url('fonts/TerminusModern.ttf') format('truetype');
 }
 
+@font-face {
+    font-weight: 800;
+    font-family: Nova;
+    src: url('fonts/TerminusModern.ttf') format('truetype');
+}
+
+/* :root is "body.light-them" */
 :root {
-    --background: #fff;
+    --background: #eaeaea;
     --background-secondary: #eaeaea;
     --header: #000000;
-    --color: #222;
-    --color-secondary: #999;
+    --color: #65a1d4;
+    --color-secondary: #73747b;
     --border-color: #dcdcdc;
     --phoneWidth: (max-width:684px);
     --tabletWidth: (max-width:900px)
@@ -138,7 +145,7 @@ a.read-more:hover {
     text-decoration: none;
     text-align: center;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 400;
     border-radius: 8px;
     border: 1px solid transparent;
     -webkit-appearance: none;
@@ -153,6 +160,7 @@ a.read-more:hover {
     position: relative;
     align-items: center;
     justify-content: center
+
 }
 
 .header {
@@ -160,6 +168,7 @@ a.read-more:hover {
     background: var(--header);
     display: flex;
     padding: 20px
+
 }
 
 .header__right {
@@ -179,6 +188,7 @@ a.read-more:hover {
     margin: 0 auto;
     width: 760px;
     max-width: 100%
+
 }
 
 .header__inner,
@@ -198,13 +208,15 @@ a.read-more:hover {
 }
 
 .logo {
+    font-family: Nova;
+    font-style: normal;
+    font-weight: 600;
     display: flex;
     align-items: center;
     flex: 0 0 auto;
     letter-spacing: 1px;
-    text-shadow: #ffffff 0px 0px 18px;
+    text-shadow: #ffffff 0px 0px 12px;
     text-decoration: none;
-    font-weight: 400
 }
 
 .logo__host {
@@ -226,7 +238,7 @@ a.read-more:hover {
     display: inline-block;
     width: 10px;
     height: 1rem;
-    background: #fe5186;
+    background: #c7f3fe;
     margin-left: 5px;
     border-radius: 1px;
     -webkit-animation: cursor 1s infinite;
@@ -258,12 +270,13 @@ a.read-more:hover {
 }
 
 .menu {
+    font-family: Nova;
     --color: rgba(0, 0, 0, 0.12);
     --shadow: 0 8px 20px var(--color);
     border-right: 1px solid;
     margin-right: 18px;
     padding-right: 24px;
-    font-weight: 500
+    font-weight: 600
 }
 
 @media (max-width:683px) {
@@ -664,6 +677,7 @@ ol ol {
 }
 
 .content {
+    color: #65a1d4;
     flex-direction: column;
     flex: 1 auto;
     align-items: center;

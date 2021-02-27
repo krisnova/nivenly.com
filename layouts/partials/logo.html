@@ -1,11 +1,7 @@
 <a
   href="{{ if $.Site.Params.Logo.LogoHomeLink }}{{ $.Site.Params.Logo.LogoHomeLink }}{{ else }}{{ $.Site.BaseURL }}{{ end }}"
   class="logo"
-  style="text-decoration: none;"
 >
-  {{ if $.Site.Params.Logo.path }}
-    <img src="{{ $.Site.Params.Logo.path }}" alt="{{ $.Site.Params.Logo.alt }}" />
-    {{ else }}
     <span class="logo__punc">[</span>
     <span class="logo__user">{{ $.Site.Params.Logo.logoUser }}</span>
     <span class="logo__punc">@</span>
@@ -18,7 +14,5 @@
     <span class="logo__host">  ~</span>
     {{ end }}
     <span class="logo__punc">></span><span class="logo__user">$</span>
-
   <span class="logo__cursor"></span>
-  {{ end }}
 </a>
