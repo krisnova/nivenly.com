@@ -34,10 +34,14 @@
     text-shadow: #ffffff 0px 0px 8px;
 }
 
+color-bg {
+    background: #0b0a0a;
+}
+
 body.dark-theme {
-    --background: #292a2d;
+    --background: #1A1616;
     --background-secondary: #3b3d42;
-    --header: #000000;
+    --header: #1A1616;
     --color: #65a1d4;
     --color-secondary: #73747b;
     --border-color: #4a4b50
@@ -164,10 +168,11 @@ a.read-more:hover {
 }
 
 .header {
+    border-bottom: #65a1d4 1px solid;
     background: #fafafa;
     background: var(--header);
     display: flex;
-    padding: 20px
+    padding: 12px
 
 }
 
@@ -198,12 +203,24 @@ a.read-more:hover {
 }
 
 .header__inner,
-.sidebar-toggle {
+.sidebar-toggle-left {
     display: flex;
     align-items: center
 }
 
-.sidebar-toggle {
+.sidebar-toggle-left {
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer
+}
+
+.header__inner,
+.sidebar-toggle-right {
+    display: flex;
+    align-items: center
+}
+
+.sidebar-toggle-right {
     justify-content: center;
     line-height: 1;
     cursor: pointer
@@ -220,7 +237,7 @@ a.read-more:hover {
 }
 
 .logo {
-    font-size:1.5rem;
+    font-size:1.3rem;
     font-family: Nova;
     font-style: normal;
     font-weight: 600;
@@ -232,17 +249,14 @@ a.read-more:hover {
 }
 
 .logo__host {
-    font-weight: 600;
     color: #6f88a2;
 }
 
 .logo-user {
-    font-weight: 600;
     color: #619d87;
 }
 
 .logo-punc {
-    font-weight: 600;
     color: #65a1d4;
 }
 
@@ -684,7 +698,8 @@ ol ol {
 
 .container {
     flex-direction: column;
-    text-align: center
+    text-align: center;
+    background-color: #292a2d;
 }
 
 .container,
@@ -740,16 +755,54 @@ blockquote.twitter-tweet {
     border-radius: 8px
 }
 
-.sidebar {
-    flex: 0 0 200px;
-    border-right: 1px solid white;
+.sidebar-left {
+    background: #1a1616;
+    border-right: #65a1d4 1px solid;
+    border-bottom: #65a1d4 1px solid;
+    font-family: Nova, Nova-Alt1;
+    flex: 0 0 180px;
 }
-.sidebar > table {
+.sidebar-left > table {
+    width: 100%;
+}
+
+.sidebar-right {
+    border-left: #65a1d4 1px solid;
+    background: #1a1616;
+    border-bottom: #65a1d4 1px solid;
+    font-family: Nova, Nova-Alt1;
+    flex: 0 0 180px;
+}
+.sidebar-right > table {
     width: 100%;
 }
 
 .hidden {
     display: none;
+}
+
+.sidebar-title {
+    padding-top: 12px;
+    padding-bottom: 6px;
+    font-size: 1.2em;
+    color: #65a1d4;
+    border-bottom: 1px #65a1d4 solid;
+}
+
+.sidebar-section {
+    padding-top: 10px;
+}
+
+.sidebar-row{
+
+}
+
+.sidebar-key {
+    color: #619d87;
+}
+
+.sidebar-value {
+    color: #6f88a2
 }
 
 
@@ -960,7 +1013,8 @@ blockquote.twitter-tweet {
 .footer {
     padding: 40px 20px;
     flex-grow: 0;
-    color: #999;
+    border-top: #65a1d4 1px solid;
+    background: #1A1616;
     color: var(--color-secondary)
 }
 

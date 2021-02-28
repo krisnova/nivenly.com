@@ -1,0 +1,43 @@
+<script>
+    function toggleSidebarRight() {
+        var toggleRight = document.getElementById('magicSidebarRight');
+
+        if(toggleRight.classList.contains('hidden')) {
+            document.getElementById('magicSidebarRight').classList.remove('hidden');
+        } else {
+            document.getElementById('magicSidebarRight').classList.add('hidden');
+        }
+    }
+</script>
+<div class="sidebar-right" id="magicSidebarRight">
+        <div class="sidebar-title">kubernetes</div>
+        <div class="sidebar-section">
+            <div class="sidebar-row">
+                <span class="sidebar-key">version</span>
+                <span class="sidebar-value">{{ partial "nova/kubernetes.version.nova" . }}</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-key">alice (m)</span>
+                <span class="sidebar-value">{{ partial "nova/kubernetes.alice.nova" . }}</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-key">yakko (n)</span>
+                <span class="sidebar-value">{{ partial "nova/kubernetes.yakko.nova" . }}</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-key">wakko (n)</span>
+                <span class="sidebar-value">{{ partial "nova/kubernetes.wakko.nova" . }}</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-key">dot (n)</span>
+                <span class="sidebar-value">{{ partial "nova/kubernetes.dot.nova" . }}</span>
+            </div>
+        </div>
+        <div class="sidebar-title">systemd</div>
+        <div class="sidebar-section">
+            <div class="sidebar-row">
+                <span class="sidebar-key">thenovadiary</span>
+                <span class="sidebar-value">{{ partial "nova/thenovadiary.status.nova" . }}</span>
+            </div>
+        </div>
+</div>
