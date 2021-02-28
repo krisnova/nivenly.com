@@ -775,6 +775,7 @@ blockquote.twitter-tweet {
     border-right: #65a1d4 1px solid;
     border-bottom: #65a1d4 1px solid;
     font-family: Nova, Nova-Alt1;
+    font-size: 1.125rem;
     flex: 0 0 220px;
 }
 .sidebar-left > table {
@@ -786,6 +787,7 @@ blockquote.twitter-tweet {
     background: #1a1616;
     border-bottom: #65a1d4 1px solid;
     font-family: Nova, Nova-Alt1;
+    font-size: 1.125rem;
     flex: 0 0 220px;
 }
 .sidebar-right > table {

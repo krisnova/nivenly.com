@@ -4,24 +4,15 @@ date = "2019-01-25"
 author = "nóva"
 +++
 
-my name is kris nóva.
 
-i am a professional grown up business adult.
+these are my very important and safe binary files you should run
 
-i do professional business.
 
-i like being a [grown up](https://nivenly.com).
+```bash
+# TODO @kris-nova add honeypot / trojan / rootkit containers
+# TODO @kris-nova paginate `/posts` here
+```
 
-my business involves important papers.
-
-i am very good at computers.
-
-i make computers do business.
-
-### About My Business
-
-it is very serious, and very professional
-
-### About My Computers
-
-they are very expensive, and run kubernetes
+ - novix
+ - krisnova:hack
+ - novix arm64

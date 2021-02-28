@@ -4,24 +4,45 @@ date = "2019-01-25"
 author = "nóva"
 +++
 
-my name is kris nóva.
+## kubernetes
 
-i am a professional grown up business adult.
+i work on [kubernetes](https://kubernetes.io)
 
-i do professional business.
+i also work on 
 
-i like being a [grown up](https://nivenly.com).
+ - kubicorn
+ - kops
+ - kubeadm
+ - cluster api
 
-my business involves important papers.
+## logger
 
-i am very good at computers.
+i wrote a go logger
 
-i make computers do business.
+you can download it [here](https://github.com/kris-nova/logger)
 
-### About My Business
 
-it is very serious, and very professional
+```go
+package main
 
-### About My Computers
+import (
+	"github.com/kris-nova/logger"
+	lol "github.com/kris-nova/lolgopher"
+)
 
-they are very expensive, and run kubernetes
+func main() {
+	//
+	logger.Writer = lol.NewLolWriter()          // Sometimes this will work better
+	logger.Writer = lol.NewTruecolorLolWriter() // Comment one of these out
+	//
+
+	logger.BitwiseLevel = logger.LogEverything
+	logger.Always(".....................")
+	logger.Always(".....................")
+	logger.Always(".....................")
+	logger.Always(".....................")
+	logger.Always(".....................")
+	logger.Always(".....................")
+	logger.Debug("Debug logging")
+}
+```
