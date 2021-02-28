@@ -1,18 +1,27 @@
 +++
 title = "bin"
-date = "2019-01-25"
-author = "nóva"
 +++
 
 
-these are my very important and safe binary files you should run
+here in `/bin` you can find my consumable artifacts.
 
+these are provided without guarantee and should never be used by anyone.
 
-```bash
-# TODO @kris-nova add honeypot / trojan / rootkit containers
-# TODO @kris-nova paginate `/posts` here
-```
+### Container images
 
- - novix
- - krisnova:hack
- - novix arm64
+ - [hack](https://hub.docker.com/r/krisnova/hack) used for debugging in Kubernetes and exploiting host vulnerabilities.
+ - [falco-trace](https://hub.docker.com/r/krisnova/falco-trace) used for running Falco in Fargate
+ - [nivenly.com](https://hub.docker.com/r/krisnova/nivenly.com) the latest version of this website
+
+### Static binaries 
+
+ - example1
+ - example2
+ - example3
+
+### Operating Systems
+
+ - Novix X86
+ - Novix Arm64
+ - Novix X86 Kubernetes optimized
+ - More to come!
