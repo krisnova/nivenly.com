@@ -1,36 +1,55 @@
-+++
-title = "readme"
-date = "2019-01-25"
-author = "nóva"
-+++
+```
 
-my name is kris nóva.
 
-i am a professional grown up business adult.
+██████╗ ███████╗ █████╗ ██████╗ ███╗   ███╗███████╗
+██╔══██╗██╔════╝██╔══██╗██╔══██╗████╗ ████║██╔════╝
+██████╔╝█████╗  ███████║██║  ██║██╔████╔██║█████╗  
+██╔══██╗██╔══╝  ██╔══██║██║  ██║██║╚██╔╝██║██╔══╝  
+██║  ██║███████╗██║  ██║██████╔╝██║ ╚═╝ ██║███████╗
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚══════╝
 
-i do professional business.
+[ README ]
+----------                                                  
 
-i like being a [grown up](https://nivenly.com).
+hi my name is kris nóva and this is my website.
+here on my website i do professional adult business.
+here you will be able to navigate using UNIX parlance.
 
-my business involves important papers.
+there are some important conventions you should know.
 
-i am very good at computers.
+[ /bin ]
+----------            
 
-i make computers do business.
+this is where i host any open source artifacts i provide.
+feel free to use them at your own risk.
+i make no guarantees.
 
-### About My Business
+[ /lib ]
+----------   
 
-it is very serious, and very professional
+here you will find my posts.
+feel free to read them and reference them.
 
-### About My Computers
+[ /src ]
+----------   
 
-they are very expensive, and run kubernetes
+here you will find my source code.
+feel free to read it and use according to the licenses within.
 
-### Rules
+[ RULES ]
+----------   
 
-The following are the rules that Nóva has for her Twitch chat.  
+1. nóva makes the rules
+2. see rule number 1
 
-- No talking about Nóva's job
-- No homophobia, transphobia, sexism, racism, etc...
-- Don't be an asshole
-- At most one warning will be provided
+[ CONTRIBUTING ]
+----------   
+
+if you would like to contribute to this website you can.
+i will probably merge your changes as long as they are reasonable.
+
+open up a pull request at github.com/kris-nova/nivenly.com
+
+make sure to add your name in /contrib
+
+```
