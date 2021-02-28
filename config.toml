@@ -65,6 +65,10 @@ paginate = 5
         identifier = "lib"
         name = "lib"
         url = "/lib"
+      [[languages.en.menu.main]]
+        identifier = "contributions"
+        name = "contributions"
+        url = "/contributions"
 
 
 

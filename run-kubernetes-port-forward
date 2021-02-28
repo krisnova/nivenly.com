@@ -1,0 +1,4 @@
+#!/bin/bash
+
+POD=$(kubectl get pods | grep nivenly | cut -d " " -f 1)
+sudo -E kubectl port-forward pods/${POD} 80:80
