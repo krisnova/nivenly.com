@@ -1,7 +1,4 @@
-<a
-  href="{{ if $.Site.Params.Logo.LogoHomeLink }}{{ $.Site.Params.Logo.LogoHomeLink }}{{ else }}{{ $.Site.BaseURL }}{{ end }}"
-  class="logo glow"
->
+<span class="logo glow">
     <span class="logo-punc">[</span>
     <span class="logo-user">{{ $.Site.Params.Logo.logoUser }}</span>
     <span class="logo-punc">@</span>
@@ -15,4 +12,4 @@
     {{ end }}
     <span class="logo-punc">></span><span class="logo-user">$</span>
   <span class="logo-cursor"></span>
-</a>
+</span>
