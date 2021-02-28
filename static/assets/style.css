@@ -30,6 +30,18 @@
     --tabletWidth: (max-width:900px)
 }
 
+.inline-svg {
+    display: inline-block;
+    height: 1.15rem;
+    width: 1.15rem;
+    top: 0.15rem;
+    position: relative;
+}
+
+a:link {
+    text-decoration: none;
+}
+
 .glow {
     text-shadow: #ffffff 0px 0px 8px;
 }
@@ -85,6 +97,8 @@ button.outline {
     box-shadow: none;
     padding: 8px 18px
 }
+
+
 
 .button.outline :hover,
 a.button.outline :hover,
@@ -191,7 +205,7 @@ a.read-more:hover {
 .header__inner {
     justify-content: space-between;
     margin: 0 auto;
-    width: 760px;
+    width: 100%;
     max-width: 100%
 
 }
@@ -709,6 +723,7 @@ ol ol {
 }
 
 .content {
+    font-family: Nova, Nova-Alt1;
     color: #65a1d4;
     flex-direction: column;
     flex: 1 auto;
@@ -760,7 +775,7 @@ blockquote.twitter-tweet {
     border-right: #65a1d4 1px solid;
     border-bottom: #65a1d4 1px solid;
     font-family: Nova, Nova-Alt1;
-    flex: 0 0 180px;
+    flex: 0 0 220px;
 }
 .sidebar-left > table {
     width: 100%;
@@ -771,7 +786,7 @@ blockquote.twitter-tweet {
     background: #1a1616;
     border-bottom: #65a1d4 1px solid;
     font-family: Nova, Nova-Alt1;
-    flex: 0 0 180px;
+    flex: 0 0 220px;
 }
 .sidebar-right > table {
     width: 100%;
@@ -791,10 +806,28 @@ blockquote.twitter-tweet {
 
 .sidebar-section {
     padding-top: 10px;
+
+}
+
+.sidebar-link-row{
+    padding: 4px;
+    font-family: Nova, Nova-Alt1;
+    text-decoration: none;
 }
 
 .sidebar-row{
+    padding: 2px;
+    font-family: Nova, Nova-Alt1;
+    text-decoration: none;
+}
 
+.sidebar-icon {
+    color: #619d87;
+}
+
+.sidebar-text {
+    text-decoration: none;
+    color: #6f88a2
 }
 
 .sidebar-key {
@@ -1083,7 +1116,7 @@ blockquote.twitter-tweet {
     margin: 0
 }
 
-.terms__list a {
+.terms__list  a {
     text-decoration: none
 }
 

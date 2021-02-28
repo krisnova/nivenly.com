@@ -4,13 +4,13 @@ theme = "nivenly-theme"
 paginate = 5
 
 [params]
-  # dir name of your blog content (default is `content/posts`)
+  # dir name of your blog content (default is `content/lib`)
   contentTypeName = "post"
   # "light" or "dark"
   defaultTheme = "dark"
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 2
-  # Enable to show reading time in minutes for posts
+  showMenuItems = 10
+  # Enable to show reading time in minutes for lib
   showReadingTime = false
 
 [languages]
@@ -18,7 +18,7 @@ paginate = 5
     title = "nivenly.com"
     subtitle = "kris nóva"
     keywords = "kris, kris nova, nova, nóva, programming, linux, engineer, blog, archive, official, sexy"
-    copyright = "2021 Kris Nóva <kris@nivenly.com>"
+    copyright = "2021 Kris Nóva"
     menuMore = "Show more"
     writtenBy = "Written by"
     readMore = "Read more"
@@ -57,7 +57,14 @@ paginate = 5
         identifier = "src"
         name = "src"
         url = "/src"
-
+      [[languages.en.menu.main]]
+        identifier = "bin"
+        name = "bin"
+        url = "/bin"
+      [[languages.en.menu.main]]
+        identifier = "lib"
+        name = "lib"
+        url = "/lib"
 
 
 

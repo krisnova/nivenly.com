@@ -10,7 +10,11 @@
     }
 </script>
 <div class="sidebar-right" id="magicSidebarRight">
-        <div class="sidebar-title">kubernetes</div>
+        <div class="sidebar-title">
+            <span class="logo-punc glow">[</span>
+            <span class="logo-user glow">kubernetes</span>
+            <span class="logo-punc glow">]</span>
+        </div>
         <div class="sidebar-section">
             <div class="sidebar-row">
                 <span class="sidebar-key">version</span>
@@ -33,11 +37,19 @@
                 <span class="sidebar-value">{{ partial "nova/kubernetes.dot.nova" . }}</span>
             </div>
         </div>
-        <div class="sidebar-title">systemd</div>
+        <div class="sidebar-title">
+            <span class="logo-punc glow">[</span>
+            <span class="logo-user glow">systemd</span>
+            <span class="logo-punc glow">]</span>
+        </div>
         <div class="sidebar-section">
             <div class="sidebar-row">
                 <span class="sidebar-key">thenovadiary</span>
                 <span class="sidebar-value">{{ partial "nova/thenovadiary.status.nova" . }}</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-key">novix ZFS</span>
+                <span class="sidebar-value">{{ partial "nova/novix.status.nova" . }}</span>
             </div>
         </div>
 </div>

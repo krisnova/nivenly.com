@@ -1,5 +1,5 @@
 +++
-title = "readme"
+title = "bin"
 date = "2019-01-25"
 author = "nóva"
 +++

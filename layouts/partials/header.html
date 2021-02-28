@@ -1,4 +1,7 @@
+<script defer src="assets/all.js"></script>
+
 <header class="header">
+
   <span class="header__inner">
     {{ partial "logo.html" . }}
     <span class="header__right">
@@ -13,7 +16,7 @@
       {{ end }}
       <span class="theme-toggle"></span>
       <span class="sidebar-toggle-right">
-        status
+        {{ partial "fa.html" "signal" }}
       </span>
     </span>
   </span>
