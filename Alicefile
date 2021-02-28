@@ -3,3 +3,5 @@ REPO="krisnova"
 NAME="nivenly.com"
 TAG="latest"
 SHA="$(git rev-parse HEAD)"
+
+hugo

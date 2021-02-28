@@ -1,11 +1,9 @@
 +++
 title = "lib"
-date = "2019-01-25"
-author = "nóva"
 +++
 
-these are my very important business articles
+The library of my articles
 
 ```bash
-# TODO @kris-nova paginate `/posts` here
+# TODO @kris-nova paginate articles here
 ```
