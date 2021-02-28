@@ -27,6 +27,16 @@ touch ./layouts/_default/kubernetes.alice.nova
 touch ./content/meeps/ex1.md # This would use "list.html"
 ```
 
+### Rules
+
+The following are the rules that Nóva has for her Twitch chat.  
+
+- No talking about Nóva's job
+- No homophobia, transphobia, sexism, racism, etc...
+- Don't be an asshole
+- At most one warning will be provided
+
+
 ### Success
 
 As she builds out the site, there are a few things she wants to make sure she includes.
