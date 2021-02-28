@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+docker build -t krisnova/nivenly.com:latest .
+docker push krisnova/nivenly.com:latest

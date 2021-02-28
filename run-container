@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. run-container-stop
+. run-make-container
+
+docker run -d --name nivenly.com -p 80:80 krisnova/nivenly.com:latest
