@@ -39,7 +39,9 @@
 }
 
 a:link {
-    text-decoration: none;
+    text-decoration-style: solid;
+    text-decoration: underline;
+    text-shadow: #ffffff 0px 0px 12px;
 }
 
 .glow {
