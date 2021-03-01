@@ -20,11 +20,11 @@
 
 /* :root is "body.light-them" */
 :root {
-    --background: #eaeaea;
-    --background-secondary: #eaeaea;
-    --header: #000000;
-    --color: #65a1d4;
-    --color-secondary: #73747b;
+    --background: #1A1616;
+    --background-secondary: #1A1616;
+    --header: #1A1616;
+    --color: #96c3f1;
+    --color-secondary: #222222;
     --border-color: #dcdcdc;
     --phoneWidth: (max-width:684px);
     --tabletWidth: (max-width:900px)
@@ -45,18 +45,15 @@ a:link {
 .glow {
     text-shadow: #ffffff 0px 0px 8px;
 }
-
-color-bg {
-    background: #0b0a0a;
-}
+/* */
 
 body.dark-theme {
     --background: #1A1616;
-    --background-secondary: #3b3d42;
+    --background-secondary: #1A1616;
     --header: #1A1616;
-    --color: #65a1d4;
-    --color-secondary: #73747b;
-    --border-color: #4a4b50
+    --color: #dfe9f6;
+    --color-secondary: #000000;
+    --border-color: #4a4b50;
 }
 
 .button-container {
@@ -182,7 +179,7 @@ a.read-more:hover {
 }
 
 .header {
-    border-bottom: #65a1d4 1px solid;
+    border-bottom: #96c3f1 1px solid;
     background: #fafafa;
     background: var(--header);
     display: flex;
@@ -271,7 +268,7 @@ a.read-more:hover {
 }
 
 .logo-punc {
-    color: #65a1d4;
+    color: #96c3f1;
 }
 
 .logo-cursor {
@@ -710,10 +707,13 @@ ol ol {
     display: flex;
 }
 
+
+
 .container {
     flex-direction: column;
     text-align: center;
-    background-color: #292a2d;
+    color: var(--color);
+    background-color: var(--color-secondary);
 }
 
 .container,
@@ -724,7 +724,7 @@ ol ol {
 
 .content {
     font-family: Nova, Nova-Alt1;
-    color: #65a1d4;
+    color: #96c3f1;
     flex-direction: column;
     flex: 1 auto;
     align-items: center;
@@ -772,7 +772,7 @@ blockquote.twitter-tweet {
 
 .sidebar-left {
     background: #1a1616;
-    border-right: #65a1d4 1px solid;
+    border-right: #96c3f1 1px solid;
     font-family: Nova, Nova-Alt1;
     font-size: 1.125rem;
     flex: 0 0 220px;
@@ -782,7 +782,7 @@ blockquote.twitter-tweet {
 }
 
 .sidebar-right {
-    border-left: #65a1d4 1px solid;
+    border-left: #96c3f1 1px solid;
     background: #1a1616;
     font-family: Nova, Nova-Alt1;
     font-size: 1.125rem;
@@ -800,8 +800,8 @@ blockquote.twitter-tweet {
     padding-top: 12px;
     padding-bottom: 6px;
     font-size: 1.2em;
-    color: #65a1d4;
-    border-bottom: 1px #65a1d4 solid;
+    color: #96c3f1;
+    border-bottom: 1px #96c3f1 solid;
 }
 
 .sidebar-section {
@@ -862,6 +862,7 @@ blockquote.twitter-tweet {
 }
 
 .post {
+    color: var(--color);
     width: 100%;
     max-width: 800px;
     text-align: left;
@@ -1045,10 +1046,11 @@ blockquote.twitter-tweet {
 
 .footer {
     padding: 40px 20px;
-    flex-grow: 0;
-    border-top: #65a1d4 1px solid;
+    flex-grow: 100;
+    border-top: #96c3f1 1px solid;
     background: #1A1616;
-    color: var(--color-secondary)
+    color: var(--color);
+    height: 100%;
 }
 
 .footer__inner {
