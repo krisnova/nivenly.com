@@ -238,6 +238,7 @@ a.read-more:hover {
 }
 
 .theme-toggle {
+    padding-right: 10px;
     justify-content: center;
     line-height: 1;
     cursor: pointer
