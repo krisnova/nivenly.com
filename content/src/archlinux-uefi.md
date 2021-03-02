@@ -1,7 +1,8 @@
 ---
-title: "The Official Kris Nóva Archlinux Installation Guide"
-date: "2021-03-01"
+title: "UEFI Archlinux Installation"
+date: "2021-02-28"
 author: "kris nóva"
+---
 ---
 
 I have been deploying Archlinux on some baremetal machines in my home cabinet recently.
