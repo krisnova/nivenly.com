@@ -15,7 +15,7 @@ tonight let's talk about a few things.
  2. Running ZFS on Archlinux (Rolling updates)
  3. Using distributed ZFS as a distributed Kubernetes backend
 
-Yes. This website is being ran on the infrastructure described below.
+Yes. This website is running on the infrastructure described below.
 
 ---
 
