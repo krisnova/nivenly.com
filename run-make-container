@@ -1,5 +1,0 @@
-#!/bin/bash
-set -e
-hugo
-sudo -E docker build -t krisnova/nivenly.com:latest .
-sudo -E docker push krisnova/nivenly.com:latest

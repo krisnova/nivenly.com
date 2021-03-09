@@ -1,4 +1,0 @@
-#!/bin/bash
-
-. run-make-container
-. run-kubernetes

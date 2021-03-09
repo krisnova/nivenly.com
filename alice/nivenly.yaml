@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - image: krisnova/nivenly.com:latest
-          imagePullPolicy: Never
+          imagePullPolicy: Always
           name: nivenly
           ports:
             - containerPort: 80
