@@ -13,6 +13,7 @@ paginate = 5
   # Enable to show reading time in minutes for lib
   showReadingTime = false
 
+
 [languages]
   [languages.en]
     title = "nivenly.com"
