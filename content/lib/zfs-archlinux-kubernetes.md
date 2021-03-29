@@ -2,6 +2,8 @@
 title: "persistent state with ZFS on archlinux with kubernetes"
 date: "2021-03-01"
 author: "kris nóva"
+keywords: "kubernetes, zfs, linux, archlinux, persistent, state, storage, volumes, sshfs, provider, bare metal, metal"
+summary: "setting up ZFS for kubernetes on archlinux"
 ---
 ---
 

@@ -2,6 +2,8 @@
 title: "UEFI arch linux installation"
 date: "2021-02-28"
 author: "kris nóva"
+keywords: "uefi, UEFI, bios, arch, archlinux, arch linux, install, grub, nova, kris nova"
+summary: "how i like to set up my archlinux distros"
 ---
 ---
 

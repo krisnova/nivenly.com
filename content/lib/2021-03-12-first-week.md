@@ -2,6 +2,8 @@
 title: "first week back"
 date: "2021-03-12"
 author: "kris nóva"
+keywords: "job, work, life"
+summary: "first week at new job"
 ---
 ---
 so this was my first week at work

@@ -1,0 +1,10 @@
+
+
+{{ if .IsHome }}
+    <meta name="description" content="{{ $.Site.Params.Description }}"/>
+    <meta name="keywords" content="{{ with .Params.Keywords }}{{ delimit . ", " }}{{ else }}{{ $.Site.Params.Keywords }}{{ end }}"/>
+{{ else }}
+    <meta name="description" content="{{ .Summary | plainify }}"/>
+    <meta name="keywords" content="{{ with .Params.Keywords }}{{ delimit . ", " }}{{ else }}{{ $.Site.Params.Keywords }}{{ end }}"/>
+{{ end }}
+

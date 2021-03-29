@@ -2,6 +2,8 @@
 title: "why libraries should not log"
 date: "2021-03-05"
 author: "kris nóva"
+keywords: "libraries, logging"
+summary: "i was mad on twitter, and wrote a retaliation post about logging"
 ---
 ---
 

@@ -1,0 +1,24 @@
+
+
+
+<!-- Twitter Summary Card -->
+<meta name="twitter:image" content="https://nivenly.com/assets/img/logo.png"/>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@krisnova">
+<meta name="twitter:site" content="@krisnova">
+
+<meta property="og:image" content="https://nivenly.com/assets/img/logo.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/" /><meta property="og:site_name" content="nivenly.com" />
+
+{{ if .IsHome }}
+    <meta name="twitter:title" content="official @krisnóva website [genuine, approved, legitimate]"/>
+    <meta name="twitter:description" content="{{ $.Site.Params.Description }}" />
+    <meta property="og:description" content="{{ $.Site.Params.Description }}" />
+    <meta property="og:title" content="official @krisnóva website [genuine, approved, legitimate]" />
+{{ else }}
+    <meta name="twitter:title" content="{{ .Title | plainify }}"/>
+    <meta name="twitter:description" content="{{ .Summary | plainify }}"/>
+    <meta property="og:description" content="{{ with .Params.Keywords }}{{ delimit . ", " }}{{ else }}{{ $.Site.Params.Keywords }}{{ end }}"/>
+    <meta property="og:title" content="{{ .Title | plainify }}" />
+{{ end }}

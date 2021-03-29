@@ -49,7 +49,7 @@
         {{ end }}
 
         <div class="post-content">
-          {{ with .Description }}
+          {{ with .Summary }}
             {{ . | markdownify }}
             {{ else }}
             {{ if .Truncated }}

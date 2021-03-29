@@ -484,10 +484,14 @@ a.read-more:hover {
 
 }
 
+.static-cell {
+    padding-top: 20px;
+}
+
 .static-title {
+    padding-top: 10px;
     font-family: Nova;
     font-size: 1.5rem;
-    padding-bottom: 20px;
 }
 
 .static-body {

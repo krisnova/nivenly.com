@@ -1,8 +1,10 @@
-+++
-title = "contributions"
-date = "2021-02-27"
-author = "kris nóva"
-+++
+---
+title: "contributions"
+date: "2021-02-27"
+author: "kris nóva"
+keywords: "contrib, twitch, mods, help, contributors, moderators"
+summary: "official kris nóva contributors page"
+---
 
  - [@panr](https://github.com/panr) for the original `hello-friend` theme
  - [@thejsa](https://github.com/thejsa) for the help with JavaScript, HTML, and CSS
