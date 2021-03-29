@@ -50,6 +50,10 @@ paginate = 5
 
 
     [languages.en.menu]
+    [[languages.en.menu.main]]
+        identifier = "archive"
+        name = "archive"
+        url = "https://www.twitch.tv/krisnova/videos?filter=all&sort=time"
       [[languages.en.menu.main]]
         identifier = "readme"
         name = "readme"
@@ -59,13 +63,13 @@ paginate = 5
         name = "src"
         url = "/src"
       [[languages.en.menu.main]]
-        identifier = "bin"
-        name = "bin"
-        url = "/bin"
-      [[languages.en.menu.main]]
         identifier = "lib"
         name = "lib"
         url = "/lib"
+      [[languages.en.menu.main]]
+        identifier = "live"
+        name = "live"
+        url = "/live"
       [[languages.en.menu.main]]
         identifier = "contrib"
         name = "contrib"

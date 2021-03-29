@@ -1,7 +1,7 @@
 +++
 title = "contributions"
 date = "2021-02-27"
-author = "nóva"
+author = "kris nóva"
 +++
 
  - [@panr](https://github.com/panr) for the original `hello-friend` theme

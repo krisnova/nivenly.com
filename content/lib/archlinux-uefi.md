@@ -1,5 +1,5 @@
 ---
-title: "UEFI Archlinux Installation"
+title: "UEFI arch linux installation"
 date: "2021-02-28"
 author: "kris nóva"
 ---
@@ -54,7 +54,7 @@ Obviously you will have to make sure you are downloading the most recent version
 ```bash
 ISO=https://download/file.iso # <-- Change this
 
-cd /usr/src
+cd /usr/lib
 wget $ISO
 sudo fdisk -l #<-- Use this to find your USB "device"
 ```

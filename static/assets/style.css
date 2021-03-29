@@ -44,6 +44,7 @@ a:link {
     text-shadow: #ffffff 0px 0px 12px;
 }
 
+
 .glow {
     text-shadow: #ffffff 0px 0px 8px;
 }
@@ -250,7 +251,9 @@ a.read-more:hover {
     fill: currentColor
 }
 
+
 .logo {
+    text-decoration: none;
     font-size:1.3rem;
     font-family: Nova;
     font-style: normal;
@@ -310,14 +313,15 @@ a.read-more:hover {
 }
 
 .menu {
-    font-size:1.5rem;
+    font-size:1.1rem;
     font-family: Nova;
-    --color: rgba(0, 0, 0, 0.12);
-    --shadow: 0 8px 20px var(--color);
     border-right: 1px solid;
     margin-right: 18px;
     padding-right: 24px;
-    font-weight: 600
+}
+
+.menu a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width:683px) {
@@ -339,6 +343,10 @@ a.read-more:hover {
 
 .menu a {
     text-decoration: none
+}
+
+.logo a {
+    text-display: none;
 }
 
 .menu__inner {
@@ -466,6 +474,27 @@ a.read-more:hover {
     cursor: pointer
 }
 
+.static {
+
+}
+
+.static-title {
+    font-family: Nova;
+    font-size: 1.5rem;
+    padding-bottom: 20px;
+}
+
+.static-body {
+    font-family: Nova;
+    padding-bottom: 40px;
+}
+
+.twitch {
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 20px auto
+}
+
 html {
     box-sizing: border-box
 }
@@ -541,6 +570,8 @@ h4 {
         font-size: 1.125rem
     }
 }
+
+
 
 a {
     color: inherit
@@ -811,7 +842,6 @@ blockquote.twitter-tweet {
 
 .sidebar-section {
     padding-top: 10px;
-
 }
 
 .sidebar-link-row{
@@ -848,22 +878,43 @@ blockquote.twitter-tweet {
     font-family: Nova, Nova-Alt1;
     width: 100%;
     max-width: 800px;
-    padding: 20px;
-    margin: 20px auto
 }
 
 .home-title {
-    font-size: 2.625rem;
-    margin: 0 0 20px
+    font-size: 1.7rem;
+    margin: 0 0 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    color: #96c3f1;
 }
 
-.home-content {
-    font-size: 1.5rem;
-    margin-top: 30px
+
+.home-body {
+    font-size: 1rem;
+    padding-top: 20px;
+    border-top: #6f88a2 1px solid;
+    font-size: 1rem;
 }
+
+.home-body ul {
+    flex-direction: column;
+}
+
 
 .home-smile img {
     max-width: 800px;
+}
+
+.home-section-title {
+    font-size: 1.3rem;
+    color: #619d87;
+    font-family: Nova;
+}
+
+.home-section {
+    font-size: 1.1rem;
+    color: #6f88a2;
+    font-family: Nova;
 }
 
 .post {

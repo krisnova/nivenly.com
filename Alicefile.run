@@ -1,3 +1,9 @@
 #!/bin/bash
 
-hugo serve -v
+##
+# Run in container
+docker run -p 1313:80 $REPO/$NAME:$TAG
+
+##
+# Run locally
+# hugo serve -v

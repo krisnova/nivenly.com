@@ -1,0 +1,35 @@
+{{ define "main" }}
+
+
+<span class="static-title glow">
+    <span class="logo-punc glow">[</span>
+    <span class="logo-user glow">live in your face <a href="https://twitch.tv/krisnova">twitch.tv/krisnóva</a></span>
+    <span class="logo-punc glow">]</span>
+</span>
+
+
+<span class="static-body">
+    <p>
+    here you can join her streaming about computers, queer issues, engineering, and computer science and security.
+    </p>
+</span>
+
+<div id="twitch-embed" class="twitch">
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script type="text/javascript">
+        var embed = new Twitch.Embed("twitch-embed", {
+            width: 720,
+            height: 405,
+            channel: "krisnova",
+            layout: "video",
+            autoplay: false,
+            parent: ["nivenly.com", "nivenly.com"]
+        });
+
+        embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
+            var player = embed.getPlayer();
+            player.play();
+        });
+    </script>
+</div>
+{{ end }}

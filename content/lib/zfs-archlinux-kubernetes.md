@@ -1,5 +1,5 @@
 ---
-title: "Persistent state with ZFS on Archlinux with Kubernetes"
+title: "persistent state with ZFS on archlinux with kubernetes"
 date: "2021-03-01"
 author: "kris nóva"
 ---

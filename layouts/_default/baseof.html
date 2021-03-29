@@ -4,13 +4,21 @@
     <head>
     {{ block "title" . }}
         <title>
-        {{ if .IsHome }}{{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} —
-        {{ . }}{{ end }}{{ else }}{{ .Title }} ::
-        {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}{{ end }}
+        {{ if .IsHome }}
+            {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
+        {{ else if eq .URL "/live/" }}
+            live :: nivenly.com
+        {{ else if eq .URL "/src/" }}
+            src :: nivenly.com
+        {{ else }}
+            {{ .Title }} :: {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }} {{ end }}
+        {{ end }}
         </title>
     {{ end }}
     {{ partial "head.html" . }}
     </head>
+
+
     <body class="{{ if ne $.Site.Params.defaultTheme "light" -}} dark-theme {{- end -}}">
     {{ partial "header.html" . }}
     <div class="container">

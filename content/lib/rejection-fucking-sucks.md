@@ -1,5 +1,5 @@
 ---
-title: "Rejection Fucking Sucks"
+title: "rejection fucking sucks"
 date: "2021-03-02"
 author: "kris nóva"
 description: "I am very good at putting on makeup to make myself look glamorous. However, at the end of the day I am a horrible smelly pirate wench."

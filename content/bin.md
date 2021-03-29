@@ -1,5 +1,7 @@
 +++
 title = "bin"
+date = "2021-02-27"
+author = "kris nóva"
 +++
 
 

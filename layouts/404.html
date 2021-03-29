@@ -1,29 +1,19 @@
 {{ define "main" }}
   <div class="post">
     <h1 class="post-title">
-      <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+      <a href="https://tools.ietf.org/html/rfc2616#section-10.4.5">
+        404 fuck you
+      </a>
     </h1>
     <div class="post-content">
       <p>
-        {{ "Hmm... Sorry, this page seems to be missing." | markdownify }}
+        {{ "you can find out more about this specific HTTP error [here](https://tools.ietf.org/html/rfc2616#section-10.4.5)"| markdownify }}
       </p>
-
-      {{ if .Site.Taxonomies.tags }}
-        <p>
-          {{ "Maybe these tags will help you find what you're looking for. :smile:" | markdownify | emojify }}
-        </p>
-        <h2>Tags</h2>
-        <div class="terms">
-          <ul class="terms__list">
-            {{ range .Site.Taxonomies.tags }}
-              <li class="terms__term">
-                <a href="{{ .Page.Permalink }}">#{{ .Page.Title }}</a
-                ><span class="terms__term-count">{{ .Count }}</span>
-              </li>
-            {{ end }}
-          </ul>
-        </div>
-      {{ end }}k d
+      <p>
+        recently the "src" directory was renamed to "lib"
+        <br><br>
+        if you expect a page... you can try clicking <a href="/src/{{ .page.File }}">here...</a>
+      </p>
     </div>
   </div>
 {{ end }}

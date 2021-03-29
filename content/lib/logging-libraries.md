@@ -1,5 +1,5 @@
 ---
-title: "Why Libraries Should Not Log"
+title: "why libraries should not log"
 date: "2021-03-05"
 author: "kris nóva"
 ---

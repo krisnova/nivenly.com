@@ -51,5 +51,13 @@
                 <span class="sidebar-key">novix ZFS</span>
                 <span class="sidebar-value">{{ partial "nova/novix.status.nova" . }}</span>
             </div>
+            <div class="sidebar-row">
+                <span class="sidebar-key">novix security</span>
+                <span class="sidebar-value">{{ partial "nova/novixsecurity.status.nova" . }}</span>
+            </div>
+            <div class="sidebar-row">
+                <span class="sidebar-key">tambourine</span>
+                <span class="sidebar-value">{{ partial "nova/tambourine.status.nova" . }}</span>
+            </div>
         </div>
 </div>
