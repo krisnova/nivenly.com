@@ -474,6 +474,12 @@ a.read-more:hover {
     cursor: pointer
 }
 
+.live-title {
+    font-family: Nova;
+    font-size: 1.7rem;
+    padding-bottom: 20px;
+}
+
 .static {
 
 }
