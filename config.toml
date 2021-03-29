@@ -16,19 +16,11 @@ paginate = 5
 
 [languages]
   [languages.en]
+    description = "professional grown up business adult does important computer business :: professional computer adult :: famous transgender queer cyber hacker :: high alpine enthusiast"
     title = "nivenly.com"
     subtitle = "kris nóva"
     keywords = "kris, kris nova, nova, nóva, programming, linux, engineer, blog, archive, official, sexy"
     copyright = "2021 Kris Nóva"
-    menuMore = "Show more"
-    writtenBy = "Written by"
-    readMore = "Read more"
-    readOtherPosts = "Read other posts"
-    newerPosts = "Newer posts"
-    olderPosts = "Older posts"
-    minuteReadingTime = "min read"
-    dateFormatSingle = "2006-01-02"
-    dateFormatList = "2006-01-02"
 
 
 # ----------------------------------------------------------
