@@ -79,7 +79,7 @@ Below, find benefits of defining this interface.
  - Clearly defined management of `node` level services and configuration.
  - Finite set of use cases, and capabilities required from an operating system to run Kubernetes.
     - This will define the touch points between an operating system and Kubernetes, thus outlining which operating system features are critical.
-    - EX: Do we need POSIX complaint user/group management? Or will Linux capabilities suffice?
+    - EX: Do we need POSIX compliant user/group management? Or will Linux capabilities suffice?
  - Management of required `node` level services can be safely controlled from `kubernetesland`
     - EX: CNI mutations
     - EX: Privileged DaemonSets for mutating a host
