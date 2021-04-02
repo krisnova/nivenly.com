@@ -53,9 +53,6 @@ metadata:
   name: nivenly
   namespace: public
 spec:
-  clusterIP: 10.105.200.197
-  clusterIPs:
-    - 10.105.200.197
   externalTrafficPolicy: Cluster
   ports:
     - nodePort: 30000
