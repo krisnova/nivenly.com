@@ -1,5 +1,5 @@
 ---
-title: "Distributed Operating System Interface"
+title: "The Distributed Operating System Void"
 date: "2021-04-02"
 author: "kris nóva"
 keywords: ""
@@ -7,12 +7,17 @@ summary: ""
 ---
 
 _Preface: I will be typing this in proper (capitalized) English. 
-Unlike the majority of my other work._ 
+Unlike the majority of my other work. 
+A substantial portion of this is IP is accredited to the concepts proposed by Andrew Rynhard and his work with Talos Systems. (COSi)_ 
 
 ## Thesis
 
 Modern (circa 2021) UNIX based operating systems should be reimagined to support higher level workloads 
 that are managed in a distributed environment, such as kubernetes.
+
+The first step in progress towards this goal, is defining an interface.
+
+The Distributed Operating System Interface (`DOSi`) hopes to achieve this.
 
 # Problem Statement 
 
