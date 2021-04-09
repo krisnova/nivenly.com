@@ -1,30 +1,22 @@
 {{ define "main" }}
+
+<span class="live-title glow">
+    <span class="logo-punc glow">[</span>
+    <span class="logo-user glow">questions from twitter</span>
+    <span class="logo-punc glow">]</span>
+</span>
+
+<span class="static-body">
+<p>nóva answers questions from twitter about anything. each episode is 30ish minutes long, and she will answer a question.</p>
+  <br>
+<p>if you have a question, ask on twitter with the hashtag <a href="https://twitter.com/hashtag/N%C3%B3vaQuestions">#NóvaQuestions</a></p>
+</span>
+
   <div class="posts">
-    {{ range .Pages }}
+
+    {{ range .Pages.Reverse }}
       <div class="post on-list">
-        <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
-        <div class="post-meta">
-          {{ if .Date }}
-            <span class="post-date">
-              {{ .Date.Format ($.Site.Params.DateFormatList | default "2006-01-02") }}
-            </span>
-
-            {{ if $.Site.Params.LastModDisplay }}
-              {{ partial "lastmod.html" . }}
-            {{ end }}
-          {{ end }}
-          {{ with .Params.Author }}
-            <span class="post-author"
-              >— {{ $.Site.Params.WrittenBy | default "" }} {{ . }}</span
-            >{{ end }}
-
-
-          {{ if $.Site.Params.ShowReadingTime }}
-            <span class="post-read-time"
-              >— {{ .ReadingTime }} {{ $.Site.Params.MinuteReadingTime | default "min read" }}</span
-            >
-          {{ end }}
-        </div>
+        <span class="content-large"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></span>
 
         {{ if .Params.tags }}
           <span class="post-tags">
@@ -48,7 +40,7 @@
           </figure>
         {{ end }}
 
-        <div class="post-content">
+        <div class="content-medium">
           {{ with .Summary }}
             {{ . | markdownify }}
             {{ else }}
@@ -57,13 +49,6 @@
             {{ end }}
           {{ end }}
         </div>
-        {{ if not .Params.hideReadMore }}
-          <div>
-            <a class="read-more button" href="{{ .RelPermalink }}"
-              >{{ $.Site.Params.ReadMore | default "Read more" }} →</a
-            >
-          </div>
-        {{ end }}
       </div>
     {{ end }}
     {{ partial "pagination.html" . }}

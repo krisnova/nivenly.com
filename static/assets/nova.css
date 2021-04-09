@@ -1,0 +1,109 @@
+/* ------------------------------------
+* [Nivenly.com]
+*
+* nóva.css
+* author: <kris@nivenly.com>
+*/
+
+/* ------------------------------------
+* [fonts]
+*/
+@font-face {
+    font-family: Nova-Alt1;
+    src: url('fonts/3270.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Nova;
+    src: url('fonts/TerminusModern.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Nova;
+    src: url('fonts/TerminusModern.ttf') format('truetype');
+}
+
+
+/* ------------------------------------
+* [colors]
+*/
+.color-base {
+    color: #6f88a2;
+}
+
+.color-alt {
+    color: #619d87;
+}
+
+.color-highlight {
+    color: #96c3f1;
+}
+
+.color-bg-light {
+    color: #1A1616;
+}
+
+.color-bg-med {
+    color: #222222;
+}
+
+.color-bg-dark {
+    color: #000000;
+}
+
+/* ------------------------------------
+* [content]
+*
+* anything in the "middle" or "center"
+* section of the website.
+*/
+.container,
+.content {
+    display: flex;
+    justify-content: center
+}
+
+.content {
+    font-family: Nova, Nova-Alt1;
+    color: #96c3f1;
+    flex-direction: column;
+    flex: 1 auto;
+    align-items: center;
+    margin: 50px 0
+}
+
+@media (max-width:683px) {
+    .content {
+        margin-top: 0
+    }
+    .flex-row {
+        flex-direction: column;
+    }
+}
+
+.content-large {
+    font-family: Nova;
+    font-size: 1.7rem;
+}
+
+.content-paragraph {
+    font-family: Nova;
+    font-size: 1.0rem;
+}
+
+.content-medium {
+    font-family: Nova;
+    font-size: 1.25rem;
+}
+
+.glow {
+    text-shadow: #ffffff 0px 0px 8px;
+}
+
+
+
+a:link {
+    text-decoration-style: solid;
+    text-decoration: none;
+    text-shadow: #ffffff 0px 0px 12px;
+}

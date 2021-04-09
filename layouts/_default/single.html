@@ -19,7 +19,7 @@
 
       {{ with .Params.Author }}
         <span class="post-author"
-          >— {{ $.Site.Params.WrittenBy | default "Written by" }} {{ . }}</span
+          >— {{ $.Site.Params.WrittenBy | default "" }} {{ . }}</span
         >{{ end }}
 
 
