@@ -10,8 +10,20 @@ summary: "kris nóva is a cute linux hacker with a nice big rack. Find out more 
 # professional computer adult
 
 kris nóva is a professional business adult who works on important computers.
-she is world famous for her work on kubernetes, linux, and infrastructure.
+she is an international internet celebrity who does significant computer boops.
+she is world-famous for her work on kubernetes, linux, and infrastructure.
 she is a successful grown-up hacker, and specializes in cybersecurity in distributed computing environments.
+
+
+### the linux foundation
+
+kris nóva contributes to and maintains several linux foundation based projects, and is an ambassador for the [cloud native computing foundation](https://www.cncf.io/speaker/krisnova/)
+
+{{< youtube id="Oz6ob7hxX-A" >}}
+
+# timeline
+
+nóva has been working professionally since 2011, below find some of her notable contributions
 
 ### 2013
 
@@ -59,6 +71,9 @@ in 2021 nóva began live streaming on twitch where she streams about kubernetes,
 
 view her live streams [here](https://nivenly.com/live) or on twitch at [@krisnova](https://twitch.tv/krisnova)
 
+in 2021 nóva proposed the [DOSi (distributed operating system interface)](/lib/2021-04-02-operating-system-interface/)
+
 # Photographs
 
 You can find various photographs to use in the [photography index](/photographs)
+
