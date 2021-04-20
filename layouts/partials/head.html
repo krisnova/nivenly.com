@@ -11,8 +11,8 @@
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="{{ "assets/style.css" | absURL }}" />
-<!-- Custom CSS to override theme properties (/static/style.css) -->
-<link rel="stylesheet" href="{{ "style.css" | absURL }}" />
+<link rel="stylesheet" href="{{ "assets/nova.css" | absURL }}" />
+
 
 <!-- Icons -->
 <link
@@ -25,6 +25,8 @@
 {{ if .IsHome  }}
   {{- partial "head_meta_twitter_large.html" . }}
 {{ else if eq .URL "/live/" }}
+  {{- partial "head_meta_twitter_live.html" . }}
+{{ else if in .URL "/questions/" }}
   {{- partial "head_meta_twitter_live.html" . }}
 {{ else }}
   {{- partial "head_meta_twitter.html" . }}
