@@ -25,7 +25,7 @@ so. let's get one thing very clear. this tool will only be applicable **after** 
 
 (_note: finding a good problem is exceptionally hard to do_)
 
-when i am not writing world famous great successful blogs, i also spend time answering random questions on the internet. 
+when i am not writing world-famous great successful blogs, i also spend time answering random questions on the internet. 
 below you can find [@SaiyamPathak](https://twitter.com/SaiyamPathak/status/1380045295585665027?s=20)'s tweet where he asked the following:
 
  > App-> you choose to set up Kubernetes + storage + monitoring + security + CI/CD + chaos

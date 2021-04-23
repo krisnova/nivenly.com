@@ -13,6 +13,15 @@
 <link rel="stylesheet" href="{{ "assets/style.css" | absURL }}" />
 <link rel="stylesheet" href="{{ "assets/nova.css" | absURL }}" />
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C8QMK1BGKN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C8QMK1BGKN');
+</script>
 
 <!-- Icons -->
 <link
@@ -40,3 +49,4 @@
 
 <!-- head custom -->
 {{- partial "extended_head.html" . }}
+

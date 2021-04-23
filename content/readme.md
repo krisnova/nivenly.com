@@ -77,3 +77,7 @@ in 2021 nóva proposed the [DOSi (distributed operating system interface)](/lib/
 
 You can find various photographs to use in the [photography index](/photographs)
 
+# Selected Talk Archive
+
+ - [ORM Search](https://learning.oreilly.com/search/?query=KrisNova) 
+ - [Conquering both containers and virtual machines with Kubernetes](https://learning.oreilly.com/videos/conquering-both-containers/0636920335719/) Contributed by [@narendev](https://twitter.com/naren_dev)
