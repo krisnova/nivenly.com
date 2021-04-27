@@ -134,7 +134,7 @@ in my mind these are anything attempt to provide visibility into financial gains
  - contributors
  - communications 
     - zoom, slack, mailing list
-    - when collaboration is hig,h opinions are high, and thus there is a need for communication
+    - when collaboration is high, opinions are high, and thus there is a need for communication
  - agility
     - collaborative projects move slow
  - transparency

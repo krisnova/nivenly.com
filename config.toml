@@ -53,7 +53,7 @@ paginate = 5
       [[languages.en.menu.main]]
         identifier = "src"
         name = "src"
-        url = "/src"
+        url = "https://github.com/kris-nova/nivenly.com"
       [[languages.en.menu.main]]
         identifier = "lib"
         name = "lib"
