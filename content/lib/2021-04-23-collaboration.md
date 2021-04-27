@@ -1,5 +1,5 @@
 ---
-title: "collaboration vs competition"
+title: "collaboration vs competition in open source software"
 date: "2021-04-23"
 author: "kris nóva"
 keywords: "capitalism open source marketing revenue concept"
@@ -73,12 +73,12 @@ if a project has a strong marketing presence, and a week collaboration presence 
 
 i believe a project that promotes the buying of itself more than collaboration with itself is fundamentally capitalistic in nature and harmful to open collaboration economies.
 
-### a quote
+### quote
+
+here is a quote of mine you (or anyone) is more than welcome to use.
 
 > i don't think you can be concerned with marketing, and also claim to be concerned with collaboration -- i believe these are paradoxical in nature.
 
- **kris nóva**
- 
 # examples
 
 ### wikipedia 
@@ -89,7 +89,7 @@ this is a sign that wikipedia is doing something dramatically different from oth
 
 ### linux
 
-linux is free software ad despite my distaste for the free software foundation the GPL license has important language [in the license](https://github.com/torvalds/linux/blob/master/LICENSES/preferred/GPL-2.0#L40-L45)
+linux is free software ad despite my distaste for the free software foundation (and the GPL license in general) the GPL license has important language [in the license](https://github.com/torvalds/linux/blob/master/LICENSES/preferred/GPL-2.0#L40-L45)
 
 >   When we speak of free software, we are referring to freedom, not
 > price.  Our General Public Licenses are designed to make sure that you
