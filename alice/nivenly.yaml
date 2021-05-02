@@ -28,6 +28,15 @@ spec:
     spec:
       containers:
         - image: krisnova/nivenly.com:latest
+          env:
+            - name: "BJORNODIR"
+              value: "/public"
+            - name: "BJORNO404PATH"
+              value: "/public/404.html"
+            - name: "BJORNO500PATH"
+              value: "/public/404.html"
+            - name: "BJORNO5XXPATH"
+              value: "/public/404.html"
           imagePullPolicy: Always
           name: nivenly
           ports:
@@ -41,7 +50,6 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-
 
 ---
 
