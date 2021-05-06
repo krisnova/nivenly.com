@@ -15,31 +15,17 @@ recentely i had someone on twitter say the following phrase to me:
 
 ---
 
-so naturally - let's break it 😊
+so naturally - let's hack it 🏴🏴‍☠️
 
 let's see what we found
 
-# gaining access
+### gaining access
 
 we were given a kube config file and SSH access to the cluster - but we only needed the kube config.
 
-# privilege escalation
+### privilege escalation
 
 we found that we were able to privilege escalate from a container to the nodes in the cluster
-
-```bash
-[local]  $ git clone git@github.com:kris-nova/hack.git
-[local]  $ cd hack
-[local]  $ make
-[local]  $ sudo make install
-[local]  $ hack it
-[pod]    $ hostenter
-[remote] $ cat /dev/null > ~/.bash_history && exit
-exit
-[pod]    $ exit
-[local]  $ # hi welcome back :)
-[local]  $
-```
 
 which means we had access to the following host namespaces
 
@@ -48,9 +34,17 @@ which means we had access to the following host namespaces
  - Net
  - Pid
 
-# cluster
+### cluster itself
 
 we discovered the cluster had a deployment running called `klustered` and we found the source of the deployment [here](https://github.com/rawkode/klustered/tree/main/000-workload) in [@rawkode](https://github.com/rawkode)'s github.
 
-we saved all of the cluster raw yaml [here](https://nivenly.com/assets/docs/klustered.yaml)
+we saved all the cluster raw yaml [here](https://nivenly.com/assets/docs/klustered.yaml)
 
+---
+
+# showtime 
+
+links for the show
+
+ - [discord](https://discord.com/invite/ErVgHCN)
+ - [youtube](https://www.youtube.com/watch?v=ysfUgYs4YYY)
