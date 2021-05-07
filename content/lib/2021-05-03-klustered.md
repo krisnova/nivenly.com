@@ -1,5 +1,5 @@
 ---
-title: "klustered"
+title: "kubernetes malware writeup for klustered"
 date: "2021-05-03"
 author: "kris nóva"
 keywords: "kubecon eu kubernetes cncf linux kube con klustered rawkode @rawkode"
