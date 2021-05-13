@@ -38,7 +38,7 @@ spec:
             - name: "BJORNO5XXPATH"
               value: "/public/404.html"
             - name: "BJORNOUSEDEFAULT"
-              value: "true"
+              value: "false"
           imagePullPolicy: Always
           name: nivenly
           ports:

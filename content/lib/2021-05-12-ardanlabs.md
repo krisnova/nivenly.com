@@ -1,9 +1,9 @@
 ---
-title: "Adranlabs Podcast with Bill Kennedy"
+title: "Ardanlabs Podcast with Bill Kennedy"
 date: "2021-05-12"
 author: "kris nóva"
 keywords: "linux transgender issues computers foundation the linux foundation kris nova golang kubernetes"
-summary: "podcast with adran labs"
+summary: "podcast with ardan labs"
 ---
 ---
 
@@ -24,7 +24,7 @@ we talk about my first days with a computer, and the paradigms in place of how c
 
 ### Recording on Spotify
 
-{{< podcast-adranlabs-21 >}}
+{{< podcast-ardanlabs-21 >}}
 
 ### Video on YouTube
 
@@ -34,4 +34,4 @@ we talk about my first days with a computer, and the paradigms in place of how c
 
 # Find out more
 
-Check out the [Adran Labs](https://ardanlabs.buzzsprout.com/1466944) site for more information and see the [original post](https://ardanlabs.buzzsprout.com/1466944/8506388-finding-your-superpower-with-kris-nova)
+Check out the [ardan Labs](https://ardanlabs.buzzsprout.com/1466944) site for more information and see the [original post](https://ardanlabs.buzzsprout.com/1466944/8506388-finding-your-superpower-with-kris-nova)
