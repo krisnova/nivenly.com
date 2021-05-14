@@ -18,7 +18,7 @@ func main() {
 		},
 	}
 	bjorno.Runtime(cfg, &Nivenly{
-		RemoteAddress: "boops",
+		RemoteAddress: "Ok",
 	})
 }
 
