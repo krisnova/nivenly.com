@@ -12,7 +12,7 @@ func main() {
 			".html",
 		},
 		BindAddress:    ":1313",
-		ServeDirectory: "../public",
+		ServeDirectory: "public",
 		DefaultIndexFiles: []string{
 			"index.html",
 		},
