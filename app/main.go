@@ -11,8 +11,8 @@ func main() {
 		InterpolateExtensions: []string{
 			".html",
 		},
-		BindAddress:    ":1313",
-		ServeDirectory: "public",
+		BindAddress:    ":80",
+		ServeDirectory: "/public",
 		DefaultIndexFiles: []string{
 			"index.html",
 		},
