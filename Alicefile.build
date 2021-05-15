@@ -1,5 +1,6 @@
 #!/bin/bash
 hugo
-cd public
-find . -name '*.html' -type f -print -exec tidy -mq '{}' \;
-cd ../
+
+#cd public
+#find . -name '*.html' -type f -print -exec tidy -mq '{}' \;
+#cd ../
