@@ -1,5 +1,7 @@
 #!/bin/bash
-hugo
+
+echo "Custom Build while developing interpolated HTML..."
+#hugo
 
 #cd public
 #find . -name '*.html' -type f -print -exec tidy -mq '{}' \;

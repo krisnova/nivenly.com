@@ -8,7 +8,7 @@ import (
 	bjorno "github.com/kris-nova/bjorno"
 )
 
-func main() {
+func Run() {
 	cfg := &bjorno.ServerConfig{
 		InterpolateExtensions: []string{
 			".html",
@@ -56,7 +56,7 @@ func (v *Nivenly) Values(request *http.Request) interface{} {
 		logger.Critical("Error parsing request: %v", err)
 		return DefaultValues()
 	}
-
+	logger.Info("%+v", v)
 	return v
 }
 
