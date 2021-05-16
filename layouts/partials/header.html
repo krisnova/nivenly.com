@@ -1,3 +1,5 @@
+
+
 <header class="header glow">
 
   <span class="header__inner">
@@ -5,19 +7,47 @@
     <span class="header__right">
       {{ if len $.Site.Menus }}
         {{ partial "menu.html" . }}
-        <span class="menu-trigger">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-          </svg>
-        </span>
       {{ end }}
-      <span class="theme-toggle">
-        {{ partial "theme-icon.html" . }}
+
+      <!-- Contrast Adjust -->
+      <span class="toggle-contrast menu-icon">
+        {{ partial "fa.html" "adjust" }}
       </span>
-      <span class="sidebar-toggle-right glow">
+
+      <!-- Sidebar Adjust -->
+      <span class="toggle-sidebar menu-icon">
         {{ partial "fa.html" "signal" }}
       </span>
+
+      <!-- Twitter -->
+      <a href="https://twitter.com/krisnova" target="_blank" rel="noopener noreferrer" class="menu-icon">
+        {{ partial "fa.html" "twitter" }}
+      </a>
+
+      <!-- Nivenly.com -->
+      <a href="https://github.com/kris-nova/nivenly.com" target="_blank" rel="noopener noreferrer" class="menu-icon">
+        {{ partial "fa.html" "github" }}
+      </a>
+
     </span>
   </span>
 </header>
+
+<script>
+  const getTheme = window.localStorage && window.localStorage.getItem("theme");
+  const themeToggle = document.querySelector(".toggle-contrast");
+  const isDark = getTheme === "dark";
+
+  if (getTheme !== null) {
+    document.body.classList.toggle("dark-theme", isDark);
+  }
+
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+    window.localStorage &&
+    window.localStorage.setItem(
+            "theme",
+            document.body.classList.contains("dark-theme") ? "dark" : "light",
+    );
+  });
+</script>

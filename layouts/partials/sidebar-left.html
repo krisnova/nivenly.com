@@ -1,4 +1,94 @@
+<!--Nóva-->
+<div class="side" id="magicSidebarLeft" style="border-right: #96c3f1 1px solid">
+    <!-- Title -->
+    <div class="side-large">
+        <span class="color-highlight">[</span><span class="color-alt"> about me </span><span class="color-highlight">]</span>
+    </div>
+
+    <!-- /readme -->
+    <div class="side-paragraph">
+        <a href="/readme">
+            <span class="color-highlight glow">{{ partial "fa.html" "terminal" }}</span>
+            <span class="color-alt glow">/readme</span>
+        </a>
+    </div>
+
+    <!-- Twitter -->
+    <div class="side-paragraph">
+        <a href="https://twitter.com/krisnova" target="_blank" rel="noopener noreferrer">
+            <span class="color-highlight glow">{{ partial "fa.html" "twitter" }}</span>
+            <span class="color-alt glow">follow on twitter</span>
+        </a>
+    </div>
+
+    <!-- Twitch -->
+    <div class="side-paragraph">
+        <a href="https://twitch.tv/krisnova" target="_blank" rel="noopener noreferrer">
+            <span class="color-highlight glow">{{ partial "fa.html" "twitch" }}</span>
+            <span class="color-alt glow">live on twitch</span>
+        </a>
+    </div>
+
+    <!-- GitHub -->
+    <div class="side-paragraph">
+        <a href="https://github.com/kris-nova" target="_blank" rel="noopener noreferrer">
+            <span class="color-highlight glow">{{ partial "fa.html" "github" }}</span>
+            <span class="color-alt glow">code on github</span>
+        </a>
+    </div>
+
+    <!-- YouTube -->
+    <div class="side-paragraph">
+        <a href="https://www.youtube.com/channel/UCRvH2UexTzcbZRwCS6OxJ3w" target="_blank" rel="noopener noreferrer">
+            <span class="color-highlight glow">{{ partial "fa.html" "youtube" }}</span>
+            <span class="color-alt glow">recordings on youtube</span>
+        </a>
+    </div>
+
+    <!-- Email -->
+    <div class="side-paragraph">
+        <a href="mailto:kris@nivenly.com" target="_blank" rel="noopener noreferrer">
+            <span class="color-highlight glow">{{ partial "fa.html" "envelope" }}</span>
+            <span class="color-alt glow">kris@nivenly.com</span>
+        </a>
+    </div>
+
+    <!-- Title -->
+    <div class="side-large">
+        <span class="color-highlight">[</span><span class="color-alt"> about you </span><span class="color-highlight">]</span>
+    </div>
+
+    <!-- client -->
+    <div class="side-paragraph">
+        <a href="/client">
+            <span class="color-highlight glow">{{ partial "fa.html" "server" }}</span>
+            <span class="color-alt glow">{{ $.Site.Params.I.RemoteAddress }}</span>
+        </a>
+    </div>
+
+
+</div>
+
+
 <script>
+    const getSidebarL = window.localStorage && window.localStorage.getItem("toggleL");
+    const sidebarToggleL = document.querySelector(".toggle-sidebar");
+    const toggleL = document.getElementById('magicSidebarLeft');
+    const isSidebarL = getSidebarL === "true";
+
+    if (getSidebarL !== null) {
+        toggleL.classList.toggle("hidden", isSidebarL);
+    }
+
+    sidebarToggleL.addEventListener("click", () => {
+        toggleL.classList.toggle("hidden");
+        window.localStorage &&
+        window.localStorage.setItem(
+            "toggleL",
+            toggleL.classList.contains("hidden") ? "true" : "false",
+        );
+    });
+
     function toggleSidebarLeft() {
         var toggleLeft = document.getElementById('magicSidebarLeft');
 
@@ -9,59 +99,4 @@
         }
     }
 </script>
-<div class="sidebar-left" id="magicSidebarLeft">
-        <div class="sidebar-title glow">
-            <span class="logo-punc glow">[</span>
-            <span class="logo-user glow">about me</span>
-            <span class="logo-punc glow">]</span>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-link-row">
-                <span class="sidebar-icon">
-                    <a href="https://twitch.tv/krisnova" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "twitch" }}
-                </span>
-                <span class="sidebar-text">@krisnova</span>
-                </a>
-            </div>
-
-            <div class="sidebar-link-row">
-                <span class="sidebar-icon">
-                    <a href="https://github.com/kris-nova" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "github" }}
-                </span>
-                <span class="sidebar-text">@kris-nova</span>
-                </a>
-            </div>
-            <div class="sidebar-link-row">
-                <span class="sidebar-icon">
-                    <a href="https://twitter.com/krisnova" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "twitter" }}
-                </span>
-                <span class="sidebar-text">@krisnova</span>
-                </a>
-            </div>
-            <div class="sidebar-link-row">
-                <span class="sidebar-icon">
-                    <a href="https://www.youtube.com/channel/UCRvH2UexTzcbZRwCS6OxJ3w" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "youtube" }}
-                </span>
-                <span class="sidebar-text">kris nóva</span>
-                </a>
-            </div>
-            <div class="sidebar-link-row">
-                <span class="sidebar-icon">
-                    <a href="mailto:kris@nivenly.com" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "envelope" }}
-                </span>
-                <span class="sidebar-text">kris@nivenly.com</span>
-                </a>
-            </div>
-        </div>
-    <div class="sidebar-title glow">
-        <span class="logo-punc glow">[</span>
-        <span class="logo-user glow">server health</span>
-        <span class="logo-punc glow">]</span>
-    </div>
-    <div class="sidebar-section">
-        <div class="sidebar-link-row">
-            <span class="sidebar-icon">{{ partial "fa.html" "server" }}</span>
-            <span class="sidebar-text">OK</span>
-        </div>
-    </div>
-</div>
+<!--Nóva-->

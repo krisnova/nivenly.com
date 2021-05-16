@@ -2,8 +2,10 @@
 
 ##
 # Run in container
-docker run -p 1313:1313 $REPO/$NAME:$TAG
+#docker run -p 1313:1313 $REPO/$NAME:$TAG
 
 ##
 # Run locally
-# hugo serve -v
+hugo
+cd app
+go run main.go

@@ -1,13 +1,4 @@
-/* ------------------------------------
-* [Nivenly.com]
-*
-* nóva.css
-* author: <kris@nivenly.com>
-*/
-
-/* ------------------------------------
-* [fonts]
-*/
+/* FONTS */
 @font-face {
     font-family: Nova-Alt1;
     src: url('fonts/3270.ttf') format('truetype');
@@ -24,9 +15,7 @@
 }
 
 
-/* ------------------------------------
-* [colors]
-*/
+/* COLORS */
 .color-base {
     color: #6f88a2;
 }
@@ -51,12 +40,29 @@
     color: #000000;
 }
 
-/* ------------------------------------
-* [content]
-*
-* anything in the "middle" or "center"
-* section of the website.
-*/
+body.nova {
+    --background: #1A1616;
+    --background-secondary: #1A1616;
+    --header: #1A1616;
+    --color: #dfe9f6;
+    --color-secondary: #000000;
+    --border-color: #4a4b50;
+}
+
+/* :root is "body.light-them" */
+:root {
+    --background: #1A1616;
+    --background-secondary: #1A1616;
+    --header: #1A1616;
+    --color: #96c3f1;
+    --color-secondary: #222222;
+    --border-color: #dcdcdc;
+    --phoneWidth: (max-width:684px);
+    --tabletWidth: (max-width:900px)
+}
+
+
+/* MAIN */
 .container,
 .content {
     display: flex;
@@ -96,11 +102,54 @@
     font-size: 1.25rem;
 }
 
-.glow {
-    text-shadow: #ffffff 0px 0px 8px;
+/* SIDE */
+.side {
+    background: #1a1616;
+    font-family: Nova, Nova-Alt1;
+    font-size: 1.125rem;
+    flex: 0 0 300px;
+}
+.side > table {
+    width: 100%;
+}
+
+@media (max-width:683px) {
+    .main {
+        margin-top: 0
+    }
+    .flex-row {
+        flex-direction: column;
+    }
+}
+
+.side-large {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+    color: #96c3f1;
+    border-bottom: 1px #96c3f1 solid;
+}
+
+.side-paragraph {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Nova;
+    font-size: 1.0rem;
+    border-bottom: 1px #4a4b50 dotted;
+}
+
+.side-medium {
+    font-family: Nova;
+    font-size: 1.25rem;
 }
 
 
+/* ATTRIBUTES */
+.glow {
+    text-shadow: #ffffff 0px 0px 8px;
+}
 
 a:link {
     text-decoration-style: solid;
@@ -108,3 +157,30 @@ a:link {
     text-shadow: #ffffff 0px 0px 8px;
 
 }
+
+.inline-svg {
+    display: inline-block;
+    height: 1.15rem;
+    width: 1.15rem;
+    top: 0.15rem;
+    position: relative;
+}
+
+.menu-icon {
+    padding: 5px;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer
+}
+
+
+/* TOGGLE */
+
+.toggle-contrast {
+ /* ID for Javascript */
+}
+
+.toggle-sidebar {
+    /* ID for Javascript */
+}
+

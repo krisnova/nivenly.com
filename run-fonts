@@ -2,7 +2,7 @@
 set -e
 
 BRANDS="youtube twitter github twitch linkedin"
-SOLID="signal server envelope book server images"
+SOLID="signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
 REGULAR=""
 
 
@@ -40,3 +40,4 @@ for i in ${REGULAR}; do
   echo "${URL}/${svg}"
   wget -O "${DIR}/${svg}" "${URL}/${svg}"
 done
+

@@ -4,14 +4,12 @@ theme = "nivenly-theme"
 paginate = 5
 
 [params]
-  # dir name of your blog content (default is `content/lib`)
-  contentTypeName = "post"
-  # "light" or "dark"
-  defaultTheme = "dark"
-  # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 10
-  # Enable to show reading time in minutes for lib
-  showReadingTime = false
+  # You are welcome futue Nóva...
+  # key = "value"
+  # {{ $.Site.Params.Key }}
+
+  [I]
+    RemoteAddress = "{{ .RemoteAddress }}"
 
 
 [languages]

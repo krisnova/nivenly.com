@@ -1,0 +1,68 @@
+<script>
+    function toggleSidebarLeft() {
+        var toggleLeft = document.getElementById('magicSidebarLeft');
+
+        if(toggleLeft.classList.contains('hidden')) {
+            document.getElementById('magicSidebarLeft').classList.remove('hidden');
+        } else {
+            document.getElementById('magicSidebarLeft').classList.add('hidden');
+        }
+    }
+</script>
+<div class="sidebar-left" id="magicSidebarLeft">
+        <div class="sidebar-title glow">
+            <span class="logo-punc glow">[</span>
+            <span class="logo-user glow">about me</span>
+            <span class="logo-punc glow">]</span>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-link-row">
+                <span class="sidebar-icon">
+                    <a href="https://twitch.tv/krisnova" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "twitch" }}
+                </span>
+                <span class="sidebar-text">@krisnova
+                </span>
+                </a>
+            </div>
+
+            <div class="sidebar-link-row">
+                <span class="sidebar-icon">
+                    <a href="https://github.com/kris-nova" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "github" }}
+                </span>
+                <span class="sidebar-text">@kris-nova</span>
+                </a>
+            </div>
+            <div class="sidebar-link-row">
+                <span class="sidebar-icon">
+                    <a href="https://twitter.com/krisnova" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "twitter" }}
+                </span>
+                <span class="sidebar-text">@krisnova</span>
+                </a>
+            </div>
+            <div class="sidebar-link-row">
+                <span class="sidebar-icon">
+                    <a href="https://www.youtube.com/channel/UCRvH2UexTzcbZRwCS6OxJ3w" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "youtube" }}
+                </span>
+                <span class="sidebar-text">kris nóva</span>
+                </a>
+            </div>
+            <div class="sidebar-link-row">
+                <span class="sidebar-icon">
+                    <a href="mailto:kris@nivenly.com" target="_blank" class="sidebar-icon" style="text-decoration: none">{{ partial "fa.html" "envelope" }}
+                </span>
+                <span class="sidebar-text">kris@nivenly.com</span>
+                </a>
+            </div>
+        </div>
+    <div class="sidebar-title glow">
+        <span class="logo-punc glow">[</span>
+        <span class="logo-user glow">server health</span>
+        <span class="logo-punc glow">]</span>
+    </div>
+    <div class="sidebar-section">
+        <div class="sidebar-link-row">
+            <span class="sidebar-icon">{{ partial "fa.html" "server" }}</span>
+            <span class="sidebar-text">OK</span>
+        </div>
+    </div>
+</div>

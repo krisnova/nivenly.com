@@ -1,63 +1,38 @@
+<!--Nóva-->
+<div class="side" id="magicSidebarRight" style="border-left: #96c3f1 1px solid">
+    <div class="side-large">
+        <span class="logo-punc glow">[</span>
+        <span class="logo-user glow">about me</span>
+        <span class="logo-punc glow">]</span>
+    </div>
+</div>
 <script>
-    function toggleSidebarRight() {
-        var toggleRight = document.getElementById('magicSidebarRight');
+    const getSidebarR = window.localStorage && window.localStorage.getItem("toggleR");
+    const sidebarToggleR = document.querySelector(".toggle-sidebar");
+    const toggleR = document.getElementById('magicSidebarRight');
+    const isSidebarR = getSidebarR === "true";
 
-        if(toggleRight.classList.contains('hidden')) {
+    if (getSidebarR !== null) {
+        toggleR.classList.toggle("hidden", isSidebarR);
+    }
+
+    sidebarToggleR.addEventListener("click", () => {
+        toggleR.classList.toggle("hidden");
+        window.localStorage &&
+        window.localStorage.setItem(
+            "toggleR",
+            toggleR.classList.contains("hidden") ? "true" : "false",
+        );
+    });
+
+    function toggleSidebarLeft() {
+        var toggleLeft = document.getElementById('magicSidebarLeft');
+
+        if(toggleLeft.classList.contains('hidden')) {
             document.getElementById('magicSidebarRight').classList.remove('hidden');
         } else {
             document.getElementById('magicSidebarRight').classList.add('hidden');
         }
     }
 </script>
-<div class="sidebar-right" id="magicSidebarRight">
-        <div class="sidebar-title">
-            <span class="logo-punc glow">[</span>
-            <span class="logo-user glow">kubernetes</span>
-            <span class="logo-punc glow">]</span>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-row">
-                <span class="sidebar-key">version</span>
-                <span class="sidebar-value">{{ partial "nova/kubernetes.version.nova" . }}</span>
-            </div>
-            <div class="sidebar-row">
-                <span class="sidebar-key">alice (m)</span>
-                <span class="sidebar-value">{{ partial "nova/kubernetes.alice.nova" . }}</span>
-            </div>
-            <div class="sidebar-row">
-                <span class="sidebar-key">yakko (n)</span>
-                <span class="sidebar-value">{{ partial "nova/kubernetes.yakko.nova" . }}</span>
-            </div>
-            <div class="sidebar-row">
-                <span class="sidebar-key">wakko (n)</span>
-                <span class="sidebar-value">{{ partial "nova/kubernetes.wakko.nova" . }}</span>
-            </div>
-            <div class="sidebar-row">
-                <span class="sidebar-key">dot (n)</span>
-                <span class="sidebar-value">{{ partial "nova/kubernetes.dot.nova" . }}</span>
-            </div>
-        </div>
-        <div class="sidebar-title">
-            <span class="logo-punc glow">[</span>
-            <span class="logo-user glow">systemd</span>
-            <span class="logo-punc glow">]</span>
-        </div>
-        <div class="sidebar-section">
-            <div class="sidebar-row">
-                <span class="sidebar-key">thenovadiary</span>
-                <span class="sidebar-value">{{ partial "nova/thenovadiary.status.nova" . }}</span>
-            </div>
-            <div class="sidebar-row">
-                <span class="sidebar-key">novix ZFS</span>
-                <span class="sidebar-value">{{ partial "nova/novix.status.nova" . }}</span>
-            </div>
-            <div class="sidebar-row">
-                <span class="sidebar-key">novix security</span>
-                <span class="sidebar-value">{{ partial "nova/novixsecurity.status.nova" . }}</span>
-            </div>
-            <div class="sidebar-row">
-                <span class="sidebar-key">tambourine</span>
-                <span class="sidebar-value">{{ partial "nova/tambourine.status.nova" . }}</span>
-            </div>
-        </div>
-</div>
+<!--Nóva-->
