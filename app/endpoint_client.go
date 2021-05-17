@@ -19,7 +19,10 @@ const (
 	ProxyClient = "NovaProxy-Client"
 )
 
+// Client is you
 type Client struct {
+
+	// Addr is your name
 	Addr string
 }
 
