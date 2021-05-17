@@ -22,6 +22,6 @@ she is an international internet celebrity who does significant computer boops. 
 ### 🔭 open source projects
 
  - [COSI project](https://github.com/cosi-project/community) i co-founded the [cosi project](https://github.com/cosi-project/community) which attempts to standardize operarting system components for distributed operating systems with kubernetes
- - [kubicorn[(https://github.com/kubicorn)
+ - [kubicorn](https://github.com/kubicorn)
  - [kubernetes](github.com/kubernetes/kubernetes)
  - [linux](github.com/kris-nova/linux)
