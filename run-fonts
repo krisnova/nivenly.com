@@ -2,8 +2,19 @@
 set -e
 
 SOLID="cogs book hand-middle-finger cloud network-wired signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
-BRANDS="youtube twitter github twitch linkedin"
+BRANDS="linux youtube twitter github twitch linkedin"
 REGULAR=""
+
+DIR="static/assets/fonts"
+URL="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/"
+echo ""
+echo ""
+for i in ${BRANDS}; do
+  svg="${i}.svg"
+  echo ""
+  echo "${URL}/${svg}"
+  wget -O "${DIR}/${svg}" "${URL}/${svg}"
+done
 
 DIR="static/assets/fonts"
 URL="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/solid/"
@@ -16,17 +27,6 @@ for i in ${SOLID}; do
   wget -O "${DIR}/${svg}" "${URL}/${svg}"
 done
 
-
-DIR="static/assets/fonts"
-URL="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/"
-echo ""
-echo ""
-for i in ${BRANDS}; do
-  svg="${i}.svg"
-  echo ""
-  echo "${URL}/${svg}"
-  wget -O "${DIR}/${svg}" "${URL}/${svg}"
-done
 
 DIR="static/assets/fonts"
 URL="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/regular/"

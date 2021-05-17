@@ -9,7 +9,7 @@ she is an international internet celebrity who does significant computer boops. 
  - [nivenly.com](https://nivenly.com) is my official page with resources
  - [follow me on twitter @krisnova](https://twitter.com/krisnova) for cyptic ramblings about capitalism and cute dogs
 
-### 💬 recent news
+### 💬 recent news 
 
  - [the distributed operarting system void](https://nivenly.com/lib/2021-04-02-operating-system-interface/) is a paper that highlights the problem space with distributed operating systems with kubernetes
 
