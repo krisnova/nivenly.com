@@ -7,11 +7,11 @@
         {{ if .IsHome }}
             {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
         {{ else if eq .URL "/live/" }}
-            live :: nivenly.comz
+            live :: nivenly.com
         {{ else if eq .URL "/src/" }}
-            src :: nivenly.coms
+            src :: nivenly.com
         {{ else }}
-            {{ .Title }} :: {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }} {{ end }}
+            {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
         {{ end }}
         </title>
     {{ end }}
