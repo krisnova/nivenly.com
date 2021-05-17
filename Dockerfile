@@ -1,6 +1,6 @@
 FROM golang:latest
-WORKDIR /go/src/github.com/kris-nova/nivenly.com/app/main
-COPY app .
+WORKDIR /go/src/github.com/kris-nova/nivenly.com
+COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app/main/app
 
 
