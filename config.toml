@@ -60,10 +60,6 @@ paginate = 5
 
 
 
-
-
-
-
 [languages]
   [languages.en]
     description = "professional computer adult :: famous transgender queer cyber hacker :: high alpine enthusiast"
@@ -106,8 +102,3 @@ paginate = 5
         identifier = "questions"
         name = "questions"
         url = "/questions"
-
-
-
-
-

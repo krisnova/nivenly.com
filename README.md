@@ -55,3 +55,37 @@ Edit `/app/nivenly.go` and define a new `bjorno.Endpoint` such as `empty`.
 		},
 ```
 
+### Adding a field to the API 
+
+all fields are defined in the `NivenlyAPI` in `/app/nivenly_api.go`.
+
+add a field here and then you can reference it in `config.toml`.
+
+```go 
+type NivenlyAPI struct {
+    // ...
+    
+    // Beeps is a very important string
+    Beeps string
+    
+    // Boops is a very important string
+    Boops string 
+    
+    // ...
+}
+```
+
+then you can reference it in `config.toml`
+
+```toml 
+[params]
+
+  beepsBoops = "{{ .Beeps }} has the {{ .Boops }}"
+
+
+```
+
+and whatever `.Beeps` and `.Boops` amounts to at runtime... will be what is rendered on the page.
+
+⚠ **Note**: if `.Beeps` or `.Boops` doesn't exist - the page is liable to break! 
+
