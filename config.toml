@@ -1,15 +1,67 @@
+#
+# --------------------------------------------------------------------------------------------------
+#
+#
+#   /$$   /$$ /$$                               /$$
+#  | $$$ | $$|__/                              | $$
+#  | $$$$| $$ /$$ /$$    /$$ /$$$$$$  /$$$$$$$ | $$ /$$   /$$      /$$$$$$$  /$$$$$$  /$$$$$$/$$$$
+#  | $$ $$ $$| $$|  $$  /$$//$$__  $$| $$__  $$| $$| $$  | $$     /$$_____/ /$$__  $$| $$_  $$_  $$
+#  | $$  $$$$| $$ \  $$/$$/| $$$$$$$$| $$  \ $$| $$| $$  | $$    | $$      | $$  \ $$| $$ \ $$ \ $$
+#  | $$\  $$$| $$  \  $$$/ | $$_____/| $$  | $$| $$| $$  | $$    | $$      | $$  | $$| $$ | $$ | $$
+#  | $$ \  $$| $$   \  $/  |  $$$$$$$| $$  | $$| $$|  $$$$$$$ /$$|  $$$$$$$|  $$$$$$/| $$ | $$ | $$
+#  |__/  \__/|__/    \_/    \_______/|__/  |__/|__/ \____  $$|__/ \_______/ \______/ |__/ |__/ |__/
+#                                                   /$$  | $$
+#                                                  |  $$$$$$/
+#                                                   \______/
+#
+#
+# Nóva you have put some fucking time into this. Trust yourself.
+
 baseurl = "/"
 languageCode = "en-us"
 theme = "nivenly-theme"
 paginate = 5
 
+
+#
+# ------------------------------------------------------------------
+#
+#   /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$  /$$$$$$/$$$$   /$$$$$$$
+#  /$$__  $$ |____  $$ /$$__  $$|____  $$| $$_  $$_  $$ /$$_____/
+# | $$  \ $$  /$$$$$$$| $$  \__/ /$$$$$$$| $$ \ $$ \ $$|  $$$$$$
+# | $$  | $$ /$$__  $$| $$      /$$__  $$| $$ | $$ | $$ \____  $$
+# | $$$$$$$/|  $$$$$$$| $$     |  $$$$$$$| $$ | $$ | $$ /$$$$$$$/
+# | $$____/  \_______/|__/      \_______/|__/ |__/ |__/|_______/
+# | $$
+# | $$
+# |__/
+#
+#
+# Here is where the dynamic interpolating happens.
+#
+# We have "Upgradde"d hugo (Two D's for a Double-Dose of pimping).
+#
+# This is where we can mapp the interpolation with Hugo, to the
+# Interpolation with the Go runtime.
+# Basically set a key equal to what you want to pull from the
+# Nivenly "app" (which runs with bjorno) here. Then you can access
+# the value dynamically in the page elsewhere.
+#
+# Nóva: Try to only use the bjorno runtime params here. For everything
+#       else try to define above as a site vairable {{ $.Site.Key }}
 [params]
-  # You are welcome futue Nóva...
+  # Example Param:
+  #
   # key = "value"
   # {{ $.Site.Params.Key }}
 
-  [I]
-    RemoteAddress = "{{ .RemoteAddress }}"
+  remoteAddress = "{{ .Client.Addr }}"
+  requestString = "{{ .R.Method }} {{ .R.URL.Path }} {{ .R.Proto }}"
+
+
+
+
+
 
 
 [languages]
@@ -20,24 +72,10 @@ paginate = 5
     keywords = "kris, kris nova, nova, nóva, programming, linux, engineer, blog, archive, official, sexy, nivenly, homepage, wepage, important, serious, iron clad, professional, adult, business, computer, tech, books, author, author, super nóva, supernova, github, freebsd, mountains, speaker, public, public speaker, twitch, stream, stream stream, live, nova"
     copyright = "2021 Kris Nóva"
 
-
-# ----------------------------------------------------------
-# Homepage Content
-#
-
-    [languages.en.params.home]
-      title = "kris nóva"
-      content  = "the main body of the website"
-
-
-
 # ----------------------------------------------------------
     [languages.en.params.logo]
-      # [logoUser@logoHost]: /path >$
       logoUser = "nova"
       logoHost = "nivenly"
-
-
 
     [languages.en.menu]
     [[languages.en.menu.main]]

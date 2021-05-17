@@ -123,6 +123,7 @@ body.nova {
 }
 
 .side-large {
+    background-color: #222222;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 1.2em;
@@ -175,7 +176,6 @@ a:link {
 
 
 /* TOGGLE */
-
 .toggle-contrast {
  /* ID for Javascript */
 }

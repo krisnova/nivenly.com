@@ -1,17 +1,15 @@
 #!/bin/bash
 set -e
 
+SOLID="cogs book hand-middle-finger cloud network-wired signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
 BRANDS="youtube twitter github twitch linkedin"
-SOLID="signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
 REGULAR=""
 
-
-
 DIR="static/assets/fonts"
-URL="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/"
+URL="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/solid/"
 echo ""
 echo ""
-for i in ${BRANDS}; do
+for i in ${SOLID}; do
   svg="${i}.svg"
   echo ""
   echo "${URL}/${svg}"
@@ -20,10 +18,10 @@ done
 
 
 DIR="static/assets/fonts"
-URL="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/solid/"
+URL="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/"
 echo ""
 echo ""
-for i in ${SOLID}; do
+for i in ${BRANDS}; do
   svg="${i}.svg"
   echo ""
   echo "${URL}/${svg}"

@@ -7,9 +7,9 @@
         {{ if .IsHome }}
             {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
         {{ else if eq .URL "/live/" }}
-            live :: nivenly.com
+            live :: nivenly.comz
         {{ else if eq .URL "/src/" }}
-            src :: nivenly.com
+            src :: nivenly.coms
         {{ else }}
             {{ .Title }} :: {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }} {{ end }}
         {{ end }}

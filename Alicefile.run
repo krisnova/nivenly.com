@@ -7,5 +7,5 @@
 ##
 # Run locally
 hugo
-cd app
-go run main.go
+cd app/cmd
+GO111MODULE=off go run main.go

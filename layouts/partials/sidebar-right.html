@@ -1,10 +1,57 @@
 <!--Nóva-->
 <div class="side" id="magicSidebarRight" style="border-left: #96c3f1 1px solid">
+
+    <!-- Recent -->
     <div class="side-large">
-        <span class="logo-punc glow">[</span>
-        <span class="logo-user glow">about me</span>
-        <span class="logo-punc glow">]</span>
+        <span class="color-highlight">[</span><span class="color-alt"> recent </span><span class="color-highlight">]</span>
     </div>
+
+    <!-- klustered -->
+    <div class="side-paragraph">
+        <a href="/lib/2021-05-03-klustered/">
+            <span class="color-highlight glow">{{ partial "fa.html" "youtube" }}</span>
+            <span class="color-alt glow">hacking kubernetes writeup</span>
+        </a>
+    </div>
+
+    <!-- klustered -->
+    <div class="side-paragraph">
+        <a href="/lib/2021-04-02-operating-system-interface/">
+            <span class="color-highlight glow">{{ partial "fa.html" "cogs" }}</span>
+            <span class="color-alt glow">operating system void</span>
+        </a>
+    </div>
+
+    <!-- clusterfuck -->
+    <div class="side-paragraph" style="border-bottom: 1px #96c3f1 solid;">
+        <a href="/lib/2021-04-05-clusterfuck/">
+            <span class="color-highlight glow">{{ partial "fa.html" "hand-middle-finger" }}</span>
+            <span class="color-alt glow">fosdem clusterfuck talk(s)</span>
+        </a>
+    </div>
+
+    <!-- projects -->
+    <div class="side-large">
+        <span class="color-highlight">[</span><span class="color-alt"> projects </span><span class="color-highlight">]</span>
+    </div>
+
+    <!-- cosi -->
+    <div class="side-paragraph">
+        <a href="https://github.com/cosi-project/community" target="_blank" rel="noopener noreferrer">
+            <span class="color-highlight glow">{{ partial "fa.html" "github" }}</span>
+            <span class="color-alt glow">COSI project</span>
+        </a>
+    </div>
+
+    <!-- kubicorn -->
+    <div class="side-paragraph">
+        <a href="https://github.com/kubicorn/kubicorn" target="_blank" rel="noopener noreferrer">
+            <span class="color-highlight glow">{{ partial "fa.html" "github" }}</span>
+            <span class="color-alt glow">kubicorn</span>
+        </a>
+    </div>
+
+
 </div>
 <script>
     const getSidebarR = window.localStorage && window.localStorage.getItem("toggleR");

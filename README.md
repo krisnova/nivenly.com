@@ -1,50 +1,57 @@
-# Nivenly.com Source Code
+# Nivenly.com
 
 
 The official source code for nivenly.com
 
 **Author**: Kris Nóva <_kris@nivenly.com_>
 
----
-
 ### About
 
-Nivenly.com is the official home of all things Kris Nóva. Here she blogs and holds various online resources about herself and her adventures.
+Nivenly.com is my website. Here on my website we do whatever I want, whenever I want because it is mine.
 
-Pull requests are accepted, and sometimes ignored. She ultimately uses this space as a backend store for the majority of things she needs to write down.
+The website a touring complete web application that is managed with a static content generator. 
 
-This is for lack of a better term, the offical archive of Kris Nóva.
+The static content lives in the `/content` directory. 
 
-### Development Notes
+The application lives in the `/app` directory. 
 
-To create the `/meeps` endpoint:
+The server is the [bjorno](https://github.com/kris-nova/bjorno) web server which allows the Nivenly.com application to interpolate the website at runtime. 
 
-```bash
-mkdir ./content/meeps
-touch ./layouts/_default/kubernetes.alice.nova
+The spirit of the website is to accomplish a few simple tasks. 
 
-# To create a "set" of items
-touch ./content/meeps/ex1.md # This would use "list.html"
+ - [X] I would like to be able to blog quickly, using markdown.
+ - [X] I would like to run the entire website in a container.
+ - [X] I would like to have a Go application on the "backend".
+ - [X] I don't really want to "learn" any other tools.
+
+### Adding a blog 
+
+To add a new blog called "meeps" you would run the following command. 
+
+```bash 
+./run-new meeps
 ```
 
-### Rules
+Then you would have a file created with todays date in `/content/lib` such as
 
-The following are the rules that Nóva has for her Twitch chat.  
+``` 
+/content/lib/2021-05-01-meeps.md
+```
 
-- No talking about Nóva's job
-- No homophobia, transphobia, sexism, racism, etc...
-- Don't be an asshole
-- At most one warning will be provided
+### Adding an endpoint to the application 
 
+Edit `/app/nivenly.go` and define a new `bjorno.Endpoint` such as `empty`.
 
-### Success
+```go 
+		Endpoints: []*bjorno.Endpoint{
+			{
+				Pattern: "/client",
+				Handler: &ClientHandler{},
+			},
+			{
+				Pattern: "/empty",
+				Handler: &EmptyHandler{},
+			},
+		},
+```
 
-As she builds out the site, there are a few things she wants to make sure she includes.
-
- - [ ] Easily add `note1.md` files to the archive
- - [ ] All notes are automatically rendered on [nivenly.com](https://nivenly.com)
- - [ ] Common links and URLs (twitter, linkedin, repos, etc)
- - [ ] About me 
- - [ ] Theme to match Nóva (ascii art, red plaid, black, hacker, glow)
- - [ ] Backed up somewhere locally
- - [ ] Operator to update kubernetes cluster
