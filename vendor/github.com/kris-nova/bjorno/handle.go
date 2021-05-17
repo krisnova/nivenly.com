@@ -142,12 +142,19 @@ func (rh *RootHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		rh.V.Refresh()
 		rh.V.Unlock()
 	}()
+
 	// Now we can HOPE to see any changes as we interpolate
 	// First let's begin our memory shifting.
 	iFile := interpolate.NewFile(file)
+
 	// Now let's interpolate with our values.
 	logger.Debug("Interpolating %s", stat.Name())
-	iFile, err = iFile.Interpolate(rh.V.Values())
+
+	// Here we execute the intepolation (as quickly as possible)
+	// We pass in THIS specific r for the *http.Request as well
+	// as call Values to pass to the interpolator all in one
+	// line. This is it folks. Where the magic happens.
+	iFile, err = iFile.Interpolate(rh.V.Values(r))
 	if err != nil {
 		// 500
 		logger.Warning(err.Error())

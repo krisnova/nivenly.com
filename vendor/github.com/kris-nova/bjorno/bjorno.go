@@ -144,7 +144,12 @@ type RuntimeProgram interface {
 	// Values is where you should put the things you want to be interpolated.
 	//
 	// This is the program itself that will be passed to template.Execute()
-	Values() interface{}
+	//
+	// Values is called for every HTTP request, so we pass that in.
+	// Even though Refresh() is called concurrently for caching
+	// reasons we still couple a Values() read with an HTTP request.
+	// This is a design decision, and is subject to be a poor one.
+	Values(request *http.Request) interface{}
 
 	// Refresh is called slightly before your program is referenced.
 	//

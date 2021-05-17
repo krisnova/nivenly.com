@@ -1,8 +1,7 @@
-# github.com/kris-nova/bjorno v0.0.0-20210514230009-0729d96c4c88
+# github.com/kris-nova/bjorno v0.0.0-20210516165123-40c275b15ed5
+## explicit
 github.com/kris-nova/bjorno
 github.com/kris-nova/bjorno/interpolate
-# github.com/kris-nova/logger v0.2.1
-github.com/kris-nova/logger
-# github.com/kris-nova/nivenly.com/app v0.0.0-20210515043412-1ae4be0b2bff
+# github.com/kris-nova/logger v0.2.2
 ## explicit
-github.com/kris-nova/nivenly.com/app
+github.com/kris-nova/logger

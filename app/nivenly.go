@@ -52,7 +52,7 @@ func Bootstrap() {
 		// dropping off the binary where it needs to go.
 		//
 		// Always run from the "cmd" directory.
-		ServeDirectory: "../../public",
+		ServeDirectory: "public",
 
 		// DefaultIndexFiles index.html
 		//

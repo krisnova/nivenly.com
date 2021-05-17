@@ -14,13 +14,16 @@
 
 package bjorno
 
-import "sync"
+import (
+	"net/http"
+	"sync"
+)
 
 type EmptyProgram struct {
 	mutex sync.Mutex
 }
 
-func (v *EmptyProgram) Values() interface{} {
+func (v *EmptyProgram) Values(req *http.Request) interface{} {
 	return v
 }
 
