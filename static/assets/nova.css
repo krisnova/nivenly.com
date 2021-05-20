@@ -153,10 +153,13 @@ body.nova {
 }
 
 a:link {
-    text-decoration-style: solid;
     text-decoration: none;
     text-shadow: #ffffff 0px 0px 8px;
 
+}
+
+post.a {
+    text-decoration: underline;
 }
 
 .inline-svg {

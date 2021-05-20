@@ -2,9 +2,11 @@ package nivenly
 
 import (
 	"net/http"
+	"os"
 	"sync"
 
 	bjorno "github.com/kris-nova/bjorno"
+	"github.com/kris-nova/logger"
 )
 
 // Nivenly is a container for the Application as an in-memory state machine.
@@ -84,6 +86,19 @@ func Bootstrap() {
 				Handler: &EmptyHandler{},
 			},
 		},
+
+
+	}
+
+	// 404 handling
+
+
+	bytes, err := os.ReadFile("public/404.html")
+	if err != nil {
+		logger.Warning("Unable to load custom 404 path: %v", err)
+		cfg.Content404 = []byte(bjorno.StatusDefault404)
+	} else {
+		cfg.Content404 = bytes
 	}
 
 	// Set the config for the rest of the application

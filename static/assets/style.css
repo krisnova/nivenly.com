@@ -864,6 +864,10 @@ blockquote.twitter-tweet {
     margin: 20px auto
 }
 
+.post a {
+    text-decoration: underline;
+}
+
 @media (max-width:899px) {
     .post {
         max-width: 660px
@@ -909,11 +913,15 @@ blockquote.twitter-tweet {
 }
 
 .post-tags a {
-    text-decoration: none
+    text-decoration: underline;
 }
 
 .post-content {
     margin-top: 30px
+}
+
+.post-content a {
+    text-decoration: underline;
 }
 
 .post-cover {

@@ -8,4 +8,4 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 COPY public /public
 COPY --from=0 /nivenly /nivenly
-CMD ["nivenly"]
+CMD ["/nivenly"]
