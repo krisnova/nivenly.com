@@ -2,6 +2,14 @@
   <div class="footer__inner">
     {{ if $.Site.Copyright }}
       <div class="copyright copyright--user">{{ $.Site.Copyright | safeHTML }}</div>
+      <div class="copyright">
+        Nivenly.com and it's related assets, tools, and API endpoints are provided for
+        convenience and educational purposes only. The website's source code is hosted
+        online at <a href="https://github.com/kris-nova/nivenly.com">github.com/kris-nova/nivenly.com</a>.
+      </div>
+      <div class="copyright">
+        Nivenly.com ships with an [Apache 2 license]()
+      </div>
       {{ else }}
       {{ partial "logo.html" . }}
       <div class="copyright">

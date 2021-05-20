@@ -21,6 +21,7 @@ baseurl = "/"
 languageCode = "en-us"
 theme = "nivenly-theme"
 paginate = 5
+enableRobotsTXT = true
 
 
 #
@@ -57,6 +58,7 @@ paginate = 5
 
   remoteAddress = "{{ .Client.Addr }}"
   requestString = "{{ .R.Method }} {{ .R.URL.Path }} {{ .R.Proto }}"
+  aboutYouString = "{{ .Client.ClientString }} "
 
 
 

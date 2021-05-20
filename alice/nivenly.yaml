@@ -26,6 +26,7 @@ spec:
       labels:
         app: nivenly
     spec:
+      hostNetwork: true
       containers:
         - image: krisnova/nivenly.com:latest
           env:
