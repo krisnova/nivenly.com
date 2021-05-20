@@ -1,6 +1,10 @@
 package nivenly
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/kris-nova/logger"
+)
 
 // NivenlyAPI is a request specific API for the website.
 //
@@ -49,6 +53,11 @@ func (v *Nivenly) GetAPI(r *http.Request) *NivenlyAPI {
 	// Our code should be resilient enough to support whatever
 	// we get from the server.
 	client := v.clientHandler.GetClient(r)
+
+	// Log client for every interpolation
+	logger.Info("Client: %s", client.Addr)
+
+	// Build our API for the site
 	api := &NivenlyAPI{
 		Client:     client,
 		ClientAddr: client.Addr,

@@ -1,0 +1,7 @@
+# github.com/kris-nova/bjorno v0.0.0-20210516165123-40c275b15ed5
+## explicit
+github.com/kris-nova/bjorno
+github.com/kris-nova/bjorno/interpolate
+# github.com/kris-nova/logger v0.2.2
+## explicit
+github.com/kris-nova/logger
