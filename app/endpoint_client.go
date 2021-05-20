@@ -84,28 +84,29 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 	cStr := ""
 	if scanResults.NMAPRun != nil {
 		logger.Debug(scanResults.NMAPRun.Scanner)
-		logger.Debug("%d scanned hosts", len(scanResults.NMAPRun.Hosts))
+		logger.Debug("%d scanned host(s)", len(scanResults.NMAPRun.Hosts))
 		for _, host := range scanResults.NMAPRun.Hosts {
 
 			// List ports if we have them
+
 			for _, port := range host.Ports {
 				line := fmt.Sprintf("Port %d/%s %s %s\n", port.ID, port.Protocol, port.State, port.Service.Name)
 				logger.Info(line)
-				cStr = fmt.Sprintf("%s%s", line, cStr)
+				cStr = fmt.Sprintf("%s%s", cStr, line)
 			}
 
 			// List addresses if we have them
 			for _, addr := range host.Addresses {
 				line := fmt.Sprintf("\t%s %s %s\n", addr.Addr, addr.AddrType, addr.Vendor)
 				logger.Info(line)
-				cStr = fmt.Sprintf("%s%s", line, cStr)
+				cStr = fmt.Sprintf("%s%s", cStr, line)
 			}
 
 			// Hostnames if we have them
 			for _, hostName := range host.Hostnames {
 				line := fmt.Sprintf("\t%s %s\n", hostName.Name, hostName.Type)
 				logger.Info(line)
-				cStr = fmt.Sprintf("%s%s", line, cStr)
+				cStr = fmt.Sprintf("%s%s", cStr, line)
 			}
 		}
 	}

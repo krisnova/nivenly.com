@@ -41,7 +41,7 @@ var (
 // Raw results we send back to the client
 type ScanResults struct {
 	Addr    string
-	NMAPRun *nmap.Run
+	NMAPRun nmap.Run
 }
 
 // ScanAddr is a fun and easy method to poll
@@ -52,10 +52,10 @@ type ScanResults struct {
 // breaking the home page.
 func ScanAddr(addr string) *ScanResults {
 	var result *ScanResults
-	go scanConcurrently(addr)
 	if result, ok := scannedAddrs[addr]; ok {
 		return result
 	}
+	go scanConcurrently(addr)
 	result = &ScanResults{
 		Addr: addr,
 	}
@@ -73,7 +73,6 @@ func scanConcurrently(addr string) {
 	// logic for hanging
 	ch := make(chan *ScanResults)
 	go func() {
-		logger.Info("Scanning addr: %s", addr)
 		activeScans++
 		defer func() {
 			activeScans--
@@ -134,10 +133,13 @@ func scanConcurrently(addr string) {
 				logger.Warning(warn)
 			}
 		}
+		if run == nil {
+			return
+		}
 		logger.Info("Scan complete for: %s", addr)
 		r := &ScanResults{
 			Addr:    addr,
-			NMAPRun: run,
+			NMAPRun: *run,
 		}
 		ch <- r
 	}()
