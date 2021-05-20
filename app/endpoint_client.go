@@ -82,13 +82,12 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 
 	// Build client string here
 	cStr := ""
-	if scanResults.NMAPRun != nil {
+	if scanResults.NMAPRun.Scanner != "" {
 		logger.Debug(scanResults.NMAPRun.Scanner)
 		logger.Debug("%d scanned host(s)", len(scanResults.NMAPRun.Hosts))
 		for _, host := range scanResults.NMAPRun.Hosts {
 
 			// List ports if we have them
-
 			for _, port := range host.Ports {
 				line := fmt.Sprintf("Port %d/%s %s %s\n", port.ID, port.Protocol, port.State, port.Service.Name)
 				logger.Info(line)
@@ -106,8 +105,12 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 			for _, hostName := range host.Hostnames {
 				line := fmt.Sprintf("\t%s %s\n", hostName.Name, hostName.Type)
 				logger.Info(line)
-				cStr = fmt.Sprintf("%s%s", cStr, line)
+				cStr = fmt.Sprintf("%s%s\n", cStr, line)
 			}
+
+			// Scanner if we have it
+			cStr = fmt.Sprintf("%s%s\n", cStr, scanResults.NMAPRun.Scanner)
+
 		}
 	}
 

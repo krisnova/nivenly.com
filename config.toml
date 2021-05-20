@@ -104,3 +104,7 @@ enableRobotsTXT = true
         identifier = "questions"
         name = "questions"
         url = "/questions"
+      [[languages.en.menu.main]]
+        identifier = "author"
+        name = "author"
+        url = "/author"
