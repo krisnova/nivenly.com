@@ -40,6 +40,10 @@
     color: #000000;
 }
 
+.color-footer-body {
+    color: #666666;
+}
+
 body.nova {
     --background: #1A1616;
     --background-secondary: #1A1616;

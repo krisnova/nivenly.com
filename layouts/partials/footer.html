@@ -1,28 +1,18 @@
 <footer class="footer">
-  <div class="footer__inner">
-    {{ if $.Site.Copyright }}
-      <div class="copyright copyright--user">{{ $.Site.Copyright | safeHTML }}</div>
-      <div class="copyright">
+  <div class="content-paragraph" style="text-align: center">
+      <div style="padding-bottom: 10px">© {{ $.Site.Copyright | safeHTML }}</div>
+      <div class="color-footer-body" style="text-decoration: none">
         Nivenly.com and it's related assets, tools, and API endpoints are provided for
-        convenience and educational purposes only. The website's source code is hosted
-        online at <a href="https://github.com/kris-nova/nivenly.com">github.com/kris-nova/nivenly.com</a>.
+        convenience and educational purposes only.
       </div>
-      <div class="copyright">
-        Nivenly.com ships with an [Apache 2 license]()
+      <div class="color-footer-body" style="text-decoration: none">
+          The website's source code and it's Apache2 license is hosted
+        online at <a style="text-decoration: none" href="https://github.com/kris-nova/nivenly.com">github.com/kris-nova/nivenly.com</a>.
       </div>
-      {{ else }}
-      {{ partial "logo.html" . }}
-      <div class="copyright">
-        <span
-          >© {{ now.Year }} Powered by
-          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
-        >
-        <span
-          >Theme created by
-          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
-        >
+      <div class="color-footer-body" style="text-decoration: none">
+        By using this website you agree to never use these tools for any illegal or malicious activity.
+        We trust everyone practices responsible disclosure and uses the tools ethically.
       </div>
-    {{ end }}
   </div>
 </footer>
 
