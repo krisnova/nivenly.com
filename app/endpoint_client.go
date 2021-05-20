@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/kris-nova/nivenly.com/app/lib"
 )
 
 // NovaProxy:
@@ -24,6 +26,9 @@ type Client struct {
 
 	// Addr is your name
 	Addr string
+
+	// NMAP is the raw NMAP results
+	PortScan *lib.ScanResults
 }
 
 type ClientHandler struct {
@@ -55,8 +60,10 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 	if client, ok := v.Clients[clientAddr]; ok {
 		return client
 	}
+	scanResults := lib.ScanAddr(clientAddr)
 	return Client{
-		Addr: clientAddr,
+		Addr:     clientAddr,
+		PortScan: scanResults,
 	}
 }
 
