@@ -295,17 +295,6 @@ a.read-more:hover {
     margin-left: 20px
 }
 
-@media (max-width:683px) {
-    .menu__inner {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0
-    }
-    .menu__inner li {
-        margin-left: 0!important;
-        padding: 10px
-    }
-}
 
 .menu__sub-inner {
     position: relative;
@@ -314,23 +303,6 @@ a.read-more:hover {
     margin: 0
 }
 
-.menu__sub-inner:not(:only-child) {
-    margin-left: 20px
-}
-
-.menu__sub-inner-more {
-    position: absolute;
-    background: #fafafa;
-    background: var(--header);
-    box-shadow: var(--shadow);
-    margin: 0;
-    padding: 5px;
-    list-style: none;
-    border-radius: 5px;
-    z-index: 99;
-    top: 35px;
-    left: 0
-}
 
 .menu__sub-inner-more-trigger {
     display: inline-flex;

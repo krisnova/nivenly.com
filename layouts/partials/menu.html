@@ -37,11 +37,14 @@
     {{ end }}
   </ul>
 
-  <ul class="mobile-menu" id="mobile-menu">
-    {{ range $.Site.Menus.main }}
-    {{ if not .HasChildren }}
-    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-    {{ end }}
-    {{ end }}
+</nav>
+
+<nav class="menu mobile-menu" id="mobile-menu">
+  <ul>
+  {{ range $.Site.Menus.main }}
+  {{ if not .HasChildren }}
+  <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+  {{ end }}
+  {{ end }}
   </ul>
 </nav>
