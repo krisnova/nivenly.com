@@ -227,7 +227,7 @@ post.a {
     font-family: Nova;
     margin-right: 18px;
     padding-right: 24px;
-    background: transparent;
+    display: block
 }
 
 .menu a:hover {
@@ -254,6 +254,13 @@ post.a {
 }
 
 
+/* TOGGLE USES THIS CLASS */
+.hidden {
+    display: none
+}
+
+
+
 /* DISPLAY MOBILE */
 
 @media (max-width:683px) {
@@ -273,7 +280,7 @@ post.a {
         padding-left: 10px;
     }
     .toggle-mobile-menu {
-        display: flex;
+        display: block;
     }
     .menu-desktop {
         display: none;
