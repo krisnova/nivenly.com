@@ -51,11 +51,11 @@ type ScanResults struct {
 // for including on the home page - without
 // breaking the home page.
 func ScanAddr(addr string) *ScanResults {
+	go scanConcurrently(addr)
 	var result *ScanResults
 	if result, ok := scannedAddrs[addr]; ok {
 		return result
 	}
-	go scanConcurrently(addr)
 	result = &ScanResults{
 		Addr: addr,
 	}
