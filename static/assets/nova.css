@@ -216,11 +216,18 @@ post.a {
 }
 
 .menu {
+    font-size: 1.1rem;
+    font-family: Nova;
+    margin-right: 18px;
+    padding-right: 24px;
+}
+
+.menu-alt {
     font-size:1.1rem;
     font-family: Nova;
     margin-right: 18px;
     padding-right: 24px;
-    background: none;
+    background: transparent;
 }
 
 .menu a:hover {
@@ -252,6 +259,10 @@ post.a {
 @media (max-width:683px) {
     .menu {
         position: absolute;
+        display: none;
+    }
+    .menu-alt {
+        position: absolute;
         background: var(--background);
         margin: 0;
         list-style: none;
@@ -267,7 +278,6 @@ post.a {
     .menu-desktop {
         display: none;
     }
-
     .side {
         border: #96c3f1 1px solid;
     }
