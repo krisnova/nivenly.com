@@ -60,6 +60,8 @@ func ScanAddr(addr string) *ScanResults {
 		Addr: addr,
 	}
 	return result
+
+
 }
 
 // scanConcurrently is used to NMAP scan (with options)

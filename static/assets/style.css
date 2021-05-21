@@ -261,38 +261,7 @@ a.read-more:hover {
     }
 }
 
-.menu {
-    font-size:1.1rem;
-    font-family: Nova;
-    border-right: 1px solid;
-    margin-right: 18px;
-    padding-right: 24px;
-}
 
-.menu a:hover {
-    text-decoration: underline;
-}
-
-@media (max-width:683px) {
-    .menu {
-        position: absolute;
-        background: #fafafa;
-        background: var(--header);
-        box-shadow: var(--shadow);
-        margin: 0;
-        padding: 5px;
-        list-style: none;
-        border-radius: 5px;
-        z-index: 99;
-        border: none;
-        top: 50px;
-        right: 10px
-    }
-}
-
-.menu a {
-    text-decoration: none
-}
 
 .logo a {
     text-display: none;
@@ -314,15 +283,8 @@ a.read-more:hover {
     }
 }
 
-.menu__inner--mobile {
-    display: none
-}
 
-@media (max-width:683px) {
-    .menu__inner--mobile {
-        display: block
-    }
-}
+
 
 .menu__inner li {
     text-align: left;
@@ -427,25 +389,6 @@ a.read-more:hover {
     font-family: Nova;
     font-size: 1.7rem;
     padding-bottom: 20px;
-}
-
-.static {
-
-}
-
-.static-cell {
-    padding-top: 20px;
-}
-
-.static-title {
-    padding-top: 10px;
-    font-family: Nova;
-    font-size: 1.5rem;
-}
-
-.static-body {
-    font-family: Nova;
-    padding-bottom: 40px;
 }
 
 .twitch {
@@ -706,12 +649,6 @@ ol ol {
 
 
 
-.container {
-    flex-direction: column;
-    text-align: center;
-    color: var(--color);
-    background-color: var(--color-secondary);
-}
 
 
 hr {
@@ -812,48 +749,6 @@ blockquote.twitter-tweet {
 }
 
 
-.home {
-    font-family: Nova, Nova-Alt1;
-    width: 100%;
-    max-width: 800px;
-}
-
-.home-title {
-    font-size: 1.7rem;
-    margin: 0 0 20px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    color: #96c3f1;
-}
-
-
-.home-body {
-    font-size: 1rem;
-    padding-top: 20px;
-    border-top: #6f88a2 1px solid;
-    font-size: 1rem;
-}
-
-.home-body ul {
-    flex-direction: column;
-}
-
-
-.home-smile img {
-    max-width: 800px;
-}
-
-.home-section-title {
-    font-size: 1.3rem;
-    color: #619d87;
-    font-family: Nova;
-}
-
-.home-section {
-    font-size: 1.1rem;
-    color: #6f88a2;
-    font-family: Nova;
-}
 
 .post {
     color: var(--color);

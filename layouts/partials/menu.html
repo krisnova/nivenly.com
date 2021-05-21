@@ -36,4 +36,12 @@
     {{ end }}
     {{ end }}
   </ul>
+
+  <ul class="mobile-menu" id="mobile-menu">
+    {{ range $.Site.Menus.main }}
+    {{ if not .HasChildren }}
+    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+    {{ end }}
+    {{ end }}
+  </ul>
 </nav>

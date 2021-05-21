@@ -7,14 +7,19 @@
         {{ partial "menu.html" . }}
       {{ end }}
 
-      <!-- Contrast Adjust -->
-      <span class="toggle-contrast menu-icon">
-        {{ partial "fa.html" "adjust" }}
-      </span>
-
       <!-- Sidebar Adjust -->
       <span class="toggle-sidebar menu-icon">
         {{ partial "fa.html" "signal" }}
+      </span>
+
+      <!-- Contrast Adjust -->
+      <span class="toggle-contrast menu-icon menu-desktop">
+        {{ partial "fa.html" "adjust" }}
+      </span>
+
+      <!-- Mobile Menu Adjust -->
+      <span class="toggle-mobile-menu menu-icon">
+        {{ partial "fa.html" "bars" }}
       </span>
 
       <!-- Twitter -->
@@ -32,6 +37,7 @@
 </header>
 
 <script>
+  <!-- Toggle Contrast -->
   const getTheme = window.localStorage && window.localStorage.getItem("theme");
   const themeToggle = document.querySelector(".toggle-contrast");
   const isDark = getTheme === "dark";
@@ -48,4 +54,33 @@
             document.body.classList.contains("dark-theme") ? "dark" : "light",
     );
   });
+
+  <!-- Toggle Mobile Menu -->
+  const getMobileMenu = window.localStorage && window.localStorage.getItem("mobileMenu");
+  const mobileMenuToggle = document.querySelector(".toggle-mobile-menu");
+  const menu = document.getElementById('mobile-menu');
+  const isMenu = getMobileMenu === "true";
+
+  if (getMobileMenu !== null) {
+    menu.classList.toggle("hidden", isMenu);
+  }
+
+  mobileMenuToggle.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+    window.localStorage &&
+    window.localStorage.setItem(
+            "mobileMenu",
+            menu.classList.contains("hidden") ? "true" : "false",
+    );
+  });
+
+  function toggleMobileMenu() {
+    var toggleMobileMenu = document.getElementById('mobile-menu');
+
+    if(menu.classList.contains('hidden')) {
+      document.getElementById('mobile-menu').classList.remove('hidden');
+    } else {
+      document.getElementById('mobile-menu').classList.add('hidden');
+    }
+  }
 </script>
