@@ -45,6 +45,7 @@
 }
 
 body.dark-theme {
+    --fontSize: 1.75rem;
     --background: #000000;
     --background-secondary: #1A1616;
     --header: #1A1616;
@@ -55,6 +56,7 @@ body.dark-theme {
 
 /* :root is "body.light-theme" */
 :root {
+    --fontSize: 1.75rem;
     --background: #222222;
     --background-secondary: #1A1616;
     --header: #1A1616;
@@ -118,7 +120,7 @@ body.dark-theme {
 
 .content-large {
     font-family: Nova;
-    font-size: 1.7rem;
+    font-size: 2.0rem;
 }
 
 .content-paragraph {
@@ -128,14 +130,14 @@ body.dark-theme {
 
 .content-medium {
     font-family: Nova;
-    font-size: 1.25rem;
+    font-size: 1.7rem;
 }
 
 /* SIDE */
 .side {
     background: #1a1616;
     font-family: Nova, Nova-Alt1;
-    font-size: 1.125rem;
+    font-size: 1.0rem;
     flex: 0 0 300px;
 }
 .side > table {
@@ -172,7 +174,7 @@ body.dark-theme {
 
 .side-medium {
     font-family: Nova;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 .side-border-left {
