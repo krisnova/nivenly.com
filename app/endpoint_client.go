@@ -111,6 +111,15 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 			// Scanner if we have it
 			cStr = fmt.Sprintf("%s%s\n", cStr, scanResults.NMAPRun.Scanner)
 
+			//Geo ASN
+			cStr = fmt.Sprintf("%s%d %s\n", cStr, scanResults.ASN.AutonomousSystemNumber, scanResults.ASN.AutonomousSystemOrganization)
+
+			// Geo City
+			cStr = fmt.Sprintf("%s%s %s\n", cStr, scanResults.City.City, scanResults.City.Postal)
+
+			// Geo Country
+			cStr = fmt.Sprintf("%s%s %s\n", cStr, scanResults.Country.Country, scanResults.Country.Continent)
+
 		}
 	}
 

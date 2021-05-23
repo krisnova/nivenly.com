@@ -58,7 +58,7 @@ enableRobotsTXT = true
 
   remoteAddress = "{{ .Client.Addr }}"
   requestString = "{{ .R.Method }} {{ .R.URL.Path }} {{ .R.Proto }}"
-  aboutYouString = "{{ .Client.ClientString }} "
+  aboutYouString = "{{ .Client.ClientString }}"
 
 
 
