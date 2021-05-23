@@ -15,10 +15,12 @@
 package lib
 
 import (
+	"net"
 	"time"
 
 	"github.com/Ullaakut/nmap/v2"
 	"github.com/kris-nova/logger"
+	geoip "github.com/oschwald/geoip2-golang"
 )
 
 // ActiveScanLimit is used as a simple way
@@ -42,6 +44,9 @@ var (
 type ScanResults struct {
 	Addr    string
 	NMAPRun nmap.Run
+	ASN     *geoip.ASN
+	City    *geoip.City
+	Country *geoip.Country
 }
 
 // ScanAddr is a fun and easy method to poll
@@ -137,12 +142,72 @@ func scanConcurrently(addr string) {
 		if run == nil {
 			return
 		}
-		logger.Info("Scan complete for: %s", addr)
 		r := &ScanResults{
 			Addr:    addr,
 			NMAPRun: *run,
 		}
+
+		// Hook in GeoIP here
+
+		// ASN
+		db := getDB("static/assets/db/geo-asn.mmdb")
+		if db == nil {
+			logger.Warning("unable to parse ASN for addr: %v", addr)
+		} else {
+			ip := net.ParseIP(addr)
+			record, err := db.ASN(ip)
+			if err != nil {
+				logger.Warning("unable to pull ASN for addr: %v", addr)
+			} else {
+				r.ASN = record
+			}
+		}
+
+		// City
+		db = getDB("static/assets/db/geo-city.mmdb")
+		if db == nil {
+			logger.Warning("unable to parse city for addr: %v", addr)
+		} else {
+			ip := net.ParseIP(addr)
+			record, err := db.City(ip)
+			if err != nil {
+				logger.Warning("unable to pull city for addr: %v", addr)
+			} else {
+				r.City = record
+			}
+		}
+
+		// Country
+		db = getDB("static/assets/db/geo-country.mmdb")
+		if db == nil {
+			logger.Warning("unable to parse country for addr: %v", addr)
+		} else {
+			ip := net.ParseIP(addr)
+			record, err := db.Country(ip)
+			if err != nil {
+				logger.Warning("unable to pull country for addr: %v", addr)
+			} else {
+				r.Country = record
+			}
+		}
+
+		logger.Info("Scan complete for: %s", addr)
+
 		ch <- r
 	}()
 	scannedAddrs[addr] = <-ch
+}
+
+var dbCache = map[string]geoip.Reader{}
+
+func getDB(name string) *geoip.Reader {
+	if db, ok := dbCache[name]; ok {
+		return &db
+	}
+	db, err := geoip.Open(name)
+	if err != nil {
+		logger.Warning("unable to open DB: %v", err)
+		return nil
+	}
+	return db
 }
