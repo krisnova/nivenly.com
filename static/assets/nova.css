@@ -305,4 +305,7 @@ post.a {
     .side {
         border: #96c3f1 1px solid;
     }
+    .hidden {
+        display: none
+    }
 }
