@@ -1,4 +1,4 @@
-<nav class="menu content-desktop">
+<nav class="menu">
   <ul class="menu__inner menu__inner--desktop">
     <li>./</li>
     {{ if .File.BaseFileName }}
@@ -39,7 +39,7 @@
 
 </nav>
 
-<nav class="menu-alt mobile-menu content-mobile" id="mobile-menu">
+<nav class="menu-alt mobile-menu" id="mobile-menu">
   <ul>
   {{ range $.Site.Menus.main }}
   {{ if not .HasChildren }}

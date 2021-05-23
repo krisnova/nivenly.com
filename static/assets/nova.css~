@@ -261,26 +261,11 @@ post.a {
     display: none
 }
 
-.content-desktop {
-    display: block;
-}
 
-.content-mobile {
-    display: none;
-}
 
 /* DISPLAY MOBILE */
 
-@media screen and (max-width:768px) {
-
-    .content-desktop {
-        display: none;
-    }
-    
-    .content-mobile {
-        display: block;
-    }
-
+@media (max-width:683px) {
     .menu {
         position: absolute;
         display: none;
