@@ -115,22 +115,27 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 				cStr = fmt.Sprintf("%s%s\n", cStr, line)
 			}
 
-			// Scanner if we have it
-			cStr = fmt.Sprintf("%s%s\n", cStr, scanResults.NMAPRun.Scanner)
-
 			//Geo ASN
-			gStr = fmt.Sprintf("ASN %d %s\n", scanResults.ASN.AutonomousSystemNumber, scanResults.ASN.AutonomousSystemOrganization)
+			if scanResults.ASN != nil {
+				gStr = fmt.Sprintf("ASN %d %s\n", scanResults.ASN.AutonomousSystemNumber, scanResults.ASN.AutonomousSystemOrganization)
+			}
 
 			// Geo City
-			if city, ok := scanResults.City.City.Names["en"]; ok {
-				gStr = fmt.Sprintf("%s%s %s %s\n", gStr, city, scanResults.City.Location.TimeZone, scanResults.City.Postal.Code)
-			} else {
-				gStr = fmt.Sprintf("%s%s %s\n", gStr, scanResults.City.Location.TimeZone, scanResults.City.Postal.Code)
+			if scanResults.City != nil {
+				if city, ok := scanResults.City.City.Names["en"]; ok {
+					gStr = fmt.Sprintf("%s%s %s %s\n", gStr, city, scanResults.City.Location.TimeZone, scanResults.City.Postal.Code)
+				} else {
+					gStr = fmt.Sprintf("%s%s %s\n", gStr, scanResults.City.Location.TimeZone, scanResults.City.Postal.Code)
+				}
 			}
 
 			// Geo Country
-			gStr = fmt.Sprintf("%s%s, %s\n", gStr, scanResults.Country.Country.IsoCode, scanResults.Country.Continent.Code)
-
+			if scanResults.Country != nil {
+				gStr = fmt.Sprintf("%s%s, %s\n", gStr, scanResults.Country.Country.IsoCode, scanResults.Country.Continent.Code)
+				if scanResults.ASN != nil {
+					cStr = fmt.Sprintf("%s%d %s\n", cStr, scanResults.ASN.AutonomousSystemNumber, scanResults.ASN.AutonomousSystemOrganization)
+				}
+			}
 		}
 	}
 
