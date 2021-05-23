@@ -150,7 +150,7 @@ func scanConcurrently(addr string) {
 		// Hook in GeoIP here
 
 		// ASN
-		db := getDB("static/assets/db/geo-asn.mmdb")
+		db := getDB("public/assets/db/geo-asn.mmdb")
 		if db == nil {
 			logger.Warning("unable to parse ASN for addr: %v", addr)
 		} else {
@@ -164,7 +164,7 @@ func scanConcurrently(addr string) {
 		}
 
 		// City
-		db = getDB("static/assets/db/geo-city.mmdb")
+		db = getDB("public/assets/db/geo-city.mmdb")
 		if db == nil {
 			logger.Warning("unable to parse city for addr: %v", addr)
 		} else {
@@ -178,7 +178,7 @@ func scanConcurrently(addr string) {
 		}
 
 		// Country
-		db = getDB("static/assets/db/geo-country.mmdb")
+		db = getDB("public/assets/db/geo-country.mmdb")
 		if db == nil {
 			logger.Warning("unable to parse country for addr: %v", addr)
 		} else {

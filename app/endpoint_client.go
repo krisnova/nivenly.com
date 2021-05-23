@@ -46,7 +46,13 @@ type Client struct {
 	// NMAP is the raw NMAP results
 	PortScan *lib.ScanResults
 
+	// ClientString is the handy string we can print out
+	// that contains client information
 	ClientString string
+
+	// GeoString is the handy string we can print out that
+	// contains GeoIP information
+	GeoString string
 }
 
 type ClientHandler struct {
@@ -82,6 +88,7 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 
 	// Build client string here
 	cStr := ""
+	gStr := ""
 	if scanResults.NMAPRun.Scanner != "" {
 		logger.Debug(scanResults.NMAPRun.Scanner)
 		logger.Debug("%d scanned host(s)", len(scanResults.NMAPRun.Hosts))
@@ -112,13 +119,17 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 			cStr = fmt.Sprintf("%s%s\n", cStr, scanResults.NMAPRun.Scanner)
 
 			//Geo ASN
-			cStr = fmt.Sprintf("%s%d %s\n", cStr, scanResults.ASN.AutonomousSystemNumber, scanResults.ASN.AutonomousSystemOrganization)
+			gStr = fmt.Sprintf("ASN %d %s\n", scanResults.ASN.AutonomousSystemNumber, scanResults.ASN.AutonomousSystemOrganization)
 
 			// Geo City
-			cStr = fmt.Sprintf("%s%s %s\n", cStr, scanResults.City.City, scanResults.City.Postal)
+			if city, ok := scanResults.City.City.Names["en"]; ok {
+				gStr = fmt.Sprintf("%s%s %s %s\n", gStr, city, scanResults.City.Location.TimeZone, scanResults.City.Postal.Code)
+			} else {
+				gStr = fmt.Sprintf("%s%s %s\n", gStr, scanResults.City.Location.TimeZone, scanResults.City.Postal.Code)
+			}
 
 			// Geo Country
-			cStr = fmt.Sprintf("%s%s %s\n", cStr, scanResults.Country.Country, scanResults.Country.Continent)
+			gStr = fmt.Sprintf("%s%s, %s\n", gStr, scanResults.Country.Country.IsoCode, scanResults.Country.Continent.Code)
 
 		}
 	}
@@ -127,6 +138,7 @@ func (v *ClientHandler) GetClient(r *http.Request) Client {
 		Addr:         clientAddr,
 		PortScan:     scanResults,
 		ClientString: cStr,
+		GeoString:    gStr,
 	}
 }
 
