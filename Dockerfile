@@ -3,6 +3,7 @@ WORKDIR /go/src/github.com/kris-nova/nivenly.com
 COPY app app
 COPY main.go main.go
 COPY go.mod go.mod
+COPY go.sum go.sum
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /nivenly
 
 
