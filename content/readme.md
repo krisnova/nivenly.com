@@ -4,7 +4,12 @@
 kris nóva is a professional business adult who works on important computer boops. 
 
 she is an international internet celebrity who does significant computer boops. she is world-famous for her work on kubernetes, linux, and infrastructure. she is a successful grown-up hacker, and specializes in cybersecurity in distributed computing environments.
- 
+
+{{< youtube id="59CZrsAudmw" >}}
+
+read more at [the original post!](https://www.tfir.io/jump-featuring-kris-nova/)
+
+
  - [live on twitch @krisnova](https://nivenly.com/live) i stream all my open source and lab work live
  - [nivenly.com](https://nivenly.com) is my official page with resources
  - [follow me on twitter @krisnova](https://twitter.com/krisnova) for cyptic ramblings about capitalism and cute dogs
