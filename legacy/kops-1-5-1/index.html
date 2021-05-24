@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.nivenly.com/xmlrpc.php">
+<title>Setting up an HA Kubernetes Cluster in AWS with private topology with kops 1.5.1</title>
+<link rel='dns-prefetch' href='../../nivenly.com/index.html' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Feed" href="../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Comments Feed" href="../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Setting up an HA Kubernetes Cluster in AWS with private topology with kops 1.5.1 Comments Feed" href="feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.nivenly.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.11"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='../wp-content/plugins/contact-form-7/includes/css/styles.css@ver=4.8.css' type='text/css' media='all' />
+<link rel='stylesheet' id='icomoon-css'  href='../wp-content/plugins/kiwi-social-share/assets/vendors/icomoon/style.css@ver=2.0.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='counter-style-css'  href='../wp-content/plugins/page-visit-counter/public/css/counter-style.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='../wp-includes/css/dashicons.min.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='post-views-counter-frontend-css'  href='../wp-content/plugins/post-views-counter/css/frontend.css@ver=1.2.7.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-defaultbasic-css'  href='../wp-content/themes/micky/style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='../wp-content/themes/micky/assets/css/bootstrap.min.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='../wp-content/themes/micky/assets/css/font-awesome.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='line-icons-css'  href='../wp-content/themes/micky/assets/css/simple-line-icons.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-select-css'  href='../wp-content/themes/micky/assets/css/bootstrape-select.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='animation-css'  href='../wp-content/themes/micky/assets/css/animation.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-style-css'  href='../wp-content/themes/micky/assets/css/custom-style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-responsive-css'  href='../wp-content/themes/micky/assets/css/responsive.css@ver=1.css' type='text/css' media='all' />
+<style id='micky-responsive-inline-css' type='text/css'>
+
+		.header_top_main .mk_top_navigations ul.menu li a {
+			color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li.current_page_item > a {
+			border-color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li > a:hover {
+			border-color: ;
+		}
+</style>
+<link rel='stylesheet' id='micky-googlefonts-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery.js@ver=1.12.4'></script>
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery-migrate.min.js@ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pagevisit = {"ajaxurl":"https:\/\/www.nivenly.com\/wp-admin\/admin-ajax.php","pageurl":"https:\/\/www.nivenly.com\/kops-1-5-1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/page-visit-counter/public/js/custom.js@ver=1.0.0'></script>
+<link rel='https://api.w.org/' href='../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php@rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='How to set up a HA privately networked Kubernetes cluster in AWS with kops' href='../index.html@p=74.html' />
+<link rel='next' title='FreeBSD TCP handshake exploit' href='../index.html@p=188.html' />
+<meta name="generator" content="WordPress 4.8.11" />
+<link rel="canonical" href="../setting-up-a-kubernetes-cluster-in-aws-with-kops-1-5-0/index.html" />
+<link rel='shortlink' href='../index.html@p=140.html' />
+<link rel="alternate" type="application/json+oembed" href="../wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252Fkops-1-5-1%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252Fkops-1-5-1%252F&amp;format=xml" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<link rel="icon" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-32x32.png" sizes="32x32" />
+<link rel="icon" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.nivenly.com/wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-270x270.png" />
+</head>
+<body class="post-template-default single single-post postid-140 single-format-standard custom-background">
+<div class="main_wrapper_cover">
+<header>
+<div class="wrapper_main header_top_main">
+   <div class="container">
+    <div class="row">
+     <div class="full_width header_navigation">
+      <div class="col-sm-3">
+	   <div class="mk_logo">
+	   		<h1 class="site-title"><a href="../../nivenly.com/index.html" rel="home"></a></h1>
+	   </div>
+	  </div>
+      <div class="col-sm-9">   
+       <!-- navbar toggle start -->
+		  <div class="navbar-header pull-right">
+			  <button type="button" class="navbar-toggle navbar_toogle" data-toggle="collapse" data-target="#myNavbar"> 
+				<i class="fa fa-list-ul"></i> 
+			  </button>
+		  </div>
+       <!-- navbar toggle end--> 
+       <!-- navigation start -->
+       <div class="mk_top_navigations">
+	   <ul id="menu-header" class="menu"><li id="menu-item-169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-169"><a href="../../nivenly.com/index.html">Home</a></li>
+<li id="menu-item-469" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-469"><a href="../category/go/index.html">Go</a></li>
+<li id="menu-item-470" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-470"><a href="../category/k8s/index.html">Kubernetes</a></li>
+<li id="menu-item-472" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-472"><a href="../category/unix/index.html">Unix</a></li>
+<li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="https://becomingkris.com">BecomingKris.com</a></li>
+<li id="menu-item-595" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-595"><a href="http://cnibook.info">CNI Book</a></li>
+</ul>		
+        </div>
+       <!-- navigation end --> 
+      </div>
+      <!-- header_navigation_cover --> 
+     </div>
+    </div>
+   </div>
+  </div>
+  <!--  header navigation end --> 
+</header><div class="wrapper_main breadcum_part">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcum_inner main">
+				<h3 class="">Setting up an HA Kubernetes Cluster in AWS with private topology with kops 1.5.1</h3> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrapper_main Blog_details_section">
+	<div class="container">
+		<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+						<div id="post-140" class="post-140 post type-post status-publish format-standard has-post-thumbnail hentry category-k8s tag-aws tag-deploy tag-ha tag-highly-available tag-kops tag-kris tag-kubernetes tag-nova">
+<div class="blog_post_wrapper_main">
+      <div class="blog_thumbnail"> 
+	  		<img width="600" height="339" src="../wp-content/uploads/2016/12/kubernetes-thumb.png" class="attachment-micky-blog-single size-micky-blog-single wp-post-image" alt="" srcset="../wp-content/uploads/2016/12/kubernetes-thumb.png 600w, ../wp-content/uploads/2016/12/kubernetes-thumb-300x170.png 300w" sizes="(max-width: 600px) 100vw, 600px" />	  	  </div>
+     </div>
+     <div class="blog_desc blog_details_desc">
+      <h3>Setting up an HA Kubernetes Cluster in AWS with private topology with kops 1.5.1</h3>
+		<div class="bottom">
+		  <span class="posted-on"> <a href="../setting-up-a-kubernetes-cluster-in-aws-with-kops-1-5-0/index.html" rel="bookmark"><time class="entry-date published" datetime="2017-02-07T05:47:52+00:00">February 7, 2017</time><time class="updated" datetime="2017-03-02T03:22:35+00:00">March 2, 2017</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="../author/kris/index.html">Kris Nova</a></span></span>		</div>
+      <div class="blog_content">
+       <p>Today we announce the release of <a href="https://github.com/kubernetes/kops">Kubernetes kops 1.5.1 LTS</a>!</p>
+<p>I figured what better way to announce the release, than with an updated blog post on setting up an HA cluster on private topology with the new release!</p>
+<h1>What we are building</h1>
+<p>In this tutorial we will cover setting up a HA privately networked Kubernetes cluster in AWS with <a href="https://github.com/kubernetes/kops">Kubernetes kops 1.5.1</a>.</p>
+<ul>
+<li>Fully managed VPC in AWS, with automatically generated private, and public subnets.</li>
+<li>Outbound traffic managed through a NAT gateway and elastic IP in each private subnet.</li>
+<li>Classic ELB fronting the Kubernetes API on TCP 443 (No firewall holes for the cluster).</li>
+<li>Classic ELB fronting a bastion ASG for resilient SSH access for admins.</li>
+<li>HA (Highly Available) Kubernetes masters spread across multiple availability zones in an ASG.</li>
+<li>Kubernetes nodes spread across multiple availability zones in an ASG.</li>
+<li>Public DNS alias for the Kubernetes API.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/kris-nova/kops-demo/master/ha-master-private/k8s-aws-ha-private-master.png" /></p>
+<h1>Installing kops 1.5.1</h1>
+<p><a href="https://github.com/kubernetes/kops">Kubernetes kops</a> is an open source tool that Kubernetes offers that can be used for deploying Kubernetes clusters in AWS. We will be using the tool in this tutorial.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+
+curl -sSL https://github.com/kubernetes/kops/releases/download/1.5.1/kops-darwin-amd64 -O
+chmod +x kops-darwin-amd64
+sudo mv kops-darwin-amd64 /usr/local/bin
+
+</pre>
+<p>More information on installing kops can be found <a href="https://github.com/kubernetes/kops#installation">here</a> for our non OS X users.</p>
+<h1>Installing kubectl</h1>
+<p>We will also be needing a tool called <strong>kubectl</strong>. Think of this as a thin CLI client for the Kubernetes API, similar to the <strong>aws</strong> CLI tool we will be installing next.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+curl -O https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin
+</pre>
+<h1>Setting up your AWS environment</h1>
+<h3>Get your AWS credentials from the console</h3>
+<p>Use the AWS console to get an AWS AccessKeyId and AWS SecretAccessKey <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html">Official Documentaion.</a> After you have your credentials, download the CLI tool and configure it with your new user. You can also use any method defined <a href="https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials">here</a>.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+brew update &amp;&amp; brew install awscli
+aws configure
+</pre>
+<p>We strongly recommend using a single user with a select few IAM permissions to run kops. Thankfully kops provides a handy IAM creation script that will create a new user with the correct permissions. Be sure to note your new AccessKeyId and SecretAccessKey for the next step.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+curl -O https://raw.githubusercontent.com/kubernetes/kops/master/hack/new-iam-user.sh
+sh new-iam-user.sh &lt;group&gt; &lt;user&gt;
+aws iam list-users
+</pre>
+<h3>Setting up DNS for your cluster</h3>
+<p>We will need a publicly resolvable domain name for our cluster. So we need to make sure we have a hosted zone setup in Route53. In this example we will be using <strong>nivenly.com</strong> for our example hosted zone.</p>
+<pre class="brush: plain; title: ; notranslate" title=""> ID=$(uuidgen) &amp;&amp; aws route53 create-hosted-zone --name nivenly.com --caller-reference $ID </pre>
+<p>More information on <a href="https://github.com/kubernetes/kops/blob/master/docs/aws.md#configure-dns">more advanced DNS setup</a>.</p>
+<h3>Setting up a state store for your cluster</h3>
+<p>Kops will store a representation of your Kubernetes cluster in AWS S3. This is called the kops <strong>state store</strong>. It is important to note that kops <strong>DOES NOT</strong> store any concept of what resources are deployed. That would create two sources of truth (The AWS API, and the state store). Rather, kops will merely store a definition of the Kubernetes cluster, that will then be applied to AWS via kops.</p>
+<p>We will call our state store in this example <strong>nivenly-com-state-store</strong>.</p>
+<pre class="brush: plain; title: ; notranslate" title=""> aws s3api create-bucket --bucket nivenly-com-state-store --region us-east-1 </pre>
+<h1>Creating your first cluster</h1>
+<h3>Getting ready</h3>
+<p>Okay! We are ready to start creating our first cluster. Lets first set up a few environmental variables to make this process as clean as possible.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+export NAME=myfirstcluster.nivenly.com
+export KOPS_STATE_STORE=s3://nivenly-com-state-store
+</pre>
+<h3>Form your create cluster command</h3>
+<p>We will need to note which availability zones are available to us. These are different for every AWS account. In this example we will be deploying our cluster to the <strong>us-west-1</strong> region.</p>
+<pre class="brush: plain; title: ; notranslate" title=""> aws ec2 describe-availability-zones --region us-west-1 </pre>
+<p>Lets form our create cluster command. Here we want to define a few things.</p>
+<ul>
+<li><strong>&#8211;node-count 3 </strong>
+<ul>
+<li>We want 3 Kubernetes nodes</li>
+</ul>
+</li>
+<li><strong>&#8211;zones us-west-2a,us-west-2b,us-west-2c</strong>
+<ul>
+<li>We want to run our nodes spread across the 3 availability zones available to our account</li>
+<li>This is a CSV list, pulled from the API in the previous request</li>
+</ul>
+</li>
+<li><strong>&#8211;master-zones us-west-2a,us-west-2b,us-west-2c </strong>
+<ul>
+<li>This will tell kops to spread masters across those availability zones.</li>
+<li>Because there is more than 1, this will automatically be ran in HA.</li>
+</ul>
+</li>
+<li><strong>&#8211;dns-zone nivenly.com</strong>
+<ul>
+<li>We define the DNS hosted zone we created earlier</li>
+</ul>
+</li>
+<li><strong>&#8211;node-size t2.large</strong>
+<ul>
+<li>We set our nodes to a defined instance size</li>
+</ul>
+</li>
+<li><strong>&#8211;master-size t2.large</strong>
+<ul>
+<li>We set our masters to a defined instance size</li>
+</ul>
+</li>
+<li><strong>&#8211;topology private </strong>
+<ul>
+<li>We define that we want to use a private network topology with kops.</li>
+<li>This is what tells kops to build the diagram above.</li>
+</ul>
+</li>
+<li><strong>&#8211;networking calico </strong>
+<ul>
+<li>We tell kops to use Calico for our overlay network</li>
+<li>Overlay networks are required for this configuration.</li>
+<li>Many thanks to our friends at <a href="http://docs.projectcalico.org/v2.0/getting-started/kubernetes/installation/hosted/">Calico</a> for helping us get this into kops!</li>
+</ul>
+</li>
+<li><strong>&#8211;bastion</strong>
+<ul>
+<li>Add this flag to tell kops to create a bastion server so you can SSH into the cluster</li>
+</ul>
+</li>
+</ul>
+<p>Kops will default to <strong>~/.ssh/id_rsa.pub</strong> for backend access. You can override this with <strong><span class="s1">&#8211;ssh-public-key /path/to/key.pub</span></strong></p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops create cluster \
+    --node-count 3 \
+    --zones us-west-2a,us-west-2b,us-west-2c \
+    --master-zones us-west-2a,us-west-2b,us-west-2c \
+    --dns-zone nivenly.com \
+    --node-size t2.large \
+    --master-size t2.large \
+    --topology private \
+    --networking calico \
+    --bastion \
+    ${NAME}
+</pre>
+<p>kops will deploy these instances using AWS auto scaling groups, so each instance should be ephemeral and will rebuild itself if taken offline for any reason.</p>
+<h3>Cluster Configuration</h3>
+<p>We now have created the underlying cluster configuration, lets take a look at every aspect that will define our cluster.</p>
+<pre class="brush: plain; title: ; notranslate" title=""> kops edit cluster ${NAME} </pre>
+<p>This will open up the cluster config (that is actually stored in the S3 bucket we created earlier!) in your favorite text editor. Here is where we can optionally really tweak our cluster for our use case. In this tutorial, we leave it default for now.</p>
+<p>For more information on these directives, and the kops API please checkout the kops official <a href="https://github.com/kubernetes/kops/tree/master/docs">documentation</a></p>
+<h3>Apply the changes</h3>
+<p>Okay, we are ready to create the cluster in AWS. We do so running the following command.</p>
+<pre class="brush: plain; title: ; notranslate" title=""> kops update cluster ${NAME} --yes </pre>
+<h3>Start using the cluster</h3>
+<p>The resources will be deployed asynchronously here. So even though kops has finished, that does not mean our cluster is built. A great way to check if the cluster is online, and the API is working is to use <strong>kubectl</strong></p>
+<pre class="brush: plain; title: ; notranslate" title=""> kubectl get nodes </pre>
+<p>After we verify the API is responding, we can now use the Kubernetes cluster.</p>
+<h3>Backend SSH access</h3>
+<p>We should also now have a bastion server behind an elastic load balancer in AWS that will give us access to the cluster over SSH. Grab the bastion ELB A record, and the instance private IP you want to access from the AWS console and SSH into the bastion as follows.</p>
+<pre class="brush: plain; title: ; notranslate" title=""> 
+ssh-add ~/.ssh/id_rsa
+ssh -A admin@bastion.myfirstcluster.nivenly.com
+ssh admin@&lt;master_private_ip&gt;
+</pre>
+<p><a class="github-button" href="https://github.com/kris-nova" data-style="mega" data-count-href="/kris-nova/followers" data-count-api="/users/kris-nova#followers" data-count-aria-label="# followers on GitHub">Follow @kris-nova</a></p>
+<div class="post-views post-140 entry-meta">
+			<span class="post-views-icon dashicons dashicons-chart-bar"></span>
+			<span class="post-views-label">Post Views: </span>
+			<span class="post-views-count">19,082</span>
+			</div>       </div>
+      </div>
+</div><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="../index.html@p=74.html" rel="prev">How to set up a HA privately networked Kubernetes cluster in AWS with kops</a></div><div class="nav-next"><a href="../index.html@p=188.html" rel="next">FreeBSD TCP handshake exploit</a></div></div>
+	</nav>				<div class="blog_desc blog_details_desc">
+				<div class="blog_content">
+				<div class="comment_section blog_content_inner">
+<div id="comments" class="comments-area">
+<h3 class="blog-title">LEAVE A COMMENT</h3>
+<div class="comment_layer">
+	<div class="pull_left"> <span>15 comments</span></div>
+</div>
+	
+				<div class="micky_blog_comment">
+		<ol class="comment-list comment">
+				<li class="comment even thread-even depth-1 parent" id="comment-32">
+		<div id="div-comment-32" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/32a0fe489858f79c0cd28b592dcd9c80?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/32a0fe489858f79c0cd28b592dcd9c80?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Jim</h5> 
+				  <span class="comment_date"><a>February 21, 2017</a></span>
+				  <span class="comment_time">22:10:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=32.html#respond' onclick='return addComment.moveForm( "div-comment-32", "32", "respond", "140" )' aria-label='Reply to Jim'>Reply</a>				 </div>
+				 		
+				<p>To enable the bastion server, &#8211;bastion flag is now required.</p>
+			</div>
+		</div>
+		
+		</div>
+		<ul class="children">
+	<li class="comment byuser comment-author-kris bypostauthor odd alt depth-2" id="comment-33">
+		<div id="div-comment-33" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/8aaca2ddf0798be312bcb51a3cacff07?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8aaca2ddf0798be312bcb51a3cacff07?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Kris Nova</h5> 
+				  <span class="comment_date"><a>February 21, 2017</a></span>
+				  <span class="comment_time">22:16:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=33.html#respond' onclick='return addComment.moveForm( "div-comment-33", "33", "respond", "140" )' aria-label='Reply to Kris Nova'>Reply</a>				 </div>
+				 		
+				<p>Good catch! Just updated it!</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-55">
+		<div id="div-comment-55" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/67956e89ead8fbe53917725858581ec1?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/67956e89ead8fbe53917725858581ec1?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Bob Henkel</h5> 
+				  <span class="comment_date"><a>April 6, 2017</a></span>
+				  <span class="comment_time">15:56:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=55.html#respond' onclick='return addComment.moveForm( "div-comment-55", "55", "respond", "140" )' aria-label='Reply to Bob Henkel'>Reply</a>				 </div>
+				 		
+				<p>Thanks so much! This is a great write up and it helped a ton!</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 parent" id="comment-56">
+		<div id="div-comment-56" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/36d59c626907171dcd98164ce3d04a09?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/36d59c626907171dcd98164ce3d04a09?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Filipe Grillo</h5> 
+				  <span class="comment_date"><a>April 6, 2017</a></span>
+				  <span class="comment_time">18:17:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=56.html#respond' onclick='return addComment.moveForm( "div-comment-56", "56", "respond", "140" )' aria-label='Reply to Filipe Grillo'>Reply</a>				 </div>
+				 		
+				<p>Hi Kris!<br />
+First of all thanks for the great tutorial! I&#8217;m much more confortable with Kubernetes and Kops now 🙂</p>
+<p>But I am having trouble spinning Pods on this new cluster I&#8217;ve created with the steps. Every pod I try gets the same errors:</p>
+<p>Error syncing pod, skipping: failed to &#8220;SetupNetwork&#8221; for &#8220;nginx-171435654-qs05b_default&#8221; with SetupNetworkError: &#8220;Failed to setup network for pod \&#8221;nginx-171435654-qs05b_default(6ac7a72a-1aef-11e7-8d2f-0e662640c304)\&#8221; using network plugins \&#8221;cni\&#8221;: Get <a href="https:///api/v1/namespaces/default/pods/nginx-171435654-qs05b" rel="nofollow">https:///api/v1/namespaces/default/pods/nginx-171435654-qs05b</a>: http: no Host in request URL; Skipping pod&#8221;</p>
+<p>And then it get stuck on &#8220;ContainerCreating&#8221; state, have you had any issues like this?<br />
+I&#8217;m reading about Calico being the issue, but so far wasn&#8217;t able to fix it.</p>
+			</div>
+		</div>
+		
+		</div>
+		<ul class="children">
+	<li class="comment even depth-2 parent" id="comment-57">
+		<div id="div-comment-57" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/36d59c626907171dcd98164ce3d04a09?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/36d59c626907171dcd98164ce3d04a09?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Filipe Grillo</h5> 
+				  <span class="comment_date"><a>April 6, 2017</a></span>
+				  <span class="comment_time">22:17:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=57.html#respond' onclick='return addComment.moveForm( "div-comment-57", "57", "respond", "140" )' aria-label='Reply to Filipe Grillo'>Reply</a>				 </div>
+				 		
+				<p>Got it working after changing the kubernetesVersion to 1.6.1 and rollingUpdating the cluster 🙂</p>
+			</div>
+		</div>
+		
+		</div>
+		<ul class="children">
+	<li class="comment odd alt depth-3 parent" id="comment-76">
+		<div id="div-comment-76" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/4d1eb301fdc922c09671a0073158d5c9?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4d1eb301fdc922c09671a0073158d5c9?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Prataksha Gurung</h5> 
+				  <span class="comment_date"><a>May 8, 2017</a></span>
+				  <span class="comment_time">12:53:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=76.html#respond' onclick='return addComment.moveForm( "div-comment-76", "76", "respond", "140" )' aria-label='Reply to Prataksha Gurung'>Reply</a>				 </div>
+				 		
+				<p>How did you change the KubernetesVersion to 1.6.1? I am having the same issue</p>
+			</div>
+		</div>
+		
+		</div>
+		<ul class="children">
+	<li class="comment even depth-4" id="comment-114">
+		<div id="div-comment-114" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/e2442d91061ace1403cb6e32107bf51b?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/e2442d91061ace1403cb6e32107bf51b?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>habibi</h5> 
+				  <span class="comment_date"><a>August 1, 2017</a></span>
+				  <span class="comment_time">15:27:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=114.html#respond' onclick='return addComment.moveForm( "div-comment-114", "114", "respond", "140" )' aria-label='Reply to habibi'>Reply</a>				 </div>
+				 		
+				<p>I am not sure if this is the only way. but you can use kops edit cluster ${NAME}. then modify the version. after that run the kops rollinhg-update.</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-67">
+		<div id="div-comment-67" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/ba881ce6693e44f2459191a8c6d74a83?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/ba881ce6693e44f2459191a8c6d74a83?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Neverfox</h5> 
+				  <span class="comment_date"><a>April 19, 2017</a></span>
+				  <span class="comment_time">13:52:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=67.html#respond' onclick='return addComment.moveForm( "div-comment-67", "67", "respond", "140" )' aria-label='Reply to Neverfox'>Reply</a>				 </div>
+				 		
+				<p>Is there no longer a way to stand up a cluster without the whole domain name process at the beginning? This was never required with the old kube-up method. I would simple stand up the cluster and kubectl just worked (because of keys etc). If I needed external services, I used the public DNS of an ELB. Why the extra hoop to jump through now, and is there a way to get started without a domain name?</p>
+			</div>
+		</div>
+		
+		</div>
+		<ul class="children">
+	<li class="comment even depth-2" id="comment-107">
+		<div id="div-comment-107" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/43911aa51a7822d5dfb6b2b7e136be02?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/43911aa51a7822d5dfb6b2b7e136be02?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Steve Coffman</h5> 
+				  <span class="comment_date"><a>July 15, 2017</a></span>
+				  <span class="comment_time">15:22:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=107.html#respond' onclick='return addComment.moveForm( "div-comment-107", "107", "respond", "140" )' aria-label='Reply to Steve Coffman'>Reply</a>				 </div>
+				 		
+				<p>Actually, if you check out the experimental gossip based cluster kops support, you can avoid DNS. I&#8217;m not sure how the classic ELB works with it though.</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="comment-103">
+		<div id="div-comment-103" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/1cee21ceb3761218144bde08a7ca0930?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/1cee21ceb3761218144bde08a7ca0930?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Mike</h5> 
+				  <span class="comment_date"><a>June 29, 2017</a></span>
+				  <span class="comment_time">12:13:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=103.html#respond' onclick='return addComment.moveForm( "div-comment-103", "103", "respond", "140" )' aria-label='Reply to Mike'>Reply</a>				 </div>
+				 		
+				<p>Just to preface this, I am a bit new to k8s.  Could this post discuss (or maybe another post) how one would go about deploying a front-end/back-end web application on this topology?</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-113">
+		<div id="div-comment-113" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/5b95ddd0c9d330ded794c828f8ead82f?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5b95ddd0c9d330ded794c828f8ead82f?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Raja</h5> 
+				  <span class="comment_date"><a>July 27, 2017</a></span>
+				  <span class="comment_time">09:04:am</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=113.html#respond' onclick='return addComment.moveForm( "div-comment-113", "113", "respond", "140" )' aria-label='Reply to Raja'>Reply</a>				 </div>
+				 		
+				<p>Hi Nova, Many thanks for this article.</p>
+<p>I have a quick question though. Can I set the value to &#8220;flannel&#8221; for the option: –networking ? In other words, does this work for flannel instead of calico ?</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+		</div>
+
+			<div class="blog_comments_form">
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="../setting-up-a-kubernetes-cluster-in-aws-with-kops-1-5-0/index.html#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://www.nivenly.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<div class="col-lg-12"><textarea name="comment" rows="3" placeholder="Comment&hellip;" class="comment_textarea"></textarea></div><div class="col-sm-6"><input id="author" name="author" type="text" placeholder="Name&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="col-sm-6"><input id="email" name="email" type="email" placeholder="Email&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="uncr-g-recaptcha"></div><p class="form-submit"><input name="submit" type="submit" id="comments_button" class="comment_button" value="Send Comment" /> <input type='hidden' name='comment_post_ID' value='140' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="17d9044fb9" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="161"/></p>			</form>
+			</div><!-- #respond -->
+		</div>
+</div><!-- #comments -->
+</div>				</div>
+				</div>
+										</div>
+					</div>
+	</div>
+</div>
+<footer>
+  <div class="wrapper_main footer_section_main">
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="footer_logo"> 
+	  		   <h1 style="mk_copy"><a href="../../nivenly.com/index.html"></a></h1> 
+       	  </div>
+     </div>
+     <div class="col-lg-6 col-md-6 col-sm-6">
+      <p class="footer_copyright">Copyright 2017 Kris Nova <a href="../../nivenly.com/index.html"></a></p>
+     </div>
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="social_icons footer_social">
+	  </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </footer>
+</div>
+<script type='text/javascript' src='../wp-content/plugins/akismet/_inc/form.js@ver=3.3.2'></script>
+<script type='text/javascript' src='../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js@ver=3.0.9b'></script>
+<script type='text/javascript' src='../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js@ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://www.nivenly.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://www.nivenly.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeMidnight.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<link rel='stylesheet' id='captcha-style-css'  href='../wp-content/plugins/uber-nocaptcha-recaptcha/assets/css/style.css@ver=4.8.11.css' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.nivenly.com\/wp-json\/","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/contact-form-7/includes/js/scripts.js@ver=4.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sta_settings = {"distance":"50","speed":"5000","exceptions":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/scroll-to-anchor/js/scroll-to-anchor.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/bootstrap-select-min.js'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/navigation.js@ver=20151215'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/skip-link-focus-fix.js@ver=20151215'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/custom.js'></script>
+<script type='text/javascript' src='../wp-includes/js/comment-reply.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='../wp-includes/js/wp-embed.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?onload=renderUNCRReCaptcha&amp;render=explicit&amp;ver=2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var UNCR = {"site_key":"6LdjjAcUAAAAAOtl-qenrmS-_KhXjvuODKgVRuyS","key_type":"normal","theme":"dark","type":"image","submit_button":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/uber-nocaptcha-recaptcha/assets/js/recaptcha.js@ver=1.0'></script>
+</body>
+</html>

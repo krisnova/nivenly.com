@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.nivenly.com/xmlrpc.php">
+<title>Concurrent Digraph Processing in Go</title>
+<link rel='dns-prefetch' href='../nivenly.com/index.html' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Feed" href="feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Comments Feed" href="comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Concurrent Digraph Processing in Go Comments Feed" href="concurrent-digraph-processing-in-go/feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.nivenly.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.11"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='wp-content/plugins/contact-form-7/includes/css/styles.css@ver=4.8.css' type='text/css' media='all' />
+<link rel='stylesheet' id='icomoon-css'  href='wp-content/plugins/kiwi-social-share/assets/vendors/icomoon/style.css@ver=2.0.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='counter-style-css'  href='wp-content/plugins/page-visit-counter/public/css/counter-style.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='wp-includes/css/dashicons.min.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='post-views-counter-frontend-css'  href='wp-content/plugins/post-views-counter/css/frontend.css@ver=1.2.7.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-defaultbasic-css'  href='wp-content/themes/micky/style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='wp-content/themes/micky/assets/css/bootstrap.min.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='wp-content/themes/micky/assets/css/font-awesome.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='line-icons-css'  href='wp-content/themes/micky/assets/css/simple-line-icons.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-select-css'  href='wp-content/themes/micky/assets/css/bootstrape-select.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='animation-css'  href='wp-content/themes/micky/assets/css/animation.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-style-css'  href='wp-content/themes/micky/assets/css/custom-style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-responsive-css'  href='wp-content/themes/micky/assets/css/responsive.css@ver=1.css' type='text/css' media='all' />
+<style id='micky-responsive-inline-css' type='text/css'>
+
+		.header_top_main .mk_top_navigations ul.menu li a {
+			color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li.current_page_item > a {
+			border-color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li > a:hover {
+			border-color: ;
+		}
+</style>
+<link rel='stylesheet' id='micky-googlefonts-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='wp-includes/js/jquery/jquery.js@ver=1.12.4'></script>
+<script type='text/javascript' src='wp-includes/js/jquery/jquery-migrate.min.js@ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pagevisit = {"ajaxurl":"https:\/\/www.nivenly.com\/wp-admin\/admin-ajax.php","pageurl":"https:\/\/www.nivenly.com\/concurrent-digraph-processing-in-go"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/page-visit-counter/public/js/custom.js@ver=1.0.0'></script>
+<link rel='https://api.w.org/' href='wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php@rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Single rooted tree in Go' href='index.html@p=220.html' />
+<link rel='next' title='Using sort.Sort() in Go' href='index.html@p=343.html' />
+<meta name="generator" content="WordPress 4.8.11" />
+<link rel="canonical" href="index.html@p=235.html" />
+<link rel='shortlink' href='index.html@p=235.html' />
+<link rel="alternate" type="application/json+oembed" href="wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252Fconcurrent-digraph-processing-in-go%252F" />
+<link rel="alternate" type="text/xml+oembed" href="wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252Fconcurrent-digraph-processing-in-go%252F&amp;format=xml" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<link rel="icon" href="wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-32x32.png" sizes="32x32" />
+<link rel="icon" href="wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.nivenly.com/wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-270x270.png" />
+</head>
+<body class="post-template-default single single-post postid-235 single-format-standard custom-background">
+<div class="main_wrapper_cover">
+<header>
+<div class="wrapper_main header_top_main">
+   <div class="container">
+    <div class="row">
+     <div class="full_width header_navigation">
+      <div class="col-sm-3">
+	   <div class="mk_logo">
+	   		<h1 class="site-title"><a href="../nivenly.com/index.html" rel="home"></a></h1>
+	   </div>
+	  </div>
+      <div class="col-sm-9">   
+       <!-- navbar toggle start -->
+		  <div class="navbar-header pull-right">
+			  <button type="button" class="navbar-toggle navbar_toogle" data-toggle="collapse" data-target="#myNavbar"> 
+				<i class="fa fa-list-ul"></i> 
+			  </button>
+		  </div>
+       <!-- navbar toggle end--> 
+       <!-- navigation start -->
+       <div class="mk_top_navigations">
+	   <ul id="menu-header" class="menu"><li id="menu-item-169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-169"><a href="../nivenly.com/index.html">Home</a></li>
+<li id="menu-item-469" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-469"><a href="category/go/index.html">Go</a></li>
+<li id="menu-item-470" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-470"><a href="category/k8s/index.html">Kubernetes</a></li>
+<li id="menu-item-472" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-472"><a href="category/unix/index.html">Unix</a></li>
+<li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="https://becomingkris.com">BecomingKris.com</a></li>
+<li id="menu-item-595" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-595"><a href="http://cnibook.info">CNI Book</a></li>
+</ul>		
+        </div>
+       <!-- navigation end --> 
+      </div>
+      <!-- header_navigation_cover --> 
+     </div>
+    </div>
+   </div>
+  </div>
+  <!--  header navigation end --> 
+</header><div class="wrapper_main breadcum_part">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcum_inner main">
+				<h3 class="">Concurrent Digraph Processing in Go</h3> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrapper_main Blog_details_section">
+	<div class="container">
+		<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+						<div id="post-235" class="post-235 post type-post status-publish format-standard hentry category-go">
+<div class="blog_post_wrapper_main">
+      <div class="blog_thumbnail"> 
+	  	  </div>
+     </div>
+     <div class="blog_desc blog_details_desc">
+      <h3>Concurrent Digraph Processing in Go</h3>
+		<div class="bottom">
+		  <span class="posted-on"> <a href="index.html@p=235.html" rel="bookmark"><time class="entry-date published" datetime="2017-03-20T01:59:55+00:00">March 20, 2017</time><time class="updated" datetime="2017-03-20T02:22:05+00:00">March 20, 2017</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="author/kris/index.html">Kris Nova</a></span></span>		</div>
+      <div class="blog_content">
+       <p>So today I decided to take on a fairly complex design pattern in the hopes of demonstrating some more advanced features of concurrency in Go or at least ruffle a few feathers about how to approach digraph processing.</p>
+<p>Wikipedia offers a great explanation of <a href="https://en.wikipedia.org/wiki/Graph_theory" target="_blank">graph theory</a> in case you need to brush up!</p>
+<p>The goal of this post is to offer a design approach to processing graphs concurrently , where each vertex in the graph represents a processable unit of work .</p>
+<p>The graph will be processed concurrently via a `Crawl()` operation, where there are N number of concurrent processors . Each processor will process a stream of vertices procedurally by referencing a function pointer to a `process()` function.</p>
+<h2>The Graph</h2>
+<p>The graph is composed of edges and vertices. We start the example off by building a complex graph with an arbitrary child count. Each of the children may or may not have their own children. A child is represented by a vertex.</p>
+<h2>The Vertices</h2>
+<p>A vertex represent the intersections of the graph. Where 2 edges intersect, there will be a vertex. The only way to get from one vertex to another is to traverse it&#8217;s corresponding edge.</p>
+<h2>The Edges</h2>
+<p>Edges are what connect vertices. Every edge has a `to` and a `from` pointer that will point to the two vertices it&#8217;s connecting. Because the edge insinuates direction, and only connects in a single direction that makes the graph a directional graph, or a digraph. </p>
+<h2>The Processors</h2>
+<p>Processors process vertexes. In this example we simulate some arbitrary work by injecting a random sleep. In a real implementation a processor would actually accomplish some amount of work that a vertex would require. We have N processors so they can operate on vertices concurrently. The more processors, the more vertices we can concurrently operate on, or process.</p>
+<h2>The Crawler</h2>
+<p>The crawler will traverse edges to find vertices. As the crawler finds a vertex it will concurrently process each vertex by passing it to a processor. Processors are called cyclically and in order. </p>
+<p>For example if we had 10 vertices and 3 processors the call pattern would look like this.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+V -- P
+------
+1 -- 1
+2 -- 2
+3 -- 3
+4 -- 1
+5 -- 2
+6 -- 3
+7 -- 1
+8 -- 2
+9 -- 3
+0 -- 1
+</pre>
+<p>The vertices to be processed in <strong>unique</strong> goroutines, but on <strong>shared</strong> channels. The channels will buffer and form a queue if the vertex workflow overflows their ability to keep up. </p>
+<h2> The win </h2>
+<p>The huge win here is that the graph stays constructed in it&#8217;s original form. The crawler can iterate through it&#8217;s many (and complex) layers quickly because of the concurrent processing design. A processor could be replaced with any implementation capable of running a workload. This allows the user to structure complex data, while operating on it without any overhead of understanding the data. The processor gets a vertex, and thats it. The processors have no concept of order, and they don&#8217;t need to.</p>
+<p>Notice how the program is able to calculate the operations by counting the graph, and the graph is actually processed quickly with the same number of operations. Good. Clean. Concurrent processing.</p>
+<p>Furthermore a user can turn up the number of iterations and specify how many times to visit each vertex. This is useful in situations were a process is idempotent but could potentially fail. Sending the same request N number of times makes sense and increases the probability of a success.</p>
+<pre class="brush: golang; title: ; notranslate" title="">
+package main
+
+
+
+import (
+	&quot;math/rand&quot;
+	&quot;time&quot;
+	&quot;fmt&quot;
+)
+
+const (
+	NumberOfConcurrentProcessors = 32
+	NumberOfCrawlIterations = 4
+)
+
+// DiGraph
+//
+// This is a directional graph where edges can point in any direction between vertices.
+// The graph has 1 root vertex, which is where the Crawl() starts from.
+type DiGraph struct {
+	RootVertex       *Vertex       // The root vertex of the graph
+	Processors       [] *Processor // List of concurrent processors
+	ProcessorIndex   int           // The current index of the next processor to use
+	Edges            []*Edge       // All directional edges that make up the graph
+	Iterations       int           // The total number of times to iterate over the graph
+	TotalVertices    int           // Count of the total number of vertices that make up the graph
+	ProcessedChannel chan int      // Channel to track processed vertices
+	ProcessedCount   int           // Total number of processed vertices
+	TotalOperations  int           // Total number of expected operations | [(TotalVertices * Iterations) - Iterations] + 1
+}
+
+// Vertex
+//
+// A single unit that composes the graph. Each vertex has relationships with other vertices,
+// and should represent a single entity or unit of work.
+type Vertex struct {
+	Name   string // Unique name of this Vertex
+	Edges  []*Edge
+	Status int
+}
+
+// Edge
+//
+// Edges connect vertices together. Edges have a concept of how many times they have been processed
+// And a To and From direction
+type Edge struct {
+	To             *Vertex
+	From           *Vertex
+	ProcessedCount int
+}
+
+// Processor
+//
+// This represents a single concurrent process that will operate on N number of vertices
+type Processor struct {
+	Function func(*Vertex) int
+	Channel  chan *Vertex
+}
+
+// Init the graph with a literal definition
+var TheGraph *DiGraph = NewGraph()
+
+func main() {
+	TheGraph.Init(NumberOfConcurrentProcessors, NumberOfCrawlIterations)
+	TheGraph.Crawl()
+}
+
+func (d *DiGraph) Init(n, i int) {
+	noProcs := n
+	d.TotalVertices = d.RootVertex.recursiveCount()
+	d.Iterations = i
+	for ; n &gt; 0; n-- {
+		p := Processor{Channel: make(chan *Vertex)}
+		d.Processors = append(d.Processors, &amp;p)
+		p.Function = Process
+		go p.Exec()
+	}
+	d.TotalOperations = (d.TotalVertices * d.Iterations) - d.Iterations + 1 //Math is hard
+	fmt.Printf(&quot;Total Vertices              : %d\n&quot;, d.TotalVertices)
+	fmt.Printf(&quot;Total Iterations            : %d\n&quot;, d.Iterations)
+	fmt.Printf(&quot;Total Concurrent Processors : %d\n&quot;, noProcs)
+	fmt.Printf(&quot;Total Assumed Operations    : %d\n&quot;, d.TotalOperations)
+}
+
+func (d *DiGraph) Crawl() {
+	d.ProcessedChannel = make(chan int)
+	go d.RootVertex.recursiveProcess(d.getProcessor().Channel)
+	fmt.Printf(&quot;---\n&quot;)
+	for d.ProcessedCount &lt; d.TotalOperations {
+		d.ProcessedCount += &lt;-d.ProcessedChannel
+                //o(fmt.Sprintf(&quot;%d &quot;, d.ProcessedCount))
+	}
+	fmt.Printf(&quot;\n---\n&quot;)
+	fmt.Printf(&quot;Total Comlpeted Operations  : %d\n&quot;, d.ProcessedCount)
+}
+
+func (d *DiGraph) getProcessor() *Processor {
+	maxIndex := len(d.Processors) - 1
+	if d.ProcessorIndex == maxIndex {
+		d.ProcessorIndex = 0
+	} else {
+		d.ProcessorIndex += 1
+	}
+	return d.Processors[d.ProcessorIndex]
+}
+
+func Process(v *Vertex) int {
+
+	// Simulate some work with a random sleep
+	rand.Seed(time.Now().Unix())
+	sleep := rand.Intn(100 - 0) + 100
+	time.Sleep(time.Millisecond * time.Duration(sleep))
+
+        o(fmt.Sprintf(&quot;Processing: %s&quot;, v.Name))
+	// Return a status code
+	return 1
+}
+
+func (v *Vertex) recursiveProcess(ch chan *Vertex) {
+	ch &lt;- v
+	for _, e := range v.Edges {
+		if e.ProcessedCount &lt; TheGraph.Iterations {
+			e.ProcessedCount += 1
+			go e.To.recursiveProcess(TheGraph.getProcessor().Channel)
+		}
+	}
+}
+
+func (v *Vertex) recursiveCount() int {
+	i := 1
+	for _, e := range v.Edges {
+		if e.ProcessedCount != 0 {
+			e.ProcessedCount = 0
+			i += e.To.recursiveCount()
+		}
+	}
+	return i
+}
+
+func (v *Vertex) AddVertex(name string) *Vertex {
+	newVertex := &amp;Vertex{Name: name}
+	newEdge := &amp;Edge{To: newVertex, From: v, ProcessedCount: -1}
+	newVertex.Edges = append(newVertex.Edges, newEdge)
+	v.Edges = append(v.Edges, newEdge)
+	return newVertex
+}
+
+func (p *Processor) Exec() {
+	for {
+		v := &lt;-p.Channel
+		v.Status = p.Function(v)
+		TheGraph.ProcessedChannel &lt;- 1
+	}
+}
+
+func NewGraph() *DiGraph {
+	rootVertex := &amp;Vertex{Name: &quot;0&quot;}
+	v1 := rootVertex.AddVertex(&quot;1&quot;)
+	rootVertex.AddVertex(&quot;2&quot;)
+	rootVertex.AddVertex(&quot;3&quot;)
+	v1.AddVertex(&quot;1-1&quot;)
+	v1.AddVertex(&quot;1-2&quot;)
+	v1_3 := v1.AddVertex(&quot;1-3&quot;)
+	v1_3.AddVertex(&quot;1-3-1&quot;)
+	v1_3.AddVertex(&quot;1-3-2&quot;)
+	v1_3_3 := v1_3.AddVertex(&quot;1-3-3&quot;)
+	v1_3_3.AddVertex(&quot;1-3-3-1&quot;)
+	v1_3_3.AddVertex(&quot;1-3-3-2&quot;)
+	v1_3_3.AddVertex(&quot;1-3-3-3&quot;)
+	v1_3_3.AddVertex(&quot;1-3-3-4&quot;)
+	v1_3_3.AddVertex(&quot;1-3-3-5&quot;)
+	v1_3_3.AddVertex(&quot;1-3-3-6&quot;)
+	v1_3_3.AddVertex(&quot;1-3-3-7&quot;)
+	graph := &amp;DiGraph{}
+	graph.RootVertex = rootVertex
+	return graph
+}
+
+func o(str string) {
+	fmt.Println(str)
+}
+
+</pre>
+<h4>Try it out</h4>
+<p>You can run the code yourself in the <a href="https://play.golang.org/p/BPxRzh-J-W" target="_blank">Go playground</a>.</p>
+<h4>Thanks!</h4>
+<p>Thank you for reading my article. As always, I appreciate any feedback from users. So let me know how we could be better.</p>
+<p><a class="github-button" href="https://github.com/kris-nova" data-style="mega" data-count-href="/kris-nova/followers" data-count-api="/users/kris-nova#followers" data-count-aria-label="# followers on GitHub">Follow @kris-nova</a></p>
+<div class="post-views post-235 entry-meta">
+			<span class="post-views-icon dashicons dashicons-chart-bar"></span>
+			<span class="post-views-label">Post Views: </span>
+			<span class="post-views-count">2,688</span>
+			</div>       </div>
+      </div>
+</div><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="index.html@p=220.html" rel="prev">Single rooted tree in Go</a></div><div class="nav-next"><a href="index.html@p=343.html" rel="next">Using sort.Sort() in Go</a></div></div>
+	</nav>				<div class="blog_desc blog_details_desc">
+				<div class="blog_content">
+				<div class="comment_section blog_content_inner">
+<div id="comments" class="comments-area">
+<h3 class="blog-title">LEAVE A COMMENT</h3>
+<div class="comment_layer">
+	<div class="pull_left"> <span>0 comment</span></div>
+</div>
+		<div class="blog_comments_form">
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html@p=235.html#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://www.nivenly.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<div class="col-lg-12"><textarea name="comment" rows="3" placeholder="Comment&hellip;" class="comment_textarea"></textarea></div><div class="col-sm-6"><input id="author" name="author" type="text" placeholder="Name&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="col-sm-6"><input id="email" name="email" type="email" placeholder="Email&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="uncr-g-recaptcha"></div><p class="form-submit"><input name="submit" type="submit" id="comments_button" class="comment_button" value="Send Comment" /> <input type='hidden' name='comment_post_ID' value='235' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="c2c0429daf" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="228"/></p>			</form>
+			</div><!-- #respond -->
+		</div>
+</div><!-- #comments -->
+</div>				</div>
+				</div>
+										</div>
+					</div>
+	</div>
+</div>
+<footer>
+  <div class="wrapper_main footer_section_main">
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="footer_logo"> 
+	  		   <h1 style="mk_copy"><a href="../nivenly.com/index.html"></a></h1> 
+       	  </div>
+     </div>
+     <div class="col-lg-6 col-md-6 col-sm-6">
+      <p class="footer_copyright">Copyright 2017 Kris Nova <a href="../nivenly.com/index.html"></a></p>
+     </div>
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="social_icons footer_social">
+	  </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </footer>
+</div>
+<script type='text/javascript' src='wp-content/plugins/akismet/_inc/form.js@ver=3.3.2'></script>
+<script type='text/javascript' src='wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js@ver=3.0.9b'></script>
+<script type='text/javascript' src='wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js@ver=3.0.9b'></script>
+<script type='text/javascript' src='wp-content/plugins/golang-brush-for-syntaxhighlighter-evolved/shBrushGo.js@ver=1.0.0'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://www.nivenly.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://www.nivenly.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeMidnight.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<link rel='stylesheet' id='captcha-style-css'  href='wp-content/plugins/uber-nocaptcha-recaptcha/assets/css/style.css@ver=4.8.11.css' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.nivenly.com\/wp-json\/","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/contact-form-7/includes/js/scripts.js@ver=4.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sta_settings = {"distance":"50","speed":"5000","exceptions":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/scroll-to-anchor/js/scroll-to-anchor.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/bootstrap-select-min.js'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/navigation.js@ver=20151215'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/skip-link-focus-fix.js@ver=20151215'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/custom.js'></script>
+<script type='text/javascript' src='wp-includes/js/comment-reply.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='wp-includes/js/wp-embed.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?onload=renderUNCRReCaptcha&amp;render=explicit&amp;ver=2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var UNCR = {"site_key":"6LdjjAcUAAAAAOtl-qenrmS-_KhXjvuODKgVRuyS","key_type":"normal","theme":"dark","type":"image","submit_button":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/uber-nocaptcha-recaptcha/assets/js/recaptcha.js@ver=1.0'></script>
+</body>
+</html>

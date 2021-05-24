@@ -4,7 +4,12 @@
 # Run in container
 #docker run -p 1313:1313 $REPO/$NAME:$TAG
 
-##
-# Run locally
- hugo
+# Build the static site from markdown
+hugo
+
+# Copy the "legacy content" to public/legacy
+#mkdir -p public/legacy
+#cp -rv legacy/* public/legacy
+
+# Go run
 GO111MODULE=off go run main.go

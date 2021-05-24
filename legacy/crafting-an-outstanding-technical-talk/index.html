@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.nivenly.com/xmlrpc.php">
+<title>Crafting an outstanding technical talk</title>
+<link rel='dns-prefetch' href='../../nivenly.com/index.html' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Feed" href="../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Comments Feed" href="../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Crafting an outstanding technical talk Comments Feed" href="feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.nivenly.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.11"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='../wp-content/plugins/contact-form-7/includes/css/styles.css@ver=4.8.css' type='text/css' media='all' />
+<link rel='stylesheet' id='icomoon-css'  href='../wp-content/plugins/kiwi-social-share/assets/vendors/icomoon/style.css@ver=2.0.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='counter-style-css'  href='../wp-content/plugins/page-visit-counter/public/css/counter-style.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='../wp-includes/css/dashicons.min.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='post-views-counter-frontend-css'  href='../wp-content/plugins/post-views-counter/css/frontend.css@ver=1.2.7.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-defaultbasic-css'  href='../wp-content/themes/micky/style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='../wp-content/themes/micky/assets/css/bootstrap.min.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='../wp-content/themes/micky/assets/css/font-awesome.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='line-icons-css'  href='../wp-content/themes/micky/assets/css/simple-line-icons.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-select-css'  href='../wp-content/themes/micky/assets/css/bootstrape-select.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='animation-css'  href='../wp-content/themes/micky/assets/css/animation.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-style-css'  href='../wp-content/themes/micky/assets/css/custom-style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-responsive-css'  href='../wp-content/themes/micky/assets/css/responsive.css@ver=1.css' type='text/css' media='all' />
+<style id='micky-responsive-inline-css' type='text/css'>
+
+		.header_top_main .mk_top_navigations ul.menu li a {
+			color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li.current_page_item > a {
+			border-color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li > a:hover {
+			border-color: ;
+		}
+</style>
+<link rel='stylesheet' id='micky-googlefonts-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery.js@ver=1.12.4'></script>
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery-migrate.min.js@ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pagevisit = {"ajaxurl":"https:\/\/www.nivenly.com\/wp-admin\/admin-ajax.php","pageurl":"https:\/\/www.nivenly.com\/crafting-an-outstanding-technical-talk"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/page-visit-counter/public/js/custom.js@ver=1.0.0'></script>
+<link rel='https://api.w.org/' href='../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php@rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Cloud Native Computing Foundation (CNCF) Technical Oversight Committee (ToC) Nomination' href='../index.html@p=863.html' />
+<link rel='next' title='Falco 0.22.1 and Kubernetes 1.18 on armv7 using NOVIX' href='../index.html@p=921.html' />
+<meta name="generator" content="WordPress 4.8.11" />
+<link rel="canonical" href="../index.html@p=870.html" />
+<link rel='shortlink' href='../index.html@p=870.html' />
+<link rel="alternate" type="application/json+oembed" href="../wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252Fcrafting-an-outstanding-technical-talk%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252Fcrafting-an-outstanding-technical-talk%252F&amp;format=xml" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<link rel="icon" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-32x32.png" sizes="32x32" />
+<link rel="icon" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.nivenly.com/wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-270x270.png" />
+</head>
+<body class="post-template-default single single-post postid-870 single-format-standard custom-background">
+<div class="main_wrapper_cover">
+<header>
+<div class="wrapper_main header_top_main">
+   <div class="container">
+    <div class="row">
+     <div class="full_width header_navigation">
+      <div class="col-sm-3">
+	   <div class="mk_logo">
+	   		<h1 class="site-title"><a href="../../nivenly.com/index.html" rel="home"></a></h1>
+	   </div>
+	  </div>
+      <div class="col-sm-9">   
+       <!-- navbar toggle start -->
+		  <div class="navbar-header pull-right">
+			  <button type="button" class="navbar-toggle navbar_toogle" data-toggle="collapse" data-target="#myNavbar"> 
+				<i class="fa fa-list-ul"></i> 
+			  </button>
+		  </div>
+       <!-- navbar toggle end--> 
+       <!-- navigation start -->
+       <div class="mk_top_navigations">
+	   <ul id="menu-header" class="menu"><li id="menu-item-169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-169"><a href="../../nivenly.com/index.html">Home</a></li>
+<li id="menu-item-469" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-469"><a href="../category/go/index.html">Go</a></li>
+<li id="menu-item-470" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-470"><a href="../category/k8s/index.html">Kubernetes</a></li>
+<li id="menu-item-472" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-472"><a href="../category/unix/index.html">Unix</a></li>
+<li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="https://becomingkris.com">BecomingKris.com</a></li>
+<li id="menu-item-595" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-595"><a href="http://cnibook.info">CNI Book</a></li>
+</ul>		
+        </div>
+       <!-- navigation end --> 
+      </div>
+      <!-- header_navigation_cover --> 
+     </div>
+    </div>
+   </div>
+  </div>
+  <!--  header navigation end --> 
+</header><div class="wrapper_main breadcum_part">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcum_inner main">
+				<h3 class="">Crafting an outstanding technical talk</h3> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrapper_main Blog_details_section">
+	<div class="container">
+		<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+						<div id="post-870" class="post-870 post type-post status-publish format-standard hentry category-k8s tag-call-for-papers tag-cfp tag-kris tag-kris-nova tag-kubecon tag-kubernetes tag-nova tag-presentation tag-talk tag-tech-talk tag-tips tag-tricks">
+<div class="blog_post_wrapper_main">
+      <div class="blog_thumbnail"> 
+	  	  </div>
+     </div>
+     <div class="blog_desc blog_details_desc">
+      <h3>Crafting an outstanding technical talk</h3>
+		<div class="bottom">
+		  <span class="posted-on"> <a href="../index.html@p=870.html" rel="bookmark"><time class="entry-date published" datetime="2020-01-28T15:27:59+00:00">January 28, 2020</time><time class="updated" datetime="2020-01-29T02:20:01+00:00">January 29, 2020</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="../author/kris/index.html">Kris Nova</a></span></span>		</div>
+      <div class="blog_content">
+       <p>One of the questions I am asked most in my field is what are the secrets to getting talks accepted at technical events.</p>
+<p>Since 2016 I have worked at Datapipe, Deis, Microsoft, Heptio, VMware and now Sysdig. I have spoken at events (like Kubecon) at every one of these jobs, and even when I was unemployed.</p>
+<p>Below are the things I always focus on while writing a proposal. I hope these can help you with your own goals of writing outstanding conference proposals, and crafting the talk itself.</p>
+<hr />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Problems are good</h1>
+<p><img class="alignright" src="https://www.ciakgeneration.it/wp-content/uploads/2019/03/Il-tema-di-Jurassic-Park-rallentato-770x416.jpg" alt="Image result for jurassic park" width="493" height="257" />Seriously, the majority of your effort in writing a proposal should be focusing on something bad.</p>
+<p>I know it sounds counter-intuitive but stop for a moment and think about things that are entertaining and exciting for you. Movies, Television, Books, Stories&#8230; Everything you probably love tells a story and has a well-defined enemy. Without the presence of an enemy, the heroism simply cannot exist.</p>
+<p>Think of your favorite movie, mine happens to be Jurassic Park. There is a fundamental problem that the story focuses on which is <strong>humans have no business creating fucking dinosaurs. </strong>Also, sub-plot if you do decide to create dinosaurs, you better at least run their cages on Linux.</p>
+<p>The worse the problem happens to be, the more exciting solving the problem is to the audience.</p>
+<hr />
+<p>Here are things I am always on the lookout for in my technical career.</p>
+<ul>
+<li>Moments when I am frustrated or passionate about something (this is a sign there is a very nasty enemy lurking nearby)</li>
+<li>Moments when I say things like &#8220;It&#8217;s not that simple&#8221; or &#8220;It doesn&#8217;t work like that&#8221; or &#8220;I wish it was that easy&#8221; (again, something bad is just around the corner)</li>
+<li>Moments, when I start asking myself, is something is worth it (this implies that there would be a lot of work, to solve a problem)</li>
+</ul>
+<p>These types of moments are invaluable and where every single talk idea of mine comes from. In fact, if you study theater, or writing you learn very quickly the importance of antagonism. Furthermore, you learn about anti-hero and martyrs, etc. Even if you look at the horror genre, it&#8217;s an entire category that celebrates the evil a story can contain.</p>
+<h3 style="text-align: center;"><strong>People love drama.</strong></h3>
+<p>Check out my clusterfuck talk I did at FOSDEM last year. It highlights a problem well.</p>
+<p>&nbsp;</p>
+<hr />
+<p style="text-align: center;">The clusterfuck hidden in the Kubernetes code base &#8211; Kris Nóva &#8211; FOSDEM 2019</p>
+<p style="text-align: center;"><iframe src="https://mirrors.dotsrc.org/fosdem/2019/UD2.120/kubernetesclusterfuck.mp4" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<hr />
+<p>&nbsp;</p>
+<p>So let&#8217;s start by coming up with a fictional talk, that presents a problem.</p>
+<p style="text-align: center;">&#8220;<b>Designing a remote cloud data cen</b><strong>ter with 99.999% uptime</strong>&#8220;</p>
+<p>We know we have to have a data center to host data, and we know we won&#8217;t have access to it. This is a pretty good start as we know that we have a problem that must be solved. How do we manage and design this data center?</p>
+<p>&nbsp;</p>
+<hr />
+<h1></h1>
+<h1>Constraints are better</h1>
+<p>&nbsp;</p>
+<p>Okay, so now that you learned the importance of having a problem, and are giving the negativity the attention it deserves we can start to look at interesting twists in our story.</p>
+<p>By adding constraints or limitations you can create an even more exciting environment.</p>
+<p>Let&#8217;s look at a movie called &#8220;<strong>Deadly snakes</strong>&#8220;. So there is at least a clear problem here which is that snakes can fucking kill you and that is terrifying. But we can do better, let&#8217;s add some constraints to our story.</p>
+<p>&nbsp;</p>
+<p style="text-align: center;">&#8220;<strong>Snakes on a plane</strong>&#8220;</p>
+<p><a href="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555319514/shape/mentalfloss/snakeshed.jpg"><img class="aligncenter" src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555319514/shape/mentalfloss/snakeshed.jpg" alt="Image result for snakes on a plane" width="449" height="252" /></a></p>
+<p>&nbsp;</p>
+<p>Now that sounds like a great story! Not only do we have a clear antagonist, but now we have a set of constraints that our hero has to abide by in order to defeat their foe. Which is, you can&#8217;t get off a plane while it&#8217;s flying over the ocean and now there is deadly snakes trying to kill you.</p>
+<p>By creating an antagonist, and having a fascinating set of constraints we are starting to create a really powerful hero. But again &#8212; you have to have the danger and the constraints in order for the hero to be this triumphant.</p>
+<p>So let&#8217;s look at tech again.</p>
+<p>Remember our talk &#8220;<b>Designing</b><strong> a cloud data center with 99.999% uptime</strong>&#8220;. So this is good because we present our problem of having high uptime. This seems pretty cool, I might go check this talk out.</p>
+<p>Now let&#8217;s add an outstanding constraint to our talk and see what happens.</p>
+<p style="text-align: center;">&#8220;<b>Designing</b><strong> a remote cloud data center with 99.999% uptime&#8230; on Mars</strong>&#8220;</p>
+<p>Holy shit this talk sounds amazing. We have a clear problem and a fascinating constraint. I would hands down cancel plans to go see this talk. Why are you doing this? Why on mars? How much does this cost? Do computers even work there? How will the hardware get there? How will you connect to it? Why the uptime? WHAT ARE YOU DOING?</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<h1>New ideas are the best</h1>
+<p>Okay so now you have a problem and a crazy constraint that makes what would otherwise be a fairly simple problem to solve exponentially more complex. Can we get any better from here?</p>
+<p>Yes. These are the talks that go down in history, and you can write one (if you are lucky).</p>
+<p>Every once in awhile (maybe once in a lifetime) you might hit what I call &#8220;The Trifecta&#8221;. Which is a magical moment when 3 very rare things all happen at the same time.</p>
+<ol>
+<li>You have a really nasty problem</li>
+<li>You have a really interesting constraint</li>
+<li>You happen to either invent or use technology that isn&#8217;t mainstream yet or has never been done</li>
+</ol>
+<p>This is like the indie band that makes it big &#8211; but for tech.</p>
+<p>How do you know if you have found the next exciting piece of tech for your problem? This question is hard to answer, and I usually ask the following questions to gauge if I am on to something.</p>
+<ul>
+<li>Is it easy to use?
+<ul>
+<li>If the answer is <strong>no</strong>, you are on the right track</li>
+</ul>
+</li>
+<li>Can I google it?
+<ul>
+<li>If the answer is <strong>no</strong>, you are on the right track</li>
+</ul>
+</li>
+<li>Does it solve my problem, and does it adhere to my constraint?
+<ul>
+<li>If the answer is <strong>yes</strong>, you are on the right track</li>
+</ul>
+</li>
+<li>Do I wish the CFP I am writing was already on YouTube so I didn&#8217;t have to do this?
+<ul>
+<li>If the answer is <strong>yes</strong>, you are on the right track (<em>and you probably aren&#8217;t the only one thinking this</em>)</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>While a talk like &#8220;<strong>Running a remote cloud data center on Mars&#8221; </strong>would be outstanding it could still be better. What if in order to build our data center we had to do something never before done before? This could change the entire tone of the talk.</p>
+<p style="text-align: center;">&#8220;<strong>The first martian. Designing a robot to build a remote data center on Mars</strong>&#8220;.</p>
+<p>Now that is an outstanding talk.</p>
+<p>Not only do we have a clear problem, a fascinating constraint, but we solved the problem in a way that has never been done before. We built a fucking robot that will build our data center for us so we don&#8217;t have to.</p>
+<p><strong>If</strong> you are lucky, you might be in this type of situation in your lifetime. These are the types of talks that make history, and you can find them in your everyday life if you look hard enough.</p>
+<p>&nbsp;</p>
+<hr />
+<h1>The CFP</h1>
+<p>&nbsp;</p>
+<p>There are 3 things I always focus on when writing a CFP</p>
+<hr />
+<ol>
+<li>The Title (problems, constraints, innovation)</li>
+<li>The Pitch (How do you explain the problem, the constraints, and your innovation in less than 10 seconds)</li>
+<li>The Lesson (You should always explain what the audience will learn, or elude to something they might enjoy)</li>
+</ol>
+<hr />
+<p>For the title, I always have a bad guy. I always have a problem. I always have an enemy.</p>
+<p>For the pitch, it is quick and easy to understand. You have 3 sentences (max) to hook someone. Make it juicy. People love drama.</p>
+<p>For the lesson, I try to create wonder and empathy. Which movie would I rather watch?</p>
+<ul>
+<li>College students go on a road trip and are murdered by a hitchhiker</li>
+<li>3 students on spring break go on the road trip that will change their lives forever when they pick up an innocent-looking hitchhiker</li>
+</ul>
+<p>&nbsp;</p>
+<p>I try to give folks a reason to find out more. How does the story end? What happens next?</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;">Bottom Line</h1>
+<hr />
+<p style="text-align: center;">Unfortunately, nobody wants to see a talk called &#8220;<code>$project</code> is really great&#8221;.</p>
+<p style="text-align: center;">However, everyone wants to see a talk called &#8220;<code>$project</code> solves this really crazy terrible annoying fucking problem in a way nobody else has ever done before&#8221;.</p>
+<p style="text-align: center;">Find a problem, and study it. Obsess over it. Cherish it.</p>
+<p style="text-align: center;">You will get your talk accepted every time.</p>
+<p style="text-align: center;">If you don&#8217;t have a problem, you can&#8217;t resolve anything. Which means you don&#8217;t have a story, which means you don&#8217;t have a talk.</p>
+<hr />
+<p style="text-align: center;"><strong>NEVER submit a talk to &#8220;get on stage&#8221; or &#8220;raise awareness&#8221; or sell anything.</strong></p>
+<p style="text-align: center;"><strong>Submit a talk because you were lucky enough to discover a problem, then you solved it, and it was a pain in the ass.</strong></p>
+<p style="text-align: center;"><strong>Now you want to share your journey with others. </strong></p>
+<hr />
+<p style="text-align: center;">Extra credit if the problem you are solving exists for a large group of people &#8211; solving it is an opportunity to create a hero and create empathy for others.</p>
+<hr />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="post-views post-870 entry-meta">
+			<span class="post-views-icon dashicons dashicons-chart-bar"></span>
+			<span class="post-views-label">Post Views: </span>
+			<span class="post-views-count">3,013</span>
+			</div>       </div>
+      </div>
+</div><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="../index.html@p=863.html" rel="prev">Cloud Native Computing Foundation (CNCF) Technical Oversight Committee (ToC) Nomination</a></div><div class="nav-next"><a href="../index.html@p=921.html" rel="next">Falco 0.22.1 and Kubernetes 1.18 on armv7 using NOVIX</a></div></div>
+	</nav>				<div class="blog_desc blog_details_desc">
+				<div class="blog_content">
+				<div class="comment_section blog_content_inner">
+<div id="comments" class="comments-area">
+<h3 class="blog-title">LEAVE A COMMENT</h3>
+<div class="comment_layer">
+	<div class="pull_left"> <span>2 comments</span></div>
+</div>
+	
+				<div class="micky_blog_comment">
+		<ol class="comment-list comment">
+				<li class="comment even thread-even depth-1 parent" id="comment-1266">
+		<div id="div-comment-1266" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/6714dddf5baf02a4f5e5dc16f27906cb?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6714dddf5baf02a4f5e5dc16f27906cb?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>David Medberry</h5> 
+				  <span class="comment_date"><a>January 28, 2020</a></span>
+				  <span class="comment_time">20:14:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=1266.html#respond' onclick='return addComment.moveForm( "div-comment-1266", "1266", "respond", "870" )' aria-label='Reply to David Medberry'>Reply</a>				 </div>
+				 		
+				<p>a few typos etc but very very sound reasoning (I also enjoyed the FOSDEM talk). happy to give you corrections if this is in source control or somewhere I can gerritt or PR&gt;</p>
+			</div>
+		</div>
+		
+		</div>
+		<ul class="children">
+	<li class="comment byuser comment-author-kris bypostauthor odd alt depth-2" id="comment-1274">
+		<div id="div-comment-1274" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/8aaca2ddf0798be312bcb51a3cacff07?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8aaca2ddf0798be312bcb51a3cacff07?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Kris Nova</h5> 
+				  <span class="comment_date"><a>February 27, 2020</a></span>
+				  <span class="comment_time">16:23:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=1274.html#respond' onclick='return addComment.moveForm( "div-comment-1274", "1274", "respond", "870" )' aria-label='Reply to Kris Nova'>Reply</a>				 </div>
+				 		
+				<p>Sure &#8211; just let me know what to change.</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+		</div>
+
+			<div class="blog_comments_form">
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="../index.html@p=870.html#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://www.nivenly.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<div class="col-lg-12"><textarea name="comment" rows="3" placeholder="Comment&hellip;" class="comment_textarea"></textarea></div><div class="col-sm-6"><input id="author" name="author" type="text" placeholder="Name&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="col-sm-6"><input id="email" name="email" type="email" placeholder="Email&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="uncr-g-recaptcha"></div><p class="form-submit"><input name="submit" type="submit" id="comments_button" class="comment_button" value="Send Comment" /> <input type='hidden' name='comment_post_ID' value='870' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="8acfbedd13" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="130"/></p>			</form>
+			</div><!-- #respond -->
+		</div>
+</div><!-- #comments -->
+</div>				</div>
+				</div>
+										</div>
+					</div>
+	</div>
+</div>
+<footer>
+  <div class="wrapper_main footer_section_main">
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="footer_logo"> 
+	  		   <h1 style="mk_copy"><a href="../../nivenly.com/index.html"></a></h1> 
+       	  </div>
+     </div>
+     <div class="col-lg-6 col-md-6 col-sm-6">
+      <p class="footer_copyright">Copyright 2017 Kris Nova <a href="../../nivenly.com/index.html"></a></p>
+     </div>
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="social_icons footer_social">
+	  </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </footer>
+</div>
+<script type='text/javascript' src='../wp-content/plugins/akismet/_inc/form.js@ver=3.3.2'></script>
+<link rel='stylesheet' id='captcha-style-css'  href='../wp-content/plugins/uber-nocaptcha-recaptcha/assets/css/style.css@ver=4.8.11.css' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.nivenly.com\/wp-json\/","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/contact-form-7/includes/js/scripts.js@ver=4.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sta_settings = {"distance":"50","speed":"5000","exceptions":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/scroll-to-anchor/js/scroll-to-anchor.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/bootstrap-select-min.js'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/navigation.js@ver=20151215'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/skip-link-focus-fix.js@ver=20151215'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/custom.js'></script>
+<script type='text/javascript' src='../wp-includes/js/comment-reply.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='../wp-includes/js/wp-embed.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?onload=renderUNCRReCaptcha&amp;render=explicit&amp;ver=2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var UNCR = {"site_key":"6LdjjAcUAAAAAOtl-qenrmS-_KhXjvuODKgVRuyS","key_type":"normal","theme":"dark","type":"image","submit_button":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/uber-nocaptcha-recaptcha/assets/js/recaptcha.js@ver=1.0'></script>
+</body>
+</html>

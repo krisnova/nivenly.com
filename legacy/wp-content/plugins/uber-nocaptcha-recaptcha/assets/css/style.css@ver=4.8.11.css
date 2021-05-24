@@ -1,0 +1,27 @@
+/*
+*   Make the width of the login form bigger so the captcha form fits nicely :)
+*/
+#login {
+    width: 360px;
+}
+
+
+/*
+*   add some margin (especially useful for the generated captcha code on the comment form) :)
+*/
+.uncr-g-recaptcha  {
+    margin: 15px 0;
+}
+
+.uncr-g-recaptcha div { 
+	margin: 0 auto;
+}
+
+ /* different styling on the comment form */
+#commentform .uncr-g-recaptcha {
+ 	clear: both;
+	    margin: 0;
+	padding: 15px 0;
+}
+
+#commentform .uncr-g-recaptcha div {margin: 0;}

@@ -1,0 +1,1088 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title></title>
+	<atom:link href="https://www.nivenly.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.nivenly.com</link>
+	<description>Open Source Advocate</description>
+	<lastBuildDate>Mon, 29 Jun 2020 22:46:05 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.11</generator>
+
+<image>
+	<url>https://www.nivenly.com/wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-32x32.png</url>
+	<title></title>
+	<link>https://www.nivenly.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Falco 0.22.1 and Kubernetes 1.18 on armv7 using NOVIX</title>
+		<link>https://www.nivenly.com/falco-and-kubernetes-on-armv7-using-novix/</link>
+		<comments>https://www.nivenly.com/falco-and-kubernetes-on-armv7-using-novix/#comments</comments>
+		<pubDate>Fri, 01 May 2020 05:26:55 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[C]]></category>
+		<category><![CDATA[K8s]]></category>
+		<category><![CDATA[Unix]]></category>
+		<category><![CDATA[arch linux]]></category>
+		<category><![CDATA[arm]]></category>
+		<category><![CDATA[armv7]]></category>
+		<category><![CDATA[falco]]></category>
+		<category><![CDATA[kernel]]></category>
+		<category><![CDATA[kris nova]]></category>
+		<category><![CDATA[kubernetes]]></category>
+		<category><![CDATA[Linux]]></category>
+		<category><![CDATA[linux kernel]]></category>
+		<category><![CDATA[novix]]></category>
+		<category><![CDATA[raspberry pi]]></category>
+		<category><![CDATA[secure]]></category>
+		<category><![CDATA[security]]></category>
+		<category><![CDATA[syscall]]></category>
+		<category><![CDATA[sysdig]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=921</guid>
+		<description><![CDATA[Sup nerds. So if you want to see me live demo this check out my live stream at 11am Pacific at twitch.tv/setns on Friday. I will post the recording here after it&#8217;s done. So if you have been following along on Twitter you have probably seen my talking about my new server cabinet I have been working [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Sup nerds.</p>
+<hr />
+<p>So if you want to see me live demo this check out my live stream at 11am Pacific at <a href="https://twitch.tv/setns">twitch.tv/setns</a> on Friday. I will post the recording here after it&#8217;s done.</p>
+<hr />
+<p><img class="alignright wp-image-935 size-full" src="http://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-21-57-25.png" alt="" width="577" height="351" srcset="https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-21-57-25.png 577w, https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-21-57-25-300x182.png 300w, https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-21-57-25-575x350.png 575w" sizes="(max-width: 577px) 100vw, 577px" />So if you have been following along on <a href="https://twitter.com/krisnova">Twitter</a> you have probably seen my talking about my new server cabinet I have been working on, as well as a few tweets about running Falco on ARM.</p>
+<p>So recently I joined <a href="https://sysdig.com">Sysdig, Inc</a> as chief OSS and I have been hacking on the kernel and our open source security tools for the past few months.</p>
+<p>If you have ever used <code>wireshark</code> or <code>sysdig</code> or <code>falco</code> then yeah &#8211; we are THOSE folks. <a href="http://github.com/falcosecurity/falco">Falco</a> is written in C++ and uses either a kernel module or a BPF probe to trace system call events in the Linux kernel. It&#8217;s fairly complicated to get all the pieces installed and working well on a Linux system, let alone a Kubernetes system.</p>
+<p>So I figured everyone could use a fun project during the apocalypse including myself. So <strong>today I made a few branches of Linux, Falco, and Kubernetes and got everything dialed in nicely and compiling on ARMv7</strong></p>
+<p>So if you are interested in Kubernetes and Linux security, if you enjoy free and open source software, and if you have a raspberry pi or another arm board laying around please follow along and try out my distro I slapped together today.</p>
+<p>So let&#8217;s understand what we have going on here.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<h1>NOVIX</h1>
+<p><a class="github-button" href="https://github.com/kris-nova/novix" data-icon="octicon-star" aria-label="Star kris-nova/novix on GitHub">Star</a></p>
+<p><a href="https://github.com/kris-nova/novix">github.com/kris-nova/novix</a></p>
+<p>So I put together an image that should make this is easy as pi (pun intended) to set up. It&#8217;s my operating system so if you don&#8217;t like I don&#8217;t care. Get off my lawn.</p>
+<h3>What is inside NOVIX?</h3>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-0lax">Component</th>
+<th class="tg-0lax">Version</th>
+</tr>
+<tr>
+<td class="tg-0lax">Architecture</td>
+<td class="tg-0lax">armv7</td>
+</tr>
+<tr>
+<td class="tg-0lax">Kernel</td>
+<td class="tg-0lax">Linux novix 4.19.118-1-ARCH armv7l GNU/Linux</td>
+</tr>
+<tr>
+<td class="tg-0lax">Operating System Base</td>
+<td class="tg-0lax">Arch Linux</td>
+</tr>
+<tr>
+<td class="tg-0lax">Operating System</td>
+<td class="tg-0lax">Novix</td>
+</tr>
+<tr>
+<td class="tg-0lax">Falco</td>
+<td class="tg-0lax">0.22.0</td>
+</tr>
+<tr>
+<td class="tg-0lax">Kubernetes</td>
+<td class="tg-0lax">1.18</td>
+</tr>
+<tr>
+<td class="tg-0lax">Kubeadm</td>
+<td class="tg-0lax">1.18</td>
+</tr>
+<tr>
+<td class="tg-0lax">Tested on Chips</td>
+<td class="tg-0lax">RaspberryPi 3/4 (armv7) Raspberry Pi 1 B (armv6)</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Where do I get NOVIX?</h3>
+<p>See the<a href="https://github.com/kris-nova/novix/releases/latest"> latest RELEASE</a> on GitHub</p>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-0lax">Image</th>
+<th class="tg-0lax">Download</th>
+<th class="tg-0lax">Arch</th>
+<th class="tg-0lax">Size</th>
+</tr>
+<tr>
+<td class="tg-0lax">Novix 1.0.1</td>
+<td class="tg-0lax"><a href="https://nivenly.com/novix/novix-1.0.1-armv7.img.gz">novix-1.0.1-armv7.img.gz</a></td>
+<td class="tg-0lax">armv7</td>
+<td class="tg-0lax">4.3gb</td>
+</tr>
+<tr>
+<td class="tg-0lax">Novix 1.0.0</td>
+<td class="tg-0lax"><a href="https://nivenly.com/novix/novix-1.0.0-armv7.img.gz">novix-1.0.0-armv7.img.gz</a></td>
+<td class="tg-0lax">armv7</td>
+<td class="tg-0lax">8.5gb</td>
+</tr>
+</tbody>
+</table>
+<p>Included in the image:</p>
+<ul>
+<li>Kernel headers</li>
+<li>Falco objects</li>
+<li>Kubernetes binaries</li>
+<li>Docker</li>
+<li>CRI</li>
+<li>Emacs</li>
+<li>grpc</li>
+<li>jq</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<h1>Setting up NOVIX on a Raspberry Pi 3/4</h1>
+<p>I am assuming you are running Linux, if you aren&#8217;t you should probably start. Otherwise you can duck duck go how to do this on Windows or a Mac &#8211; I am sure there are a lot of resources out there.</p>
+<h3>Download NOVIX and flash to your SD card</h3>
+<pre class=" language-bash"><code class=" language-bash">mkdir ~/novix &amp;&amp; cd ~/novix
+fdisk -l # Use this command to find your SD card (mine is usually /dev/sdc)
+umount/dev/sdc*
+fdisk /dev/sdc # (Use the device that matches your SD card from above)</code></pre>
+<p><a href="https://archlinuxarm.org/platforms/armv6/raspberry-pi">Thanks Arch Linux Arm Community.</a></p>
+<p>At the fdisk prompt, delete old partitions and create a new one:<br />
+Type o. This will clear out any partitions on the drive.<br />
+Type p to list partitions. There should be no partitions left.<br />
+Type n, then p for primary, 1 for the first partition on the drive, press ENTER to accept the default first sector, then type +110M for the last sector.<br />
+Type t, then c to set the first partition to type W95 FAT32 (LBA).<br />
+Type n, then p for primary, 2 for the second partition on the drive, and then press ENTER twice to accept the default first and last sector.<br />
+Write the partition table and exit by typing w.</p>
+<p>Now format the boot partition</p>
+<pre class=" language-bash"><code class=" language-bash">mkfs.vfat /dev/sdc1
+</code></pre>
+<p>And now the root partition</p>
+<pre class=" language-bash"><code class=" language-bash">mkfs.ext4 /dev/sdc2
+</code></pre>
+<p>And now let&#8217;s set up our sd card</p>
+<pre class=" language-bash"><code class=" language-bash">wget https://nivenly.com/novix/novix-1.0.1-armv7.img.gz
+gunzip --stdout novix-1.0.1-armv7.img.gz | sudo dd bs=4M of=/dev/sdc
+sync
+</code></pre>
+<p>If you get stuck check out the official <a href="https://www.raspberrypi.org/documentation/installation/installing-images/linux.md">installation guide</a> and just use my image instead of the one they suggest.</p>
+<p>A better example can be found at the official arm for arch linux <a href="https://archlinuxarm.org/platforms/armv6/raspberry-pi">installation guide</a></p>
+<p>Throw the SD card into the back of your raspberry pi, hook it up to your network, and give it some power. You should see a solid light and a blinky light on the card (not the network) indicating that your pi is online.</p>
+<h3>SSH into your NOVIX instance</h3>
+<p>Now we are assuming you have a lovely DHCP server online somewhere and your pi should now be on your network. Find it&#8217;s IP address by pulling client lists from your networking gear, arping, guessing, nmap, whatever. I just went into my unifi dashboard and there it was!</p>
+<p>&nbsp;</p>
+<p><img class="size-medium wp-image-950 aligncenter" src="http://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-04-28-22-26-21.png" alt="" width="251" height="244" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-0lax">Default NOVIX Username</th>
+<th class="tg-0lax">Default NOVIX Password</th>
+</tr>
+<tr>
+<td class="tg-0lax">novix</td>
+<td class="tg-0lax">charlie</td>
+</tr>
+</tbody>
+</table>
+<pre class=" language-bash"><code class=" language-bash">ssh novix@10.0.0.36
+cat README
+</code></pre>
+<p>Notice if you type <code>novix</code> and hit tab to complete there are a handful of handy commands.</p>
+<hr />
+<p>&nbsp;</p>
+<h1>Running Falco</h1>
+<p>Falco should come precompiled. The kernel module should be loaded and the daemon should already be running.</p>
+<p><code class=" language-bash">novix.falco-logs</code></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<h1>Running Kubernetes</h1>
+<p>Kubernetes 1.18 should also be baked into the image and all dependencies should already be installed and configured.</p>
+<h3>The Kubernetes Master</h3>
+<p>Start by setting up a master. Pick a hostname you want to use for your master (NOTE: you should also probably put this in <code>/etc/hosts</code> on all the machines in your cluster)</p>
+<p>In this example we will use <code>novix-master</code> for our hostname. Set it using the following command</p>
+<p><code class=" language-bash">novix.hostname novix-master</code></p>
+<p>Now start your master server</p>
+<p><code class=" language-bash">novix.k8s-master</code></p>
+<p>You should see the output of <code>kubeadm</code> giving you a &#8220;join command&#8221; that should look something like</p>
+<p><code class=" language-bash">kubeadm join 10.0.0.44:443 --token uvjdta.h41bhz0aw5scnvka \<br />
+--discovery-token-ca-cert-hash sha256:0d0c32d30ab1dd2a5f3ca6f1d83b61aba9204bf6f8aa8f76e6c50ee37becb6ba </code></p>
+<p>Note the following:</p>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-0lax">Key</th>
+<th class="tg-0lax">Value</th>
+</tr>
+<tr>
+<td class="tg-0lax">Server</td>
+<td class="tg-0lax"><code class=" language-bash">10.0.0.43</code></td>
+</tr>
+<tr>
+<td class="tg-0lax">Token</td>
+<td class="tg-0lax"> <code class=" language-bash">uvjdta.h41bhz0aw5scnvka</code></td>
+</tr>
+<tr>
+<td class="tg-0lax">Hash</td>
+<td class="tg-0lax"> <code class=" language-bash">sha256:0d0c32d30ab1dd2a5f3ca6f1d83b61aba9204bf6f8aa8f76e6c50ee37becb6ba</code></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Now install Calico CNI on your cluster.</p>
+<div id="tabs-pod-install" class="ui-tabs ui-corner-all ui-widget ui-widget-content">
+<div id="tabs-pod-install-0" class="ui-tabs-panel ui-corner-bottom ui-widget-content" role="tabpanel" aria-labelledby="ui-id-1" aria-hidden="false">
+<div class="highlight">
+<pre><code class="language-shell" data-lang="shell">kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
+</code></pre>
+</div>
+</div>
+</div>
+<h3>The Kubernetes Node(s)</h3>
+<p>Set up a new novix machine as one of your nodes. Set a new hostname.</p>
+<p><code class=" language-bash">novix.hostname novix-001</code></p>
+<p>Now either run the pasted <code>kubeadm join</code> command above, or you can try</p>
+<p><code class=" language-bash">novix.k8s-join 10.0.0.43 uvjdta.h41bhz0aw5scnvka sha256:0d0c32d30ab1dd2a5f3ca6f1d83b61aba9204bf6f8aa8f76e6c50ee37becb6ba</code></p>
+<p>As long as everything can route you should now have a working kubernetes cluster with Falco.</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<p><a href="https://twitter.com/r3dcrosse/status/1256126565068361729?s=20"><img class="aligncenter wp-image-970 size-full" src="http://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-05-01-00-42-40.png" alt="" width="600" height="270" srcset="https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-05-01-00-42-40.png 600w, https://www.nivenly.com/wp-content/uploads/2020/04/Screenshot-from-2020-05-01-00-42-40-300x135.png 300w" sizes="(max-width: 600px) 100vw, 600px" /></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/falco-and-kubernetes-on-armv7-using-novix/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Crafting an outstanding technical talk</title>
+		<link>https://www.nivenly.com/crafting-an-outstanding-technical-talk/</link>
+		<comments>https://www.nivenly.com/crafting-an-outstanding-technical-talk/#comments</comments>
+		<pubDate>Tue, 28 Jan 2020 22:27:59 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[K8s]]></category>
+		<category><![CDATA[call for papers]]></category>
+		<category><![CDATA[cfp]]></category>
+		<category><![CDATA[kris]]></category>
+		<category><![CDATA[kris nova]]></category>
+		<category><![CDATA[kubecon]]></category>
+		<category><![CDATA[kubernetes]]></category>
+		<category><![CDATA[nova]]></category>
+		<category><![CDATA[presentation]]></category>
+		<category><![CDATA[talk]]></category>
+		<category><![CDATA[tech talk]]></category>
+		<category><![CDATA[tips]]></category>
+		<category><![CDATA[tricks]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=870</guid>
+		<description><![CDATA[One of the questions I am asked most in my field is what are the secrets to getting talks accepted at technical events. Since 2016 I have worked at Datapipe, Deis, Microsoft, Heptio, VMware and now Sysdig. I have spoken at events (like Kubecon) at every one of these jobs, and even when I was [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>One of the questions I am asked most in my field is what are the secrets to getting talks accepted at technical events.</p>
+<p>Since 2016 I have worked at Datapipe, Deis, Microsoft, Heptio, VMware and now Sysdig. I have spoken at events (like Kubecon) at every one of these jobs, and even when I was unemployed.</p>
+<p>Below are the things I always focus on while writing a proposal. I hope these can help you with your own goals of writing outstanding conference proposals, and crafting the talk itself.</p>
+<hr />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Problems are good</h1>
+<p><img class="alignright" src="https://www.ciakgeneration.it/wp-content/uploads/2019/03/Il-tema-di-Jurassic-Park-rallentato-770x416.jpg" alt="Image result for jurassic park" width="493" height="257" />Seriously, the majority of your effort in writing a proposal should be focusing on something bad.</p>
+<p>I know it sounds counter-intuitive but stop for a moment and think about things that are entertaining and exciting for you. Movies, Television, Books, Stories&#8230; Everything you probably love tells a story and has a well-defined enemy. Without the presence of an enemy, the heroism simply cannot exist.</p>
+<p>Think of your favorite movie, mine happens to be Jurassic Park. There is a fundamental problem that the story focuses on which is <strong>humans have no business creating fucking dinosaurs. </strong>Also, sub-plot if you do decide to create dinosaurs, you better at least run their cages on Linux.</p>
+<p>The worse the problem happens to be, the more exciting solving the problem is to the audience.</p>
+<hr />
+<p>Here are things I am always on the lookout for in my technical career.</p>
+<ul>
+<li>Moments when I am frustrated or passionate about something (this is a sign there is a very nasty enemy lurking nearby)</li>
+<li>Moments when I say things like &#8220;It&#8217;s not that simple&#8221; or &#8220;It doesn&#8217;t work like that&#8221; or &#8220;I wish it was that easy&#8221; (again, something bad is just around the corner)</li>
+<li>Moments, when I start asking myself, is something is worth it (this implies that there would be a lot of work, to solve a problem)</li>
+</ul>
+<p>These types of moments are invaluable and where every single talk idea of mine comes from. In fact, if you study theater, or writing you learn very quickly the importance of antagonism. Furthermore, you learn about anti-hero and martyrs, etc. Even if you look at the horror genre, it&#8217;s an entire category that celebrates the evil a story can contain.</p>
+<h3 style="text-align: center;"><strong>People love drama.</strong></h3>
+<p>Check out my clusterfuck talk I did at FOSDEM last year. It highlights a problem well.</p>
+<p>&nbsp;</p>
+<hr />
+<p style="text-align: center;">The clusterfuck hidden in the Kubernetes code base &#8211; Kris Nóva &#8211; FOSDEM 2019</p>
+<p style="text-align: center;"><iframe src="https://mirrors.dotsrc.org/fosdem/2019/UD2.120/kubernetesclusterfuck.mp4" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<hr />
+<p>&nbsp;</p>
+<p>So let&#8217;s start by coming up with a fictional talk, that presents a problem.</p>
+<p style="text-align: center;">&#8220;<b>Designing a remote cloud data cen</b><strong>ter with 99.999% uptime</strong>&#8220;</p>
+<p>We know we have to have a data center to host data, and we know we won&#8217;t have access to it. This is a pretty good start as we know that we have a problem that must be solved. How do we manage and design this data center?</p>
+<p>&nbsp;</p>
+<hr />
+<h1></h1>
+<h1>Constraints are better</h1>
+<p>&nbsp;</p>
+<p>Okay, so now that you learned the importance of having a problem, and are giving the negativity the attention it deserves we can start to look at interesting twists in our story.</p>
+<p>By adding constraints or limitations you can create an even more exciting environment.</p>
+<p>Let&#8217;s look at a movie called &#8220;<strong>Deadly snakes</strong>&#8220;. So there is at least a clear problem here which is that snakes can fucking kill you and that is terrifying. But we can do better, let&#8217;s add some constraints to our story.</p>
+<p>&nbsp;</p>
+<p style="text-align: center;">&#8220;<strong>Snakes on a plane</strong>&#8220;</p>
+<p><a href="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555319514/shape/mentalfloss/snakeshed.jpg"><img class="aligncenter" src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555319514/shape/mentalfloss/snakeshed.jpg" alt="Image result for snakes on a plane" width="449" height="252" /></a></p>
+<p>&nbsp;</p>
+<p>Now that sounds like a great story! Not only do we have a clear antagonist, but now we have a set of constraints that our hero has to abide by in order to defeat their foe. Which is, you can&#8217;t get off a plane while it&#8217;s flying over the ocean and now there is deadly snakes trying to kill you.</p>
+<p>By creating an antagonist, and having a fascinating set of constraints we are starting to create a really powerful hero. But again &#8212; you have to have the danger and the constraints in order for the hero to be this triumphant.</p>
+<p>So let&#8217;s look at tech again.</p>
+<p>Remember our talk &#8220;<b>Designing</b><strong> a cloud data center with 99.999% uptime</strong>&#8220;. So this is good because we present our problem of having high uptime. This seems pretty cool, I might go check this talk out.</p>
+<p>Now let&#8217;s add an outstanding constraint to our talk and see what happens.</p>
+<p style="text-align: center;">&#8220;<b>Designing</b><strong> a remote cloud data center with 99.999% uptime&#8230; on Mars</strong>&#8220;</p>
+<p>Holy shit this talk sounds amazing. We have a clear problem and a fascinating constraint. I would hands down cancel plans to go see this talk. Why are you doing this? Why on mars? How much does this cost? Do computers even work there? How will the hardware get there? How will you connect to it? Why the uptime? WHAT ARE YOU DOING?</p>
+<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>
+<h1>New ideas are the best</h1>
+<p>Okay so now you have a problem and a crazy constraint that makes what would otherwise be a fairly simple problem to solve exponentially more complex. Can we get any better from here?</p>
+<p>Yes. These are the talks that go down in history, and you can write one (if you are lucky).</p>
+<p>Every once in awhile (maybe once in a lifetime) you might hit what I call &#8220;The Trifecta&#8221;. Which is a magical moment when 3 very rare things all happen at the same time.</p>
+<ol>
+<li>You have a really nasty problem</li>
+<li>You have a really interesting constraint</li>
+<li>You happen to either invent or use technology that isn&#8217;t mainstream yet or has never been done</li>
+</ol>
+<p>This is like the indie band that makes it big &#8211; but for tech.</p>
+<p>How do you know if you have found the next exciting piece of tech for your problem? This question is hard to answer, and I usually ask the following questions to gauge if I am on to something.</p>
+<ul>
+<li>Is it easy to use?
+<ul>
+<li>If the answer is <strong>no</strong>, you are on the right track</li>
+</ul>
+</li>
+<li>Can I google it?
+<ul>
+<li>If the answer is <strong>no</strong>, you are on the right track</li>
+</ul>
+</li>
+<li>Does it solve my problem, and does it adhere to my constraint?
+<ul>
+<li>If the answer is <strong>yes</strong>, you are on the right track</li>
+</ul>
+</li>
+<li>Do I wish the CFP I am writing was already on YouTube so I didn&#8217;t have to do this?
+<ul>
+<li>If the answer is <strong>yes</strong>, you are on the right track (<em>and you probably aren&#8217;t the only one thinking this</em>)</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>While a talk like &#8220;<strong>Running a remote cloud data center on Mars&#8221; </strong>would be outstanding it could still be better. What if in order to build our data center we had to do something never before done before? This could change the entire tone of the talk.</p>
+<p style="text-align: center;">&#8220;<strong>The first martian. Designing a robot to build a remote data center on Mars</strong>&#8220;.</p>
+<p>Now that is an outstanding talk.</p>
+<p>Not only do we have a clear problem, a fascinating constraint, but we solved the problem in a way that has never been done before. We built a fucking robot that will build our data center for us so we don&#8217;t have to.</p>
+<p><strong>If</strong> you are lucky, you might be in this type of situation in your lifetime. These are the types of talks that make history, and you can find them in your everyday life if you look hard enough.</p>
+<p>&nbsp;</p>
+<hr />
+<h1>The CFP</h1>
+<p>&nbsp;</p>
+<p>There are 3 things I always focus on when writing a CFP</p>
+<hr />
+<ol>
+<li>The Title (problems, constraints, innovation)</li>
+<li>The Pitch (How do you explain the problem, the constraints, and your innovation in less than 10 seconds)</li>
+<li>The Lesson (You should always explain what the audience will learn, or elude to something they might enjoy)</li>
+</ol>
+<hr />
+<p>For the title, I always have a bad guy. I always have a problem. I always have an enemy.</p>
+<p>For the pitch, it is quick and easy to understand. You have 3 sentences (max) to hook someone. Make it juicy. People love drama.</p>
+<p>For the lesson, I try to create wonder and empathy. Which movie would I rather watch?</p>
+<ul>
+<li>College students go on a road trip and are murdered by a hitchhiker</li>
+<li>3 students on spring break go on the road trip that will change their lives forever when they pick up an innocent-looking hitchhiker</li>
+</ul>
+<p>&nbsp;</p>
+<p>I try to give folks a reason to find out more. How does the story end? What happens next?</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;">Bottom Line</h1>
+<hr />
+<p style="text-align: center;">Unfortunately, nobody wants to see a talk called &#8220;<code>$project</code> is really great&#8221;.</p>
+<p style="text-align: center;">However, everyone wants to see a talk called &#8220;<code>$project</code> solves this really crazy terrible annoying fucking problem in a way nobody else has ever done before&#8221;.</p>
+<p style="text-align: center;">Find a problem, and study it. Obsess over it. Cherish it.</p>
+<p style="text-align: center;">You will get your talk accepted every time.</p>
+<p style="text-align: center;">If you don&#8217;t have a problem, you can&#8217;t resolve anything. Which means you don&#8217;t have a story, which means you don&#8217;t have a talk.</p>
+<hr />
+<p style="text-align: center;"><strong>NEVER submit a talk to &#8220;get on stage&#8221; or &#8220;raise awareness&#8221; or sell anything.</strong></p>
+<p style="text-align: center;"><strong>Submit a talk because you were lucky enough to discover a problem, then you solved it, and it was a pain in the ass.</strong></p>
+<p style="text-align: center;"><strong>Now you want to share your journey with others. </strong></p>
+<hr />
+<p style="text-align: center;">Extra credit if the problem you are solving exists for a large group of people &#8211; solving it is an opportunity to create a hero and create empathy for others.</p>
+<hr />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/crafting-an-outstanding-technical-talk/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+<enclosure url="https://mirrors.dotsrc.org/fosdem/2019/UD2.120/kubernetesclusterfuck.mp4" length="178084014" type="video/mp4" />
+		</item>
+		<item>
+		<title>Cloud Native Computing Foundation (CNCF) Technical Oversight Committee (ToC) Nomination</title>
+		<link>https://www.nivenly.com/cloud-native-computing-foundation-cncf-technical-oversight-committee-toc-nomination/</link>
+		<comments>https://www.nivenly.com/cloud-native-computing-foundation-cncf-technical-oversight-committee-toc-nomination/#respond</comments>
+		<pubDate>Tue, 28 Jan 2020 00:02:59 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[About Me]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=863</guid>
+		<description><![CDATA[I believe in open source more than I could say in words. I am lucky enough to work at Sysdig where I am in charge of our open source efforts, and have full support to lead and contribute to open source governance. The concept of sharing, and being transparent not only has changed my life, [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>I believe in open source more than I could say in words. I am lucky enough to work at <a href="https://sysdig.com/press-releases/falco-adoption-increases-240-as-kris-nova-joins/">Sysdig where I am in charge of our open source efforts</a>, and have full support to lead and contribute to open source governance.</p>
+<p>The concept of sharing, and being transparent not only has changed my life, but has also impacted those around me. Below you can find a small bit of text I put together for my <a href="https://www.cncf.io/blog/2019/12/06/cncf-toc-governance-structure-elections-2020/">nomination to the ToC with the CNCF</a>.</p>
+<p>I believe it is important to not build open source tooling, but to build open governance and open community. I wear this philosophy every day in everything I do. Decisions made in the public, are fundamentally more healthy and more productive. Period.</p>
+<p>I hope you enjoy reading about my submission to be a ToC member, and I hope you consider me for this position. I believe I have the energy and resources to make myself successful at driving transparency and healthy process with the CNCF&#8217;s technical decisions.</p>
+<p>&nbsp;</p>
+<p>Now, my submission to the CNCF Governing Board for a position on the ToC:</p>
+<p>&nbsp;</p>
+<hr />
+<h1><b>Bio</b></h1>
+<p><span style="font-weight: 400;">Kris Nóva has been working directly with CNCF related open source projects since her first involvement with Kubernetes in 2016. She has worked directly with CNCF projects Kubernetes, Helm, and now Falco. Kris believes that there is a difference between having an open source license, and building an inclusive community where decisions are made in the open. She has actively implemented measures to make this happen throughout the cloud native ecosystem.</span></p>
+<p>&nbsp;</p>
+<h1><b>Supporting Statement</b></h1>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">Furthermore, Kris has also contributed to many non-CNCF open source projects, such as Terraform, Docker, FreeBSD, and Go. Having this diverse experience has given her insight into contributing, maintaining, and evaluating healthy open source efforts. She believes making decisions in the open is a crucial part of building effective tooling.</span></p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">Over her career, Kris has learned the importance of building clean, concise, hygienic software as well as the communities that support it. This is particularly relevant with her professional career, where she has experienced balancing a project’s health with revenue-driven employment. She understands that the health of a project is the highest priority, and that vendor independence is critical for a successful open source project.</span></p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">Recently, Kris has taken on a leadership role professionally, and she is interested in tackling an open source leadership role as well. A seat on the CNCF ToC is precisely what she feels she would succeed at. In December 2019, she was directly involved in the process to move Falco to incubation. Through this experience, she has developed insight and opinions that would reduce friction in the process, which she would be passionate about driving if voted in. </span></p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">Open source can be chaotic. We need structure, vendor independence, and empathy both for vendors as well as end users. Kris Nóva would be honored to have an opportunity to bring this to the CNCF.</span></p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/cloud-native-computing-foundation-cncf-technical-oversight-committee-toc-nomination/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Empathy please!</title>
+		<link>https://www.nivenly.com/hi/</link>
+		<comments>https://www.nivenly.com/hi/#respond</comments>
+		<pubDate>Thu, 17 Oct 2019 18:23:12 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=841</guid>
+		<description><![CDATA[Hi! If you are reading this either someone shared the link with you, or you recently reached out to me using some avenue such as slack, email, twitter, etc. Everyone get&#8217;s this response at first so please please understand that I am not trying to blow you off but rather asking for a small amount of [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Hi!</p>
+<p>If you are reading this either someone shared the link with you, or you recently reached out to me using some avenue such as slack, email, twitter, etc.</p>
+<p>Everyone get&#8217;s this response at first so please <strong>please</strong> understand that I am not trying to blow you off but rather asking for a small amount of your time, in exchange for the amount of my time you just freely requested. Please skim this (you don&#8217;t even have to read it).</p>
+<p>&nbsp;</p>
+<h1>Requests</h1>
+<p>I am asking that you keep your request&#8217;s to me as limited as possible.</p>
+<p>Please use complete sentences in your request.</p>
+<p>Please get to the point.</p>
+<p>Please put some thought into what your <strong>goals</strong> of the request are. What action are you asking me to take?</p>
+<p>&nbsp;</p>
+<h1>My favorite types of messages</h1>
+<blockquote><p>Hello can you explain why you used an interface here instead of a struct? I am asking because most engineers at my company would have used a struct. &lt;url&gt;</p>
+<p>Hello I would like to extend an invitation for you to be involved with some event. &lt;who&gt; &lt;what&gt; &lt;when&gt; &lt;where&gt; &lt;url&gt;</p>
+<p>Hello I think you are neat. No action needed. Have a nice day.</p></blockquote>
+<h1>Messages I find difficult to engage in</h1>
+<blockquote><p>Hey how are you?</p>
+<p>Hey want to speak at a meetup? &lt;no more information&gt;</p>
+<p>Hey are you going to make it? &lt;no more information&gt;</p>
+<p>Hey I have a question. &lt;no more information&gt;</p></blockquote>
+<h1>Let&#8217;s do some algebra!</h1>
+<p>&nbsp;</p>
+<p>Let&#8217;s take a what looks like innocent conversation.</p>
+<blockquote><p><strong>Hey</strong>.</p>
+<p>Hello.</p>
+<p><strong>How are you?</strong></p>
+<p>Fine.</p>
+<p><strong>That&#8217;s great. Can I ask you a question?</strong></p>
+<p>Sure.</p>
+<p><strong>Okay thanks. So wondering if you want to speak at the &lt;city&gt; meetup?</strong></p>
+<p>Maybe. can you tell me more?</p>
+<p><strong>Oh sorry. Yeah &#8211; we just want you to speak about Kubernetes.</strong></p>
+<p>When is it?</p>
+<p><strong>October</strong>.</p>
+<p>October when?</p>
+<p><strong>42nd</strong></p>
+<p>&#8230;what time?</p>
+<p><strong>The meetups usually start at 7pm</strong></p>
+<p>&#8230;what time would I go on?</p>
+<p><strong>9pm</strong></p>
+<p>How long is my slot?</p>
+<p><strong>45 minutes.</strong></p>
+<p>So you are asking if <strong>I could be in &lt;city&gt; to speak about Kubernetes at a meetup on October 42nd and 9pm?</strong></p>
+<p><strong>yes</strong></p>
+<p>Sure I&#8217;d love to</p>
+<p><strong>Great! What size shirt do you wear?</strong></p>
+<p>&#8230;and so on</p>
+<p>&nbsp;</p></blockquote>
+<p>This is a pretty common conversation for me to have. So let&#8217;s look at some numbers. Let&#8217;s look at the amount of transactions needed to reach a solution, and compare that to the ideal case of 1:1</p>
+<p>The first message prompted a response: Hey. Hey.</p>
+<p>So far we are pretty good, 1:1</p>
+<p>The second message also prompted a response</p>
+<p>1:2</p>
+<p>As did the third..</p>
+<p>1:3</p>
+<p>And so on&#8230;</p>
+<p>1:12 in our example above if I stop responding at that point</p>
+<p>This transaction could have been much more efficient to get to a solution.</p>
+<blockquote><p>Hi. I am wondering if you could be in &lt;city&gt; to speak about Kubernetes on October 42nd at 9pm?</p>
+<p>Sure. Please see more information about me: github.com/kris-nova/me</p></blockquote>
+<h3 style="text-align: center;"><strong>So please optimize your messages in favor of efficiency. </strong></h3>
+<p>&nbsp;</p>
+<p style="text-align: center;">I would much rather have a brief, concrete, precise, and efficient conversation with you in favor of small talk or prompting you with questions.</p>
+<p style="text-align: center;">On an average day I receive about 36 messages an hour.</p>
+<p style="text-align: center;">So if each transaction takes 10 seconds, and let&#8217;s just say every message thread completes with a very generous 1:12 ratio (12 transactions to reach a solution)</p>
+<p style="text-align: center;">That means every message takes 2 minutes of time to reach a solution</p>
+<p style="text-align: center;">Which means, I would need 6.4 more hours in the day, and to never eat or sleep, in order to respond to every inquiry I get.</p>
+<p style="text-align: center;">So please help me.</p>
+<p style="text-align: center;">I really want time to sleep, you see.</p>
+<p style="text-align: center;">Thanks for understanding, and feel free to respond with a well thought out message in case your first one could be optimized a bit more. <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f642.png" alt="&#x1f642;" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/hi/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Open Source at Sysdig</title>
+		<link>https://www.nivenly.com/oss-sysdig/</link>
+		<comments>https://www.nivenly.com/oss-sysdig/#comments</comments>
+		<pubDate>Wed, 21 Aug 2019 06:00:25 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[C]]></category>
+		<category><![CDATA[Go]]></category>
+		<category><![CDATA[K8s]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[Unix]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=741</guid>
+		<description><![CDATA[Earlier this year I found myself taking a much needed break from employment. I began taking a meticulous approach at looking for a new gig. I was astonished and overwhelmed at the interest I had from amazing organizations in the Cloud Native ecosystem. I met with large tech companies, startups, and entrepreneurs yet to start [&#8230;]]]></description>
+				<content:encoded><![CDATA[<h3 style="text-align: center;">Earlier this year I found myself taking a much needed break from employment.</h3>
+<h1></h1>
+<p><img class=" wp-image-817 alignright" style="border: 2px solid black;" src="http://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-200x300.jpg" alt="" width="438" height="657" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-200x300.jpg 200w, https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-768x1152.jpg 768w, https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-683x1024.jpg 683w, https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-383x575.jpg 383w, https://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-233x350.jpg 233w" sizes="(max-width: 438px) 100vw, 438px" />I began taking a meticulous approach at looking for a new gig. I was astonished and overwhelmed at the interest I had from amazing organizations in the Cloud Native ecosystem. I met with large tech companies, startups, and entrepreneurs yet to start their journey. I noticed everyone was very excited about Kubernetes. Every meeting shared the common theme. It seemed like the entire industry was obsessed with solving their unique problems with our new distributed kernel: Kubernetes.</p>
+<p>&nbsp;</p>
+<blockquote><p>There was only one problem:  <strong>Kubernetes is effectively &#8220;complete&#8221;</strong></p></blockquote>
+<p>&nbsp;</p>
+<p style="text-align: left;">Don&#8217;t get me wrong, there is still a lot of work to do and Kubernetes will always have room for improvement.</p>
+<p style="text-align: left;">My point here is that the core functionality of Kubernetes has not only been completed, but iterated on several times over. The scope of the project is relatively finite, and we have reached a point of maturity where we have functional components to satisfy this scope. The API is several versions deep, and the goal of the project was to provide a platform for the ecosystem to build on. We have achieved that. With that being said, taking another &#8220;Kubernetes Centric&#8221; role didn&#8217;t seem very attractive to me. I love Kubernetes and have been working with the core upstream community for a long time, but I think it&#8217;s time to pivot slightly.</p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;">I am an innovator.</h3>
+<p style="text-align: center;">One could argue the majority of innovation <strong>within</strong> Kubernetes has long since been crafted, whereas innovation <strong>with</strong> Kubernetes is just beginning.</p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;">Regardless, I am convinced Kubernetes is here to stay.</h3>
+<p><img class=" wp-image-677 alignleft" src="http://www.nivenly.com/wp-content/uploads/2018/03/k8s-300x300.png" alt="" width="167" height="167" srcset="https://www.nivenly.com/wp-content/uploads/2018/03/k8s-300x300.png 300w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-150x150.png 150w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-350x350.png 350w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s.png 400w" sizes="(max-width: 167px) 100vw, 167px" /></p>
+<p>As the new Cloud Native &#8220;kernel&#8221; for distributed systems management, Kubernetes surely won&#8217;t be disappearing from my career any time soon. Nor will the CNCF. As a Kubernetes expert naturally I began my investigation into discovering technology that solved real problems in unique and powerful ways. I really wanted to find technology that I believed in, that I still hadn&#8217;t mastered, and that would get me excited. I wanted to go deeper into the little black boxes that still seemed like magic to me. I wanted more. I found myself speaking with many companies and looked at a lot of open source tools: service meshes, networking tools, deployment tools, etc.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 style="text-align: center;">There was one company that stood out&#8230;</h1>
+<p><img class=" wp-image-748 aligncenter" src="http://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-300x300.png" alt="" width="138" height="138" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-300x300.png 300w, https://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-150x150.png 150w, https://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-350x350.png 350w, https://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500.png 500w" sizes="(max-width: 138px) 100vw, 138px" /></p>
+<h3 style="text-align: center;">I see the potential in gaining visibility into our systems at the kernel level, while operating a containerized system on top.</h3>
+<h3 style="text-align: center;">Period.</h3>
+<p>&nbsp;</p>
+<p><a href="https://sysdig.com/" target="_blank" rel="noopener"><img class="wp-image-749 alignleft" src="http://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-300x288.png" alt="" width="80" height="77" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-300x288.png 300w, https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-768x736.png 768w, https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-600x575.png 600w, https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-365x350.png 365w, https://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig.png 868w" sizes="(max-width: 80px) 100vw, 80px" /></a>Furthermore there are a lot of other reasons I made the choice I did. To be be completely honest I simply fell in love with the way everyone worked. They were a low level shop of hackers and genuine people. Everyone I met was empowered and knew precisely what they were talking about. It was a refreshing interviewing experience. Good friends from open source like the infamous POP truly helped make me feel welcomed and respected. During my interview we white boarded the Linux kernel not to pass a frivolous test, but because we genuinely needed the diagram for our discussion on <a href="https://en.wikipedia.org/wiki/Berkeley_Packet_Filter">eBPF.</a> I immediately knew that this job was going to push me forward technically. I loved it.</p>
+<p>As the saga goes, the company offered me a position to take on ownership of our open source tools and I was thrilled. I am quite excited for our team, and an opportunity to do what I love doing: inspiring engineers and solving concrete problems with them!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;"><strong>So let&#8217;s talk Falco.</strong></h1>
+<p>&nbsp;</p>
+<p>As part of my new role at Sysdig I will be managing our OSS team, while simultaneously working on our tools with them. I am way too excited about new friends in <a href="https://github.com/cncf/sig-security">Kubernetes SIG-security</a>. Growing Falco and driving adoption will be a primary goal for me at Sysdig. We want to flesh Falco out as the defacto way of pulling metrics from the kernel for runtime security and intrusion detection.</p>
+<p><strong><a href="https://falco.org" target="_blank" rel="noopener"><img class="wp-image-776 alignright" src="http://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-300x120.png" alt="" width="430" height="172" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-300x120.png 300w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-768x306.png 768w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-1024x408.png 1024w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-750x299.png 750w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-878x350.png 878w, https://www.nivenly.com/wp-content/uploads/2019/07/falco-logo.png 1192w" sizes="(max-width: 430px) 100vw, 430px" /></a></strong>Once upon a time a simple network packet had every bit of information you needed for total forensics analysis. Today with Kubernetes abstractions sharing network, disk, and memory across containerized process the network is no longer a viable avenue for learning about our complete systems behavior. This is where Falco and eBPF come into the picture.</p>
+<p>Falco uses two critical components into gaining visibility of our systems. The first is a comprehensive list of syscall information that we access via eBPF. The second is our context from Kubernetes. By joining these two otherwise completely separated bits of data together, we now have everything we need to secure a Kubernetes cluster.</p>
+<p>Falco allows users to dynamically build rules against this rich data set, and can take action if and when a rule is broken. This noninvasive and elegant approach to security is built on battle tested concepts, applied in exciting new ways. To be honest, I can&#8217;t wait to start hacking on the kernel with the rest of the folks on the team. I am excited to go deeper into kernel security with eBPF and Falco.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;"><strong>So lets get started!</strong></h1>
+<h3><strong><img class="wp-image-799 alignright" style="border: 2px solid black;" src="http://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-683x1024.jpg" alt="" width="471" height="706" srcset="https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-683x1024.jpg 683w, https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-200x300.jpg 200w, https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-768x1152.jpg 768w, https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-383x575.jpg 383w, https://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-233x350.jpg 233w" sizes="(max-width: 471px) 100vw, 471px" /></strong></h3>
+<p>Today I am pleased to announce full time employment with Sysdig!</p>
+<p>&nbsp;</p>
+<p>I will be spending some time getting to know our current state of affairs and exploring our other open source tools moving forward. Stay tuned for updates as we start to dial up our presence in the open source ecosystem with tools like Falco.</p>
+<p>&nbsp;</p>
+<p>Please reach out if you are interested in collaborating or would like to find out more about our new projects. My email is <a href="mailto:kris.nova@sysdig.com">nova@sysdig.com</a> and I would love to hear from you.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+<li><a href="mailto:kris.nova@sysdig.com">kris.nova@sysdig.com</a></li>
+<li><a href="http://slack.sysdig.com">slack.sysdig.com</a></li>
+<li><a href="http://github.com/falcosecurity/falco">github.com/falcosecurity/falco</a></li>
+<li><a href="http://falco.org">falco.org</a></li>
+<li><a href="http://twitter.com/sysdig">@sysdig</a></li>
+<li><a href="http://twitter.com/falco_org">@falco_org</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: center;">
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/oss-sysdig/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Embedded Advocacy</title>
+		<link>https://www.nivenly.com/embedded-advocacy/</link>
+		<comments>https://www.nivenly.com/embedded-advocacy/#respond</comments>
+		<pubDate>Fri, 07 Jun 2019 18:37:33 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[K8s]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=731</guid>
+		<description><![CDATA[Hey Everyone! So I haven&#8217;t blogged on nivenly.com in ages so I figured I was over due for a technical post. As I am sure some of you have noticed I am recently unemployed and have been spending the last week or so on back to back phone calls with a lot of big names [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Hey Everyone!</p>
+<p>So I haven&#8217;t blogged on nivenly.com in ages so I figured I was over due for a technical post. As I am sure some of you have noticed I am recently unemployed and have been spending the last week or so on back to back phone calls with a lot of big names in tech. I have been asked the following question probably 50 times in the last 10 days:</p>
+<blockquote><p>What do you want to do next in your career?</p></blockquote>
+<p>I have been thinking a <strong>lot</strong> about this recently, and some ideas I have been playing with for a while finally came together in my head. So I want to present this crazy notion of this probably insane idea I have.</p>
+<h1 style="text-align: center;">Embedded Advocacy</h1>
+<p>So let&#8217;s first cover my previous experience so we can understand how I ended up here.</p>
+<h3>DevOps / SRE / Infrastructure Bro (literally)</h3>
+<p>So once upon a time I wore a pager and had a beard.</p>
+<p>This shouldn&#8217;t be a shock to anyone.</p>
+<p>I learned a vary valuable lesson here: My job was far more fulfilling and I was far more productive when I would focus on <strong>1 thing</strong> and do it well. At this gig I was part of a dispersed &#8220;<em>DevOps</em>&#8221; team that was charged with performing a lot of bullshit for the many engineering teams we had. I felt most productive and successful when I was able to pair with a team for an extended period of time and really dig in and solve some problems. The one-off interrupt driven nature of working with other teams left me frustrated and made the quality of my work degrade as I was context switching all day every day.</p>
+<h3>DevOps / SRE / Infrastructure witch</h3>
+<p>I went through a gender transition NBD.</p>
+<p>I then started a new job doing the same style of back end support. This time in fishnets and I was <strong>not</strong> working with multiple teams.</p>
+<p><strong>I was embedded to focus on infrastructure for a SINGLE purpose</strong>.</p>
+<p>This was one of the best jobs I ever worked at (until we were acquired by <code>large tech company</code>).</p>
+<p>I left work every day feeling productive, successful, and proud of what I did. I made the team more productive, and was able to dig in and solve a lot of the really tough problems that nobody else could solve. To this day, I don&#8217;t think I have ever been more productive at my day job than I was here. In fact, the majority of my book Cloud Native Infrastructure was inspired from the work I did while working as an <strong>embedded DevOps engineer</strong>.</p>
+<h3>Fucking Kubernetes</h3>
+<p>So then Kubernetes happened.</p>
+<p>People discovered I had mad backend skills, and could also perform really well under pressure (thanks pager) and next thing I know I am a developer advocate ranting about Kubernetes for a few years.</p>
+<p>I never lost my passion for my backend work (and to be honest can&#8217;t wait to get back into it).</p>
+<p>Working as a developer advocate has been nice, but it&#8217;s not what everyone thinks it is.</p>
+<p>Travelling sucks, hotels are annoying, airlines lose your bag, you are constantly working on the go, it&#8217;s really challenging work.</p>
+<p>Then the 30th of the month happens and you get a notification to do expense reports that you don&#8217;t have time for.</p>
+<p>Google maps directed you to the wrong building for your talk in a country that doesn&#8217;t speak English.</p>
+<p>Oh by the way, it&#8217;s time to check in for your next flight.</p>
+<p>After spending some time talking with folks about what I want next in my career I realized I was trying to describe a role that doesn&#8217;t exist, and desperately needs to.</p>
+<h3>Embedded Advocacy</h3>
+<p>Product first.</p>
+<p>Working as a DA I was a jill of all trades and a master of none. I was detached from our engineers, but was expected to represent them. There was no way for me to keep up with the many efforts that were concurrently happening so ultimately I lost my ability to be a deep and authentic knowledge expert about a single thing. This is when I noticed my passion started to slide.</p>
+<p>By working as a DA for many different things it left me uninformed and overworked. The engineers were frustrated with me, and I was with them. Not to mention the customers&#8230;</p>
+<h3 style="text-align: center;">Developer Advocacy has 0 business interfacing with an existing customer. That isn&#8217;t advocacy.</h3>
+<p>I started to imagine a world where I could focus on a single tool. A single product. Do one thing and do it well. Contribute to engineering conversations, and help influence engineering, and still advocating for a single product <strong>if</strong> and <strong>when</strong> it was needed. There are few engineers who can do this, and I am amazed we haven&#8217;t figured out that the majority of DAs would be super stars here.</p>
+<p>Imagine going alpha with an open source tool, then having one of the core engineers go out into the wild to teach folks about it and gain feedback. Then imagine them coming back to the whiteboard and sharing their findings in a digestible way to the engineering team who built the product. <strong>This. is. developer. advocacy.</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: center;">We need to start embedding our DAs into our engineering orgs and letting them do what they are good at. Give a DA a single concrete problem, and light a fire underneath them.</p>
+<p style="text-align: center;">We need to stop expecting our DAs to be our one stop shop for every single effort we have going on. This isn&#8217;t a sponsorship. Let DAs influence tech. Give them a seat in the engineering discussions to do so.</p>
+<p style="text-align: center;">Embed your DAs to a single team, in the same way you would embed infrastructure engineers to a single team.</p>
+<p style="text-align: center;">Let a single product define the scope of a DAs involvement with the community. Why send a DA on the road if the product doesn&#8217;t need it? Let&#8217;s be concrete people.</p>
+<p style="text-align: center;">Let&#8217;s do one thing, and do it well.</p>
+<p>&nbsp;</p>
+<p><code>&lt;/endrant&gt;</code></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/embedded-advocacy/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Mountain Slides (2018)</title>
+		<link>https://www.nivenly.com/mountain-slides-2018/</link>
+		<comments>https://www.nivenly.com/mountain-slides-2018/#respond</comments>
+		<pubDate>Thu, 24 May 2018 00:42:22 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=706</guid>
+		<description><![CDATA[So for those of you at home who don&#8217;t know the story of the mountain slides &#8211; every year I come out with an official Kris Nova Mountain Slide theme to use for technical public speaking. This year for 2018, we have a Volcano theme as the majority of pictures are from volcanos around the pacific northwest! [&#8230;]]]></description>
+				<content:encoded><![CDATA[<h1></h1>
+<p>So for those of you at home who don&#8217;t know the story of the mountain slides &#8211; every year I come out with an official Kris Nova Mountain Slide theme to use for technical public speaking.</p>
+<h3>This year for 2018, we have a Volcano theme as the majority of pictures are from volcanos around the pacific northwest!</h3>
+<h3></h3>
+<h3 style="text-align: center;">Check out the public Google slides version <a href="https://docs.google.com/presentation/d/1p0UDQSZs5xE0_kSwkenz2rZDsc9iSPKFp6nGkTogt_I/edit#slide=id.p">HERE</a>!</h3>
+<p>&nbsp;</p>
+<h1>Download 2018 version!</h1>
+<table class="tg">
+<tbody>
+<tr>
+<th class="tg-031e">Name</th>
+<th class="tg-yw4l">Download</th>
+</tr>
+<tr>
+<td class="tg-yw4l">PowerPoint Slides</td>
+<td class="tg-yw4l"> <a href="http://nivenly.com/mountain-theme.pptx">mountain-theme.pptx</a></td>
+</tr>
+<tr>
+<td class="tg-yw4l"> Background Images (16:9)</td>
+<td class="tg-yw4l"> <a href="http://nivenly.com/mountains.zip">mountains.zip</a></td>
+</tr>
+</tbody>
+</table>
+<h1><img class="wp-image-709 size-full aligncenter" src="http://www.nivenly.com/wp-content/uploads/2018/05/Screen-Shot-2018-05-23-at-5.43.40-PM.png" alt="" width="437" height="899" srcset="https://www.nivenly.com/wp-content/uploads/2018/05/Screen-Shot-2018-05-23-at-5.43.40-PM.png 437w, https://www.nivenly.com/wp-content/uploads/2018/05/Screen-Shot-2018-05-23-at-5.43.40-PM-146x300.png 146w, https://www.nivenly.com/wp-content/uploads/2018/05/Screen-Shot-2018-05-23-at-5.43.40-PM-280x575.png 280w, https://www.nivenly.com/wp-content/uploads/2018/05/Screen-Shot-2018-05-23-at-5.43.40-PM-170x350.png 170w" sizes="(max-width: 437px) 100vw, 437px" /></h1>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/mountain-slides-2018/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Kubecon &#8211; Copenhagen 2018 &#8211; Office Hours</title>
+		<link>https://www.nivenly.com/kubecon-copenhagen-2018-office-hours/</link>
+		<comments>https://www.nivenly.com/kubecon-copenhagen-2018-office-hours/#respond</comments>
+		<pubDate>Sun, 29 Apr 2018 23:56:37 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[K8s]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=695</guid>
+		<description><![CDATA[Hey Everyone, &#160; Me again. &#160; Okay so I am on the plane and heading to Kubecon. I haven&#8217;t updated this blog in a while so I figured it was time for a good post. Also I have been thinking about engineering a solution to a problem I have had at Kubecon in the past. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Hey Everyone,</p>
+<p>&nbsp;</p>
+<p>Me again.</p>
+<p>&nbsp;</p>
+<p>Okay so I am on the plane and heading to Kubecon. I haven&#8217;t updated this blog in a while so I figured it was time for a good post. Also I have been thinking about engineering a solution to a problem I have had at Kubecon in the past.</p>
+<p>&nbsp;</p>
+<h3>Problem Statement</h3>
+<p>I am beyond busy at Kubecon, and rarely get enough time to spend with the folks I would like to.</p>
+<h3>Proposed Solution</h3>
+<p>I was thinking about setting up an office hours situation at Kubecon where folks could come and get some time to talk about <strong>whatever </strong>they want.</p>
+<p>I have had folks come out as <strong>transgender</strong>, or <strong>homosexual</strong> to me at tech conferences. I have had folks want to <strong>talk about family</strong>, their <strong>career</strong>, advice on <strong>writing a book</strong>. Help with<strong> installing Kubernetes</strong>. Advice on <strong>CI/CD systems</strong>. Questions about their <strong>company</strong>. The list goes <strong>on</strong> and <strong>on</strong>!</p>
+<p>To be clear <strong>I very much enjoyed all of these personal encounters</strong>. I think about them all the time, and still routinely talk to most of these people.</p>
+<p><strong>I was sad</strong> that I didn&#8217;t get more time with some folks as I was running around like a mad woman. So I wanted to be a little more structured this time.</p>
+<p>So I am going to try to use <strong>calendly</strong> to help me stay organized at the conference and to book some time with people.</p>
+<p>&nbsp;</p>
+<h3></h3>
+<h3>Here is how it works:</h3>
+<ol>
+<li>Book time with me at the conference</li>
+<li>I find a <strong>small confidential</strong> corner of the conference for us to hang out at.</li>
+<li>I let you know via email where to meet me.</li>
+<li>We meet up and can talk about <strong>literally anything</strong>. This is your time ❤️</li>
+<li>I will stay as long as I can &#8211; so long as nobody else is waiting.</li>
+<li>Thats it.</li>
+</ol>
+<h3></h3>
+<h3 style="text-align: center;">You can book time with me <a href="https://calendly.com/knova/kubecon-copenhagen-1-1/">here</a></h3>
+<p><a href="https://calendly.com/knova/kubecon-copenhagen-1-1/"><img class="aligncenter wp-image-701 size-medium" src="http://www.nivenly.com/wp-content/uploads/2018/04/book-300x120.png" alt="" width="300" height="120" srcset="https://www.nivenly.com/wp-content/uploads/2018/04/book-300x120.png 300w, https://www.nivenly.com/wp-content/uploads/2018/04/book.png 355w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>FAQ:</h3>
+<p>&nbsp;</p>
+<p><strong>Does this mean this is all I get?</strong></p>
+<p>Nope.</p>
+<p>This is just a way to keep things structured, normal conference chaos rules still apply &#8211; I just give the folks who book time priority.</p>
+<p>&nbsp;</p>
+<p><strong>Can we really talk about anything?</strong></p>
+<p>100% yes. We can take selfies, bitch about tech, whatever.</p>
+<p>&nbsp;</p>
+<p><b>How will I find you?</b></p>
+<p>I will send you an email (you give me your email address when you sign up) that tells you what to do. Don&#8217;t worry if something happens or you can&#8217;t find me &#8211; we will re-schedule and make it work.</p>
+<p>&nbsp;</p>
+<p><b>What if I can&#8217;t find you?</b></p>
+<p>Don&#8217;t worry if something happens or you can&#8217;t find me &#8211; we will re-schedule and make it work.</p>
+<p>&nbsp;</p>
+<p><strong>Can I pick the place?</strong></p>
+<p>Yep &#8211; just let me know in the email! We can get food, booze, coffee, ice cream &#8211; whatever.</p>
+<p>&nbsp;</p>
+<p style="text-align: center;">
+<h3 style="text-align: center;">You can book time with me <a href="https://calendly.com/knova/kubecon-copenhagen-1-1/">here</a></h3>
+<p><a href="https://calendly.com/knova/kubecon-copenhagen-1-1/"><img class="aligncenter wp-image-701 size-medium" src="http://www.nivenly.com/wp-content/uploads/2018/04/book-300x120.png" alt="" width="300" height="120" srcset="https://www.nivenly.com/wp-content/uploads/2018/04/book-300x120.png 300w, https://www.nivenly.com/wp-content/uploads/2018/04/book.png 355w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/kubecon-copenhagen-2018-office-hours/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Meanwhile, in the kubicorn repository&#8230;</title>
+		<link>https://www.nivenly.com/meanwhile-in-the-kubicorn-repository/</link>
+		<comments>https://www.nivenly.com/meanwhile-in-the-kubicorn-repository/#comments</comments>
+		<pubDate>Wed, 14 Mar 2018 05:40:42 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Go]]></category>
+		<category><![CDATA[K8s]]></category>
+		<category><![CDATA[Unix]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[article]]></category>
+		<category><![CDATA[blog]]></category>
+		<category><![CDATA[cluster]]></category>
+		<category><![CDATA[cluster api]]></category>
+		<category><![CDATA[controller]]></category>
+		<category><![CDATA[infrastructure]]></category>
+		<category><![CDATA[k8s]]></category>
+		<category><![CDATA[kubernetes]]></category>
+		<category><![CDATA[kubicorn]]></category>
+		<category><![CDATA[update]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=671</guid>
+		<description><![CDATA[Okay &#8211; wow &#8211; it&#8217;s been a long time since I have blogged here&#8230; &#160; ❤️ Hi everyone! I missed you! ❤️ &#160; &#160; So due to some unforeseen circumstance in the past ~year or so&#8230; I was unable to continue contributing to my pride and joy Kubicorn! It&#8217;s been a real bummer, but I am glad [&#8230;]]]></description>
+				<content:encoded><![CDATA[<h1>Okay &#8211; wow &#8211; it&#8217;s been a long time since I have blogged here&#8230;</h1>
+<p>&nbsp;</p>
+<p style="text-align: center;">❤️ Hi everyone! I missed you! ❤️</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: left;"><a href="github.com/kubicorn/kubicorn"><img class="alignleft" src="https://raw.githubusercontent.com/kubicorn/kubicorn/master/docs/img/kubicorn-trans.png" alt="" width="212" height="236" /></a>So due to some unforeseen circumstance in the past ~year or so&#8230; I was unable to continue contributing to my <strong>pride</strong> and <strong>joy</strong> <a href="https://github.com/kubicorn/kubicorn">Kubicorn!</a> It&#8217;s been a real bummer, but I am glad to say that those days are officially behind me!</p>
+<p>&nbsp;</p>
+<p>The good news? I am back! And we are working hard on making <code>kubicorn</code> even more amazing!</p>
+<p>&nbsp;</p>
+<p>So without further delay, let&#8217;s start looking into what I wanted to update everyone about <code>kubicorn</code>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>What is <a href="http://github.com/kubicorn/kubicorn"><code>kubicorn</code></a>?</h1>
+<h3>Kubicorn is a Kubernetes infrastructure management tool!</h3>
+<p><code>kubicorn</code> attempts to solve managing kubernetes based infrastructure in a cloud native way. The project is supported by the <a href="https://www.cncf.io">Cloud Native Computing Foundation (CNCF) </a> and attempts to offer a few things unique to cloud native infrastructure:</p>
+<ol>
+<li>Modular components</li>
+<li>Vendorable library in Go</li>
+<li>A guarantee-less framework that is flexible and scalable</li>
+<li>A solid way to bootstrap and manage your infrastructure</li>
+<li>Software to manage infrastructure</li>
+</ol>
+<p>&nbsp;</p>
+<p>These patterns are fundamental to understanding cloud native technologies, and (in my opinion) are the future of infrastructure management!</p>
+<p style="text-align: center;"><em>How do I know this? I literally <a href="http://www.cnibook.info">wrote the book on it</a>&#8230;</em></p>
+<p>TLDR; It&#8217;s a badass command line tool that goes from <code>0</code>to <code>kubernetes</code> in just a few moments.</p>
+<p>&nbsp;</p>
+<h1>What&#8217;s new in <a href="http://github.com/kubicorn/kubicorn"><code>kubicorn</code></a>?</h1>
+<h3>We have officially adopted the Kubernetes cluster API</h3>
+<p>The cluster API is an official working group in the Kubernetes community.</p>
+<p>The pattern dictates that while bootstrapping a cluster, <code>kubicorn</code> will first create the Kubernetes control plane.</p>
+<p>Then <code>kubicorn</code> will define the control plane itself, as well as the machines that will serve as the nodes (workhorses) of the Kubernetes cluster.</p>
+<p>Finally, <code>kubicorn</code>will install a controller that will realize the machines defined in the previous step.</p>
+<p>This allows for arbitrary clients to adjust the machine definition, without having to care how <code>kubicorn</code> will <strong>autoscale</strong> their cluster.</p>
+<p>&nbsp;</p>
+<p><a href="http://www.nivenly.com/wp-content/uploads/2018/03/k8s.png"><img class="aligncenter wp-image-677 size-thumbnail" src="http://www.nivenly.com/wp-content/uploads/2018/03/k8s-150x150.png" alt="" width="150" height="150" srcset="https://www.nivenly.com/wp-content/uploads/2018/03/k8s-150x150.png 150w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-300x300.png 300w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-350x350.png 350w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s.png 400w" sizes="(max-width: 150px) 100vw, 150px" /></a></p>
+<p style="text-align: center;"><strong>Autoscaling infrastructure, the kubernetes way!</strong></p>
+<p><a href="http://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten.png"><img class="aligncenter wp-image-676 size-full" src="http://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten.png" alt="" width="512" height="402" srcset="https://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten.png 512w, https://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten-300x236.png 300w, https://www.nivenly.com/wp-content/uploads/2018/03/kubicorn-patten-446x350.png 446w" sizes="(max-width: 512px) 100vw, 512px" /></a></p>
+<p>So this is an official working group of Kubernetes, and more information can be found <a href="https://github.com/kubernetes/community/tree/master/wg-cluster-api">here</a>!</p>
+<p>We are currently working on building out this framework, and if you think it is a good idea (like we do) feel free to get involved.</p>
+<ul>
+<li><a href="http://slack.k8s.io/">Slack channel</a> #kubicorn</li>
+<li><a href="https://groups.google.com/forum/#!forum/kubicorn-users-and-developers">Mailing List (with calendar invite to developer calls)</a></li>
+<li><a href="https://github.com/kubicorn/kubicorn">Github</a></li>
+</ul>
+<h3>We have a dope website</h3>
+<p><a href="http://kubicorn.io">kubicorn.io</a></p>
+<p>So many thanks to <a href="https://twitter.com/ellenkorbes">Ellen</a> for her hard work in building out our fabulous site. If you would like to contribute please let us know!</p>
+<h3>We have moved to our own GitHub organization</h3>
+<p>Despite my attempts to keep the project as one of my pets, it&#8217;s just gotten too big. It has now moved to it&#8217;s own organization. We would love for YOU to get involved. Just open up an issue or contact <strong>Kris Nova</strong> if you would like to join.</p>
+<h3>We are just now starting on the controller</h3>
+<p>Writing the infrastructure controller is probably the most exciting thing to happen to the project yet.</p>
+<p>We literally JUST started the <a href="https://github.com/kubicorn/controller">repository</a>. Get in now, while the getting is good!</p>
+<p>We need help with the Dockerfile, with the idea behind the controller, and even with the code to make it so. If you wan&#8217;t to get involved, now is your chance!</p>
+<h3>We want your help</h3>
+<p>Seriously.</p>
+<p>Our lead maintainer <a href="https://twitter.com/xmudrii">Marko</a> started out as someone on the internet just like you. He is now a super admin of the project, and is a rock star at keeping up with the day-to-day work of <code>kubicorn</code>.</p>
+<p>We would love to help you become a cloud native badass if you would like to contribute. Please join the <a href="http://slack.k8s.io/">slack channel</a> and start talking to us.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>And of course as always&#8230;</p>
+<p>&nbsp;</p>
+<h3>Let me know what you think in the comments below!</h3>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/meanwhile-in-the-kubicorn-repository/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Emailing is rude</title>
+		<link>https://www.nivenly.com/emailing-is-rude/</link>
+		<comments>https://www.nivenly.com/emailing-is-rude/#comments</comments>
+		<pubDate>Sat, 28 Oct 2017 05:08:55 +0000</pubDate>
+		<dc:creator><![CDATA[Kris Nova]]></dc:creator>
+				<category><![CDATA[Unix]]></category>
+
+		<guid isPermaLink="false">http://www.nivenly.com/?p=643</guid>
+		<description><![CDATA[The SMTP protocol originated in 1982. According to Wikipedia most large email providers have proprietary protocols for exchanging data, all of them use SMTP while delivering outside the scope of their know protocol. I have put together a list of truths about email to bring to lite how utterly rude and lazy it is to [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>The <a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP protocol originated in 1982</a>.</p>
+<p>According to Wikipedia most large email providers have proprietary protocols for exchanging data, all of them use SMTP while delivering outside the scope of their know protocol.</p>
+<p>I have put together a list of truths about email to bring to lite how utterly rude and lazy it is to send another human an email and have an expectation that they take your request sincerely.</p>
+<p>&nbsp;</p>
+<h1>Emails are idempotent</h1>
+<blockquote><p>Ever tpoy in an email beofre?</p></blockquote>
+<p>I certainly have. Most communication standards today allow for updates to messages. Facebook, slack, Instagram, YouTube and many others all have an <code>edit</code> button next to your message.</p>
+<p>In fact, there is a company called Twitter that explicitly does <strong>NOT</strong> allow editing of a message. This is controversial but is ultimately part of what makes Twitter so trustworthy.</p>
+<p>There is a reasonable expectation that if a user is using Twitter, that they accept the fact that their messages are idempotent.</p>
+<p>Why in the hell do we think it&#8217;s a good idea to send idempotent messages to other humans to organize our thoughts? Organizing thoughts is notoriously hard and complicated, and it would be great if we had the ability to edit a thought after having it.</p>
+<p><strong>Guess what? Humans change their minds some times. </strong></p>
+<p>Imagine a text editor that didn&#8217;t let you use the <code>backspace</code> key.</p>
+<p>There is a reason we no longer have typewriters&#8230;</p>
+<h1>Reasons for sending email</h1>
+<p>I would say 99% of the emails I receive fit into one of the following categories.</p>
+<ol>
+<li>Dead end content</li>
+<li>Convenience</li>
+<li>Request for action</li>
+<li>Scheduling</li>
+</ol>
+<p>And if you think about it:</p>
+<p>2 is really just an extension of 1 and 4 is really just an extension of 3</p>
+<p>So to break it down even more granularly, here are really the 2 categories of email a person might receive</p>
+<ol>
+<li>Dead end content</li>
+<li>Request for action</li>
+</ol>
+<p>Every email I have ever received in my life is genuinely in one of these two buckets.</p>
+<h3>Dead end content</h3>
+<p>This is content that does not require action on your end. Usually it is sent as a convenience, FYI, or just to help me sender feel better.</p>
+<p>Ever get an email that just says <code>thanks</code>?</p>
+<p>Ever get an email where the subject contains <code>FYI</code>?</p>
+<p>There are so many reference emails that could hit your inbox that it takes large amounts of conscious effort to cipher through the noise. If you send these you should punch yourself in the face.</p>
+<p>Imagine buying a book that was packaged like your inbox and instead of having chapters and a table of contents was just a pile of pages without any order. It would be hard to read the book, and would require a lot of effort just to abstract the story from the pages.</p>
+<p>Furthermore what if some of the pages had requests for you to do something on them? And if you didn&#8217;t comply with the requests you would lose your job. <strong>Literally </strong>this is my inbox.</p>
+<p><strong>If you have something to say that does not require input or action from me it belongs on a web site, and not in my inbox. </strong></p>
+<h3>Request for action</h3>
+<p>This is probably the worst part of email. Humans actually do this, and I can&#8217;t understand why anyone thinks this is a rational thing to do.</p>
+<p><strong>Humans literally hide requests for action behind text blobs.</strong></p>
+<blockquote><p>Hi Kris,</p>
+<p>I was wondering if I could ask you a few questions?</p>
+<p>I was wondering if I could talk to you about my company BoringCorp. We are a successful startup from Silicon Valley and are on series F funding. Today is our 3 month anniversary in business. We were wondering if you would be interested in attending our inaugural company ball as a guest of honor? It would be an honor to have. I hope you are well.</p>
+<p>Regards,</p>
+<p>J</p>
+<p>&nbsp;</p></blockquote>
+<p>There is a large block of text above, but let me break it down what just happened.</p>
+<ol>
+<li>The sender sent a message with an expectation that I will respond to their request for attending their company ball.</li>
+<li> The sender did not provide all the information I would need to correctly respond to their request.</li>
+<li>The sender has implied that the event is important to them, so I should treat the request also as important.</li>
+<li>The sender sent a lot of information, and most of it isn&#8217;t relevant to the request.</li>
+<li>The sender&#8217;s name probably starts with J.</li>
+</ol>
+<p>So now not only do I have to invest time into deriving the request for action from the email, but the sender has burdened me with guilt if I do not comply with their request. Thanks.</p>
+<p>In the year 2017 we have an entire industry built around best ways to organize thoughts and ideas. We have large agile platforms like Jira, Asana, and Trello that help user&#8217;s organize tasks. In fact, in most cases there is a reasonable expectation that you <strong>won&#8217;t even be able to generate work without minimal criteria</strong>.</p>
+<p>Imagine a request for action that contained information like <strong>when</strong>, and <strong>where</strong>, and <strong>how to define success</strong>? Imagine if a user couldn&#8217;t even request action from you if it wasn&#8217;t delivered in a way that was meaningful to the person you are requesting action from? This is a reasonable expectation for other parts of the internet, but email just seems like forgive people for acting like complete asshats and requesting action via text blob.</p>
+<p>Imagine a restaurant that didn&#8217;t serve you a meal but rather gave you a huge blob of junk with your food buried somewhere in the pile of junk. That would be crazy. That restaurant clearly would not be successful if compared to restaurants that spend time and effort preparing a lovely meal for you.</p>
+<p>Because <strong>packaging</strong><strong> is important</strong>. And email encourages users to <strong>NOT</strong> <strong>package well;</strong> because the interface for sending an email is just a giant text field just waiting to be filled with complete garbage instead of small discreet text fields that represent minimal criteria for the person requesting action.</p>
+<h1>Emails come with implications</h1>
+<blockquote><p>hi,</p>
+<p>are u coming?</p>
+<p>J</p></blockquote>
+<p>This is a completely normal email for me to receive, and that is completely unreasonable.</p>
+<p>Here is what just happened</p>
+<ol>
+<li>J has covered their ass</li>
+</ol>
+<p>That&#8217;s it. Now if anything goes wrong it&#8217;s my fault because &#8220;Well I sent her an email about it&#8230;&#8221;</p>
+<p>But I don&#8217;t even need to explain all the things wrong with this message. It&#8217;s just completely bullshit content. There is nothing concrete here, and J seems to think I can just imply information like</p>
+<ul>
+<li>What would I be coming to?</li>
+<li>Where is this place at?</li>
+<li>When do I need to be at this place?</li>
+<li>Is this meeting important to you, or important to me? Neither? Both?</li>
+<li>Do I need to bring anything to the meeting?</li>
+<li>Is this even a meeting?</li>
+</ul>
+<p>Implying is bad, and usually humans get it wrong. Period.</p>
+<p>As it turns out, J was asking if I would be coming to the meeting he scheduled via text blob. It is important to him that I come to his text blob meeting.</p>
+<p>Meanwhile I am too busy getting shit done to deal with deciphering text blobs all day.</p>
+<h1>Emails are lazy</h1>
+<p>So it&#8217;s easy to just dump into a text field. Anyone can do it, and it doesn&#8217;t require much thought.</p>
+<p>Furthermore the act of sending an email is relatively safe, because the other person doesn&#8217;t have to respond immediately.</p>
+<p>So sending an email is a way for a human to send <strong>some</strong> message, without having to concern themselves about how it was packaged.</p>
+<p>Imagine if communication worked this way. Where you would just walk into a room and say whatever in the hell you wanted, and walked out with the expectation that whoever your message was intended for will receive and respond to your message.</p>
+<p><strong>If you send emails, you are lazy. </strong></p>
+<p>If you want me to take action, we first need to have a discussion about how we will work with action requests moving forward. After we come up with a way for us to work together, we can begin to create viable action items.</p>
+<p>If this sounds like too much work, consider how much time you spend deciphering bullshit from your inbox each day. I personally would be willing to trade time from me figuring out your bullshit, to you figuring out your own bullshit.</p>
+<p>Be awesome.</p>
+<p><strong>Figure your bullshit out first, so I don&#8217;t have to.</strong></p>
+<p>&nbsp;</p>
+<h1>Email clients are different.</h1>
+<p>Ever see an email that looks like this?</p>
+<p>&nbsp;</p>
+<blockquote><p>kris?</p>
+<p>&gt;</p>
+<p>&gt;</p>
+<p>&gt; &gt;</p>
+<p>&gt; &gt; &gt;</p>
+<p>&gt; &gt; &gt; &gt;</p>
+<p>&gt; &gt; &gt; &gt; &gt;</p>
+<p>&gt; &gt; &gt; &gt; hi,</p>
+<p>&gt; &gt; &gt; &gt; are you coming?</p>
+<p>&gt; &gt; &gt; &gt;</p>
+<p>&gt; &gt; &gt; &gt; J</p></blockquote>
+<p>Because my inbox is full of them.</p>
+<p>It seems that ever piece of software in the world respects the golden rule except email clients.</p>
+<p><strong>It&#8217;s never okay to mutate data that is not yours</strong></p>
+<p>Email clients fucking love to mutate your data. We are gonna add colors, and characters, and tabs and spaces. We are <a href="http://nivenly.com/j">gonna insert wingdings</a> into your email. You name it, we are gonna do it.</p>
+<p>So not only do I receive messages with vague text blobs that require <strong>effort</strong> on my end to understand, but chances are it&#8217;s not even the original bullshit text blob you sent anyway.</p>
+<p>&nbsp;</p>
+<h1>In conclusion</h1>
+<p>We need to figure out ways for humans to perform creating <strong>dead end content</strong> and <strong>requesting action</strong> that doesn&#8217;t involve email.</p>
+<p>In the mean time, can you please for fucks sake be considerate of your messages to me?</p>
+<p>I get upwards of 5 thousand messages a day, and the least you could do is spend a few seconds and make your message to me easily digestible.</p>
+<p>And remember, if it&#8217;s dead end content then put it on Facebook, or Twitter. If I like it I will give you a <img src="https://s.w.org/images/core/emoji/2.3/72x72/1f44d.png" alt="&#x1f44d;" class="wp-smiley" style="height: 1em; max-height: 1em;" />. But there is no reason to bundle that in with my other messages that may or may not be needing something from me.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>10 Rules for writing an email that doesn&#8217;t suck</h1>
+<p>&nbsp;</p>
+<h5>1. Start off the email by apologizing for using email.</h5>
+<p>Just get it out of the way, and admit you know what you are doing is evil. But please keep it short and sweet</p>
+<blockquote><p>Hi <code>$name</code>, sorry for sending you an email but <code>$content</code>?</p></blockquote>
+<p>&nbsp;</p>
+<h5>2. Respect the subject</h5>
+<p>The subject of an email is an important as naming a function. It should be descriptive enough to explain what the email is about, and still let a reader know what to expect within the content of the email.</p>
+<p>Furthermore, you should clearly define if your email is a <strong>request for action</strong>, or <strong>dead end content</strong>.</p>
+<p>&nbsp;</p>
+<p><img class="aligncenter wp-image-651 size-large" src="http://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-1024x83.png" alt="" width="640" height="52" srcset="https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-1024x83.png 1024w, https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-300x24.png 300w, https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-768x62.png 768w, https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM-750x60.png 750w, https://www.nivenly.com/wp-content/uploads/2017/10/Screen-Shot-2017-10-28-at-10.26.32-AM.png 1042w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p>&nbsp;</p>
+<h5>3. No more than 1 reply. Ever.</h5>
+<p>The rule is simple, it is only okay for one person to reply to any email once before the email is locked and nobody else can reply. If you feel like you need to send another message, draft a new email with a new meaningful subject.</p>
+<p>&nbsp;</p>
+<h5>4. Do one thing and do it well.</h5>
+<p>Yep. I <code>Unix philosophy</code>&#8216;d you. Emails are only allowed to do one thing. If you combine multiple requests for action, or multiple sets of content in your email you are doing it wrong.</p>
+<h5></h5>
+<h5></h5>
+<h5>5. You get one sentence, use it wisely.</h5>
+<p>A complete sentence is used to express a complete thought. A <strong>single</strong> complete thought. Which means your email should never be longer than 1 sentence. If you are good, you can even combine that with your apology for using email.</p>
+<blockquote><p>Hi Kris, and I am so sorry for sending you an email, but I was wondering if you could attend our company ball [URL to more information about ball]?</p></blockquote>
+<p>&nbsp;</p>
+<h5>6. End your sentence with proper punctuation.</h5>
+<p>Always make sure to use proper punctuation at the end of your sentence. In the case your email ends with a period <code>.</code> you should copy/paste the email into a Tweet or Facebook post and not send the email.</p>
+<p>In the case your email ends with a question mark <code>?</code> you should re-read your email to make sure it&#8217;s well crafted and check your subject to make sure it&#8217;s meaningful. Then you may press send.</p>
+<h5></h5>
+<h5>7. No forwarding</h5>
+<p>Thats the rule, never forward email. If you forward email you are doing it wrong. You can copy/paste email content from one email to your personal blog. Then you can reference that blog from the next email you need to send.</p>
+<h5></h5>
+<h5>8. No more than one recipient</h5>
+<p>If you send an email to more than one person, or ever hit <code>reply all</code> you should punch yourself in the face. If you expect each person you are sending a message to to respond to your message you need to demonstrate that you are willing to spend that much time on them. They get a personal email, or no deal.</p>
+<h5></h5>
+<h5>9. Your signature must be smaller than 100 bytes</h5>
+<p>For your signature you get 3 choices</p>
+<ol>
+<li>Full legal name</li>
+<li>Preferred name</li>
+<li>Notable online handle</li>
+</ol>
+<p>Your signature should never be more than 100 bytes.</p>
+<h5></h5>
+<h5>10. No attachments</h5>
+<p>Ever. Never is it okay to attach anything to an email. You have two options for including media in your email:</p>
+<ol>
+<li>You may reference the media&#8217;s public URL</li>
+<li>You can opt out of using media.</li>
+</ol>
+]]></content:encoded>
+			<wfw:commentRss>https://www.nivenly.com/emailing-is-rude/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+	</channel>
+</rss>

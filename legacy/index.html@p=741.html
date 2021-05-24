@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.nivenly.com/xmlrpc.php">
+<title>Open Source at Sysdig</title>
+<link rel='dns-prefetch' href='../nivenly.com/index.html' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Feed" href="feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Comments Feed" href="comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Open Source at Sysdig Comments Feed" href="oss-sysdig/feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.nivenly.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.11"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='wp-content/plugins/contact-form-7/includes/css/styles.css@ver=4.8.css' type='text/css' media='all' />
+<link rel='stylesheet' id='icomoon-css'  href='wp-content/plugins/kiwi-social-share/assets/vendors/icomoon/style.css@ver=2.0.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='counter-style-css'  href='wp-content/plugins/page-visit-counter/public/css/counter-style.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='wp-includes/css/dashicons.min.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='post-views-counter-frontend-css'  href='wp-content/plugins/post-views-counter/css/frontend.css@ver=1.2.7.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-defaultbasic-css'  href='wp-content/themes/micky/style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='wp-content/themes/micky/assets/css/bootstrap.min.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='wp-content/themes/micky/assets/css/font-awesome.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='line-icons-css'  href='wp-content/themes/micky/assets/css/simple-line-icons.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-select-css'  href='wp-content/themes/micky/assets/css/bootstrape-select.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='animation-css'  href='wp-content/themes/micky/assets/css/animation.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-style-css'  href='wp-content/themes/micky/assets/css/custom-style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-responsive-css'  href='wp-content/themes/micky/assets/css/responsive.css@ver=1.css' type='text/css' media='all' />
+<style id='micky-responsive-inline-css' type='text/css'>
+
+		.header_top_main .mk_top_navigations ul.menu li a {
+			color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li.current_page_item > a {
+			border-color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li > a:hover {
+			border-color: ;
+		}
+</style>
+<link rel='stylesheet' id='micky-googlefonts-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='wp-includes/js/jquery/jquery.js@ver=1.12.4'></script>
+<script type='text/javascript' src='wp-includes/js/jquery/jquery-migrate.min.js@ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pagevisit = {"ajaxurl":"https:\/\/www.nivenly.com\/wp-admin\/admin-ajax.php","pageurl":"https:\/\/www.nivenly.com\/oss-sysdig"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/page-visit-counter/public/js/custom.js@ver=1.0.0'></script>
+<link rel='https://api.w.org/' href='wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php@rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Embedded Advocacy' href='index.html@p=731.html' />
+<link rel='next' title='Empathy please!' href='index.html@p=841.html' />
+<meta name="generator" content="WordPress 4.8.11" />
+<link rel="canonical" href="index.html@p=741.html" />
+<link rel='shortlink' href='index.html@p=741.html' />
+<link rel="alternate" type="application/json+oembed" href="wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252Foss-sysdig%252F" />
+<link rel="alternate" type="text/xml+oembed" href="wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252Foss-sysdig%252F&amp;format=xml" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<link rel="icon" href="wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-32x32.png" sizes="32x32" />
+<link rel="icon" href="wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.nivenly.com/wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-270x270.png" />
+</head>
+<body class="post-template-default single single-post postid-741 single-format-standard custom-background">
+<div class="main_wrapper_cover">
+<header>
+<div class="wrapper_main header_top_main">
+   <div class="container">
+    <div class="row">
+     <div class="full_width header_navigation">
+      <div class="col-sm-3">
+	   <div class="mk_logo">
+	   		<h1 class="site-title"><a href="../nivenly.com/index.html" rel="home"></a></h1>
+	   </div>
+	  </div>
+      <div class="col-sm-9">   
+       <!-- navbar toggle start -->
+		  <div class="navbar-header pull-right">
+			  <button type="button" class="navbar-toggle navbar_toogle" data-toggle="collapse" data-target="#myNavbar"> 
+				<i class="fa fa-list-ul"></i> 
+			  </button>
+		  </div>
+       <!-- navbar toggle end--> 
+       <!-- navigation start -->
+       <div class="mk_top_navigations">
+	   <ul id="menu-header" class="menu"><li id="menu-item-169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-169"><a href="../nivenly.com/index.html">Home</a></li>
+<li id="menu-item-469" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-469"><a href="category/go/index.html">Go</a></li>
+<li id="menu-item-470" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-470"><a href="category/k8s/index.html">Kubernetes</a></li>
+<li id="menu-item-472" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-472"><a href="category/unix/index.html">Unix</a></li>
+<li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="https://becomingkris.com">BecomingKris.com</a></li>
+<li id="menu-item-595" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-595"><a href="http://cnibook.info">CNI Book</a></li>
+</ul>		
+        </div>
+       <!-- navigation end --> 
+      </div>
+      <!-- header_navigation_cover --> 
+     </div>
+    </div>
+   </div>
+  </div>
+  <!--  header navigation end --> 
+</header><div class="wrapper_main breadcum_part">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcum_inner main">
+				<h3 class="">Open Source at Sysdig</h3> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrapper_main Blog_details_section">
+	<div class="container">
+		<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+						<div id="post-741" class="post-741 post type-post status-publish format-standard hentry category-c category-go category-k8s category-uncategorized category-unix">
+<div class="blog_post_wrapper_main">
+      <div class="blog_thumbnail"> 
+	  	  </div>
+     </div>
+     <div class="blog_desc blog_details_desc">
+      <h3>Open Source at Sysdig</h3>
+		<div class="bottom">
+		  <span class="posted-on"> <a href="index.html@p=741.html" rel="bookmark"><time class="entry-date published" datetime="2019-08-21T06:00:25+00:00">August 21, 2019</time><time class="updated" datetime="2019-09-04T23:37:41+00:00">September 4, 2019</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="author/kris/index.html">Kris Nova</a></span></span>		</div>
+      <div class="blog_content">
+       <h3 style="text-align: center;">Earlier this year I found myself taking a much needed break from employment.</h3>
+<h1></h1>
+<p><img class=" wp-image-817 alignright" style="border: 2px solid black;" src="http://www.nivenly.com/wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-200x300.jpg" alt="" width="438" height="657" srcset="wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-200x300.jpg 200w, wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-768x1152.jpg 768w, wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-683x1024.jpg 683w, wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-383x575.jpg 383w, wp-content/uploads/2019/07/B55A3382-ACB6-452E-8D48-F63242AA9767-1-233x350.jpg 233w" sizes="(max-width: 438px) 100vw, 438px" />I began taking a meticulous approach at looking for a new gig. I was astonished and overwhelmed at the interest I had from amazing organizations in the Cloud Native ecosystem. I met with large tech companies, startups, and entrepreneurs yet to start their journey. I noticed everyone was very excited about Kubernetes. Every meeting shared the common theme. It seemed like the entire industry was obsessed with solving their unique problems with our new distributed kernel: Kubernetes.</p>
+<p>&nbsp;</p>
+<blockquote><p>There was only one problem:  <strong>Kubernetes is effectively &#8220;complete&#8221;</strong></p></blockquote>
+<p>&nbsp;</p>
+<p style="text-align: left;">Don&#8217;t get me wrong, there is still a lot of work to do and Kubernetes will always have room for improvement.</p>
+<p style="text-align: left;">My point here is that the core functionality of Kubernetes has not only been completed, but iterated on several times over. The scope of the project is relatively finite, and we have reached a point of maturity where we have functional components to satisfy this scope. The API is several versions deep, and the goal of the project was to provide a platform for the ecosystem to build on. We have achieved that. With that being said, taking another &#8220;Kubernetes Centric&#8221; role didn&#8217;t seem very attractive to me. I love Kubernetes and have been working with the core upstream community for a long time, but I think it&#8217;s time to pivot slightly.</p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;">I am an innovator.</h3>
+<p style="text-align: center;">One could argue the majority of innovation <strong>within</strong> Kubernetes has long since been crafted, whereas innovation <strong>with</strong> Kubernetes is just beginning.</p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;">Regardless, I am convinced Kubernetes is here to stay.</h3>
+<p><img class=" wp-image-677 alignleft" src="http://www.nivenly.com/wp-content/uploads/2018/03/k8s-300x300.png" alt="" width="167" height="167" srcset="wp-content/uploads/2018/03/k8s-300x300.png 300w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s-150x150.png 150w, wp-content/uploads/2018/03/k8s-350x350.png 350w, https://www.nivenly.com/wp-content/uploads/2018/03/k8s.png 400w" sizes="(max-width: 167px) 100vw, 167px" /></p>
+<p>As the new Cloud Native &#8220;kernel&#8221; for distributed systems management, Kubernetes surely won&#8217;t be disappearing from my career any time soon. Nor will the CNCF. As a Kubernetes expert naturally I began my investigation into discovering technology that solved real problems in unique and powerful ways. I really wanted to find technology that I believed in, that I still hadn&#8217;t mastered, and that would get me excited. I wanted to go deeper into the little black boxes that still seemed like magic to me. I wanted more. I found myself speaking with many companies and looked at a lot of open source tools: service meshes, networking tools, deployment tools, etc.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 style="text-align: center;">There was one company that stood out&#8230;</h1>
+<p><img class=" wp-image-748 aligncenter" src="http://www.nivenly.com/wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-300x300.png" alt="" width="138" height="138" srcset="wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-300x300.png 300w, wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-150x150.png 150w, wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500-350x350.png 350w, wp-content/uploads/2019/07/sysdig-social-sharing-logo-500x500.png 500w" sizes="(max-width: 138px) 100vw, 138px" /></p>
+<h3 style="text-align: center;">I see the potential in gaining visibility into our systems at the kernel level, while operating a containerized system on top.</h3>
+<h3 style="text-align: center;">Period.</h3>
+<p>&nbsp;</p>
+<p><a href="https://sysdig.com/" target="_blank" rel="noopener"><img class="wp-image-749 alignleft" src="http://www.nivenly.com/wp-content/uploads/2019/07/twitter-share-sysdig-300x288.png" alt="" width="80" height="77" srcset="wp-content/uploads/2019/07/twitter-share-sysdig-300x288.png 300w, wp-content/uploads/2019/07/twitter-share-sysdig-768x736.png 768w, wp-content/uploads/2019/07/twitter-share-sysdig-600x575.png 600w, wp-content/uploads/2019/07/twitter-share-sysdig-365x350.png 365w, wp-content/uploads/2019/07/twitter-share-sysdig.png 868w" sizes="(max-width: 80px) 100vw, 80px" /></a>Furthermore there are a lot of other reasons I made the choice I did. To be be completely honest I simply fell in love with the way everyone worked. They were a low level shop of hackers and genuine people. Everyone I met was empowered and knew precisely what they were talking about. It was a refreshing interviewing experience. Good friends from open source like the infamous POP truly helped make me feel welcomed and respected. During my interview we white boarded the Linux kernel not to pass a frivolous test, but because we genuinely needed the diagram for our discussion on <a href="https://en.wikipedia.org/wiki/Berkeley_Packet_Filter">eBPF.</a> I immediately knew that this job was going to push me forward technically. I loved it.</p>
+<p>As the saga goes, the company offered me a position to take on ownership of our open source tools and I was thrilled. I am quite excited for our team, and an opportunity to do what I love doing: inspiring engineers and solving concrete problems with them!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;"><strong>So let&#8217;s talk Falco.</strong></h1>
+<p>&nbsp;</p>
+<p>As part of my new role at Sysdig I will be managing our OSS team, while simultaneously working on our tools with them. I am way too excited about new friends in <a href="https://github.com/cncf/sig-security">Kubernetes SIG-security</a>. Growing Falco and driving adoption will be a primary goal for me at Sysdig. We want to flesh Falco out as the defacto way of pulling metrics from the kernel for runtime security and intrusion detection.</p>
+<p><strong><a href="https://falco.org" target="_blank" rel="noopener"><img class="wp-image-776 alignright" src="http://www.nivenly.com/wp-content/uploads/2019/07/falco-logo-300x120.png" alt="" width="430" height="172" srcset="wp-content/uploads/2019/07/falco-logo-300x120.png 300w, wp-content/uploads/2019/07/falco-logo-768x306.png 768w, wp-content/uploads/2019/07/falco-logo-1024x408.png 1024w, wp-content/uploads/2019/07/falco-logo-750x299.png 750w, wp-content/uploads/2019/07/falco-logo-878x350.png 878w, wp-content/uploads/2019/07/falco-logo.png 1192w" sizes="(max-width: 430px) 100vw, 430px" /></a></strong>Once upon a time a simple network packet had every bit of information you needed for total forensics analysis. Today with Kubernetes abstractions sharing network, disk, and memory across containerized process the network is no longer a viable avenue for learning about our complete systems behavior. This is where Falco and eBPF come into the picture.</p>
+<p>Falco uses two critical components into gaining visibility of our systems. The first is a comprehensive list of syscall information that we access via eBPF. The second is our context from Kubernetes. By joining these two otherwise completely separated bits of data together, we now have everything we need to secure a Kubernetes cluster.</p>
+<p>Falco allows users to dynamically build rules against this rich data set, and can take action if and when a rule is broken. This noninvasive and elegant approach to security is built on battle tested concepts, applied in exciting new ways. To be honest, I can&#8217;t wait to start hacking on the kernel with the rest of the folks on the team. I am excited to go deeper into kernel security with eBPF and Falco.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;"><strong>So lets get started!</strong></h1>
+<h3><strong><img class="wp-image-799 alignright" style="border: 2px solid black;" src="http://www.nivenly.com/wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-683x1024.jpg" alt="" width="471" height="706" srcset="wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-683x1024.jpg 683w, wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-200x300.jpg 200w, wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-768x1152.jpg 768w, wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-383x575.jpg 383w, wp-content/uploads/2019/07/ea48e21e-c192-47ef-ab49-b2862841f042-233x350.jpg 233w" sizes="(max-width: 471px) 100vw, 471px" /></strong></h3>
+<p>Today I am pleased to announce full time employment with Sysdig!</p>
+<p>&nbsp;</p>
+<p>I will be spending some time getting to know our current state of affairs and exploring our other open source tools moving forward. Stay tuned for updates as we start to dial up our presence in the open source ecosystem with tools like Falco.</p>
+<p>&nbsp;</p>
+<p>Please reach out if you are interested in collaborating or would like to find out more about our new projects. My email is <a href="mailto:kris.nova@sysdig.com">nova@sysdig.com</a> and I would love to hear from you.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+<li><a href="mailto:kris.nova@sysdig.com">kris.nova@sysdig.com</a></li>
+<li><a href="http://slack.sysdig.com">slack.sysdig.com</a></li>
+<li><a href="http://github.com/falcosecurity/falco">github.com/falcosecurity/falco</a></li>
+<li><a href="http://falco.org">falco.org</a></li>
+<li><a href="http://twitter.com/sysdig">@sysdig</a></li>
+<li><a href="http://twitter.com/falco_org">@falco_org</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: center;">
+<div class="post-views post-741 entry-meta">
+			<span class="post-views-icon dashicons dashicons-chart-bar"></span>
+			<span class="post-views-label">Post Views: </span>
+			<span class="post-views-count">6,186</span>
+			</div>       </div>
+      </div>
+</div><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="index.html@p=731.html" rel="prev">Embedded Advocacy</a></div><div class="nav-next"><a href="index.html@p=841.html" rel="next">Empathy please!</a></div></div>
+	</nav>				<div class="blog_desc blog_details_desc">
+				<div class="blog_content">
+				<div class="comment_section blog_content_inner">
+<div id="comments" class="comments-area">
+<h3 class="blog-title">LEAVE A COMMENT</h3>
+<div class="comment_layer">
+	<div class="pull_left"> <span>2 comments</span></div>
+</div>
+	
+				<div class="micky_blog_comment">
+		<ol class="comment-list comment">
+				<li class="comment even thread-even depth-1" id="comment-1088">
+		<div id="div-comment-1088" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/4914a030f9f7e44f0e0f78fdbd6e8594?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/4914a030f9f7e44f0e0f78fdbd6e8594?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Cody</h5> 
+				  <span class="comment_date"><a>August 21, 2019</a></span>
+				  <span class="comment_time">08:39:am</span>
+				  <a rel='nofollow' class='comment-reply-link' href='oss-sysdig/index.html@replytocom=1088.html#respond' onclick='return addComment.moveForm( "div-comment-1088", "1088", "respond", "741" )' aria-label='Reply to Cody'>Reply</a>				 </div>
+				 		
+				<p>++++</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1089">
+		<div id="div-comment-1089" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/ec42b4b33cfe4aa663bd17aab37fcce7?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/ec42b4b33cfe4aa663bd17aab37fcce7?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Andre Almar</h5> 
+				  <span class="comment_date"><a>August 21, 2019</a></span>
+				  <span class="comment_time">09:07:am</span>
+				  <a rel='nofollow' class='comment-reply-link' href='oss-sysdig/index.html@replytocom=1089.html#respond' onclick='return addComment.moveForm( "div-comment-1089", "1089", "respond", "741" )' aria-label='Reply to Andre Almar'>Reply</a>				 </div>
+				 		
+				<p>Good luck on your new adventure Kris!!</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+		</div>
+
+			<div class="blog_comments_form">
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html@p=741.html#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://www.nivenly.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<div class="col-lg-12"><textarea name="comment" rows="3" placeholder="Comment&hellip;" class="comment_textarea"></textarea></div><div class="col-sm-6"><input id="author" name="author" type="text" placeholder="Name&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="col-sm-6"><input id="email" name="email" type="email" placeholder="Email&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="uncr-g-recaptcha"></div><p class="form-submit"><input name="submit" type="submit" id="comments_button" class="comment_button" value="Send Comment" /> <input type='hidden' name='comment_post_ID' value='741' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="8669000a92" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="249"/></p>			</form>
+			</div><!-- #respond -->
+		</div>
+</div><!-- #comments -->
+</div>				</div>
+				</div>
+										</div>
+					</div>
+	</div>
+</div>
+<footer>
+  <div class="wrapper_main footer_section_main">
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="footer_logo"> 
+	  		   <h1 style="mk_copy"><a href="../nivenly.com/index.html"></a></h1> 
+       	  </div>
+     </div>
+     <div class="col-lg-6 col-md-6 col-sm-6">
+      <p class="footer_copyright">Copyright 2017 Kris Nova <a href="../nivenly.com/index.html"></a></p>
+     </div>
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="social_icons footer_social">
+	  </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </footer>
+</div>
+<script type='text/javascript' src='wp-content/plugins/akismet/_inc/form.js@ver=3.3.2'></script>
+<link rel='stylesheet' id='captcha-style-css'  href='wp-content/plugins/uber-nocaptcha-recaptcha/assets/css/style.css@ver=4.8.11.css' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.nivenly.com\/wp-json\/","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/contact-form-7/includes/js/scripts.js@ver=4.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sta_settings = {"distance":"50","speed":"5000","exceptions":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/scroll-to-anchor/js/scroll-to-anchor.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/bootstrap-select-min.js'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/navigation.js@ver=20151215'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/skip-link-focus-fix.js@ver=20151215'></script>
+<script type='text/javascript' src='wp-content/themes/micky/assets/js/custom.js'></script>
+<script type='text/javascript' src='wp-includes/js/comment-reply.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='wp-includes/js/wp-embed.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?onload=renderUNCRReCaptcha&amp;render=explicit&amp;ver=2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var UNCR = {"site_key":"6LdjjAcUAAAAAOtl-qenrmS-_KhXjvuODKgVRuyS","key_type":"normal","theme":"dark","type":"image","submit_button":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/uber-nocaptcha-recaptcha/assets/js/recaptcha.js@ver=1.0'></script>
+</body>
+</html>

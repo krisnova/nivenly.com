@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.nivenly.com/xmlrpc.php">
+<title>Your 2nd day with Kubernetes on AWS</title>
+<link rel='dns-prefetch' href='../../nivenly.com/index.html' />
+<link rel='dns-prefetch' href='https://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='https://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Feed" href="../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Comments Feed" href="../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Your 2nd day with Kubernetes on AWS Comments Feed" href="feed/index.html" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.nivenly.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.11"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='../wp-content/plugins/contact-form-7/includes/css/styles.css@ver=4.8.css' type='text/css' media='all' />
+<link rel='stylesheet' id='icomoon-css'  href='../wp-content/plugins/kiwi-social-share/assets/vendors/icomoon/style.css@ver=2.0.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='counter-style-css'  href='../wp-content/plugins/page-visit-counter/public/css/counter-style.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='../wp-includes/css/dashicons.min.css@ver=4.8.11.css' type='text/css' media='all' />
+<link rel='stylesheet' id='post-views-counter-frontend-css'  href='../wp-content/plugins/post-views-counter/css/frontend.css@ver=1.2.7.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-defaultbasic-css'  href='../wp-content/themes/micky/style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='../wp-content/themes/micky/assets/css/bootstrap.min.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='../wp-content/themes/micky/assets/css/font-awesome.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='line-icons-css'  href='../wp-content/themes/micky/assets/css/simple-line-icons.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-select-css'  href='../wp-content/themes/micky/assets/css/bootstrape-select.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='animation-css'  href='../wp-content/themes/micky/assets/css/animation.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-style-css'  href='../wp-content/themes/micky/assets/css/custom-style.css@ver=1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='micky-responsive-css'  href='../wp-content/themes/micky/assets/css/responsive.css@ver=1.css' type='text/css' media='all' />
+<style id='micky-responsive-inline-css' type='text/css'>
+
+		.header_top_main .mk_top_navigations ul.menu li a {
+			color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li.current_page_item > a {
+			border-color: ;
+		}
+		.header_top_main .mk_top_navigations > ul > li > a:hover {
+			border-color: ;
+		}
+</style>
+<link rel='stylesheet' id='micky-googlefonts-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery.js@ver=1.12.4'></script>
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery-migrate.min.js@ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pagevisit = {"ajaxurl":"https:\/\/www.nivenly.com\/wp-admin\/admin-ajax.php","pageurl":"https:\/\/www.nivenly.com\/2nd-hour"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/page-visit-counter/public/js/custom.js@ver=1.0.0'></script>
+<link rel='https://api.w.org/' href='../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php@rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Plugins in Go 1.8 and their underlying C implementation.' href='../index.html@p=190.html' />
+<link rel='next' title='Single rooted tree in Go' href='../index.html@p=220.html' />
+<meta name="generator" content="WordPress 4.8.11" />
+<link rel="canonical" href="../index.html@p=174.html" />
+<link rel='shortlink' href='../index.html@p=174.html' />
+<meta name='robots' content='noindex,follow' />
+<link rel="alternate" type="application/json+oembed" href="../wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252F2nd-hour%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed@url=https%253A%252F%252Fwww.nivenly.com%252F2nd-hour%252F&amp;format=xml" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<link rel="icon" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-32x32.png" sizes="32x32" />
+<link rel="icon" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="../wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.nivenly.com/wp-content/uploads/2016/11/cropped-imageedit_1_3569246463-270x270.png" />
+</head>
+<body class="post-template-default single single-post postid-174 single-format-standard custom-background">
+<div class="main_wrapper_cover">
+<header>
+<div class="wrapper_main header_top_main">
+   <div class="container">
+    <div class="row">
+     <div class="full_width header_navigation">
+      <div class="col-sm-3">
+	   <div class="mk_logo">
+	   		<h1 class="site-title"><a href="../../nivenly.com/index.html" rel="home"></a></h1>
+	   </div>
+	  </div>
+      <div class="col-sm-9">   
+       <!-- navbar toggle start -->
+		  <div class="navbar-header pull-right">
+			  <button type="button" class="navbar-toggle navbar_toogle" data-toggle="collapse" data-target="#myNavbar"> 
+				<i class="fa fa-list-ul"></i> 
+			  </button>
+		  </div>
+       <!-- navbar toggle end--> 
+       <!-- navigation start -->
+       <div class="mk_top_navigations">
+	   <ul id="menu-header" class="menu"><li id="menu-item-169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-169"><a href="../../nivenly.com/index.html">Home</a></li>
+<li id="menu-item-469" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-469"><a href="../category/go/index.html">Go</a></li>
+<li id="menu-item-470" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-470"><a href="../category/k8s/index.html">Kubernetes</a></li>
+<li id="menu-item-472" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-472"><a href="../category/unix/index.html">Unix</a></li>
+<li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="https://becomingkris.com">BecomingKris.com</a></li>
+<li id="menu-item-595" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-595"><a href="http://cnibook.info">CNI Book</a></li>
+</ul>		
+        </div>
+       <!-- navigation end --> 
+      </div>
+      <!-- header_navigation_cover --> 
+     </div>
+    </div>
+   </div>
+  </div>
+  <!--  header navigation end --> 
+</header><div class="wrapper_main breadcum_part">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcum_inner main">
+				<h3 class="">Your 2nd day with Kubernetes on AWS</h3> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrapper_main Blog_details_section">
+	<div class="container">
+		<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+						<div id="post-174" class="post-174 post type-post status-publish format-standard has-post-thumbnail hentry category-k8s">
+<div class="blog_post_wrapper_main">
+      <div class="blog_thumbnail"> 
+	  		<img width="600" height="339" src="../wp-content/uploads/2016/12/kubernetes-thumb.png" class="attachment-micky-blog-single size-micky-blog-single wp-post-image" alt="" srcset="../wp-content/uploads/2016/12/kubernetes-thumb.png 600w, ../wp-content/uploads/2016/12/kubernetes-thumb-300x170.png 300w" sizes="(max-width: 600px) 100vw, 600px" />	  	  </div>
+     </div>
+     <div class="blog_desc blog_details_desc">
+      <h3>Your 2nd day with Kubernetes on AWS</h3>
+		<div class="bottom">
+		  <span class="posted-on"> <a href="../index.html@p=174.html" rel="bookmark"><time class="entry-date published" datetime="2017-03-02T05:47:03+00:00">March 2, 2017</time><time class="updated" datetime="2017-03-20T01:28:32+00:00">March 20, 2017</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="../author/kris/index.html">Kris Nova</a></span></span>		</div>
+      <div class="blog_content">
+       <h1>Your 2nd day with Kubernetes on AWS</h1>
+<p>Okay, so you have a cluster up and running on AWS. Now what? Seriously, managing a Kubernetes cluster is hard. Especially if you are even thinking about keeping up with the pace of the community. The good news, is that <code>kops</code> makes this easy. Here a few commonly used stories on how to manage a cluster after everything is already up and running. If there is something you don&#8217;t see, that you would like, please let me know!</p>
+<p>This tutorial assumes you were able to<a href="../setting-up-a-kubernetes-cluster-in-aws-with-kops-1-5-0/index.html"> successfully get a cluster up and running in AWS</a>, and you are now ready to see what else it can do.</p>
+<p>In this tutorial we are covering 2nd day concerns for managing a Kubernetes cluster on AWS. The idea of this tutorial is to exercise some useful bits of <code>kops</code> functionality that you won&#8217;t see during a cluster deployment. Here we <strong>really</strong> open up <code>kops</code> to see what she can do (yes, <code>kops</code> is a girl)</p>
+<p>In this tutorial we will be running <code>kops</code> 1.5.1, which can be <a href="https://github.com/kubernetes/kops/releases/tag/1.5.1">downloaded here</a>.</p>
+<p>We will also be making the assumption that you have an environment setup similar to the following.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+export NAME=nextday.nivenly.com
+export KOPS_STATE_STORE=s3://nivenly-com-state-store
+</pre>
+<h1>Upgrading Kubernetes with kops</h1>
+<p>Suppose you are running an older version of Kubernetes, and want to run the latest and greatest..</p>
+<p>Here we will start off with a <code>Kubernetes v1.4.8</code> cluster. We are picking an older cluster here to demonstrate the workflow in which you could upgrade your Kubernetes cluster. The project evolves quickly, and you want to be able to iterate on your clusters just as quickly. To deploy a <code>Kubernetes v1.4.8</code> cluster:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops create cluster --zones us-west-2a --kubernetes-version 1.4.8 $KOPS_NAME --yes
+</pre>
+<p>As the cluster is deploying, notice how <code>kops</code> will conveniently remind us that the version of Kubernetes that we are deploying is outdated. This is by design. We really want users to know when they are running old code.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+..snip
+A new kubernetes version is available: 1.5.2
+Upgrading is recommended (try kops upgrade cluster)
+..snip
+</pre>
+<p>So now we have an older version of Kubernetes running. We know this by running the following command and looking for <code>Server Version: version.Info</code></p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kubectl version
+</pre>
+<p>Now, we can use the following command to see what <code>kops</code> suggests we should do:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops upgrade cluster $KOPS_NAME
+</pre>
+<p>We can safely append <code>--yes</code> to the end of our command to apply the upgrade to our configuration. But what is really happening here?</p>
+<p>When we run the upgrade command as in</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops upgrade cluster $KOPS_NAME --yes
+</pre>
+<p>all we are really doing is appending some values to the <strong>cluster spec</strong>. (Remember, this is the <strong>state store</strong> that is stored in S3 in YAML). Which of course can always be accessed and edited using:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops edit cluster $KOPS_NAME
+</pre>
+<p>In this case you will notice how the <code>kops upgrade cluster</code> command conveniently changed the following line in the configuration file for us.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+  kubernetesVersion: 1.5.2
+</pre>
+<p>We can now run a <code>kops update cluster</code> command as we always would, to apply the change.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops update cluster $KOPS_NAME --yes
+</pre>
+<p>We can now safely roll each of our nodes to finish the upgrade. Let&#8217;s use <code>kops rolling-update cluster</code> to re deploy each of our nodes. This is necessary to finish the upgrade. A kops rolling update will cycle each of the instance in the autoscale group with the new configuration.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops rolling-update cluster $KOPS_NAME --yes
+</pre>
+<p>We can now check the version of Kubernetes, and validate that we are in fact using the latest version.</p>
+<pre class="brush: plain; title: ; notranslate" title=""> kubectl version </pre>
+<p>Note: If a specific version of Kubernetes is desired, you can always use the <code>--channel</code> flag and specify a valid channel. An example channel can be found <a href="https://github.com/kubernetes/kops/blob/master/channels/stable">here</a>.</p>
+<h1>Scaling your cluster</h1>
+<p>Suppose you would like to scale your cluster to process more work..</p>
+<p>In this example we will start off with a very basic cluster, and turn the node count up using kops instance groups.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops create cluster --zones us-west-2a --node-count 3 $KOPS_NAME --yes
+</pre>
+<p>After the cluster is deployed we can validate that we are using 3 nodes by running</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kubectl get nodes
+</pre>
+<p>Say we want to scale our nodes from 3 to 30. We can easily do that with kops by editing the <code>nodes</code> instance group using:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops edit instancegroup nodes
+</pre>
+<p>We can then bump our node counts up to 30</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+spec:
+  image: kope.io/k8s-1.4-debian-jessie-amd64-hvm-ebs-2016-10-21
+  machineType: t2.medium
+  maxSize: 30
+  minSize: 30
+  role: Node
+  subnets:
+  - us-west-2a
+</pre>
+<p>We then of course need to update our newly edited configuration</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops update cluster $KOPS_NAME --yes
+</pre>
+<p><a href="../wp-content/uploads/2017/03/Screen-Shot-2017-03-01-at-10.36.30-PM.png"><img class="alignright wp-image-197 " src="http://www.nivenly.com/wp-content/uploads/2017/03/Screen-Shot-2017-03-01-at-10.36.30-PM-300x203.png" alt="screen-shot-2017-03-01-at-10-36-30-pm" width="524" height="356" srcset="../wp-content/uploads/2017/03/Screen-Shot-2017-03-01-at-10.36.30-PM-300x203.png 300w, ../wp-content/uploads/2017/03/Screen-Shot-2017-03-01-at-10.36.30-PM-768x521.png 768w, ../wp-content/uploads/2017/03/Screen-Shot-2017-03-01-at-10.36.30-PM-1024x694.png 1024w" sizes="(max-width: 524px) 100vw, 524px" /></a></p>
+<p>Kops will update the AWS ASG automatically, and <strong>poof</strong> we have a 30 node cluster.</p>
+<p>I do actually try all of this before recommending it to anyone. So yes, I was able to actually deploy a 30 node cluster in AWS with kops.</p>
+<p>The cluster was deployed successfully, and the primary component of lag was waiting on Amazon to deploy the instances after detecting a change in the Autoscaling group.</p>
+<p>&nbsp;</p>
+<p>A quick delete command from kops, and all is well.</p>
+<pre class="brush: plain; title: ; notranslate" title=""> kops delete cluster $KOPS_NAME --yes </pre>
+<h1>Audit your clusters</h1>
+<p>Suppose you need to know what is going on in the cloud.. and audit your infrastructure..</p>
+<p>By design <code>kops</code> will never store information about the cloud resources, and will always look them up at runtime. So gaining a glimpse into what you have running currently can be a bit of a concern. There are 2 <code>kops</code> commands that are very useful for auditing your environment, and also auditing a single cluster.</p>
+<p>In order to see what clusters we have running in a state store we first use the following command:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops get clusters
+</pre>
+<p>Notice how we no longer have to use `$KOPS_NAME`. This is because we already have a cluster deployed, and thus should already have a working `~/.kube/config` file in place. We can infer a lot of information from the file. Now that we have a cluster name (or more!) in mind, we can use the following command:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+kops toolbox dump
+</pre>
+<p>Which will output all the wonderful information we could want about a cluster in a format that is easy to query. It is important to note that the resources defined here are discovered using the same cluster lookup methods `kops` uses for all other cluster commands. This is a raw, and unique output of your cluster at runtime!</p>
+<h3>Thanks!</h3>
+<p>Thank you for reading my article. As always, I appreciate any feedback from users. So let me know how we could be better. Also feel free to check me out on GitHub for more kops updates.</p>
+<p><a class="github-button" href="https://github.com/kris-nova" data-style="mega" data-count-href="/kris-nova/followers" data-count-api="/users/kris-nova#followers" data-count-aria-label="# followers on GitHub">Follow @kris-nova</a></p>
+<div class="post-views post-174 entry-meta">
+			<span class="post-views-icon dashicons dashicons-chart-bar"></span>
+			<span class="post-views-label">Post Views: </span>
+			<span class="post-views-count">6,006</span>
+			</div>       </div>
+      </div>
+</div><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="../index.html@p=190.html" rel="prev">Plugins in Go 1.8 and their underlying C implementation.</a></div><div class="nav-next"><a href="../index.html@p=220.html" rel="next">Single rooted tree in Go</a></div></div>
+	</nav>				<div class="blog_desc blog_details_desc">
+				<div class="blog_content">
+				<div class="comment_section blog_content_inner">
+<div id="comments" class="comments-area">
+<h3 class="blog-title">LEAVE A COMMENT</h3>
+<div class="comment_layer">
+	<div class="pull_left"> <span>3 comments</span></div>
+</div>
+	
+				<div class="micky_blog_comment">
+		<ol class="comment-list comment">
+				<li class="comment even thread-even depth-1" id="comment-94">
+		<div id="div-comment-94" class="">
+			
+		<div class="micky_comment_main">
+			<div class="blog_avtar"> 
+				<img alt='' src='https://secure.gravatar.com/avatar/de3e999e52d5cb59cbff275d10bbce73?s=70&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/de3e999e52d5cb59cbff275d10bbce73?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />			</div>
+			<div class="micky_comment_data">
+				<div class="author_title">
+				  <h5>Martijn</h5> 
+				  <span class="comment_date"><a>June 4, 2017</a></span>
+				  <span class="comment_time">22:40:pm</span>
+				  <a rel='nofollow' class='comment-reply-link' href='index.html@replytocom=94.html#respond' onclick='return addComment.moveForm( "div-comment-94", "94", "respond", "174" )' aria-label='Reply to Martijn'>Reply</a>				 </div>
+				 		
+				<p>Thanks for your excellent tutorials.</p>
+<p>I&#8217;d like to know how to update a 1-master 1-AZ cluster into a HA 2-AZ cluster. Is it even possible?</p>
+			</div>
+		</div>
+		
+		</div>
+		</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+		</div>
+
+			<div class="blog_comments_form">
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply to <a href="index.html@replytocom=94.html#comment-94">Martijn</a> <small><a rel="nofollow" id="cancel-comment-reply-link" href="../index.html@p=174.html#respond">Cancel reply</a></small></h3>			<form action="https://www.nivenly.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<div class="col-lg-12"><textarea name="comment" rows="3" placeholder="Comment&hellip;" class="comment_textarea"></textarea></div><div class="col-sm-6"><input id="author" name="author" type="text" placeholder="Name&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="col-sm-6"><input id="email" name="email" type="email" placeholder="Email&hellip;" value="" class="form-control" size="30" aria-required='true' /></div>
+<div class="uncr-g-recaptcha"></div><p class="form-submit"><input name="submit" type="submit" id="comments_button" class="comment_button" value="Send Comment" /> <input type='hidden' name='comment_post_ID' value='174' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='94' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="2b1b2cca49" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="214"/></p>			</form>
+			</div><!-- #respond -->
+		</div>
+</div><!-- #comments -->
+</div>				</div>
+				</div>
+										</div>
+					</div>
+	</div>
+</div>
+<footer>
+  <div class="wrapper_main footer_section_main">
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="footer_logo"> 
+	  		   <h1 style="mk_copy"><a href="../../nivenly.com/index.html"></a></h1> 
+       	  </div>
+     </div>
+     <div class="col-lg-6 col-md-6 col-sm-6">
+      <p class="footer_copyright">Copyright 2017 Kris Nova <a href="../../nivenly.com/index.html"></a></p>
+     </div>
+     <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="social_icons footer_social">
+	  </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </footer>
+</div>
+<script type='text/javascript' src='../wp-content/plugins/akismet/_inc/form.js@ver=3.3.2'></script>
+<script type='text/javascript' src='../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js@ver=3.0.9b'></script>
+<script type='text/javascript' src='../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js@ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://www.nivenly.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://www.nivenly.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeMidnight.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<link rel='stylesheet' id='captcha-style-css'  href='../wp-content/plugins/uber-nocaptcha-recaptcha/assets/css/style.css@ver=4.8.11.css' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.nivenly.com\/wp-json\/","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/contact-form-7/includes/js/scripts.js@ver=4.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sta_settings = {"distance":"50","speed":"5000","exceptions":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/scroll-to-anchor/js/scroll-to-anchor.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/bootstrap-select-min.js'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/navigation.js@ver=20151215'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/skip-link-focus-fix.js@ver=20151215'></script>
+<script type='text/javascript' src='../wp-content/themes/micky/assets/js/custom.js'></script>
+<script type='text/javascript' src='../wp-includes/js/comment-reply.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='../wp-includes/js/wp-embed.min.js@ver=4.8.11'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?onload=renderUNCRReCaptcha&amp;render=explicit&amp;ver=2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var UNCR = {"site_key":"6LdjjAcUAAAAAOtl-qenrmS-_KhXjvuODKgVRuyS","key_type":"normal","theme":"dark","type":"image","submit_button":"no"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/uber-nocaptcha-recaptcha/assets/js/recaptcha.js@ver=1.0'></script>
+</body>
+</html>
