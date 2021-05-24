@@ -1,0 +1,16 @@
+#!/bin/bash
+
+SITE="nivenly.com"
+
+wget \
+     --no-check-certificate \
+     --verbose \
+     --recursive \
+     --page-requisites \
+     --adjust-extension \
+     --span-hosts \
+     --convert-links \
+     --restrict-file-names=windows \
+     --domains $SITE \
+     --no-parent \
+         $SITE
