@@ -43,10 +43,9 @@ Check out [my clusterfuck talk](/lib/2021-04-05-clusterfuck) I did at FOSDEM las
 
 So let’s start by coming up with a fictional talk, that presents a problem.
 
-“Designing a remote cloud data center with 99.999% uptime“
+ > “Designing a remote cloud data center with 99.999% uptime“
 
 We know we have to have a data center to host data, and we know we won’t have access to it. This is a pretty good start as we know that we have a problem that must be solved. How do we manage and design this data center?
-
 
 
 # Constraints are better! 📐
@@ -57,9 +56,7 @@ By adding constraints or limitations you can create an even more exciting enviro
 
 Let’s look at a movie called “Deadly snakes“. So there is at least a clear problem here which is that snakes can fucking kill you and that is terrifying. But we can do better, let’s add some constraints to our story.
 
-
-
-“Snakes on a plane“
+ > “Snakes on a plane“
 
 ![snakes](/assets/img/snakes.png)
 
@@ -77,10 +74,6 @@ Now let’s add an outstanding constraint to our talk and see what happens.
 
 Holy shit this talk sounds amazing. We have a clear problem and a fascinating constraint. I would hands down cancel plans to go see this talk. Why are you doing this? Why on mars? How much does this cost? Do computers even work there? How will the hardware get there? How will you connect to it? Why the uptime? WHAT ARE YOU DOING?
 
-
-
-
-
 # New ideas are the best! 🧠
 
 Okay so now you have a problem and a crazy constraint that makes what would otherwise be a fairly simple problem to solve exponentially more complex. Can we get any better from here?
@@ -89,26 +82,34 @@ Yes. These are the talks that go down in history, and you can write one (if you 
 
 Every once in awhile (maybe once in a lifetime) you might hit what I call “The Trifecta”. Which is a magical moment when 3 very rare things all happen at the same time.
 
-You have a really nasty problem
-You have a really interesting constraint
-You happen to either invent or use technology that isn’t mainstream yet or has never been done
+ - You have a really nasty problem
+ - You have a fascinating constraint
+ - You happen to either invent or use technology that isn’t mainstream yet or has never been done
+
 This is like the indie band that makes it big – but for tech.
 
 How do you know if you have found the next exciting piece of tech for your problem? This question is hard to answer, and I usually ask the following questions to gauge if I am on to something.
 
-Is it easy to use?
+**Is it easy to use?**
+
 If the answer is no, you are on the right track
-Can I google it?
+
+**Can I google it?**
+
 If the answer is no, you are on the right track
-Does it solve my problem, and does it adhere to my constraint?
+
+**Does it solve my problem, and does it adhere to my constraint?**
+
 If the answer is yes, you are on the right track
-Do I wish the CFP I am writing was already on YouTube so I didn’t have to do this?
+
+**Do I wish the CFP I am writing was already on YouTube so I didn’t have to do this?**
+
 If the answer is yes, you are on the right track (and you probably aren’t the only one thinking this)
 
 
 
 
-While a talk like “Running a remote cloud data center on Mars” would be outstanding it could still be better. What if in order to build our data center we had to do something never before done before? This could change the entire tone of the talk.
+While a talk like “Running a remote cloud data center on Mars” 🪐 would be outstanding it could still be better. What if in order to build our data center we had to do something never before done before? This could change the entire tone of the talk.
 
 “The first martian. Designing a robot to build a remote data center on Mars“.
 
@@ -124,9 +125,10 @@ If you are lucky, you might be in this type of situation in your lifetime. These
 
 There are 3 things I always focus on when writing a CFP
 
-The Title (problems, constraints, innovation)
-The Pitch (How do you explain the problem, the constraints, and your innovation in less than 10 seconds)
-The Lesson (You should always explain what the audience will learn, or elude to something they might enjoy)
+ - The Title (problems, constraints, innovation)
+ - The Pitch (How do you explain the problem, the constraints, and your innovation in less than 10 seconds)
+ - The Lesson (You should always explain what the audience will learn, or elude to something they might enjoy)
+
 For the title, I always have a bad guy. I always have a problem. I always have an enemy.
 
 For the pitch, it is quick and easy to understand. You have 3 sentences (max) to hook someone. Make it juicy. People love drama.
