@@ -1,6 +1,8 @@
 FROM golang:latest
 WORKDIR /go/src/github.com/kris-nova/nivenly.com
-COPY . .
+COPY app app
+COPY main.go main.go
+COPY go.mod go.mod
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /nivenly
 
 
