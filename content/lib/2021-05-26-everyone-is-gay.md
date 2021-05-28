@@ -21,7 +21,7 @@ being gay -- and being transgender -- have about as much in common as `java` and
 
 ### Who you go to bed with?
 
-Who do you like? Who do you want to fuck? What makes you absolutely shagadelic randy baby? Do you even wan't to fuck at all? Do you not fuck? Do you make love in stead? What's your deal? What parts do you have? What parts do you like? Do you like soft things? Do you like the lights on? off? are you a moaner? do you like eye contact? do you close your eyes and pretend?
+Who do you like? Who do you want to fuck? What makes you absolutely shagadelic randy baby? Do you even want to fuck at all? Do you not fuck? Do you make love in stead? What's your deal? What parts do you have? What parts do you like? Do you like soft things? Do you like the lights on? off? are you a moaner? do you like eye contact? do you close your eyes and pretend?
 
 okay. so i am sure somewhere in there as you were reading you started to imagine things about yourself.
 
