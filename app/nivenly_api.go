@@ -70,8 +70,8 @@ func (v *Nivenly) GetAPI(r *http.Request) *NivenlyAPI {
 
 	// Log client for every interpolation
 	logger.Info("Client: %s", client.Addr)
-
-	// Build fun string
+	logger.Info("Client String: %s", client.ClientString)
+	logger.Info("Client Geo: %s", client.GeoString)
 
 	// Build our API for the site
 	api := &NivenlyAPI{
