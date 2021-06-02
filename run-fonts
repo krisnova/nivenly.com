@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-SOLID="pencil-alt globe-americas bars cogs book hand-middle-finger cloud network-wired signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
+SOLID="transgender-alt pencil-alt globe-americas bars cogs book hand-middle-finger cloud network-wired signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
 BRANDS="linux youtube twitter github twitch linkedin"
 REGULAR=""
 
