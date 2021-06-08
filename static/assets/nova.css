@@ -45,7 +45,7 @@
 }
 
 body.dark-theme {
-    --fontSize: 1.75rem;
+    --fontSize: 1.0rem;
     --background: #000000;
     --background-secondary: #1A1616;
     --header: #1A1616;
@@ -56,7 +56,7 @@ body.dark-theme {
 
 /* :root is "body.light-theme" */
 :root {
-    --fontSize: 1.75rem;
+    --fontSize: 1.0rem;
     --background: #222222;
     --background-secondary: #1A1616;
     --header: #1A1616;
