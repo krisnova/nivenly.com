@@ -5,11 +5,13 @@ WORKDIR /go/src/github.com/kris-nova/nivenly.com
 COPY app app
 COPY main.go main.go
 COPY go.mod go.sum ./
-RUN \
-    --mount=target=go-cache --mount=target=/root/.cache,type=cache \
-    --mount=target=go-mod --mount=target=/go/pkg/mod,type=cache \
-    CGO_ENABLED=0 GOOS=linux go build -installsuffix cgo -o /nivenly
 
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /nivenly
+#RUN \
+#    --mount=target=go-cache --mount=target=/root/.cache,type=cache \
+#    --mount=target=go-mod --mount=target=/go/pkg/mod,type=cache \
+#    CGO_ENABLED=0 GOOS=linux go build -installsuffix cgo -o /nivenly
+#
 
 FROM alpine:latest
 RUN apk add nmap nmap-scripts
