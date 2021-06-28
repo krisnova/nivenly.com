@@ -11,4 +11,4 @@ She is well known for her open source contributions including projects like Linu
 She is a popular public speaker, best known for her Kubernetes clusterfuck talks. She co-founded the cluster API project, created Kubicorn, and created naml for managing Kubernetes resources with pure Go.
 
 Today she works as a Senior Principal engineer building enterprise bare metal Kubernetes systems. 
-She is the founder of The Prvilege Escalation Foundation which is a non-profit focusing on offering resources for transgender minds in STEM.
+She is the founder of The Privilege Escalation Foundation which is a non-profit focusing on offering resources for transgender minds in STEM.
