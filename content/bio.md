@@ -10,5 +10,5 @@ In 2017 she co-authored Cloud Native Infrastructure.
 She is well known for her open source contributions including projects like Linux, Kubernetes, and The Go Programming Language. 
 She is a popular public speaker, best known for her Kubernetes clusterfuck talks. She co-founded the cluster API project, created Kubicorn, and created naml for managing Kubernetes resources with pure Go.
 
-Today she works as a Senior Principal engineer building enterprise bare metal Kubernetes systems. 
+Today she works as a Senior Principal engineer at Twilio focusing on enterprise bare metal Kubernetes systems. 
 She is the founder of The Privilege Escalation Foundation which is a non-profit focusing on offering resources for transgender minds in STEM.
