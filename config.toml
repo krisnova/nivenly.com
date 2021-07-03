@@ -110,3 +110,7 @@ enableRobotsTXT = true
         identifier = "author"
         name = "author"
         url = "/author"
+      [[languages.en.menu.main]]
+        identifier = "api"
+        name = "api"
+        url = "/api"
