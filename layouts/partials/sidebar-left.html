@@ -80,49 +80,17 @@
 
     <!-- About You -->
     <div class="side-large">
-        <span class="color-highlight">[</span><span class="color-alt"> about you </span><span class="color-highlight">]</span>
+        <span class="color-highlight">[</span><span class="color-alt"> temporary migration </span><span class="color-highlight">]</span>
     </div>
 
-    <!-- /client -->
     <div class="side-paragraph">
-        <a href="/client">
-            <span class="color-highlight glow">{{ partial "fa.html" "terminal" }}</span>
-            <span class="color-alt glow">/client</span>
-        </a>
+        <marquee>
+        currently hosted on aws while my rack is offline - expect literally nothing to fucking work
+    </marquee>
     </div>
-
-    <!-- Client Addr -->
     <div class="side-paragraph">
-        <a href="/client">
-            <span class="color-highlight glow">{{ partial "fa.html" "network-wired" }}</span>
-            <span class="color-alt glow">{{ $.Site.Params.RemoteAddress }}</span>
-        </a>
+        <img src="assets/img/aws.png" style="max-width: 200px">
     </div>
-
-    <!-- HTTP -->
-    <div class="side-paragraph">
-        <a href="/client">
-            <span class="color-highlight glow">{{ partial "fa.html" "cloud" }}</span>
-            <span class="color-alt glow">{{ $.Site.Params.RequestString }}</span>
-        </a>
-    </div>
-
-    <!-- ClientString -->
-    <div class="side-paragraph">
-        <a href="/client">
-            <span class="color-highlight glow">{{ partial "fa.html" "server" }}</span>
-            <span class="color-alt glow">{{ $.Site.Params.ClientString }}</span>
-        </a>
-    </div>
-
-    <!-- GeoString -->
-    <div class="side-paragraph">
-        <a href="/client">
-            <span class="color-highlight glow">{{ partial "fa.html" "globe-americas" }}</span>
-            <span class="color-alt glow">{{ $.Site.Params.GeoString }}</span>
-        </a>
-    </div>
-
 
 
 </div>
