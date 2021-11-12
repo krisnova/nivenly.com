@@ -1,3 +1,5 @@
 static/assets/db/geo-country.mmdb filter=lfs diff=lfs merge=lfs -text
 static/assets/db/geo-asn.mmdb filter=lfs diff=lfs merge=lfs -text
 static/assets/db/geo-city.mmdb filter=lfs diff=lfs merge=lfs -text
+static/assets/take-1.mp4 filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text

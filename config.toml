@@ -66,10 +66,10 @@ enableRobotsTXT = true
 
 [languages]
   [languages.en]
-    description = "professional computer adult :: famous transgender queer cyber hacker :: high alpine enthusiast"
-    title = "nivenly.com"
-    subtitle = "kris nóva"
-    keywords = "kris, kris nova, nova, nóva, programming, linux, engineer, blog, archive, official, sexy, nivenly, homepage, wepage, important, serious, iron clad, professional, adult, business, computer, tech, books, author, author, super nóva, supernova, github, freebsd, mountains, speaker, public, public speaker, twitch, stream, stream stream, live, nova"
+    description = "Kris Nóva is a computer scientist, alpinist, author, public speaker and transgender advocate best known for her work on Linux and Kubernetes."
+    title = "Nivenly.com - Kris Nóva"
+    subtitle = "Linux, Kubernetes, Cyber security, Infrastructure, Hacking"
+    keywords = "Kris Nova, krisnova, Nóva, Nova, Kubernetes, Linux, Open Source, Blog, API, Nivenly, Website, Articles, Publish, Author, Infrastructure, Cloud Native"
     copyright = "2021 Kris Nóva"
 
 # ----------------------------------------------------------
@@ -110,6 +110,10 @@ enableRobotsTXT = true
         identifier = "author"
         name = "author"
         url = "/author"
+      [[languages.en.menu.main]]
+        identifier = "new book"
+        name = "new book"
+        url = "/book"
       [[languages.en.menu.main]]
         identifier = "api"
         name = "api"
