@@ -29,6 +29,8 @@ Learn how to model computers, humans, money, and their subsequent relationships 
 
 This book is relevant for anyone in tech, however it is specifically designed to give less privileged technologists (LGBTQ, People of Color, Women, Non-binary, Gender minorities, Neurodivergent, etc...) a set of tools in aiding their ability to exploit a fundamentally broken system.
 
+Learn how the privileged at the top think about the industry, so you can out smart them.
+
 This book is written from my perspective.
 In my eyes, I view myself as a successful transgender hacker. 
 I work directly with the Linux kernel and Kubernetes, as well as the open source organizations backing each of them.
