@@ -99,20 +99,12 @@ enableRobotsTXT = true
         name = "live"
         url = "/live"
       [[languages.en.menu.main]]
-        identifier = "contrib"
-        name = "contrib"
-        url = "/contrib"
-      [[languages.en.menu.main]]
         identifier = "questions"
         name = "questions"
         url = "/questions"
       [[languages.en.menu.main]]
-        identifier = "author"
+        identifier = "recent book"
         name = "author"
-        url = "/author"
-      [[languages.en.menu.main]]
-        identifier = "new book"
-        name = "new book"
         url = "/book"
       [[languages.en.menu.main]]
         identifier = "api"

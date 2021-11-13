@@ -1,29 +1,26 @@
 ---
+title: "Early Sign Up 2022 Book ✍"
 tags: ["HackingCapitalism"]
 keywords: ["Sign Up", "2022", "New Book", "Hacking Capitalism", "Computers", "Humans", "Money", "Exploiting", "Tech Industry"]
 summary: "This is an independently published book about modeling the tech industry."
 ---
 
-### Early Sign Up
-
-Sign Up Below ✍ For My 2022 Book
-
----
-
-{{< logo >}}
-
-# "Hacking Capitalism"
+# Hacking Capitalism
 ### Modeling Humans, Computers, and Money
 #### A Guide to Exploiting the Tech Industry
 
-_by Kris Nóva  |  978-1-68489-565-6_
+
+{{< logo >}}
+
+
+_Written by Kris Nóva  |  978-1-68489-565-6_
+
+_Copyright © 2021 Kris Nóva. All rights reserved._
 
 This is an independently published book about modeling the tech industry.
 
 Learn how to model computers, humans, money, and their subsequent relationships for your own personal gain.
 
-
----
 
 ### Written For Less Privileged Technologists
 
