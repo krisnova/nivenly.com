@@ -24,7 +24,10 @@ Learn how the privileged at the top think about the industry, so you can out sma
 
 This book is written from my perspective.
 In my eyes, I view myself as a successful transgender hacker. 
-I work directly with the Linux kernel and Kubernetes, as well as the open source organizations backing each of them.
+
+This book is a "Day 2" overview of the tech industry with a focus on exploitation for profit.
+This book will not teach you how to enter the tech industry.
+However, this book will teach you the critical skills required to going from an entry level position to a lucrative top level position.
 
 {{< bookform >}}
 
