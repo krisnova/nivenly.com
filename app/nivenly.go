@@ -19,6 +19,8 @@ import (
 	"os"
 	"sync"
 
+	"github.com/kris-nova/anchovies"
+
 	bjorno "github.com/kris-nova/bjorno"
 	"github.com/kris-nova/logger"
 )
@@ -46,6 +48,9 @@ func Bootstrap() {
 	// We use this in multiple places so let's define it
 	// here instead of package state.
 	clientHandler := ClientHandler{}
+
+	// We mount /data/anchovies into the pod
+	anchovies.SetDir("/data/anchovies")
 
 	// The bjorno config
 	cfg := &bjorno.ServerConfig{

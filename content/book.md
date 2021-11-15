@@ -34,5 +34,3 @@ _Written by Kris Nóva  |  978-1-68489-565-6_
 
 _Copyright © 2021 Kris Nóva. All rights reserved._
 
-
-
