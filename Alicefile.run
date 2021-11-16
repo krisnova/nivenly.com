@@ -12,4 +12,4 @@ hugo
 #cp -rv legacy/* public/legacy
 
 # Go run
-GO111MODULE=off go run main.go
+go run main.go

@@ -15,6 +15,7 @@
 package nivenly
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/kris-nova/logger"
@@ -22,33 +23,69 @@ import (
 	"github.com/kris-nova/anchovies"
 )
 
+const (
+	siteKey string = "nivenly.com"
+)
+
+// Analytics is a site level analytics structure.
+//
+// Have fun hacking this shit up!
+//
+// Everything here is exposed to the website's frontend.
 type Analytics struct {
 	anchovies.EmbedRecord
-	PageCount int
+
+	// Client hostname total visits
+	ClientVisits map[string]int
+
+	// PageVisits total visits by page
+	PageVisits map[string]int
+
+	ThisPageVisits   string
+	ThisClientVisits string
 }
 
-func GetAnalytics(r *http.Request) Analytics {
-	var a = Analytics{}
-	id := anchovies.U(r.URL.Path)
-	if string(id) == "/" || string(id) == "" {
-		id = anchovies.U("**anchovies**")
+func GetAnalytics(r *http.Request, client Client) Analytics {
+	a := Analytics{
+		EmbedRecord: anchovies.EmbedRecord{
+			ID: anchovies.U(siteKey),
+		},
+		ClientVisits:     make(map[string]int),
+		PageVisits:       make(map[string]int),
+		ThisPageVisits:   "-1",
+		ThisClientVisits: "-1",
 	}
-	a.ID = id
-	logger.Info("Anchovies: %s", id)
+	page := r.URL.Path
+	if string(page) == "/" || string(page) == "" {
+		page = "nivenly.com" // do not use siteKey for readability
+	}
+	logger.Info("Anchovies: %s", page)
 
 	// Get the record if it exists
-	err := anchovies.Read(id, &a)
+	err := anchovies.Read(anchovies.U(siteKey), &a)
 	if err != nil {
 		logger.Warning("nivenly.Read(%v)", err)
 	}
 
-	// Do the math things
-	a.PageCount = a.PageCount + 1
+	// --------------------------------------------------------
+	// Analytics hacking here
+	a.PageVisits[page]++
+	a.ThisPageVisits = fmt.Sprintf("%d", a.PageVisits[page])
+	logger.Debug("---")
+	logger.Debug(page)
+	logger.Debug("%d", a.ThisPageVisits)
+
+	a.ClientVisits[client.Addr]++
+	a.ThisClientVisits = fmt.Sprintf("%d", a.ClientVisits[client.Addr])
+	logger.Debug(client.Addr)
+	logger.Debug("%d", a.ThisClientVisits)
+	logger.Debug("---")
+
+	// --------------------------------------------------------
 
 	err = anchovies.Write(&a)
 	if err != nil {
 		logger.Warning("nivenly.Write(%v)", err)
 	}
-
 	return a
 }

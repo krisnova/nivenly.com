@@ -107,11 +107,27 @@
         </a>
     </div>
 
+    <!-- Client Total Visits -->
+    <div class="side-paragraph">
+        <a href="/client">
+            <span class="color-highlight glow">{{ partial "fa.html" "stopwatch" }}</span>
+            <span class="color-alt glow">{{ $.Site.Params.ClientVisits }}</span>
+        </a>
+    </div>
+
     <!-- HTTP -->
     <div class="side-paragraph">
         <a href="/client">
             <span class="color-highlight glow">{{ partial "fa.html" "cloud" }}</span>
             <span class="color-alt glow">{{ $.Site.Params.RequestString }}</span>
+        </a>
+    </div>
+
+    <!-- Page Total Visits -->
+    <div class="side-paragraph">
+        <a href="/client">
+            <span class="color-highlight glow">{{ partial "fa.html" "sitemap" }}</span>
+            <span class="color-alt glow">{{ $.Site.Params.PageVisits }}</span>
         </a>
     </div>
 

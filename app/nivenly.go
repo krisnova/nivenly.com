@@ -45,6 +45,7 @@ type Nivenly struct {
 // Bootstrap will start the application with its very specific
 // configuration, and then begin serving content.
 func Bootstrap() {
+
 	// We use this in multiple places so let's define it
 	// here instead of package state.
 	clientHandler := ClientHandler{}

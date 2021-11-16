@@ -60,7 +60,8 @@ enableRobotsTXT = true
   requestString = "{{ .R.Method }} {{ .R.URL.Path }} {{ .R.Proto }}"
   clientString = "{{ .Client.ClientString }}"
   geoString = "{{ .Client.GeoString }}"
-  analytics = "{{ .PageAnalytics.PageCount }}"
+  clientVisits = "{{ .Analytics.ThisClientVisits }}"
+  pageVisits = "{{ .Analytics.ThisPageVisits }}"
 
 
 

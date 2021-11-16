@@ -6,12 +6,6 @@ github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/fatih/color v1.10.0 h1:s36xzo75JdqLaaWoiEHk767eHiwo0598uUxyfiPkDsg=
 github.com/fatih/color v1.10.0/go.mod h1:ELkj/draVOlAH/xkhN6mQ50Qd0MPOk5AAr3maGEBuJM=
-github.com/kris-nova/anchovies v1.0.0 h1:eO8nLZmEXaVyST7srmNWZDNPEyi2UGN3Qn9UZleWEQc=
-github.com/kris-nova/anchovies v1.0.0/go.mod h1:kC58BZA8gwNn+yIli1RV8hgJa/26ppvYTpGZFfVRNT0=
-github.com/kris-nova/anchovies v1.0.1 h1:hRYXnWmDUSalbzklDwhEFJ2mYjptDg0km4v790GGgn8=
-github.com/kris-nova/anchovies v1.0.1/go.mod h1:kC58BZA8gwNn+yIli1RV8hgJa/26ppvYTpGZFfVRNT0=
-github.com/kris-nova/anchovies v1.0.3 h1:0JlQ/JCFbTdO84Gf/FLYxbb0ZpgqIykjWiqlen2la20=
-github.com/kris-nova/anchovies v1.0.3/go.mod h1:i5oVgunJGV6equH+8W94emrt5PTgfm4bBG318q5iDVc=
 github.com/kris-nova/anchovies v1.0.4 h1:AtK8CoszaLCeXv7Rz16YPMzHSARTjwg1bcmwvd5De+4=
 github.com/kris-nova/anchovies v1.0.4/go.mod h1:i5oVgunJGV6equH+8W94emrt5PTgfm4bBG318q5iDVc=
 github.com/kris-nova/bjorno v0.0.0-20210516165123-40c275b15ed5 h1:1me4GOBgrp/8RW1+1brdn32hEBuCAus1CF2z7pEFq7k=

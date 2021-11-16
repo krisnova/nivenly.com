@@ -37,8 +37,8 @@ import (
 // If you can get data here - you can interpolate into the website.
 type NivenlyAPI struct {
 
-	// PageAnalytics will be page analytics for each page
-	PageAnalytics Analytics
+	// Analytics will be page analytics for each page
+	Analytics Analytics
 
 	// ClientAddr
 	// 1 if by proxy
@@ -71,6 +71,9 @@ func (v *Nivenly) GetAPI(r *http.Request) *NivenlyAPI {
 	// we get from the server.
 	client := v.clientHandler.GetClient(r)
 
+	// Every Request gets an Analytics
+	analytics := GetAnalytics(r, client)
+
 	// Log client for every interpolation
 	logger.Info("Client: %s", client.Addr)
 	logger.Info("Client String: %s", client.ClientString)
@@ -78,10 +81,10 @@ func (v *Nivenly) GetAPI(r *http.Request) *NivenlyAPI {
 
 	// Build our API for the site
 	api := &NivenlyAPI{
-		PageAnalytics: GetAnalytics(r),
-		Client:        client,
-		ClientAddr:    client.Addr,
-		R:             r,
+		Analytics:  analytics,
+		Client:     client,
+		ClientAddr: client.Addr,
+		R:          r,
 	}
 	return api
 }
