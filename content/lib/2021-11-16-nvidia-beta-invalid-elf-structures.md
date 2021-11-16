@@ -36,10 +36,17 @@ It's really nice because you can open multiple sessions even if there is a GUI d
 I suggest jumping around on these at any time on a Linux desktop. 
 These can be useful to use even when your shit isn't broken.
 
-| F1 | F2 | F3 | F4 | F5 | F6 | F7 |
-|----|----|----|----|----|----|----|
-| `journalctl -f` | ~>$ | | | | 👀 | 
-| I uses the 1st session to just watch the system logs as I debug in other sessions | I use the 2nd session as my main working session. Here is where I do all my commands  | 3 | 4 | 5 | 6 | The last (7th) session is what Linux will use for your desktop by default. Here is where the error messages are, and here is where you want to come back to when things are working. |
+
+| Screen (ctl + alt +) |      Command      |    Description    |
+| -----------------    | ----------------- | ----------------- |
+| `F1`  | `journalctl -f`   | I use the 1st session to just watch the system logs as I debug in other sessions |
+| `F2`  |        `$`      | I use the 2nd session as my main working session. Here is where I do all my commands |
+| `F3`  |       unused      | |
+| `F4`  |       unused      | | 
+| `F5`  |       unused      | | 
+| `F6`  |       unused      | | 
+| `F7`  | 👀 | 👀 |
+
 
 ### Debugging lightdm
 
