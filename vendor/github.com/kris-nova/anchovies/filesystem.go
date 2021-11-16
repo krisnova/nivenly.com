@@ -15,6 +15,7 @@
 package anchovies
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -33,7 +34,7 @@ func Directory() (string, error) {
 		// ignore errors here - just try to create it
 		err := os.Mkdir(d, fileMode)
 		if err != nil {
-			logger.Critical(err.Error())
+			logger.Debug(err.Error())
 		}
 		return d, nil
 	}
@@ -47,6 +48,9 @@ func Directory() (string, error) {
 }
 
 func writeFile(dir string, key string, data []byte) error {
+	if key == "" {
+		return errors.New("empty key")
+	}
 	path := filepath.Join(dir, key)
 	if _, err := os.Lstat(path); os.IsNotExist(err) {
 		_, err := os.OpenFile(path, os.O_RDONLY|os.O_CREATE, fileMode)

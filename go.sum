@@ -10,6 +10,8 @@ github.com/kris-nova/anchovies v1.0.0 h1:eO8nLZmEXaVyST7srmNWZDNPEyi2UGN3Qn9UZle
 github.com/kris-nova/anchovies v1.0.0/go.mod h1:kC58BZA8gwNn+yIli1RV8hgJa/26ppvYTpGZFfVRNT0=
 github.com/kris-nova/anchovies v1.0.1 h1:hRYXnWmDUSalbzklDwhEFJ2mYjptDg0km4v790GGgn8=
 github.com/kris-nova/anchovies v1.0.1/go.mod h1:kC58BZA8gwNn+yIli1RV8hgJa/26ppvYTpGZFfVRNT0=
+github.com/kris-nova/anchovies v1.0.3 h1:0JlQ/JCFbTdO84Gf/FLYxbb0ZpgqIykjWiqlen2la20=
+github.com/kris-nova/anchovies v1.0.3/go.mod h1:i5oVgunJGV6equH+8W94emrt5PTgfm4bBG318q5iDVc=
 github.com/kris-nova/bjorno v0.0.0-20210516165123-40c275b15ed5 h1:1me4GOBgrp/8RW1+1brdn32hEBuCAus1CF2z7pEFq7k=
 github.com/kris-nova/bjorno v0.0.0-20210516165123-40c275b15ed5/go.mod h1:C9iSdroPqJCmYO7EsdznlzsTO3Z2ctvxVH/6WannwIE=
 github.com/kris-nova/logger v0.2.1/go.mod h1:++9BgZujZd4v0ZTZCb5iPsaomXdZWyxotIAh1IiDm44=

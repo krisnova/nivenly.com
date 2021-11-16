@@ -39,7 +39,7 @@ func dDirectory() (string, error) {
 	// ignore errors here - just try to create it
 	err = os.Mkdir(dDir, fileMode)
 	if err != nil {
-		logger.Critical(err.Error())
+		logger.Debug(err.Error())
 	}
 	// Lstat will follow sym links
 	_, err = os.Lstat(dDir)

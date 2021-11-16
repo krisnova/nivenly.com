@@ -2,7 +2,7 @@
 ## explicit
 github.com/Ullaakut/nmap/v2
 github.com/Ullaakut/nmap/v2/pkg/osfamilies
-# github.com/kris-nova/anchovies v1.0.1
+# github.com/kris-nova/anchovies v1.0.3
 ## explicit
 github.com/kris-nova/anchovies
 # github.com/kris-nova/bjorno v0.0.0-20210516165123-40c275b15ed5
