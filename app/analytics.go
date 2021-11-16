@@ -30,12 +30,16 @@ type Analytics struct {
 func GetAnalytics(r *http.Request) Analytics {
 	var a = Analytics{}
 	id := anchovies.U(r.URL.Path)
+	if string(id) == "/" || string(id) == "" {
+		id = anchovies.U("**anchovies**")
+	}
+	a.ID = id
 	logger.Info("Anchovies: %s", id)
 
 	// Get the record if it exists
 	err := anchovies.Read(id, &a)
 	if err != nil {
-		logger.Warning(err.Error())
+		logger.Warning("nivenly.Read(%v)", err)
 	}
 
 	// Do the math things
@@ -43,7 +47,7 @@ func GetAnalytics(r *http.Request) Analytics {
 
 	err = anchovies.Write(&a)
 	if err != nil {
-		logger.Warning(err.Error())
+		logger.Warning("nivenly.Write(%v)", err)
 	}
 
 	return a
