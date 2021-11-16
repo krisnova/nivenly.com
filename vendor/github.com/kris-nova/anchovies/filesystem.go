@@ -26,7 +26,7 @@ import (
 
 const (
 	anchovies string      = ".anchovies"
-	fileMode  os.FileMode = 0755
+	fileMode  os.FileMode = 0644
 )
 
 func Directory() (string, error) {
