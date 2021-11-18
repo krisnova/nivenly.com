@@ -38,17 +38,17 @@ I would then make Jax's move, make my move, and update my signature.
 
 Kris Nóva VS Email Recipients
 
-╔═══════════════════════════╗
+╔════════════════════════╗
 ║ ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜ ║ 9
-║ i   i  i  i   i  i  i   i ║ 8
-║     ▒     ▒      ▒      ▒ ║ 7
-║ ▒      ▒      ▒     ▒     ║ 6
-║     ▒     ▒      ▒      ▒ ║ 5
-║ ▒      ▒      ▒     ▒     ║ 4
+║ i  i  i  i  i  i  i  i ║ 8
+║    ▒     ▒     ▒     ▒ ║ 7
+║ ▒     ▒     ▒     ▒    ║ 6
+║    ▒     ▒     ▒     ▒ ║ 5
+║ ▒     ▒     ▒     ▒    ║ 4
 ║ ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙ ║ 3
 ║ ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖ ║ 2
-╚═══════════════════════════╝ 1
-  A   B  C  D   E  F  G   H
+╚════════════════════════╝ 1
+  A  B  C  D  E  F  G  H
   
 Me               : Black
 Email Recipients : White
