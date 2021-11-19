@@ -28,7 +28,7 @@
 - [Blog: Infrastructure as Software](https://nivenly.com/lib/2021-06-13-ias) read the infrastructure ideas that inspired naml
 - [Go Code: NAML](https://github.com/kris-nova/naml) not another markup language explores how we can use raw Go instead of Kubernetes YAML
 - [C Code: The Naming Project](https://github.com/the-naming-project/the-naming-project) open source libraries and generators for creating determinstic human pronouncable names.
-- [Blog: The Distributed Operarting System Void](https://nivenly.com/lib/2021-04-02-operating-system-interface/) is a paper that highlights the problem space with distributed operating systems with kubernetes
+- [Blog: The Distributed Operating System Void](https://nivenly.com/lib/2021-04-02-operating-system-interface/) is a paper that highlights the problem space with distributed operating systems with kubernetes
 - [Nivenly.com](https://github.com/kris-nova/nivenly.com) which is live at [nivenly.com](https://nivenly.com)
 - [Novix](https://github.com/kris-nova/novix) a arm64 linux based operating system and userspace of my own design
 
