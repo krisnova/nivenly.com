@@ -106,7 +106,7 @@ enableRobotsTXT = true
         url = "/questions"
       [[languages.en.menu.main]]
         identifier = "recent book"
-        name = "author"
+        name = "book"
         url = "/book"
       [[languages.en.menu.main]]
         identifier = "api"

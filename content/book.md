@@ -5,9 +5,17 @@ keywords: ["Sign Up", "2022", "New Book", "Hacking Capitalism", "Computers", "Hu
 summary: "This is an independently published book about modeling the tech industry."
 ---
 
+## Available Spring 2022
+
+I am currently working on the book.
+I live stream most of the writing process on twitch.
+As the book nears completion, dates will be announced here and by signing up below.
+
+[Watch Live](/live)
+
 {{< book-2022 >}}
 
-### About
+## About
 
 This is an independently published book about modeling the tech industry.
 
