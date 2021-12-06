@@ -75,6 +75,7 @@ enableRobotsTXT = true
     copyright = "2021 Kris Nóva"
 
 # ----------------------------------------------------------
+
     [languages.en.params.logo]
       logoUser = "nova"
       logoHost = "nivenly"
@@ -112,3 +113,7 @@ enableRobotsTXT = true
         identifier = "api"
         name = "api"
         url = "/api"
+      [[languages.en.menu.main]]
+        identifier = "headshots"
+        name = "headshots"
+        url = "/headshots"

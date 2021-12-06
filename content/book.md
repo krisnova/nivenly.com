@@ -34,7 +34,7 @@ I am writing this book from my perspective.
 In my eyes, I view myself as a successful transgender hacker. 
 
 This book is a "Day 2" overview of the tech industry, focusing on exploitation for profit.
-This book will not teach you how to enter the tech industry, but it will teach you the critical skills required to going from an entry-level position to a lucrative top-level position.
+This book will not teach you how to enter the tech industry, but it will teach you the critical skills required to move from an entry-level position to a lucrative top-level position.
 
 {{< bookform >}}
 
