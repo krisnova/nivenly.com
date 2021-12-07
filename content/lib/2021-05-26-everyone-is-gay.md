@@ -2,7 +2,7 @@
 title: "Everyone is gay."
 date: "2021-05-26"
 author: "kris nóva"
-keywords: "gay homesexual transgender lgbtq lgbt"
+keywords: ["Gay"]
 summary: "me bitching about being queer and sharing my opinions"
 ---
 ---

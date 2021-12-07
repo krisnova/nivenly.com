@@ -2,7 +2,7 @@
 title: "collaboration vs competition in open source software"
 date: "2021-04-23"
 author: "kris nóva"
-keywords: "capitalism open source marketing revenue concept"
+keywords: ["Capitalism Thoughts"]
 summary: "a quick thought on capitalism and collaboration as it applies to open source marketing"
 ---
 ---

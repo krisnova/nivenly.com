@@ -2,7 +2,7 @@
 title: "open source clusters as a service"
 date: "2021-04-03"
 author: "kris nóva"
-keywords: "cluster api kops kubicorn kubeadm cluster kubernetes kubicorn clusters as a service caas"
+keywords: [cluster api kops kubicorn kubeadm cluster kubernetes kubicorn clusters as a service caas]
 summary: "small write up that summarizes clusters as a service"
 ---
 ---

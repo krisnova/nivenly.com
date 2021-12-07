@@ -1,9 +1,9 @@
 ---
-title: "the pitch slap"
+title: "The Pitch Slap"
 date: "2021-04-20"
 author: "kris nóva"
-keywords: "engineering bell curve template proposal doc paper"
-summary: "my personal favorite way to propose technical concepts to a team"
+keywords: ["Technical Process"]
+summary: "My personal favorite way to propose technical concepts to a team"
 ---
 ---
 

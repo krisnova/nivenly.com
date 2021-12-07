@@ -2,8 +2,8 @@
 title: "Pre Surgery Update"
 date: "2021-05-17"
 author: "kris nóva"
-keywords: ""
-summary: ""
+keywords: ["Transgender", "Surgery", "FFS", "Facial Surgery", "Feminization Surgery"]
+summary: "Another writeup about my FFS surgery"
 ---
 ---
 

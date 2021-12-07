@@ -2,7 +2,7 @@
 title: "SSH Tunneling with Kubernetes"
 date: "2021-07-05"
 author: "kris nóva"
-keywords: "ssh tunnels, tunneling, ssh, security, kubernetes"
+keywords: ["SSH", "SSH Tunnels", "Kubernetes", "Service", "Expose", "SSH Expose"]
 summary: "Using SSH Tunnels with Kubernetes"
 ---
 ---

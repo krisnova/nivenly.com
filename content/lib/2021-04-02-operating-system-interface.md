@@ -2,8 +2,8 @@
 title: "The Distributed Operating System Void"
 date: "2021-04-02"
 author: "kris nóva"
-keywords: ""
-summary: ""
+keywords: ["Distributed Operating System"]
+summary: "The Distributed Operating System Void"
 ---
 
 _Preface: I will be typing this in proper (capitalized) English. 

@@ -2,8 +2,8 @@
 title: "kubernetes malware writeup for klustered"
 date: "2021-05-03"
 author: "kris nóva"
-keywords: "kubecon eu kubernetes cncf linux kube con klustered rawkode @rawkode"
-summary: "notes on the klustered breaking and how i did what i did"
+keywords: ["Klustered", "Linux", "Kernel", "YouTube"]
+summary: "Klustered episode with Kris Nóva"
 ---
 ---
 

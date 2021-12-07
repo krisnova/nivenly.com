@@ -2,8 +2,8 @@
 title: "emoji-archlinux"
 date: "2021-05-14"
 author: "kris nóva"
-keywords: "emoji archlinux intellij not showing"
-summary: "quick blog on emojis in archlinux with goland clion and intellij"
+keywords: ["Archlinux", "Emojis"]
+summary: "Setting up emojis in intellij on Arch"
 ---
 ---
 

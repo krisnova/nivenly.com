@@ -2,8 +2,8 @@
 title: "Ardanlabs Podcast with Bill Kennedy"
 date: "2021-05-12"
 author: "kris nóva"
-keywords: "linux transgender issues computers foundation the linux foundation kris nova golang kubernetes"
-summary: "podcast with ardan labs"
+keywords: ["Podcast"]
+summary: "My podcast with Ardan Labs"
 ---
 ---
 

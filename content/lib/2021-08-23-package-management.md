@@ -2,7 +2,7 @@
 title: "Package Management in Kubernetes (Go vs YAML)"
 date: "2021-08-23"
 author: "kris nóva"
-keywords: "go, kubernetes, naml, yaml, package management, yaml, converting yaml to go, release, deployment"
+keywords: ["go", "kubernetes", "naml", "yaml", "package management", "yaml", "converting yaml to go", "release", "deployment"]
 summary: "This article highlights the nuance with running Go as an alternative to YAML. YAML vs Go."
 ---
 ---

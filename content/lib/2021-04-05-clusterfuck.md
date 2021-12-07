@@ -2,7 +2,7 @@
 title: "FOSDEM Kubernetes Clusterfuck"
 date: "2021-04-05"
 author: "kris nóva"
-keywords: "kubernetes fosdem clusterfuck kris nova krisnova fixing security hacking privilege escalation golang refactoring"
+keywords: [kubernetes fosdem clusterfuck kris nova krisnova fixing security hacking privilege escalation golang refactoring]
 summary: "Embedded summary of the Kubernetes clusterfuck talks"
 ---
 ---
