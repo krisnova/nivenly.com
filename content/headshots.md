@@ -11,10 +11,21 @@ Copyright 2021 Kris Nóva under an [Apache 2.0](https://github.com/kris-nova/niv
 
 Shot in New York in December 2021. Photographs by [Isaiah C Bullock](https://www.icb.cool/about).
 
-### Primary
+### Full Size
 
-![kris nóva - 001](https://public.nivenly.com/images/nova-headshot-002.jpg)
+Original Photograph (as shot)
 
-### Secondary
+![kris nóva - 001](https://public.nivenly.com/images/nova-headshot-full.jpg)
 
-![kris nóva - 002](https://public.nivenly.com/images/nova-headshot-001.jpg)
+### Cropped (4:5)
+
+Can be used for 8" by 10" printing. 
+
+![kris nóva - 001](https://public.nivenly.com/images/nova-headshot-cropped.jpg)
+
+
+### Square (1:1)
+
+Square crop for social media.
+
+![kris nóva - 002](https://public.nivenly.com/images/nova-headshot-square.jpg)
