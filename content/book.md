@@ -7,34 +7,65 @@ summary: "This is an independently published book about modeling the tech indust
 
 ## Available Spring 2022
 
-I am currently working on the book.
-I live stream most of the writing process on twitch.
-As the book nears completion, dates will be announced here and by signing up below.
+I am currently working on a book about exploiting the tech industry.
+This book is the hacker manual on how to model humans, computers, and money.
 
-[Watch Live](/live)
-
-{{< book-2022 >}}
+I livestream most of the writing process on twitch.
+As the book nears completion, dates will be announced here and by signing up below. [Check Out The Stream on Twitch](/live)
 
 ## About
 
 This is an independently published book about modeling the tech industry.
 
-Learn how to model computers, humans, money, and their subsequent relationships for your personal gain.
+Particularly this book will model computers, humans, and money and their
+subsequent relationships. 
 
 
-### Written For Less Privileged Technologists
+{{< book-2022 >}}
 
-This book is relevant for anyone in tech. However, it is specifically designed to give less privileged technologists (LGBTQ, People of Color, Women, Non-binary, Gender minorities, Neurodivergent, etc...) a set of tools in aiding their ability to exploit a fundamentally broken system.
 
-This book is for anyone that has experienced that money has limited them, held them back, or denied access to their future.
+### Written for Marginalized Technologists
 
-Learn how the privileged at the top think about the industry, so you can outsmart them.
+This book is designed so that anyone will find
+value, however it specifically designed to give marginalized technologists (LGBTQ, Black people, People of Color, Women, Non-binary, Gender minorities, Neurodivergent, and more)
+a set of tools in aiding their ability to exploit a fundamentally
+unbalanced system. 
 
-I am writing this book from my perspective.
-In my eyes, I view myself as a successful transgender hacker. 
+### Think like a Hacker
 
-This book is a "Day 2" overview of the tech industry, focusing on exploitation for profit.
-This book will not teach you how to enter the tech industry, but it will teach you the critical skills required to move from an entry-level position to a lucrative top-level position.
+This book draws inspiration from my professional history
+in Linux and Kubernetes security, distributed threat modeling, kernel
+security, and cloud infrastructure for techniques on modeling and
+exploiting the system that is the Silicon Valley tech industry. If you
+enjoy linear thinking, modeling complex relationships as systems, and
+learning about the strategy I developed to become a Senior Principal
+Engineer in Silicon Valley, this book is for you.
+
+### Model the Industry like a System
+
+The primary goal of this book is to model the system of the tech industry
+such that you can leverage this knowledge for your own initiative.
+
+### Privilege Escalate to the Top
+
+A secondary goal of this book will be enabling you to privilege escalate
+yourself to the level of the elite in tech. We aim to equip you such that
+you can eventually outperform them.
+
+### Leverage The System
+
+Upon finishing the book you should have a comprehensive understanding of
+the psychological and economic impact the tech industry has on its self,
+yourself, and the rest the world. You will learn how to predict the
+system’s behavior, and how to protect yourself while existing within the
+system. 
+
+You will learn proven techniques on navigating the tech industry
+while setting yourself up for success based on your goals.
+The system is the tech industry. The tech industry is the system. This book
+will teach you how to hack it.
+
+### Sign up for a copy today
 
 {{< bookform >}}
 
