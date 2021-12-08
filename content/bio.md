@@ -20,3 +20,7 @@ A popular public speaker, she is best known for her Kubernetes clusterfuck talks
 
 Today she works as a Senior Principal engineer at Twilio focusing on enterprise bare metal Kubernetes systems. 
 She is the founder of [The Privilege Escalation Foundation](https://privilegeescalation.org), which is a non-profit focusing on offering resources for transgender minds in STEM.
+
+### References
+
+The official list of all my [online references can be found here](/references).
