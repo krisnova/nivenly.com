@@ -146,7 +146,7 @@ body.dark-theme {
 
 @media (max-width:683px) {
     .main {
-        margin-top: 0
+        margin-top: 25px;
     }
     .flex-row {
         flex-direction: column;
