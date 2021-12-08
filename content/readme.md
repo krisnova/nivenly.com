@@ -1,27 +1,39 @@
-# Kris Nóva
+# Readme
 
-[Official Biography](https://nivenly.com/bio)
+Read the official [Kris Nóva bio](/bio)
 
-{{< youtube id="59CZrsAudmw" >}}
+### Welcome to Nivenly.com 🎉
 
-## Resources 📘
+This is my personal website, and online resource for just about anything I work on.
+Here you can find blogs, videos, articles, and links to anything my insane mind is currently hyper focused on.
+
+Here are some common resources for the website.
+
+### 🌎 Nivenly.com Public API
+
+Read the official [API Documentation](/api) on how to use the various Nivenly.com endpoints.
+
+### Hugo Theme 👀
+
+I am working on porting the theme from the website out to [Prine](https://github.com/kris-nova/prine)
+
+### 💻 Font
+
+I use the Terminus font found [here](https://github.com/Swordfish90/cool-retro-term/tree/master/app/qml/fonts/modern-terminus).
 
 
+### Online Resources 📚
 
 - [Follow on Twitter](https://twitter.com/krisnova)
 - [Live on Twitch!](https://twitch.tv/krisnova)
-- [Nivenly.com](https://nivenly.com)
 - [YouTube Channel](https://www.youtube.com/channel/UCRvH2UexTzcbZRwCS6OxJ3w)
-- [Headshots](https://github.com/kris-nova/nivenly.com/tree/main/static/assets/logo)
+- [Public Speaking](https://github.com/kris-nova/public-speaking)
 
+### Published Books 📓
 
-### Very important 💼 business author!
-
-- [Author Page](https://nivenly.com/author) on [nivenly.com](https://nivenly.com/author).
-- [O'Reilly](https://www.oreilly.com/people/kris-nova/) writer.
-- [Cloud Native Infrastructure](https://cnibook.info) landing page
-
-![](https://www.cnibook.info/img/cnibook_cover_small.png)
+- [2022 Hacking Capitalism ☠](https://hackingcapitalism.io) a guide to exploiting the tech industry.
+- [2018 O'Reilly Media Author Page](https://www.oreilly.com/people/kris-nova/) writer.
+- [2017 Cloud Native Infrastructure](https://cnibook.info)
 
 ### 💬 Recent Work
 
@@ -37,4 +49,4 @@
 - [COSI project](https://github.com/cosi-project/community) i co-founded the [cosi project](https://github.com/cosi-project/community) which attempts to standardize operarting system components for distributed operating systems with kubernetes
 - [kubicorn](https://github.com/kubicorn)
 - [kubernetes](https://github.com/kubernetes/kubernetes)
-- [linux](https://github.com/kris-nova/linux)
+- [linux](https://github.com/kris-nova/novix)

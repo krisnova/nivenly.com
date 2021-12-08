@@ -86,9 +86,13 @@ enableRobotsTXT = true
         name = "archive"
         url = "https://www.youtube.com/channel/UCRvH2UexTzcbZRwCS6OxJ3w"
       [[languages.en.menu.main]]
+        identifier = "bio"
+        name = "bio"
+        url = "/bio"
+      [[languages.en.menu.main]]
         identifier = "readme"
         name = "readme"
-        url = "/bio"
+        url = "/readme"
       [[languages.en.menu.main]]
         identifier = "src"
         name = "src"

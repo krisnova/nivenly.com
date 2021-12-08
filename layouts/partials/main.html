@@ -30,3 +30,23 @@
         international superfreak kubernetes person trades favors for large sums of money
     </div>
 </div>
+
+
+<div id="twitch-embed" class="twitch">
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script type="text/javascript">
+        var embed = new Twitch.Embed("twitch-embed", {
+            width: 720,
+            height: 405,
+            channel: "krisnova",
+            layout: "video",
+            autoplay: false,
+            parent: ["nivenly.com", "nivenly.com"]
+        });
+
+        embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
+            var player = embed.getPlayer();
+            player.play();
+        });
+    </script>
+</div>

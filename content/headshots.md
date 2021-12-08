@@ -15,17 +15,22 @@ Shot in New York in December 2021. Photographs by [Isaiah C Bullock](https://www
 
 Original Photograph (as shot)
 
-![kris nóva - 001](https://public.nivenly.com/images/nova-headshot-full.jpg)
+![kris nóva](https://public.nivenly.com/images/nova-headshot-full.jpg)
 
 ### Cropped (4:5)
 
 Can be used for 8" by 10" printing. 
 
-![kris nóva - 001](https://public.nivenly.com/images/nova-headshot-cropped.jpg)
+![kris nóva](https://public.nivenly.com/images/nova-headshot-cropped.jpg)
 
+### Circle (1:1)
+
+Circle crop for social media.
+
+![kris nóva](https://public.nivenly.com/images/nova-headshot-circle.png)
 
 ### Square (1:1)
 
 Square crop for social media.
 
-![kris nóva - 002](https://public.nivenly.com/images/nova-headshot-square.jpg)
+![kris nóva](https://public.nivenly.com/images/nova-headshot-square.jpg)
