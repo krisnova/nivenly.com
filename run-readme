@@ -2,7 +2,7 @@
 r="./content/readme.md"
 echo "---" > $r
 echo "title: 'README'" > $r
-echo "keywords: 'kris nóva, kris nova, kris, nova, engineer, hacker, alpine, transgender, adult, business, computer, linux, kubernetes, kube, cloud native, cncf, cloud native infrastructure, oreilly, o'reilly, author, engineer, hacker, cyber'" > $r
+echo "keywords: 'kris nóva, kris nova, kris, nova, engineer, hacker, alpine, transgender, business, computer, linux, kubernetes, kube, cloud native, cncf, cloud native infrastructure, oreilly, o'reilly, author, engineer, hacker, cyber'" > $r
 echo "summary: 'kris nóva is a cute linux hacker with a nice big rack. Find out more about her work with linux, kubernetes, security, go, rust, c, c++, etc'" > $r
 echo "---" > $r
 echo "" > $r
