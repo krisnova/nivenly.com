@@ -112,7 +112,7 @@ body.dark-theme {
     flex-direction: column;
     flex: 1 auto;
     align-items: center;
-    margin: 50px 15px;
+    margin: 15px 15px;
 }
 
 @media (max-width:683px) {
