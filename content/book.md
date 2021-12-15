@@ -18,7 +18,8 @@ As the book nears completion, dates will be announced here and by signing up bel
 This is an independently published book about modeling the tech industry.
 
 Particularly this book will model computers, humans, and money and their
-subsequent relationships. 
+subsequent relationships.
+Understand the alarming state of the tech industry for better or for worse.
 
 
 {{< book-2022 >}}
