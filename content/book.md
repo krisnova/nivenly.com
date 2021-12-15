@@ -19,7 +19,7 @@ This is an independently published book about modeling the tech industry.
 
 Particularly this book will model computers, humans, and money and their
 subsequent relationships.
-Understand the alarming state of the tech industry for better or for worse.
+Understand the alarming state of the tech industry for better or for worse.     
 
 
 {{< book-2022 >}}
