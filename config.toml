@@ -130,7 +130,7 @@ enableRobotsTXT = true
       [[languages.en.menu.main]]
         identifier = "recent book"
         name = "book"
-        url = "/book"
+        url = "https://hackingcapitalism.io"
       [[languages.en.menu.main]]
         identifier = "api"
         name = "api"
