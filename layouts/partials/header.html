@@ -1,5 +1,4 @@
 <header class="header glow">
-
   <span class="header-inner">
     {{ partial "logo.html" . }}
     <span class="header-right">
@@ -12,79 +11,45 @@
         {{ partial "fa.html" "signal" }}
       </span>
 
-      <!-- Contrast Adjust -->
-      <span class="toggle-contrast menu-icon menu-desktop">
-        {{ partial "fa.html" "adjust" }}
-      </span>
-
-      <!-- Mobile Menu Adjust -->
-      <span class="toggle-mobile-menu menu-icon">
-        {{ partial "fa.html" "bars" }}
-      </span>
-
-      <!-- Discord -->
-      <a href="https://discord.gg/QG27kwx4nf" target="_blank" rel="noopener noreferrer" class="menu-icon">
-        {{ partial "fa.html" "discord" }}
+      <!--Settings-->
+      {{ if $.Site.Params.SettingsURL }}
+      <span class="color-base">
+      <a href="{{ $.Site.Params.SettingsURL }}" title="{{ $.Site.Params.SettingsText }}" target="_blank" rel="noopener noreferrer" class="menu-icon">
+        {{ partial "fa.html" "sliders" }}
       </a>
+      </span>
+      {{ end }}
 
-      <!-- Twitter -->
-      <a href="https://twitter.com/krisnova" target="_blank" rel="noopener noreferrer" class="menu-icon">
+      <!--Twitter-->
+      {{ if $.Site.Params.TwitterURL }}
+      <a href="{{ $.Site.Params.TwitterURL }}" title="{{ $.Site.Params.TwitterText }}" target="_blank" rel="noopener noreferrer" class="menu-icon">
         {{ partial "fa.html" "twitter" }}
       </a>
+      {{ end }}
 
-      <!-- Nivenly.com -->
-      <a href="https://github.com/kris-nova/nivenly.com" target="_blank" rel="noopener noreferrer" class="menu-icon">
+      <!--GitHub-->
+      {{ if $.Site.Params.GithubURL }}
+      <a href="{{ $.Site.Params.GithubURL }}" title="{{ $.Site.Params.GithubText }}" target="_blank" rel="noopener noreferrer" class="menu-icon">
         {{ partial "fa.html" "github" }}
       </a>
+      {{ end }}
+
+      <!--Discord-->
+      {{ if $.Site.Params.DiscordURL }}
+      <a href="{{ $.Site.Params.DiscordURL }}" title="{{ $.Site.Params.DiscordText }}" target="_blank" rel="noopener noreferrer" class="menu-icon">
+        {{ partial "fa.html" "discord" }}
+      </a>
+      {{ end }}
+
+      <!--YouTube-->
+      {{ if $.Site.Params.YoutubeURL }}
+      <a href="{{ $.Site.Params.YoutubeURL }}" title="{{ $.Site.Params.YoutubeText }}" target="_blank" rel="noopener noreferrer" class="menu-icon">
+        {{ partial "fa.html" "youtube" }}
+      </a>
+      {{ end }}
+
+
 
     </span>
   </span>
 </header>
-
-<script>
-  <!-- Toggle Contrast -->
-  const getTheme = window.localStorage && window.localStorage.getItem("theme");
-  const themeToggle = document.querySelector(".toggle-contrast");
-  const isDark = getTheme === "dark";
-
-  if (getTheme !== null) {
-    document.body.classList.toggle("dark-theme", isDark);
-  }
-
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
-    window.localStorage &&
-    window.localStorage.setItem(
-            "theme",
-            document.body.classList.contains("dark-theme") ? "dark" : "light",
-    );
-  });
-
-  <!-- Toggle Mobile Menu -->
-  const getMobileMenu = window.localStorage && window.localStorage.getItem("mobileMenu");
-  const mobileMenuToggle = document.querySelector(".toggle-mobile-menu");
-  const menu = document.getElementById('mobile-menu');
-  const isMenu = getMobileMenu === "true";
-
-  if (getMobileMenu !== null) {
-    menu.classList.toggle("hidden", isMenu);
-  }
-
-  mobileMenuToggle.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
-    window.localStorage &&
-    window.localStorage.setItem(
-            "mobileMenu",
-            menu.classList.contains("hidden") ? "true" : "false",
-    );
-  });
-
-  function toggleMobileMenu() {
-    var toggleMobileMenu = document.getElementById('mobile-menu');
-    if(menu.classList.contains('hidden')) {
-      document.getElementById('mobile-menu').classList.add('hidden');
-    } else {
-      document.getElementById('mobile-menu').classList.remove('hidden');
-    }
-  }
-</script>

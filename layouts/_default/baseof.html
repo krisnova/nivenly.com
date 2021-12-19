@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--Prine-->
+<html>
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "header.html" . -}}
+        <div class="container">
+        <div class="flex-row">
+
+        {{- partial "sidebar-left.html" . -}}
+        <div class="content" id="content">
+            {{- block "main" . }} {{- end }}
+        </div>
+        {{- partial "sidebar-right.html" . -}}
+
+        </div>
+        </div>
+
+        {{- partial "footer.html" . -}}
+    </body>
+</html>
