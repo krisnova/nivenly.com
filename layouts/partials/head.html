@@ -3,21 +3,31 @@
 
 {{- partial "head_meta.html" . }}
 
+<!--Title-->
+{{ block "title" . }}
+<title>
+    {{ if .IsHome }}
+    {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
+    {{ else }}
+    {{ $.Site.Title }}{{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
+    {{ end }}
+</title>
+{{ end }}
+
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="{{ .Permalink }}" />
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="{{ "assets/style.css" | absURL }}" />
-<link rel="stylesheet" href="{{ "assets/nova.css" | absURL }}" />
+<link rel="stylesheet" href="{{ "/brand/nova.css" | absURL }}" />
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C8QMK1BGKN"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $.Site.Params.GoogleAnalyticsID }}"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-C8QMK1BGKN');
+    gtag('config', '{{ $.Site.Params.GoogleAnalyticsID }}');
 </script>
 
 <!-- Icons -->
@@ -38,4 +48,3 @@
 {{ range .AlternativeOutputFormats -}}
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
 {{ end -}}
-

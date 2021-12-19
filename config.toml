@@ -19,7 +19,9 @@
 
 baseurl = "/"
 languageCode = "en-us"
-theme = "nivenly-theme"
+theme = "prine"
+title = 'Nivenly.com'
+subtitle = 'Kris Nóva'
 paginate = 5
 enableRobotsTXT = true
 
@@ -63,6 +65,22 @@ enableRobotsTXT = true
   clientVisits = "{{ .Analytics.ThisClientVisits }}"
   pageVisits = "{{ .Analytics.ThisPageVisits }}"
 
+
+
+
+  twitterURL = "https://twitter.com/krisnova"
+  twitterText = "@krisnova"
+  githubURL = "https://github.com/kris-nova"
+  githubText = "kris-nova"
+  discordURL = "https://discord.com/invite/QG27kwx4nf"
+  discordText = "Join our official Discord!"
+  youtubeURL = "https://www.youtube.com/channel/UCRvH2UexTzcbZRwCS6OxJ3w"
+  youtubeText = "Official YouTube channel!"
+  settingsURL = "https://nivenly.com"
+  settingsText = "Tweak your site's settings."
+  footerText = "First you go up. Then you come back down."
+  copyright = "2022 Kris Nóva"
+  googleAnalyticsID = "G-C8QMK1BGKN"
 
 
 

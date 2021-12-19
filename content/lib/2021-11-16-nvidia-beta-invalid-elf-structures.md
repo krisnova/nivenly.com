@@ -1,7 +1,7 @@
 ---
 title: "Arch Linux NVIDIA Driver Beta - Module has invalid ELF Structures"
 date: "2021-11-16"
-author: "Kris Nóva 🖊"
+author: "Kris Nóva"
 tags: ["Kris", "Nova", "Nóva", "Kris Nova", "Nivenly", "Nivenly.com", "Blog", "Writing", "Arch Linux", "Graphics Driver", "Video Driver", "NVIDIA", "ELF", "Kernel", "Error"]
 summary: "Debugging video drivers on 5.15.2 kernel"
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Email Signature Chess"
-author: "Kris Nóva 🖊"
+author: "Kris Nóva"
 tags: ["Kris", "Nova", "Nóva", "Kris Nova", "Nivenly", "Nivenly.com", "Blog", "Writing", "Email Chess", "Email Signature", "Chess", "Ascii", "Email Chess Ascii"]
 summary: "Playing chess via my email signature"
 ---

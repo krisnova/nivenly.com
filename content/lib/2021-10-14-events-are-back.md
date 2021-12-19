@@ -1,7 +1,7 @@
 ---
 title: "Well... Events are back"
 date: "2021-10-14"
-author: "Kris Nóva 🖊"
+author: "Kris Nóva"
 tags: ["Events", "Kubernetes", "Economy"]
 keywords: ["Kris", "Nova", "Nóva", "Kris Nova", "Nivenly", "Nivenly.com", "Blog", "Writing", "Kubecon", "Reflection", "Linux Foundation", "2021", "Los Angeles", "Events"]
 summary: "A few thoughts on my experience at KubeCon 2021"
