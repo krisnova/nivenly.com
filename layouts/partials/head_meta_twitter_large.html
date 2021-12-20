@@ -15,9 +15,9 @@
 
 {{ if .IsHome }}
 <meta name="twitter:title" content="official @krisnóva website [genuine, approved, legitimate]"/>
-<meta name="twitter:description" content="1' and 1=1;- - {{ $.Site.Params.Description }}" />
-<meta property="og:description" content="1' and 1=1;- -{{ $.Site.Params.Description }}" />
-<meta property="og:title" content="official @krisnóva website [genuine, approved, legitimate]" />
+<meta name="twitter:description" content="{{ $.Site.Params.Description }}" />
+<meta property="og:description" content="{{ $.Site.Params.Description }}" />
+<meta property="og:title" content="Nivenly.com" />
 {{ else }}
 <meta name="twitter:title" content="{{ .Title | plainify }}"/>
 <meta name="twitter:description" content="{{ .Summary | plainify }}"/>

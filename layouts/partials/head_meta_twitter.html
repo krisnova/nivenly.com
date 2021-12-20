@@ -9,13 +9,14 @@
 
 <meta property="og:image" content="https://nivenly.com/assets/logo/Nivenly_2.png" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/" /><meta property="og:site_name" content="nivenly.com" />
+<meta property="og:url" content="/" />
+<meta property="og:site_name" content="Nivenly.com" />
 
 {{ if .IsHome }}
-    <meta name="twitter:title" content="official @krisnóva website [genuine, approved, legitimate]"/>
+    <meta name="twitter:title" content="Nivenly.com | Official website of Kris Nóva"/>
     <meta name="twitter:description" content="{{ $.Site.Params.Description }}" />
     <meta property="og:description" content="{{ $.Site.Params.Description }}" />
-    <meta property="og:title" content="official @krisnóva website [genuine, approved, legitimate]" />
+    <meta property="og:title" content="Nivenly.com | Official website of Kris Nóva" />
 {{ else }}
     <meta name="twitter:title" content="{{ .Title | plainify }}"/>
     <meta name="twitter:description" content="{{ .Summary | plainify }}"/>
