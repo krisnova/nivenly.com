@@ -74,6 +74,8 @@ func GetCrypto(r *http.Request, client Client) Crypto {
 	logger.Info("%+v", sync)
 	c.Status = "ACTIVE"
 	c.BalanceWei = balance.Int64()
-	c.SyncProgress = sync
+	if sync != nil {
+		c.SyncProgress = sync
+	}
 	return c
 }
