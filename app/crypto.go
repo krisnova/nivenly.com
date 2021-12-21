@@ -41,8 +41,9 @@ type Crypto struct {
 func GetCrypto(r *http.Request, client Client) Crypto {
 	// Anchovies is initialized
 	c := Crypto{
-		Status: "NOT RUNNING",
-		Addr:   wellKnownNovaEthAddr,
+		Status:     "NOT RUNNING",
+		BalanceWei: 0,
+		Addr:       wellKnownNovaEthAddr,
 		SyncProgress: &ethereum.SyncProgress{
 			HighestBlock: 0,
 			CurrentBlock: 0,
