@@ -20,6 +20,12 @@ import (
 	"github.com/kris-nova/logger"
 )
 
+const (
+
+	// siteKey is the key to index on for Anchovies
+	siteKey string = "nivenly.com"
+)
+
 // NivenlyAPI is a request specific API for the website.
 //
 // All user input that comes into the website comes in
@@ -36,6 +42,9 @@ import (
 //
 // If you can get data here - you can interpolate into the website.
 type NivenlyAPI struct {
+
+	// Crypto is all crypto (Not ethereum specific, although we start there)
+	Crypto Crypto
 
 	// Analytics will be page analytics for each page
 	Analytics Analytics
@@ -71,8 +80,11 @@ func (v *Nivenly) GetAPI(r *http.Request) *NivenlyAPI {
 	// we get from the server.
 	client := v.clientHandler.GetClient(r)
 
-	// Every Request gets an Analytics
+	// Every request gets an Analytics
 	analytics := GetAnalytics(r, client)
+
+	// Every request get a Crypto
+	crypto := GetCrypto(r, client)
 
 	// Log client for every interpolation
 	logger.Info("Client: %s", client.Addr)
@@ -82,6 +94,7 @@ func (v *Nivenly) GetAPI(r *http.Request) *NivenlyAPI {
 	// Build our API for the site
 	api := &NivenlyAPI{
 		Analytics:  analytics,
+		Crypto:     crypto,
 		Client:     client,
 		ClientAddr: client.Addr,
 		R:          r,

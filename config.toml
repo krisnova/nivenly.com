@@ -64,10 +64,11 @@ enableRobotsTXT = true
   geoString = "{{ .Client.GeoString }}"
   clientVisits = "{{ .Analytics.ThisClientVisits }}"
   pageVisits = "{{ .Analytics.ThisPageVisits }}"
-
-
-
-
+  ethStatus = "{{ .Crypto.Status }}"
+  ethAddr = "{{ .Crypto.Addr }}"
+  ethBalance = "{{ .Crypto.BalanceWei }}"
+  ethStatusCurrent = "{{ .Crypto.SyncProgress.CurrentBlock }}"
+  ethStatusHighest = "{{ .Crypto.SyncProgress.HighestBlock }}"
   twitterURL = "https://twitter.com/krisnova"
   twitterText = "@krisnova"
   githubURL = "https://github.com/kris-nova"

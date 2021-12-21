@@ -23,10 +23,6 @@ import (
 	"github.com/kris-nova/anchovies"
 )
 
-const (
-	siteKey string = "nivenly.com"
-)
-
 // Analytics is a site level analytics structure.
 //
 // Have fun hacking this shit up!

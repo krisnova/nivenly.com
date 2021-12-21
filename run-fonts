@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-SOLID="transgender-alt calendar pencil-alt sitemap stopwatch globe-americas bars cogs book hand-middle-finger cloud network-wired signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
-BRANDS="linux youtube twitter github twitch linkedin discord"
+SOLID="transgender-alt money-bill-wave angle-right battery-three-quarters calendar pencil-alt sitemap stopwatch globe-americas bars cogs book hand-middle-finger cloud network-wired signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
+BRANDS="linux youtube ethereum twitter github twitch linkedin discord"
 REGULAR=""
 
 DIR="static/assets/fonts"

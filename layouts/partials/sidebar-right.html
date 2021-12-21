@@ -62,6 +62,43 @@
         </a>
     </div>
 
+    <!-- ethereum -->
+    <div class="side-large">
+        <span class="color-highlight">[</span><span class="color-alt"> ethereum </span><span class="color-highlight">]</span>
+    </div>
+
+
+    <!-- eth.status -->
+    <div class="side-paragraph">
+            <span class="color-highlight glow">{{ partial "fa.html" "battery-three-quarters" }}</span>
+            <span class="color-alt glow">{{ $.Site.Params.EthStatus }}</span>
+    </div>
+
+<!--    &lt;!&ndash; eth.addr &ndash;&gt;-->
+<!--    <div class="side-paragraph">-->
+<!--            <span class="color-highlight glow">{{ partial "fa.html" "terminal" }}</span>-->
+<!--            <span class="color-alt glow">{{ $.Site.Params.EthAddr }}</span>-->
+<!--    </div>-->
+
+    <!-- eth.balance -->
+    <div class="side-paragraph">
+            <span class="color-highlight glow">{{ partial "fa.html" "money-bill-wave" }}</span>
+            <span class="color-alt glow">{{ $.Site.Params.EthBalance }}</span>
+    </div>
+
+    <!-- eth.current -->
+    <div class="side-paragraph">
+            <span class="color-highlight glow">{{ partial "fa.html" "terminal" }}</span>
+            <span class="color-alt glow">Current: {{ $.Site.Params.EthStatusCurrent }}</span>
+    </div>
+
+    <!-- eth.highest -->
+    <div class="side-paragraph" style="border-bottom: 1px #96c3f1 solid;">
+            <span class="color-highlight glow">{{ partial "fa.html" "terminal" }}</span>
+            <span class="color-alt glow">Highest: {{ $.Site.Params.EthStatusHighest }}</span>
+    </div>
+
+
     <!-- projects -->
     <div class="side-large">
         <span class="color-highlight">[</span><span class="color-alt"> projects </span><span class="color-highlight">]</span>
@@ -85,10 +122,8 @@
 
     <!-- dname -->
     <div class="side-paragraph">
-        <a href="https://github.com/the-naming-project/the-naming-project" target="_blank" rel="noopener noreferrer">
             <span class="color-highlight glow">{{ partial "fa.html" "pencil-alt" }}</span>
             <span class="color-alt glow">the naming project</span>
-        </a>
     </div>
 
     <!-- novix -->

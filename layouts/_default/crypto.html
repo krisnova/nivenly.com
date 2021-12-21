@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+ <div style="text-align: left">
+     <h2>Ethereum Mining []</h2>
+     <div>
+         <span>
+             Current Block Sync (Alice):
+         </span>
+         <span>{{ $.Site.Params.EthStatusCurrent }}</span>
+     </div>
+     <div>
+         <span>
+             Highest Block Sync (Alice):
+         </span>
+         <span>{{ $.Site.Params.EthStatusHighest }}</span>
+     </div>
+
+ </div>
+
+{{ end }}
