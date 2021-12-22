@@ -7,18 +7,9 @@
       {{ end }}
 
       <!-- Sidebar Adjust -->
-      <span class="toggle-sidebar menu-icon">
+      <span class="toggle-sidebar menu-icon" title="Toggle Extended Menu">
         {{ partial "fa.html" "signal" }}
       </span>
-
-      <!--Settings-->
-      {{ if $.Site.Params.SettingsURL }}
-      <span class="color-base">
-      <a href="{{ $.Site.Params.SettingsURL }}" title="{{ $.Site.Params.SettingsText }}" target="_blank" rel="noopener noreferrer" class="menu-icon">
-        {{ partial "fa.html" "sliders" }}
-      </a>
-      </span>
-      {{ end }}
 
       <!--Twitter-->
       {{ if $.Site.Params.TwitterURL }}
