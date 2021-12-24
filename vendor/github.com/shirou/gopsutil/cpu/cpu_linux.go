@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package cpu
@@ -286,7 +287,7 @@ func CountsWithContext(ctx context.Context, logical bool) (int, error) {
 		if err == nil {
 			for _, line := range lines {
 				line = strings.ToLower(line)
-				if strings.HasPrefix(line, "processor")  {
+				if strings.HasPrefix(line, "processor") {
 					_, err = strconv.Atoi(strings.TrimSpace(line[strings.IndexByte(line, ':')+1:]))
 					if err == nil {
 						ret++
