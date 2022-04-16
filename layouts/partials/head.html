@@ -35,9 +35,9 @@
 
 {{ if .IsHome  }}
   {{- partial "head_meta_twitter_large.html" . }}
-{{ else if eq .URL "/live/" }}
+{{ else if eq .Page.File.Path "/live/" }}
   {{- partial "head_meta_twitter_live.html" . }}
-{{ else if in .URL "/questions/" }}
+{{ else if in .Page.File.Path "/questions/" }}
   {{- partial "head_meta_twitter_live.html" . }}
 {{ else }}
   {{- partial "head_meta_twitter.html" . }}
