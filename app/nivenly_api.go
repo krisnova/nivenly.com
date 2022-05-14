@@ -84,7 +84,7 @@ func (v *Nivenly) GetAPI(r *http.Request) *NivenlyAPI {
 	analytics := GetAnalytics(r, client)
 
 	// Every request get a Crypto
-	crypto := GetCrypto(r, client)
+	//crypto := GetCrypto(r, client)
 
 	// Log client for every interpolation
 	logger.Info("Client: %s", client.Addr)
@@ -94,7 +94,6 @@ func (v *Nivenly) GetAPI(r *http.Request) *NivenlyAPI {
 	// Build our API for the site
 	api := &NivenlyAPI{
 		Analytics:  analytics,
-		Crypto:     crypto,
 		Client:     client,
 		ClientAddr: client.Addr,
 		R:          r,

@@ -2,7 +2,7 @@
 set -e
 
 SOLID="transgender-alt money-bill-wave angle-right battery-three-quarters calendar pencil-alt sitemap stopwatch globe-americas bars cogs book hand-middle-finger cloud network-wired signal server envelope book server images skull-crossbones bomb book-dead terminal adjust"
-BRANDS="linux youtube ethereum twitter github twitch linkedin discord"
+BRANDS="linux youtube ethereum twitter github twitch linkedin discord mastodon"
 REGULAR=""
 
 DIR="static/assets/fonts"
