@@ -41,6 +41,7 @@ var (
 )
 
 // Raw results we send back to the client
+
 type ScanResults struct {
 	Addr    string
 	NMAPRun nmap.Run
