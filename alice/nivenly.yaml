@@ -28,7 +28,7 @@ spec:
     spec:
       hostNetwork: true
       containers:
-        - image: krisnova/nivenly.com:latest
+        - image: docker.io/krisnova/nivenly.com:latest
           volumeMounts:
             - mountPath: /data/anchovies
               name: anchovies
