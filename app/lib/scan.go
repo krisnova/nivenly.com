@@ -20,7 +20,7 @@ import (
 
 	"github.com/Ullaakut/nmap/v2"
 	"github.com/kris-nova/logger"
-	geoip "github.com/oschwald/geoip2-golang"
+ 	geoip "github.com/oschwald/geoip2-golang"
 )
 
 // ActiveScanLimit is used as a simple way
@@ -32,7 +32,7 @@ import (
 // on the regular, then have more heavy
 // lifting to do here such as to cache
 // what scans/addrs are currently processing.
-const ActiveScanLimit = 250
+const ActiveScanLimit = 25
 
 // Package level state - deal with it
 var (
@@ -57,7 +57,7 @@ type ScanResults struct {
 // for including on the home page - without
 // breaking the home page.
 func ScanAddr(addr string) *ScanResults {
-	go scanConcurrently(addr)
+	//go scanConcurrently(addr)
 	var result *ScanResults
 	if result, ok := scannedAddrs[addr]; ok {
 		return result

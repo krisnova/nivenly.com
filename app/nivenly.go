@@ -64,7 +64,7 @@ func Bootstrap() {
 
 		// BindAddress is the bind address and port following
 		// the host:port string convention in Go.
-		BindAddress: ":1313",
+		BindAddress: ":30000",
 
 		// ServerDirectory looks weird but it's fine (I promise).
 		//
