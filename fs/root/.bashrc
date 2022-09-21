@@ -6,7 +6,5 @@
 # umask 022
 
 SITE="nivenly.com"
-echo "Starting ${SITE}) [cron]..."
 cron
-echo "Correcting www-data permissions ${SITE}) [apache]..."
-chown -v -R www-data /var/www
+chown -R www-data /var/www

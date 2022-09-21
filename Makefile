@@ -31,12 +31,19 @@ container: ## Build the base container
 	sudo -E docker build -t $(registry)/$(image):latest -f images/Dockerfile.base .
 
 dev: ## Run the website locally in development mode
-	sudo -E docker run -it -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/accounts:/var/www/html/user/accounts $(registry)/$(image):latest
+	sudo -E docker run -it -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user $(registry)/$(image):latest
 	sudo -E chown -R nova: public/*
+	sudo -E chown -R nova: secrets/*
 
 exec: ## Exec into the container in its "final form"
-	sudo -E docker run -it --entrypoint /bin/bash -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/accounts:/var/www/html/user/accounts $(registry)/$(image):latest || true
+	sudo -E docker run -it --entrypoint /bin/bash -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user $(registry)/$(image):latest || true
 	sudo -E chown -R nova: public/*
+	sudo -E chown -R nova: secrets/*
+
+perms: ## Fix local permissions
+	sudo -E chown -R nova: public/*
+	sudo -E chown -R nova: secrets/*
+
 
 all: ## Build the website
 
