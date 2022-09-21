@@ -1,2 +1,8 @@
 .idea*
 .idea/*
+
+# Ignore user data (stored in secrets)
+public/user/accounts/*
+
+# Ignore cache data
+public/cache/*

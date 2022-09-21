@@ -2,7 +2,7 @@
 
 trap ctrl_c INT
 function ctrl_c() {
-  "Cleaning up..."
+  echo "Cleaning up..."
   exit 0
 }
 
