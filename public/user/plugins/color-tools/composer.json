@@ -1,0 +1,30 @@
+{
+  "name": "trilbymedia/color-tools",
+  "type": "grav-plugin",
+  "description": "Color Tools for PHP and Twig",
+  "keywords": ["plugin"],
+  "homepage": "https://github.com/trilbymedia/grav-plugin-color-tools",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Trilby Media, LLC",
+      "email": "hello@trilby.media",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.3.6",
+    "mexitek/phpcolors": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Grav\\Plugin\\ColorTools\\": "classes/"
+    },
+    "classmap":  ["color-tools.php"]
+  },
+  "config": {
+    "platform": {
+      "php": "7.3.6"
+    }
+  }
+}

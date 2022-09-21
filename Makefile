@@ -21,6 +21,10 @@ image            =             nivenly.com
 
 default: all
 
+submodule: ## Make submodules
+	@git submodule update --init --recursive
+	@git submodule update --remote --rebase
+
 container: ## Build the base container
 	sudo -E docker build -t $(registry)/$(image):latest -f images/Dockerfile.base .
 

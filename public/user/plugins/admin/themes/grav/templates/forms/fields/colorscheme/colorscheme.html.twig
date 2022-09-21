@@ -1,0 +1,12 @@
+{% extends "forms/field.html.twig" %}
+
+{% block input %}
+    <div class="colorbar current-scheme">
+        {% include 'forms/default/fields.html.twig' with {name: field.name, fields: field.fields} %}
+    </div>
+
+{% endblock %}
+
+
+
+
