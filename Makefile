@@ -12,16 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+user             =             nova
+bindmount        =             /home/$(user)/nivenly.com/public
+devlistenport    =             8000
+registry         =             krisnova
+image            =             nivenly.com
+
+
 default: all
 
 container: ## Build the base container
-	sudo -E docker build -t krisnova/grav:latest -f images/Dockerfile.base .
+	sudo -E docker build -t $(registry)/$(image):latest -f images/Dockerfile.base .
 
 dev: ## Run the website locally in development mode
-	sudo -E docker run -p 8000:80 krisnova/grav:latest
+	sudo -E docker run -p $(devlistenport):80 -v $(bindmount):/var/www/html $(registry)/$(image):latest
+	sudo -E chown -R nova: public/*
 
 exec: ## Exec into the container in its "final form"
-	sudo -E docker run -it -p 8000:80 krisnova/grav:latest /bin/bash
+	sudo -E docker run -it -p $(devlistenport):80 -v $(bindmount):/var/www/html $(registry)/$(image):latest /bin/bash
+	sudo -E chown -R nova: public/*
 
 all: ## Build the website
 

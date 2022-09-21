@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+SITE="nivenly.com"
+
+echo "Starting ${SITE}) [cron]..."
+cron
+
+echo "Correcting www-data permissions ${SITE}) [apache]..."
+chown -v -R www-data /var/www
+
+apache2-foreground
