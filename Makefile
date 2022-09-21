@@ -25,11 +25,11 @@ container: ## Build the base container
 	sudo -E docker build -t $(registry)/$(image):latest -f images/Dockerfile.base .
 
 dev: ## Run the website locally in development mode
-	sudo -E docker run -t -p $(devlistenport):80 -v $(bindmount):/var/www/html $(registry)/$(image):latest
+	sudo -E docker run -it -p $(devlistenport):80 -v $(bindmount):/var/www/html $(registry)/$(image):latest
 	sudo -E chown -R nova: public/*
 
 exec: ## Exec into the container in its "final form"
-	sudo -E docker run -t -i --entrypoint /bin/bash -p $(devlistenport):80 -v $(bindmount):/var/www/html $(registry)/$(image):latest || true
+	sudo -E docker run -it --entrypoint /bin/bash -p $(devlistenport):80 -v $(bindmount):/var/www/html $(registry)/$(image):latest || true
 	sudo -E chown -R nova: public/*
 
 all: ## Build the website
