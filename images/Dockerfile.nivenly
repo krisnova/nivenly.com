@@ -1,4 +1,15 @@
 FROM krisnova/grav:latest
 LABEL maintainer="Kris Nóva <kris@nivenly.com>"
 
-# TODO
+RUN chown -R www-data:www-data /var/www
+
+COPY fs/root/.bashrc /root/.bashrc
+COPY fs/nivenly /nivenly
+
+# Mounts
+# TODO we should have this mount in Kubernetes once we are in production
+#COPY public /var/www/html
+#COPY secrets/nivenly.com/user /var/www/html/user
+#COPY pages /var/www/html/user/pages
+
+ENTRYPOINT ["/nivenly"]

@@ -47,20 +47,3 @@ RUN pecl install apcu \
     && pecl install yaml-2.0.4 \
     && docker-php-ext-enable apcu yaml
 
-# Return to root user
-USER root
-
-# Copy public to the server directory
-COPY public /var/www/html
-RUN chown -R www-data:www-data /var/www
-
-# Create cron job for Grav maintenance scripts
-RUN (crontab -l; echo "* * * * * cd /var/www/html;/usr/local/bin/php bin/grav scheduler 1>> /dev/null 2>&1") | crontab -
-
-COPY fs/root/.bashrc /root/.bashrc
-COPY fs/nivenly /nivenly
-
-# User Secrets
-COPY secrets/nivenly.com/user /var/www/html/user
-
-ENTRYPOINT ["/nivenly"]

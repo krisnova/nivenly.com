@@ -15,10 +15,10 @@
 user             =             nova
 bindmount        =             /home/$(user)/nivenly.com/public
 secretsmount     =             /home/$(user)/nivenly.com/secrets
+pagesmount       =             /home/$(user)/nivenly.com/pages
 devlistenport    =             8000
 registry         =             krisnova
 image            =             nivenly.com
-
 
 default: all
 
@@ -27,25 +27,32 @@ submodule: ## Make submodules
 	@git submodule update --init --recursive
 	@git submodule update --remote --rebase
 
-container: ## Build the base container
-	sudo -E docker build -t $(registry)/$(image):latest -f images/Dockerfile.base .
+base: ## Build the base container
+	sudo -E docker build -t $(registry)/grav:latest -f images/Dockerfile.base .
+
+container: ## Build the nivenly.com container
+	sudo -E docker build -t $(registry)/$(image):latest -f images/Dockerfile.nivenly .
 
 dev: ## Run the website locally in development mode
-	sudo -E docker run -it -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user $(registry)/$(image):latest
+	sudo -E docker run -it -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user -v $(pagesmount):/var/www/html/user/pages $(registry)/$(image):latest
 	sudo -E chown -R nova: public/*
 	sudo -E chown -R nova: secrets/*
+	sudo -E chown -R nova: pages/*
 
 exec: ## Exec into the container in its "final form"
-	sudo -E docker run -it --entrypoint /bin/bash -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user $(registry)/$(image):latest || true
+	sudo -E docker run -it --entrypoint /bin/bash -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user -v $(pagesmount):/var/www/html/user/pages $(registry)/$(image):latest || true
 	sudo -E chown -R nova: public/*
 	sudo -E chown -R nova: secrets/*
+	sudo -E chown -R nova: pages/*
 
 perms: ## Fix local permissions
 	sudo -E chown -R nova: public/*
 	sudo -E chown -R nova: secrets/*
+	sudo -E chown -R nova: pages/*
 
-
-all: ## Build the website
+push: ## Build the website
+	sudo -E docker push $(registry)/grav:latest
+	sudo -E docker push $(registry)/$(image):latest
 
 clean: ## Clean the project
 
