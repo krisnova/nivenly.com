@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+trap ctrl_c INT
+function ctrl_c() {
+  echo "Cleaning up..."
+  exit 0
+}
+
+/root/.bashrc
+apache2-foreground

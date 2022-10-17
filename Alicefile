@@ -1,5 +1,8 @@
 #!/bin/bash
 REPO="krisnova"
-NAME="nivenly.com"
+NAME="nivenly.new.com"
 TAG="latest"
 SHA="$(git rev-parse HEAD)"
+
+
+

@@ -1,3 +1,6 @@
 [submodule "themes/prine"]
 	path = themes/prine
 	url = git@github.com:kris-nova/prine.git
+[submodule "secrets"]
+	path = secrets
+	url = git@github.com:kris-nova/secrets.git

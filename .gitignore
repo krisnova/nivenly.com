@@ -1,4 +1,9 @@
 .idea*
 .idea/*
-public*
-public/*
+
+# Ignore user data (stored in secrets)
+public/user/accounts/*
+public/user/data/notifications/*
+
+# Ignore cache data
+public/cache/*

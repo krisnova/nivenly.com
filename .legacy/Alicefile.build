@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Build the static site from markdown
+hugo
+
+# Copy the "legacy content" to public/legacy
+#mkdir -p public/legacy
+#cp -rv legacy/* public/legacy
+
+#cd public
+#find . -name '*.html' -type f -print -exec tidy -mq '{}' \;
+#cd ../
