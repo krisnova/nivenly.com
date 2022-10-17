@@ -6,6 +6,7 @@ hero:
 process:
     markdown: true
     twig: true
+media_order: 'portrait.jpeg,portrait-full.jpeg'
 ---
 
 ## Biography
@@ -17,3 +18,7 @@ She specializes in Linux kernel security, distributed systems, infrastructure ma
 Nóva is well known for her open source work. She has created many successful open source projects and has contributed to projects like Linux, Kubernetes, Rust, Go, etc. A popular public speaker, she is best known for her Kubernetes clusterfuck talks.
 
 Today she works as a principal engineer at GitHub focusing on infrastructure platform engineering.
+
+[lightbox image="portrait-full.jpeg" zoomable="false" draggable="false"]
+![Author Photograph](portrait-full.jpeg?cropZoom=400,600)
+[/lightbox]
