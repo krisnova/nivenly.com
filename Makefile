@@ -34,13 +34,13 @@ container: ## Build the nivenly.com container
 	sudo -E docker build -t $(registry)/$(image):latest -f images/Dockerfile.nivenly .
 
 dev: ## Run the website locally in development mode
-	sudo -E docker run -it -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user -v $(pagesmount):/var/www/html/user/pages $(registry)/$(image):latest
+	sudo -E docker run -it -p $(devlistenport):37000 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user -v $(pagesmount):/var/www/html/user/pages $(registry)/$(image):latest
 	sudo -E chown -R nova: public/*
 	sudo -E chown -R nova: secrets/*
 	sudo -E chown -R nova: pages/*
 
 exec: ## Exec into the container in its "final form"
-	sudo -E docker run -it --entrypoint /bin/bash -p $(devlistenport):80 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user -v $(pagesmount):/var/www/html/user/pages $(registry)/$(image):latest || true
+	sudo -E docker run -it --entrypoint /bin/bash -p $(devlistenport):37000 -v $(bindmount):/var/www/html -v $(secretsmount)/nivenly.com/user:/var/www/html/user -v $(pagesmount):/var/www/html/user/pages $(registry)/$(image):latest || true
 	sudo -E chown -R nova: public/*
 	sudo -E chown -R nova: secrets/*
 	sudo -E chown -R nova: pages/*
@@ -70,4 +70,4 @@ officialcontainer: ## Build the *default* grav container (mostly unused)
 	sudo -E docker build -t krisnova/gravofficial:latest -f images/Dockerfile._grav .
 
 officialexec: ## Exec into the *default* grav container (mostly unused)
-	sudo -E docker run -it -p 8001:80 krisnova/gravofficial:latest /bin/bash
+	sudo -E docker run -it -p 8001:37000 krisnova/gravofficial:latest /bin/bash

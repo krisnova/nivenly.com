@@ -4,12 +4,13 @@ LABEL maintainer="Kris Nóva <kris@nivenly.com>"
 RUN chown -R www-data:www-data /var/www
 
 COPY fs/root/.bashrc /root/.bashrc
+COPY fs/etc/apache2/sites-enabled /etc/apache2/sites-enabled
+COPY fs/etc/apache2/ports.conf /etc/apache2/ports.conf
 COPY fs/nivenly /nivenly
 
 # Mounts
-# TODO we should have this mount in Kubernetes once we are in production
-#COPY public /var/www/html
-#COPY secrets/nivenly.com/user /var/www/html/user
-#COPY pages /var/www/html/user/pages
+COPY public /var/www/html
+COPY secrets/nivenly.com/user /var/www/html/user
+COPY pages /var/www/html/user/pages
 
 ENTRYPOINT ["/nivenly"]

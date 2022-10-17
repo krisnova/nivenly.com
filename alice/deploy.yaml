@@ -30,7 +30,7 @@ spec:
     spec:
       hostNetwork: true
       containers:
-        - image: docker.io/krisnova/nivenly.new.com:latest
+        - image: docker.io/krisnova/nivenly.com:latest
           volumeMounts:
             - mountPath: /data/nivenly.com
               name: anchovies
@@ -48,7 +48,8 @@ spec:
           imagePullPolicy: Always
           name: nivenly
           ports:
-            - containerPort: 8000
+            - containerPort: 37000
+              hostPort: 37000
               protocol: TCP
           resources: {}
           terminationMessagePath: /dev/termination-log

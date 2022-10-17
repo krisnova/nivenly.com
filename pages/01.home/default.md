@@ -3,7 +3,9 @@ title: Nivenly.com
 body_classes: 'title-center title-h1h2'
 hero:
     title: {  }
-media_order: 25231.png
+process:
+    markdown: true
+    twig: true
 ---
 
 ## Biography
