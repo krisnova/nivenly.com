@@ -1,10 +1,11 @@
 ---
 title: 'Sustainability and Open Source Endurance'
 hero:
-    display: true
+    display: false
     alignment: center
     image: clouds.jpg
     image_alignment: object-center
+    title: {  }
 media_order: clouds.jpg
 ---
 
@@ -55,7 +56,7 @@ I want "technical alpinists" who are willing to travel quickly, and take calcula
 <p>My hope is to grow a safe, healthy, and sustainable community around Aurae - and have some fun in my free time. I want to sharpen my skills as a technical leader and have an enormous impact on a corporation as well as the industry. Sincerely, I want to do big things! I will need the experience and an opportunity to make an impact if I ever want to grow as a leader.</p>
 <p>Now - Where would I find a large enterprise platform that would benefit from a distributed systems, security, and infrastructure expert? What about finding a home that would understand open source and the value of empowering a community? Somewhere that would support me bringing my best self to the office without the looming fear of Aurae becoming a point of conflict?</p>
 <p>What system could I work on that would grow me as a leader, and also allow me to grow Aurae while I also pushed our internal platform and technologies to new heights?</p>
-<p>Something tells me that the authors of the BEIPA (Balanced Employee IP Agreement) might understand how critical it is to empower innovation for online communities. I intend to build out a sustainable open source governance model that follows the same BEIPA paradigm of having a flagship definition that others can easily adopt. I intend on leveraging this new project governance model with Aurae.</p>
+<p>Something tells me that the authors of the <a href="https://github.com/github/balanced-employee-ip-agreement">BEIPA (Balanced Employee IP Agreement)</a> might understand how critical it is to empower innovation for online communities. I intend to build out a sustainable open source governance model that follows the same BEIPA paradigm of having a flagship definition that others can easily adopt. I intend on leveraging this new project governance model with Aurae.</p>
 <h3>Joining GitHub 🎉</h3>
 <p>Very excited to announce my new job working as an engineer at GitHub. I am confident my new role will love and support me in all of my unique and obscure opinionated goodness. I am smiling as I write this.</p>
 <p>So without further adieu. Here is to raising up the entire industry and asynchronous working. We are all in this thing together.</p>
