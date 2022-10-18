@@ -7,3 +7,5 @@ public/user/data/notifications/*
 
 # Ignore cache data
 public/cache/*
+
+html
