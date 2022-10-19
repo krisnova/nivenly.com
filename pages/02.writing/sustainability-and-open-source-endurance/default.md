@@ -59,4 +59,5 @@ I want "technical alpinists" who are willing to travel quickly, and take calcula
 <p>Something tells me that the authors of the <a href="https://github.com/github/balanced-employee-ip-agreement">BEIPA (Balanced Employee IP Agreement)</a> might understand how critical it is to empower innovation for online communities. I intend to build out a sustainable open source governance model that follows the same BEIPA paradigm of having a flagship definition that others can easily adopt. I intend on leveraging this new project governance model with Aurae.</p>
 <h3>Joining GitHub 🎉</h3>
 <p>Very excited to announce my new job working as an engineer at GitHub. I am confident my new role will love and support me in all of my unique and obscure opinionated goodness. I am smiling as I write this.</p>
+<p>I am so excited to meet the team and see what is in store. My hope is that as I learn more about my future at GitHub, our products, infrastructure, and goals I can make a huge impact!</p>
 <p>So without further adieu. Here is to raising up the entire industry and asynchronous working. We are all in this thing together.</p>
